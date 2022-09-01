@@ -4,6 +4,9 @@ import { Field as GqlField, ObjectType as GqlType } from 'type-graphql';
 @GqlType()
 export class User {
 	@GqlField((_type) => String)
+	id: string;
+
+	@GqlField((_type) => String)
 	@Prop({ required: true })
 	public name!: string;
 
@@ -15,9 +18,9 @@ export class User {
 	@Prop({ required: true })
 	public password!: string;
 
-	@GqlField((_type) => String, { nullable: true })
-	@Prop()
-	public refreshToken?: string;
+	@GqlField((_type) => Number)
+	@Prop({ default: 0 })
+	public refreshTokenVersion: number;
 
 	@GqlField((_type) => Boolean)
 	@Prop({ required: true, default: false })
