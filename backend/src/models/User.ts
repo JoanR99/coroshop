@@ -17,7 +17,6 @@ export class User {
 	@Prop({ required: true })
 	public password!: string;
 
-	@GqlField((_type) => Number)
 	@Prop({ default: 0 })
 	public refreshTokenVersion: number;
 

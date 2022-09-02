@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import { UserResolver } from './resolvers/UserResolvers';
 import { AuthResolver } from './resolvers/AuthResolvers';
+import { ProductResolver } from './resolvers/ProductResolvers';
 
 import connectDB from './config/database';
 import refreshTokenController from './refreshTokenController';
@@ -20,7 +21,7 @@ const start = async () => {
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [UserResolver, AuthResolver],
+			resolvers: [UserResolver, AuthResolver, ProductResolver],
 		}),
 		context: ({ req, res }) => ({ req, res }),
 	});

@@ -1,0 +1,214 @@
+import { ApolloError } from 'apollo-server-express';
+import {
+	Arg,
+	Ctx,
+	Mutation,
+	ObjectType,
+	Query,
+	Resolver,
+	UseMiddleware,
+	InputType,
+	Field,
+} from 'type-graphql';
+import { NotFound } from '../errors';
+import verifyAdmin from '../middlewares/verifyAdmin';
+import verifyJwt from '../middlewares/verifyJwt';
+import { Product } from '../models/Product';
+import { MyContext } from '../MyContext';
+
+import * as productService from '../services/productServices';
+import * as userService from '../services/userService';
+
+@ObjectType()
+class GetProductsResponse {
+	@Field((type) => [Product])
+	products: [Product];
+
+	@Field()
+	page: number;
+
+	@Field()
+	pages: number;
+}
+
+@ObjectType()
+class ProductMutationBasicResponse {
+	@Field()
+	message: string;
+}
+
+@InputType()
+export class ProductBody {
+	@Field()
+	name: string;
+
+	@Field()
+	price: number;
+
+	@Field()
+	image: string;
+
+	@Field()
+	brand: string;
+
+	@Field()
+	category: string;
+
+	@Field()
+	countInStock: number;
+
+	@Field()
+	description: string;
+
+	@Field({ nullable: true })
+	user?: string;
+}
+
+@InputType()
+class ProductReview {
+	@Field()
+	rating: number;
+
+	@Field()
+	comment: string;
+}
+
+@Resolver()
+export class ProductResolver {
+	@Query(() => GetProductsResponse)
+	async getProducts(
+		@Arg('pageSize') pageSize: number,
+		@Arg('keyword') keyword?: string,
+		@Arg('pageNumber') pageNumber?: number
+	) {
+		const page = pageNumber || 1;
+		const keywordRegex = keyword
+			? {
+					name: {
+						$regex: keyword,
+						$options: 'i',
+					},
+			  }
+			: {};
+
+		const count = await productService.count(keywordRegex);
+
+		const products = await productService
+			.findAll(keywordRegex)
+			.limit(pageSize)
+			.skip(pageSize * (page - 1));
+
+		const pages = Math.ceil(count / pageSize);
+
+		return {
+			products,
+			page,
+			pages,
+		};
+	}
+
+	@Query(() => Product)
+	async getProduct(@Arg('productId') productId: string) {
+		const product = await productService.findById(productId);
+
+		if (!product) {
+			throw new NotFound('Product not found');
+		}
+
+		return product;
+	}
+
+	@Query(() => [Product])
+	async getTopProducts() {
+		const products = await productService
+			.findAll({})
+			.sort({ rating: -1 })
+			.limit(3);
+
+		return products;
+	}
+
+	@Mutation(() => Product)
+	@UseMiddleware([verifyJwt, verifyAdmin])
+	async addProduct(
+		@Arg('product', () => ProductBody) product: ProductBody,
+		@Ctx() { payload }: MyContext
+	) {
+		const createdProduct = await productService.create({
+			...product,
+			user: payload!.userId,
+		});
+
+		return createdProduct;
+	}
+
+	@Mutation(() => ProductMutationBasicResponse)
+	@UseMiddleware([verifyJwt, verifyAdmin])
+	async deleteProduct(@Arg('productId') productId: string) {
+		const product = await productService.findById(productId);
+
+		if (!product) {
+			throw new NotFound('Product not found');
+		}
+
+		await productService.remove(productId);
+
+		return {
+			message: 'Product deleted',
+		};
+	}
+
+	@Mutation(() => Product)
+	@UseMiddleware([verifyJwt, verifyAdmin])
+	async updateProduct(
+		@Arg('productBody') productBody: ProductBody,
+		@Arg('productId') productId: string
+	) {
+		const product = await productService.findById(productId);
+
+		if (!product) {
+			throw new NotFound('Product not found');
+		}
+
+		await productService.update(product, productBody);
+
+		return product;
+	}
+
+	@Mutation(() => ProductMutationBasicResponse)
+	@UseMiddleware(verifyJwt)
+	async addProductReview(
+		@Arg('reviewBody') reviewBody: ProductReview,
+		@Arg('productId') productId: string,
+		@Ctx() { payload }: MyContext
+	) {
+		const product = await productService.findById(productId);
+
+		if (!product) {
+			throw new NotFound('Product not found');
+		}
+
+		const alreadyReviewed = product.reviews.find(
+			(r) => r.user?.toString() === payload?.userId
+		);
+
+		if (alreadyReviewed) {
+			throw new ApolloError('Product already reviewed');
+		}
+
+		const user = await userService.findById(payload!.userId);
+
+		const review = {
+			name: user!.name,
+			rating: reviewBody.rating,
+			comment: reviewBody.comment,
+			user: user?.id,
+		};
+
+		await productService.addReview(product, review);
+
+		return {
+			message: 'Review added',
+		};
+	}
+}
