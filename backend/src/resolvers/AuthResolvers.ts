@@ -3,6 +3,8 @@ import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from 'type-graphql';
 import * as userService from '../services/userService';
 import * as authService from '../services/authService';
 import { MyContext } from '../MyContext';
+import { NotFound } from '../errors';
+import { ForbiddenError } from 'apollo-server-express';
 
 @ObjectType()
 class LoginResponse {
@@ -33,13 +35,13 @@ export class AuthResolver {
 		const user = await userService.findByEmail(email);
 
 		if (!user) {
-			throw new Error('User not found');
+			throw new NotFound('User not found');
 		}
 
 		const match = await authService.compare(password, user.password);
 
 		if (!match) {
-			throw new Error('Forbidden');
+			throw new ForbiddenError('Forbidden');
 		}
 
 		user.refreshTokenVersion = user.refreshTokenVersion + 1;
@@ -78,7 +80,9 @@ export class AuthResolver {
 	@Mutation(() => RevokeResponse)
 	async revokeRefreshToken(@Arg('userId') userId: string) {
 		const user = await userService.findById(userId);
-		if (!user) throw new Error('User not found');
+
+		if (!user) throw new NotFound('User not found');
+
 		user.refreshTokenVersion = user.refreshTokenVersion + 1;
 		await user.save();
 

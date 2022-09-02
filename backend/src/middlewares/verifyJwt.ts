@@ -1,16 +1,16 @@
-import { MiddlewareFn } from 'type-graphql';
+import { MiddlewareFn, UnauthorizedError } from 'type-graphql';
 import { MyContext } from '../MyContext';
 import * as authService from '../services/authService';
 
-export const verifyJwt: MiddlewareFn<MyContext> = ({ context }, next) => {
+const verifyJwt: MiddlewareFn<MyContext> = ({ context }, next) => {
 	try {
 		const authHeader =
 			context.req.headers.authorization || context.req.headers.Authorization;
 
 		if (typeof authHeader === 'undefined' || Array.isArray(authHeader))
-			throw new Error('Unauthorized');
+			throw new UnauthorizedError();
 
-		if (!authHeader?.startsWith('Bearer ')) throw new Error('Unauthorized');
+		if (!authHeader?.startsWith('Bearer ')) throw new UnauthorizedError();
 
 		const token = authHeader.split(' ')[1];
 
@@ -22,6 +22,8 @@ export const verifyJwt: MiddlewareFn<MyContext> = ({ context }, next) => {
 
 		return next();
 	} catch (e) {
-		throw new Error('Unauthorized');
+		throw new UnauthorizedError();
 	}
 };
+
+export default verifyJwt;

@@ -14,7 +14,6 @@ export class User {
 	@Prop({ required: true, unique: true })
 	public email!: string;
 
-	@GqlField((_type) => String)
 	@Prop({ required: true })
 	public password!: string;
 

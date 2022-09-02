@@ -17,9 +17,6 @@ const refreshTokenController = async (req: Request, res: Response) => {
 
 		const user = await userService.findById(tokenPayload.userId);
 
-		console.log(user?.refreshTokenVersion);
-		console.log(tokenPayload);
-
 		if (!user || user.refreshTokenVersion !== tokenPayload.tokenVersion)
 			return res.sendStatus(403);
 
@@ -29,7 +26,6 @@ const refreshTokenController = async (req: Request, res: Response) => {
 
 		return res.json({ accessToken });
 	} catch (e) {
-		console.log(e);
 		return res.sendStatus(403);
 	}
 };
