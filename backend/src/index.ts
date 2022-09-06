@@ -18,7 +18,7 @@ const start = async () => {
 
 	app.use(cookieParser());
 
-	app.get('/refresh_token', refreshTokenController);
+	app.get('/api/refresh_token', refreshTokenController);
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
@@ -29,7 +29,7 @@ const start = async () => {
 
 	await apolloServer.start();
 
-	apolloServer.applyMiddleware({ app });
+	apolloServer.applyMiddleware({ app, path: '/api/graphql' });
 
 	app.listen(8080, () => console.log('Server started at port 8080'));
 };

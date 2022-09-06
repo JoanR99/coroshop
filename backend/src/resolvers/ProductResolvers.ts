@@ -98,9 +98,10 @@ export class ProductResolver {
 
 	@Query(() => Product)
 	async getProduct(@Arg('productId') productId: string) {
-		const product = await productService
-			.findById(productId)
-			.populate('reviews');
+		const product = await productService.findById(productId).populate({
+			path: 'reviews',
+			populate: { path: 'user' },
+		});
 
 		if (!product) {
 			throw new NotFound('Product not found');
