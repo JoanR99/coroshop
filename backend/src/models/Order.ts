@@ -3,10 +3,9 @@ import { Field as GqlField, ObjectType as GqlType } from 'type-graphql';
 
 import { User } from './User';
 import { Product } from './Product';
-import { Date } from 'mongoose';
 
 @GqlType()
-class OrderItem {
+export class OrderItem {
 	@GqlField((_type) => String)
 	@Prop({ required: true })
 	public name!: string;
@@ -29,7 +28,7 @@ class OrderItem {
 }
 
 @GqlType()
-class ShippingAddress {
+export class ShippingAddress {
 	@GqlField((_type) => String)
 	@Prop({ required: true })
 	public address!: string;
@@ -48,7 +47,7 @@ class ShippingAddress {
 }
 
 @GqlType()
-class PaymentResult {
+export class PaymentResult {
 	@GqlField((_type) => String)
 	@Prop()
 	public id: string;
@@ -67,7 +66,7 @@ class PaymentResult {
 }
 
 @GqlType()
-class Order {
+export class Order {
 	@GqlField((_type) => String)
 	id: string;
 
@@ -87,9 +86,9 @@ class Order {
 	@Prop({ required: true })
 	public paymentMethod!: string;
 
-	@GqlField((_type) => PaymentResult)
+	@GqlField((_type) => PaymentResult, { nullable: true })
 	@Prop()
-	public paymentResult: PaymentResult;
+	public paymentResult?: PaymentResult;
 
 	@GqlField((_type) => Number)
 	@Prop({ required: true, default: 0.0 })

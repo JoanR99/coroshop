@@ -1,4 +1,3 @@
-import { ApolloError } from 'apollo-server-express';
 import {
 	Arg,
 	Ctx,
@@ -17,7 +16,6 @@ import { Product } from '../models/Product';
 import { MyContext } from '../MyContext';
 
 import * as productService from '../services/productServices';
-import * as userService from '../services/userService';
 
 @ObjectType()
 class GetProductsResponse {
@@ -64,15 +62,6 @@ export class ProductBody {
 	user?: string;
 }
 
-@InputType()
-class ProductReview {
-	@Field()
-	rating: number;
-
-	@Field()
-	comment: string;
-}
-
 @Resolver()
 export class ProductResolver {
 	@Query(() => GetProductsResponse)
@@ -109,7 +98,9 @@ export class ProductResolver {
 
 	@Query(() => Product)
 	async getProduct(@Arg('productId') productId: string) {
-		const product = await productService.findById(productId);
+		const product = await productService
+			.findById(productId)
+			.populate('reviews');
 
 		if (!product) {
 			throw new NotFound('Product not found');
@@ -164,51 +155,15 @@ export class ProductResolver {
 		@Arg('productBody') productBody: ProductBody,
 		@Arg('productId') productId: string
 	) {
-		const product = await productService.findById(productId);
-
-		if (!product) {
-			throw new NotFound('Product not found');
-		}
-
-		await productService.update(product, productBody);
-
-		return product;
-	}
-
-	@Mutation(() => ProductMutationBasicResponse)
-	@UseMiddleware(verifyJwt)
-	async addProductReview(
-		@Arg('reviewBody') reviewBody: ProductReview,
-		@Arg('productId') productId: string,
-		@Ctx() { payload }: MyContext
-	) {
-		const product = await productService.findById(productId);
-
-		if (!product) {
-			throw new NotFound('Product not found');
-		}
-
-		const alreadyReviewed = product.reviews.find(
-			(r) => r.user?.toString() === payload?.userId
+		const product = await productService.findByIdAndUpdate(
+			productId,
+			productBody
 		);
 
-		if (alreadyReviewed) {
-			throw new ApolloError('Product already reviewed');
+		if (!product) {
+			throw new NotFound('Product not found');
 		}
 
-		const user = await userService.findById(payload!.userId);
-
-		const review = {
-			name: user!.name,
-			rating: reviewBody.rating,
-			comment: reviewBody.comment,
-			user: user?.id,
-		};
-
-		await productService.addReview(product, review);
-
-		return {
-			message: 'Review added',
-		};
+		return product;
 	}
 }

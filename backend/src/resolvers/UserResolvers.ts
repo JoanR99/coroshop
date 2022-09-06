@@ -7,6 +7,7 @@ import {
 	UseMiddleware,
 	ObjectType,
 	Field,
+	InputType,
 } from 'type-graphql';
 import { User } from '../models/User';
 
@@ -21,6 +22,24 @@ import { MyContext } from '../MyContext';
 class DeleteUserResponse {
 	@Field()
 	message: string;
+}
+
+@InputType()
+export class UpdateUserProfileInput {
+	@Field({ nullable: true })
+	name?: string;
+
+	@Field({ nullable: true })
+	email?: string;
+
+	@Field({ nullable: true })
+	password?: string;
+}
+
+@InputType()
+export class UpdateUserProfile extends UpdateUserProfileInput {
+	@Field({ nullable: true })
+	isAdmin?: boolean;
 }
 
 @Resolver()
@@ -76,60 +95,44 @@ export class UserResolver {
 	@Mutation(() => User)
 	@UseMiddleware(verifyJwt)
 	async updateUserProfile(
-		@Arg('name') name: string,
-		@Arg('email') email: string,
-		@Arg('password') password: string,
-		@Ctx() { payload }: MyContext
+		@Ctx() { payload }: MyContext,
+		@Arg('updateBody') updateBody: UpdateUserProfileInput
 	) {
-		const user = await userService.findById(payload!.userId);
+		const updatedUser = await userService.findByIdAndUpdate(
+			payload!.userId,
+			updateBody
+		);
 
-		if (user) {
-			user.name = name || user.name;
-			user.email = email || user.email;
-			if (password) {
-				const hash = await authService.hash(password);
-				user.password = hash;
-			}
-
-			const updatedUser = await user.save();
-
-			return {
-				id: updatedUser.id,
-				name: updatedUser.name,
-				email: updatedUser.email,
-				isAdmin: updatedUser.isAdmin,
-			};
-		} else {
+		if (!updatedUser) {
 			throw new NotFound('User not found');
 		}
+
+		return {
+			id: updatedUser.id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+		};
 	}
 
 	@Mutation(() => User)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async updateUser(
-		@Arg('name') name: string,
-		@Arg('email') email: string,
-		@Arg('isAdmin') isAdmin: boolean,
+		@Arg('updateBody') updateBody: UpdateUserProfile,
 		@Arg('userId') userId: string
 	) {
-		const user = await userService.findById(userId);
+		const updatedUser = await userService.findByIdAndUpdate(userId, updateBody);
 
-		if (user) {
-			user.name = name || user.name;
-			user.email = email || user.email;
-			user.isAdmin = isAdmin;
-
-			const updatedUser = await user.save();
-
-			return {
-				id: updatedUser.id,
-				name: updatedUser.name,
-				email: updatedUser.email,
-				isAdmin: updatedUser.isAdmin,
-			};
-		} else {
+		if (!updatedUser) {
 			throw new NotFound('User not found');
 		}
+
+		return {
+			id: updatedUser.id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+		};
 	}
 
 	@Mutation(() => DeleteUserResponse)
