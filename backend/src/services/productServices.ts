@@ -1,7 +1,11 @@
-import { ProductModel } from '../models/ProductReview';
+import ProductModel, { Product } from '../models/Product';
 import { ProductBody } from '../resolvers/ProductResolvers';
 
 type QueryProducts = { name: { $regex: string; $options: string } };
+
+interface ProductUpdate extends Product {
+	$inc: any;
+}
 
 export const findAll = (keyword: QueryProducts | {}) =>
 	ProductModel.find({ ...keyword });
@@ -17,6 +21,6 @@ export const remove = (id: string) => ProductModel.deleteOne({ id });
 
 export const findByIdAndUpdate = (
 	productId: string,
-	productBody: ProductBody
+	productBody: Partial<ProductUpdate>
 ) =>
 	ProductModel.findByIdAndUpdate(productId, { ...productBody }, { new: true });

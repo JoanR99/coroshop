@@ -1,8 +1,7 @@
-import { Prop, Ref } from '@typegoose/typegoose';
+import { Prop, Ref, getModelForClass } from '@typegoose/typegoose';
 import { Field as GqlField, ObjectType as GqlType } from 'type-graphql';
 
 import { User } from './User';
-import { Review } from './Review';
 
 @GqlType()
 export class Product {
@@ -11,7 +10,7 @@ export class Product {
 
 	@GqlField((_type) => String)
 	@Prop({ required: true, ref: () => User })
-	public user!: Ref<User>;
+	public createdBy!: Ref<User>;
 
 	@GqlField((_type) => String)
 	@Prop({ required: true })
@@ -33,10 +32,6 @@ export class Product {
 	@Prop({ required: true })
 	public description!: string;
 
-	@GqlField((_type) => [Review])
-	@Prop({ ref: () => Review })
-	public reviews: Ref<Review>[];
-
 	@GqlField((_type) => Number)
 	@Prop({ required: true, default: 0 })
 	public rating!: number;
@@ -53,3 +48,7 @@ export class Product {
 	@Prop({ required: true, default: 0 })
 	public countInStock!: number;
 }
+
+const ProductModel = getModelForClass(Product);
+
+export default ProductModel;

@@ -8,7 +8,7 @@ import { Product } from './Product';
 export class OrderItem {
 	@GqlField((_type) => String)
 	@Prop({ required: true })
-	public name!: string;
+	public productName!: string;
 
 	@GqlField((_type) => Number)
 	@Prop({ required: true })
@@ -24,7 +24,7 @@ export class OrderItem {
 
 	@GqlField((_type) => String)
 	@Prop({ required: true, ref: () => Product })
-	public product!: string;
+	public product!: Ref<Product>;
 }
 
 @GqlType()
@@ -72,7 +72,7 @@ export class Order {
 
 	@GqlField((_type) => String)
 	@Prop({ required: true, ref: () => User })
-	public user!: Ref<User>;
+	public orderBy!: Ref<User>;
 
 	@GqlField((_type) => [OrderItem])
 	@Prop()
