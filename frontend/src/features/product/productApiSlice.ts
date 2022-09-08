@@ -1,8 +1,8 @@
-import { api } from '../api/api';
+import { apiSlice } from '../../app/api/apiSlice';
 import { getProduct, getProducts } from './productQueries';
 import { GetProductsResponse, GetProductResponse } from './productTypes';
 
-const productApi = api.injectEndpoints({
+const productApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getProducts: builder.query<
 			GetProductsResponse,
