@@ -4,3 +4,7 @@ export interface User {
 	email: string;
 	isAdmin: boolean;
 }
+
+export interface AddUserResponse {
+	addUser: { message: string };
+}

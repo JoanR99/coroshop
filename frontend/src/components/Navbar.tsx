@@ -38,7 +38,10 @@ const Navbar = () => {
 			{accessToken ? (
 				<LogoutButton />
 			) : (
-				<StyledLink to="/login">Login</StyledLink>
+				<div>
+					<StyledLink to="/login">Login</StyledLink>
+					<StyledLink to="/register">Register</StyledLink>
+				</div>
 			)}
 		</NavbarBody>
 	);

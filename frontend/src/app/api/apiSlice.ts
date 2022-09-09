@@ -12,6 +12,7 @@ import {
 	clearCredentials,
 	setCredentials,
 } from '../../features/auth/authSlice';
+import getNewAccessToken from '../../features/auth/getNewAccessToken';
 
 const client = new GraphQLClient('http://localhost:8080/api/graphql', {
 	credentials: 'include',
@@ -36,21 +37,16 @@ const baseQueryWithReAuth = async (
 ) => {
 	let result = await baseQuery(args, api, extraOptions);
 
-	console.log(result);
-
 	if (
 		result?.error?.message?.includes(
 			'Access denied! You need to be authorized to perform this action!'
 		)
 	) {
 		console.log('sending refresh token');
-		const { data } = await axios.get(
-			'http://localhost:8080/api/refresh_token',
-			{ withCredentials: true }
-		);
+		const accessToken = await getNewAccessToken();
 
-		if (data.accessToken) {
-			api.dispatch(setCredentials({ accessToken: data.accessToken }));
+		if (accessToken) {
+			api.dispatch(setCredentials({ accessToken }));
 
 			result = await baseQuery(args, api, extraOptions);
 		} else {

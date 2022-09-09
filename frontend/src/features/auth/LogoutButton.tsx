@@ -14,6 +14,7 @@ const LogoutButton = () => {
 		try {
 			await logout(null);
 			dispatch(clearCredentials());
+			localStorage.setItem('persist', JSON.stringify(false));
 
 			toast.update(id, {
 				render: 'Logout Success',

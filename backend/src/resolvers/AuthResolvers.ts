@@ -47,10 +47,14 @@ export class AuthResolver {
 		user.refreshTokenVersion = user.refreshTokenVersion + 1;
 		await user.save();
 
-		const accessToken = authService.createAccessToken({ userId: user.id });
+		const accessToken = authService.createAccessToken({
+			userId: user.id,
+			isAdmin: user.isAdmin,
+		});
 		const refreshToken = authService.createRefreshToken({
 			userId: user.id,
 			tokenVersion: user.refreshTokenVersion,
+			isAdmin: user.isAdmin,
 		});
 
 		res.cookie('jwt', refreshToken, {

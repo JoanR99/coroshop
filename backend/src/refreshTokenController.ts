@@ -22,6 +22,7 @@ const refreshTokenController = async (req: Request, res: Response) => {
 
 		const accessToken = authService.createAccessToken({
 			userId: tokenPayload.userId,
+			isAdmin: tokenPayload.isAdmin,
 		});
 
 		return res.json({ accessToken });

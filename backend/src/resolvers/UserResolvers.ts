@@ -19,7 +19,7 @@ import { NotFound } from '../errors';
 import { MyContext } from '../MyContext';
 
 @ObjectType()
-class DeleteUserResponse {
+class BasicMutationResponse {
 	@Field()
 	message: string;
 }
@@ -75,22 +75,19 @@ export class UserResolver {
 		return user;
 	}
 
-	@Mutation(() => Boolean)
+	@Mutation(() => BasicMutationResponse)
 	async addUser(
 		@Arg('name') name: string,
 		@Arg('email') email: string,
 		@Arg('password') password: string
 	) {
-		try {
-			const hash = await authService.hash(password);
+		const hash = await authService.hash(password);
 
-			await userService.create(name, email, hash);
-		} catch (e) {
-			console.log(e);
-			return false;
-		}
+		await userService.create(name, email, hash);
 
-		return true;
+		return {
+			message: 'User created',
+		};
 	}
 
 	@Mutation(() => User)
@@ -136,7 +133,7 @@ export class UserResolver {
 		};
 	}
 
-	@Mutation(() => DeleteUserResponse)
+	@Mutation(() => BasicMutationResponse)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async deleteUser(@Arg('userId') userId: string) {
 		const user = await userService.findById(userId);

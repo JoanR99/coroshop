@@ -3,50 +3,44 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { loginSchema, defaultValues } from '../validation/loginSchema';
 import FormInput from '../components/FormInput';
-import { useLoginMutation } from '../features/auth/authApiSlice';
-import { setCredentials } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { registerSchema, defaultValues } from '../validation/registerSchema';
+import { useAddUserMutation } from '../features/user/userApiSlice';
 
-const Login = () => {
-	const dispatch = useDispatch();
+const Register = () => {
 	const navigate = useNavigate();
 	const methods = useForm({
-		resolver: zodResolver(loginSchema),
+		resolver: zodResolver(registerSchema),
 		defaultValues,
 	});
 
-	const [login] = useLoginMutation();
+	const [register] = useAddUserMutation();
 
 	const submitHandler = async ({
+		name,
 		email,
 		password,
-		persist,
 	}: {
+		name: string;
 		email: string;
 		password: string;
-		persist: boolean;
 	}) => {
-		const id = toast.loading('Login In...', { theme: 'dark' });
+		const id = toast.loading('Register...', { theme: 'dark' });
 		try {
-			const userData = await login({ email, password }).unwrap();
+			await register({ name, email, password }).unwrap();
 
-			if (userData?.login) {
-				dispatch(setCredentials({ accessToken: userData?.login.accessToken }));
-				localStorage.setItem('persist', JSON.stringify(persist));
-				toast.update(id, {
-					render: 'Login Success',
-					type: 'success',
-					isLoading: false,
-					autoClose: 3000,
-					theme: 'dark',
-				});
-				navigate('/');
-			}
+			toast.update(id, {
+				render: 'Register Success',
+				type: 'success',
+				isLoading: false,
+				autoClose: 3000,
+				theme: 'dark',
+			});
+			navigate('/login');
 		} catch (e) {
 			toast.update(id, {
-				render: 'Login Fail',
+				render: 'Register Fail',
 				type: 'error',
 				isLoading: false,
 				autoClose: 3000,
@@ -58,13 +52,15 @@ const Login = () => {
 
 	return (
 		<FormProvider {...methods}>
-			<h1>Login</h1>
+			<h1>Register</h1>
 
 			<form
 				onSubmit={methods.handleSubmit(submitHandler)}
 				noValidate
 				autoComplete="off"
 			>
+				<FormInput label="Name" type="text" name="name" id="name" required />
+
 				<FormInput
 					label="Email"
 					type="email"
@@ -81,17 +77,16 @@ const Login = () => {
 				/>
 
 				<FormInput
-					label="Trust this device?"
-					type="checkbox"
-					name="persist"
-					id="persist"
+					label="Password confirm"
+					type="password"
+					name="passwordConfirm"
+					id="passwordConfirm"
 					required
 				/>
-
-				<button>Login</button>
+				<button>Register</button>
 			</form>
 		</FormProvider>
 	);
 };
 
-export default Login;
+export default Register;
