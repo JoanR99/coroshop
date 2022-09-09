@@ -4,7 +4,11 @@ import { ProductBody } from '../resolvers/ProductResolvers';
 type QueryProducts = { name: { $regex: string; $options: string } };
 
 interface ProductUpdate extends Product {
-	$inc: any;
+	$inc?: any;
+}
+
+interface ProductCreateBody extends ProductBody {
+	createdBy: string;
 }
 
 export const findAll = (keyword: QueryProducts | {}) =>
@@ -15,7 +19,8 @@ export const count = (keyword: QueryProducts | {}) =>
 
 export const findById = (id: string) => ProductModel.findById(id);
 
-export const create = (product: ProductBody) => ProductModel.create(product);
+export const create = (product: ProductCreateBody) =>
+	ProductModel.create(product);
 
 export const remove = (id: string) => ProductModel.deleteOne({ id });
 

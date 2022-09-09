@@ -86,6 +86,7 @@ export class UserResolver {
 
 			await userService.create(name, email, hash);
 		} catch (e) {
+			console.log(e);
 			return false;
 		}
 

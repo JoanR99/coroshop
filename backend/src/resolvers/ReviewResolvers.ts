@@ -50,9 +50,7 @@ export class ReviewResolver {
 		@Arg('productId') productId: string,
 		@Ctx() { payload }: MyContext
 	) {
-		const product = await productService
-			.findById(productId)
-			.populate('reviews');
+		const product = await productService.findById(productId);
 
 		if (!product) {
 			throw new NotFound('Product not found');

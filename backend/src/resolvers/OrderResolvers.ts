@@ -43,9 +43,6 @@ export class AddOrderInput {
 
 	@Field()
 	totalPrice: number;
-
-	@Field({ nullable: true })
-	user?: string;
 }
 
 @Resolver()
@@ -89,7 +86,7 @@ export class OrderResolver {
 		} else {
 			const order = await orderService.create({
 				...orderBody,
-				user: payload!.userId,
+				orderBy: payload!.userId,
 			});
 
 			return order;

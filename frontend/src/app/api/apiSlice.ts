@@ -14,7 +14,7 @@ import {
 } from '../../features/auth/authSlice';
 
 const client = new GraphQLClient('http://localhost:8080/api/graphql', {
-	credentials: 'same-origin',
+	credentials: 'include',
 });
 
 const baseQuery = graphqlRequestBaseQuery({
@@ -36,12 +36,18 @@ const baseQueryWithReAuth = async (
 ) => {
 	let result = await baseQuery(args, api, extraOptions);
 
+	console.log(result);
+
 	if (
-		result?.error?.message ===
-		'Access denied! You need to be authorized to perform this action!'
+		result?.error?.message?.includes(
+			'Access denied! You need to be authorized to perform this action!'
+		)
 	) {
 		console.log('sending refresh token');
-		const { data } = await axios.get('http://localhost:8080/api/refresh_token');
+		const { data } = await axios.get(
+			'http://localhost:8080/api/refresh_token',
+			{ withCredentials: true }
+		);
 
 		if (data.accessToken) {
 			api.dispatch(setCredentials({ accessToken: data.accessToken }));
@@ -57,5 +63,6 @@ const baseQueryWithReAuth = async (
 
 export const apiSlice = createApi({
 	baseQuery: baseQueryWithReAuth,
+	tagTypes: ['products', 'reviews'],
 	endpoints: () => ({}),
 });

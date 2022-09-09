@@ -16,12 +16,14 @@ const productApi = apiSlice.injectEndpoints({
 					pageSize,
 				},
 			}),
+			providesTags: ['products'],
 		}),
 		getProduct: builder.query<GetProductResponse, { productId: string }>({
 			query: ({ productId }) => ({
 				document: getProduct,
 				variables: { productId },
 			}),
+			providesTags: ['products'],
 		}),
 	}),
 	overrideExisting: false,

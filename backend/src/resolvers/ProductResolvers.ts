@@ -16,6 +16,7 @@ import { Product } from '../models/Product';
 import { MyContext } from '../MyContext';
 
 import * as productService from '../services/productServices';
+import * as userService from '../services/userService';
 
 @ObjectType()
 class GetProductsResponse {
@@ -57,9 +58,6 @@ export class ProductBody {
 
 	@Field()
 	description: string;
-
-	@Field({ nullable: true })
-	user?: string;
 }
 
 @Resolver()
@@ -123,9 +121,11 @@ export class ProductResolver {
 		@Arg('product', () => ProductBody) product: ProductBody,
 		@Ctx() { payload }: MyContext
 	) {
+		const user = await userService.findById(payload!.userId);
+
 		const createdProduct = await productService.create({
 			...product,
-			user: payload!.userId,
+			createdBy: user?.id,
 		});
 
 		return createdProduct;
@@ -150,7 +150,7 @@ export class ProductResolver {
 	@Mutation(() => Product)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async updateProduct(
-		@Arg('productBody') productBody: ProductBody,
+		@Arg('productBody', () => ProductBody) productBody: ProductBody,
 		@Arg('productId') productId: string
 	) {
 		const product = await productService.findByIdAndUpdate(

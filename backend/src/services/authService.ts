@@ -13,7 +13,7 @@ export const compare = (password: string, encryptedPassword: string) =>
 
 export const createAccessToken = (body: { userId: string }) =>
 	jwt.sign(body, accessTokenSecret, {
-		expiresIn: '15m',
+		expiresIn: '30s',
 	});
 
 export const createRefreshToken = (body: {

@@ -1,19 +1,17 @@
 import { useParams } from 'react-router-dom';
-import { useGetProductQuery } from '../features/product/productApiSlice';
 import ProductView from '../features/product/ProductView';
+import ReviewList from '../features/review/ReviewList';
+import AddReview from '../features/review/AddReview';
 
 const ProductScreen = () => {
 	const { id } = useParams();
-	const { isLoading, isError, data } = useGetProductQuery({ productId: id! });
 
-	console.log(data);
-
-	return isLoading ? (
-		<div>Loading...</div>
-	) : isError ? (
-		<div>Error</div>
-	) : (
-		<ProductView product={data!.getProduct} />
+	return (
+		<>
+			<ProductView productId={id!} />
+			<AddReview productId={id!} />
+			<ReviewList productId={id!} />
+		</>
 	);
 };
 
