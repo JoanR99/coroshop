@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
+import Header from './Header';
 import Navbar from './Navbar';
 
 const Container = styled.div`
@@ -8,14 +9,17 @@ const Container = styled.div`
 	margin: auto;
 `;
 
-const Layout = () => (
-	<>
-		<Navbar />
+const Layout = () => {
+	return (
+		<>
+			<Header />
+			<Navbar />
 
-		<Container>
-			<Outlet />
-		</Container>
-	</>
-);
+			<Container>
+				<Outlet />
+			</Container>
+		</>
+	);
+};
 
 export default Layout;

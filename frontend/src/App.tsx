@@ -12,6 +12,7 @@ import RequireAdmin from './features/auth/RequireAdmin';
 import PersistLogin from './features/auth/PersistLogin';
 import Users from './screens/Users';
 import Unauthorized from './screens/Unauthorized';
+import AllProducts from './screens/AllProducts';
 
 function App() {
 	return (
@@ -21,7 +22,8 @@ function App() {
 				<Route path="/" element={<Layout />}>
 					<Route element={<PersistLogin />}>
 						<Route index element={<Home />} />
-						<Route path="product/:id" element={<ProductScreen />} />
+						<Route path="/products" element={<AllProducts />} />
+						<Route path="products/:id" element={<ProductScreen />} />
 						<Route path="login" element={<Login />} />
 						<Route path="register" element={<Register />} />
 						<Route path="unauthorized" element={<Unauthorized />} />

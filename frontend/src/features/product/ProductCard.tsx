@@ -40,7 +40,7 @@ const CardBody = styled.div`
 const ProductCard = ({ product }: Props) => {
 	const navigate = useNavigate();
 
-	const handleClick = () => navigate(`/product/${product.id}`);
+	const handleClick = () => navigate(`/products/${product.id}`);
 
 	return (
 		<Card onClick={handleClick}>

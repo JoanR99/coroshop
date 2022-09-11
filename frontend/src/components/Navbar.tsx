@@ -1,48 +1,23 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectCurrentAccessToken } from '../features/auth/authSlice';
-import LogoutButton from '../features/auth/LogoutButton';
+import { StyledLinkLight5, LinkContainer } from './StyledLink';
 
 const NavbarBody = styled.div`
-	background-color: #2b2727;
+	background-color: #457b9d;
+	height: 5rem;
 	padding: 1rem;
-	color: white;
 	margin-bottom: 20px;
 	display: flex;
 	justify-content: space-between;
-`;
-
-const StyledLink = styled(Link)`
-	color: white;
-
-	&:visited,
-	&:active {
-		color: white;
-	}
-
-	&:hover {
-		color: blue;
-	}
-
-	text-decoration: none;
+	align-items: center;
 `;
 
 const Navbar = () => {
-	const accessToken = useSelector(selectCurrentAccessToken);
-
 	return (
 		<NavbarBody>
-			<StyledLink to="/">Coroshop</StyledLink>
-
-			{accessToken ? (
-				<LogoutButton />
-			) : (
-				<div>
-					<StyledLink to="/login">Login</StyledLink>
-					<StyledLink to="/register">Register</StyledLink>
-				</div>
-			)}
+			<LinkContainer>
+				<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
+				<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
+			</LinkContainer>
 		</NavbarBody>
 	);
 };
