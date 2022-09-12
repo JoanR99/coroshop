@@ -24,7 +24,7 @@ const LogoutButton = () => {
 	const navigate = useNavigate();
 
 	const handleClick = async () => {
-		const id = toast.loading('Login In...', { theme: 'dark' });
+		const id = toast.loading('Login In...', { theme: 'light' });
 		try {
 			await logout(null);
 			dispatch(clearCredentials());
@@ -35,7 +35,7 @@ const LogoutButton = () => {
 				type: 'success',
 				isLoading: false,
 				autoClose: 3000,
-				theme: 'dark',
+				theme: 'light',
 			});
 			navigate('/');
 		} catch (e) {
@@ -44,7 +44,7 @@ const LogoutButton = () => {
 				type: 'error',
 				isLoading: false,
 				autoClose: 3000,
-				theme: 'dark',
+				theme: 'light',
 			});
 			console.log(e);
 		}

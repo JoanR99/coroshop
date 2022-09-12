@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import { Container } from '../../components/Container';
 
 import { useGetProductsQuery } from './productApiSlice';
 import ProductCard from './ProductCard';
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(80px, 200px));
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 25rem));
+	gap: 4rem;
+	width: 100%;
+	margin-top: 4rem;
 `;
 
 const ProductList = () => {
@@ -20,11 +24,13 @@ const ProductList = () => {
 	) : error ? (
 		<div>Something went wrong</div>
 	) : (
-		<Grid>
-			{data?.getProducts.products.map((product) => (
-				<ProductCard product={product} key={product.id} />
-			))}
-		</Grid>
+		<Container>
+			<Grid>
+				{data?.getProducts.products.map((product) => (
+					<ProductCard product={product} key={product.id} />
+				))}
+			</Grid>
+		</Container>
 	);
 };
 

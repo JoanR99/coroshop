@@ -1,92 +1,56 @@
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import { Container } from '../components/Container';
+import {
+	SectionContainer,
+	SectionPartImage,
+	SectionPartText,
+} from '../components/Section';
+import img from '../assets/images/login.jpg';
+import { Heading2 } from '../components/Typography';
+import RegisterForm from '../features/user/RegisterForm';
 
-import FormInput from '../components/FormInput';
-import { useNavigate } from 'react-router-dom';
-import { registerSchema, defaultValues } from '../validation/registerSchema';
-import { useAddUserMutation } from '../features/user/userApiSlice';
+const Section = styled(SectionContainer)`
+	background-color: #a8dadc;
+	height: 86vh;
+`;
 
-const Register = () => {
-	const navigate = useNavigate();
-	const methods = useForm({
-		resolver: zodResolver(registerSchema),
-		defaultValues,
-	});
+const FormSection = styled(SectionPartText)`
+	background-color: #a8dadc;
+	height: 100%;
+	display: grid;
+	place-items: center;
+`;
 
-	const [register] = useAddUserMutation();
+const SectionImage = styled(SectionPartImage)`
+	background-image: linear-gradient(
+			to right,
+			rgba(102, 212, 82, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(168, 218, 220, 0.9),
+			rgba(168, 218, 220, 1)
+		),
+		url(${img});
+	background-size: cover;
+`;
 
-	const submitHandler = async ({
-		name,
-		email,
-		password,
-	}: {
-		name: string;
-		email: string;
-		password: string;
-	}) => {
-		const id = toast.loading('Register...', { theme: 'dark' });
-		try {
-			await register({ name, email, password }).unwrap();
+const MarginHeading = styled(Heading2)`
+	margin-bottom: 2rem;
+`;
 
-			toast.update(id, {
-				render: 'Register Success',
-				type: 'success',
-				isLoading: false,
-				autoClose: 3000,
-				theme: 'dark',
-			});
-			navigate('/login');
-		} catch (e) {
-			toast.update(id, {
-				render: 'Register Fail',
-				type: 'error',
-				isLoading: false,
-				autoClose: 3000,
-				theme: 'dark',
-			});
-			console.log(e);
-		}
-	};
-
-	return (
-		<FormProvider {...methods}>
-			<h1>Register</h1>
-
-			<form
-				onSubmit={methods.handleSubmit(submitHandler)}
-				noValidate
-				autoComplete="off"
-			>
-				<FormInput label="Name" type="text" name="name" id="name" required />
-
-				<FormInput
-					label="Email"
-					type="email"
-					name="email"
-					id="email"
-					required
-				/>
-				<FormInput
-					label="Password"
-					type="password"
-					name="password"
-					id="password"
-					required
-				/>
-
-				<FormInput
-					label="Password confirm"
-					type="password"
-					name="passwordConfirm"
-					id="passwordConfirm"
-					required
-				/>
-				<button>Register</button>
-			</form>
-		</FormProvider>
-	);
-};
+const Register = () => (
+	<Section>
+		<SectionImage />
+		<FormSection>
+			<Container>
+				<MarginHeading>Register</MarginHeading>
+				<RegisterForm />
+			</Container>
+		</FormSection>
+	</Section>
+);
 
 export default Register;

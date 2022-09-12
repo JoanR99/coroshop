@@ -34,7 +34,7 @@ const Input = styled.input<HelperTextProps>`
 	border-radius: 0.2rem;
 	background-color: rgba($color: white, $alpha: 0.5);
 	border: none;
-	border-bottom: solid 0.3rem transparent;
+	border-bottom: solid 0.1rem #a8dadc;
 	width: 80%;
 	display: block;
 	transition: all 0.3s;

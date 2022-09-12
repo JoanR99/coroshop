@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Product } from './productTypes';
+import { Rating } from 'react-simple-star-rating';
+import { Heading4 } from '../../components/Typography';
 
 type Props = {
 	product: Pick<Product, 'id' | 'name' | 'image' | 'price' | 'rating'>;
@@ -8,13 +10,16 @@ type Props = {
 
 const Card = styled.div`
 	padding: 0;
-	border: 1px solid black;
-`;
+	padding-bottom: 2rem;
+	border-radius: 0.3rem;
+	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+	transition: all 0.3s;
+	cursor: pointer;
 
-const CardTitle = styled.h2`
-	text-align: center;
-	font-size: 15px;
-	color: black;
+	&:hover {
+		transform: translateY(-0.8rem) scale(1.03);
+		box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+	}
 `;
 
 const Price = styled.p`
@@ -22,19 +27,24 @@ const Price = styled.p`
 	color: gray;
 `;
 
-const Rating = styled.p`
-	font-size: 12px
-	color: black;
-	font-weight: 400;
-`;
-
 const CardImage = styled.img`
 	width: 100%;
 	margin: 0;
+	min-height: 50%;
 `;
 
 const CardBody = styled.div`
-	padding: 10px;
+	ul {
+		list-style: none;
+		width: 80%;
+		margin: 0 auto;
+
+		li {
+			text-align: center;
+			font-size: 1.5rem;
+			padding: 0.5rem;
+		}
+	}
 `;
 
 const ProductCard = ({ product }: Props) => {
@@ -46,9 +56,22 @@ const ProductCard = ({ product }: Props) => {
 		<Card onClick={handleClick}>
 			<CardImage src={product.image} />
 			<CardBody>
-				<CardTitle>{product.name}</CardTitle>
-				<Rating>{product.rating}</Rating>
-				<Price>$ {product.price}</Price>
+				<ul>
+					<li>
+						<Heading4>{product.name}</Heading4>
+					</li>
+					<li>
+						<Rating
+							ratingValue={0}
+							initialValue={product.rating}
+							size={22}
+							readonly
+						/>
+					</li>
+					<li>
+						<Price>$ {product.price}</Price>
+					</li>
+				</ul>
 			</CardBody>
 		</Card>
 	);

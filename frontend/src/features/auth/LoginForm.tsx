@@ -30,7 +30,7 @@ const LoginForm = () => {
 		password: string;
 		persist: boolean;
 	}) => {
-		const id = toast.loading('Login In...', { theme: 'dark' });
+		const id = toast.loading('Login In...', { theme: 'light' });
 		try {
 			const userData = await login({ email, password }).unwrap();
 
@@ -42,7 +42,7 @@ const LoginForm = () => {
 					type: 'success',
 					isLoading: false,
 					autoClose: 3000,
-					theme: 'dark',
+					theme: 'light',
 				});
 				navigate('/');
 			}
@@ -52,7 +52,7 @@ const LoginForm = () => {
 				type: 'error',
 				isLoading: false,
 				autoClose: 3000,
-				theme: 'dark',
+				theme: 'light',
 			});
 			console.log(e);
 		}
