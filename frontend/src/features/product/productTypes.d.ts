@@ -22,3 +22,17 @@ export interface GetProductsResponse {
 export interface GetProductResponse {
 	getProduct: Product;
 }
+
+export interface AddProductResponse {
+	addProduct: Product;
+}
+
+export type AddProductInput = {
+	name: string;
+	price: number;
+	image: string;
+	brand: string;
+	category: string;
+	description: string;
+	countInStock: number;
+};

@@ -1,6 +1,12 @@
 import { apiSlice } from '../../app/api/apiSlice';
+import { addProduct } from './productMutations';
 import { getProduct, getProducts } from './productQueries';
-import { GetProductsResponse, GetProductResponse } from './productTypes';
+import {
+	GetProductsResponse,
+	GetProductResponse,
+	AddProductResponse,
+	AddProductInput,
+} from './productTypes';
 
 const productApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
@@ -25,8 +31,20 @@ const productApi = apiSlice.injectEndpoints({
 			}),
 			providesTags: ['products'],
 		}),
+		addProduct: builder.mutation<AddProductResponse, AddProductInput>({
+			query: (product) => ({
+				document: addProduct,
+				variables: {
+					product,
+				},
+			}),
+		}),
 	}),
 	overrideExisting: false,
 });
 
-export const { useGetProductsQuery, useGetProductQuery } = productApi;
+export const {
+	useGetProductsQuery,
+	useGetProductQuery,
+	useAddProductMutation,
+} = productApi;

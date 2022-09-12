@@ -8,7 +8,11 @@ const HeaderBody = styled.div`
 	background-color: #f1faee;
 	height: 5rem;
 	padding: 1rem;
-	color: #1d3557;
+`;
+
+const Container = styled.div`
+	width: 90vw;
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
 `;
@@ -18,17 +22,19 @@ const Header = () => {
 
 	return (
 		<HeaderBody>
-			<StyledLinkDark3 to="/">Coroshop</StyledLinkDark3>
+			<Container>
+				<StyledLinkDark3 to="/">COROSHOP</StyledLinkDark3>
 
-			{accessToken ? (
-				<LogoutButton />
-			) : (
-				<LinkContainer>
-					<StyledLinkDark4 to="/login">Login</StyledLinkDark4>
+				{accessToken ? (
+					<LogoutButton />
+				) : (
+					<LinkContainer>
+						<StyledLinkDark4 to="/login">Login</StyledLinkDark4>
 
-					<StyledLinkDark4 to="/register">Register</StyledLinkDark4>
-				</LinkContainer>
-			)}
+						<StyledLinkDark4 to="/register">Register</StyledLinkDark4>
+					</LinkContainer>
+				)}
+			</Container>
 		</HeaderBody>
 	);
 };

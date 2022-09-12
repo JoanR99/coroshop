@@ -13,6 +13,7 @@ import PersistLogin from './features/auth/PersistLogin';
 import Users from './screens/Users';
 import Unauthorized from './screens/Unauthorized';
 import AllProducts from './screens/AllProducts';
+import AddProduct from './screens/AddProduct';
 
 function App() {
 	return (
@@ -29,8 +30,9 @@ function App() {
 						<Route path="unauthorized" element={<Unauthorized />} />
 
 						<Route element={<RequireAuth />}>
-							<Route element={<RequireAdmin />}>
-								<Route path="admin/userList" element={<Users />} />
+							<Route path="admin" element={<RequireAdmin />}>
+								<Route path="user-list" element={<Users />} />
+								<Route path="add-product" element={<AddProduct />} />
 							</Route>
 						</Route>
 					</Route>

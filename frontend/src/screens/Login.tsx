@@ -1,97 +1,56 @@
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import { Container } from '../components/Container';
+import {
+	SectionContainer,
+	SectionPartImage,
+	SectionPartText,
+} from '../components/Section';
+import LoginForm from '../features/auth/LoginForm';
+import img from '../assets/images/login.jpg';
+import { Heading2 } from '../components/Typography';
 
-import { loginSchema, defaultValues } from '../validation/loginSchema';
-import FormInput from '../components/FormInput';
-import { useLoginMutation } from '../features/auth/authApiSlice';
-import { setCredentials } from '../features/auth/authSlice';
-import { useNavigate } from 'react-router-dom';
+const Section = styled(SectionContainer)`
+	background-color: #a8dadc;
+	height: 86vh;
+`;
 
-const Login = () => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const methods = useForm({
-		resolver: zodResolver(loginSchema),
-		defaultValues,
-	});
+const FormSection = styled(SectionPartText)`
+	background-color: #a8dadc;
+	height: 100%;
+	display: grid;
+	place-items: center;
+`;
 
-	const [login] = useLoginMutation();
+const SectionImage = styled(SectionPartImage)`
+	background-image: linear-gradient(
+			to right,
+			rgba(102, 212, 82, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(33, 175, 128, 0),
+			rgba(168, 218, 220, 0.9),
+			rgba(168, 218, 220, 1)
+		),
+		url(${img});
+	background-size: cover;
+`;
 
-	const submitHandler = async ({
-		email,
-		password,
-		persist,
-	}: {
-		email: string;
-		password: string;
-		persist: boolean;
-	}) => {
-		const id = toast.loading('Login In...', { theme: 'dark' });
-		try {
-			const userData = await login({ email, password }).unwrap();
+const MarginHeading = styled(Heading2)`
+	margin-bottom: 2rem;
+`;
 
-			if (userData?.login) {
-				dispatch(setCredentials({ accessToken: userData?.login.accessToken }));
-				localStorage.setItem('persist', JSON.stringify(persist));
-				toast.update(id, {
-					render: 'Login Success',
-					type: 'success',
-					isLoading: false,
-					autoClose: 3000,
-					theme: 'dark',
-				});
-				navigate('/');
-			}
-		} catch (e) {
-			toast.update(id, {
-				render: 'Login Fail',
-				type: 'error',
-				isLoading: false,
-				autoClose: 3000,
-				theme: 'dark',
-			});
-			console.log(e);
-		}
-	};
-
-	return (
-		<FormProvider {...methods}>
-			<h1>Login</h1>
-
-			<form
-				onSubmit={methods.handleSubmit(submitHandler)}
-				noValidate
-				autoComplete="off"
-			>
-				<FormInput
-					label="Email"
-					type="email"
-					name="email"
-					id="email"
-					required
-				/>
-				<FormInput
-					label="Password"
-					type="password"
-					name="password"
-					id="password"
-					required
-				/>
-
-				<FormInput
-					label="Trust this device?"
-					type="checkbox"
-					name="persist"
-					id="persist"
-					required
-				/>
-
-				<button>Login</button>
-			</form>
-		</FormProvider>
-	);
-};
+const Login = () => (
+	<Section>
+		<SectionImage />
+		<FormSection>
+			<Container>
+				<MarginHeading>Login</MarginHeading>
+				<LoginForm />
+			</Container>
+		</FormSection>
+	</Section>
+);
 
 export default Login;

@@ -5,7 +5,11 @@ const NavbarBody = styled.div`
 	background-color: #457b9d;
 	height: 5rem;
 	padding: 1rem;
-	margin-bottom: 20px;
+`;
+
+const Container = styled.div`
+	width: 90vw;
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -14,10 +18,12 @@ const NavbarBody = styled.div`
 const Navbar = () => {
 	return (
 		<NavbarBody>
-			<LinkContainer>
-				<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
-				<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
-			</LinkContainer>
+			<Container>
+				<LinkContainer>
+					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
+					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
+				</LinkContainer>
+			</Container>
 		</NavbarBody>
 	);
 };
