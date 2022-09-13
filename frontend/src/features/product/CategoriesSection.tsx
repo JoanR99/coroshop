@@ -26,6 +26,10 @@ const SectionImage = styled(SectionPartImage)`
 	background-size: cover;
 `;
 
+const Text = styled(Paragraph)`
+	margin-bottom: 2rem;
+`;
+
 const CategoriesSection = () => {
 	const navigate = useNavigate();
 
@@ -36,12 +40,12 @@ const CategoriesSection = () => {
 			<SectionPartText>
 				<Container>
 					<Heading1>Here you can find the most recent tech products</Heading1>
-					<Paragraph>
+					<Text>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
 						totam sequi fuga libero, voluptates numquam culpa dolorem et
 						perferendis quod at quae qui vitae ab distinctio velit iure officiis
 						corporis!
-					</Paragraph>
+					</Text>
 					<MainButton onClick={clickHandler}>All Products</MainButton>
 				</Container>
 			</SectionPartText>

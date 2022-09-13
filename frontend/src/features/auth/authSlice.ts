@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useAppSelector } from '../../app/hooks';
 
 interface AuthState {
 	accessToken: string | null;
@@ -11,7 +11,7 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setCredentials: (state, action) => {
+		setCredentials: (state, action: PayloadAction<{ accessToken: string }>) => {
 			const { accessToken } = action.payload;
 
 			state.accessToken = accessToken;
@@ -26,5 +26,5 @@ export const { setCredentials, clearCredentials } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const selectCurrentAccessToken = (state: RootState) =>
-	state.auth.accessToken;
+export const selectCurrentAccessToken = () =>
+	useAppSelector((state) => state.auth.accessToken);

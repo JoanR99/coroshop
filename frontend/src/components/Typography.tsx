@@ -30,6 +30,5 @@ export const Heading4 = styled.h4`
 export const Paragraph = styled.p`
 	font-family: 'Montserrat', sans-serif;
 	font-size: 1.4rem;
-	margin-bottom: 2rem;
 	color: #1d3557;
 `;
