@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
@@ -18,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Header = () => {
-	const accessToken = useSelector(selectCurrentAccessToken);
+	const accessToken = selectCurrentAccessToken();
 
 	return (
 		<HeaderBody>

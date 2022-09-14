@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import CartDropDown from '../features/cart/CartDropDown';
+import CartIcon from '../features/cart/CartIcon';
+import { selectIsCartOpen } from '../features/cart/cartSlice';
 import { StyledLinkLight5, LinkContainer } from './StyledLink';
 
 const NavbarBody = styled.div`
@@ -16,6 +19,7 @@ const Container = styled.div`
 `;
 
 const Navbar = () => {
+	const isCartOpen = selectIsCartOpen();
 	return (
 		<NavbarBody>
 			<Container>
@@ -23,6 +27,10 @@ const Navbar = () => {
 					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
 					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
 				</LinkContainer>
+				<div>
+					<CartIcon />
+					{isCartOpen && <CartDropDown />}
+				</div>
 			</Container>
 		</NavbarBody>
 	);

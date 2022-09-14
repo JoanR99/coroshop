@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '../../components/Container';
+import { Heading2 } from '../../components/Typography';
 
 import { useGetReviewsQuery } from './reviewApiSlice';
 import ReviewCard from './ReviewCard';
@@ -15,6 +15,10 @@ const Grid = styled.div`
 	margin-bottom: 4rem;
 `;
 
+const Heading = styled(Heading2)`
+	margin-bottom: 2rem;
+`;
+
 const ReviewList = ({ productId }: Props) => {
 	const { isLoading, error, data } = useGetReviewsQuery({
 		productId,
@@ -25,11 +29,14 @@ const ReviewList = ({ productId }: Props) => {
 	) : error ? (
 		<div>Something went wrong</div>
 	) : (
-		<Grid>
-			{data?.getReviews.map((review) => (
-				<ReviewCard review={review} key={review.id} />
-			))}
-		</Grid>
+		<div>
+			<Heading>Reviews</Heading>
+			<Grid>
+				{data?.getReviews.map((review) => (
+					<ReviewCard review={review} key={review.id} />
+				))}
+			</Grid>
+		</div>
 	);
 };
 
