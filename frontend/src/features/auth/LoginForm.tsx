@@ -2,7 +2,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Location } from 'react-router-dom';
 
 import { loginSchema, defaultValues } from '../../validation/loginSchema';
 import FormInput from '../../components/FormInput';
@@ -11,13 +11,24 @@ import { setCredentials } from '../../features/auth/authSlice';
 import CheckboxInput from '../../components/CheckboxInput';
 import { MainButton } from '../../components/Button';
 
+interface OwnLocation extends Location {
+	state: {
+		from?: {
+			pathname?: string;
+		};
+	};
+}
+
 const LoginForm = () => {
 	const dispatch = useDispatch();
+	const location = useLocation() as OwnLocation;
 	const navigate = useNavigate();
 	const methods = useForm({
 		resolver: zodResolver(loginSchema),
 		defaultValues,
 	});
+
+	const from = location.state?.from?.pathname || '/';
 
 	const [login] = useLoginMutation();
 
@@ -44,7 +55,7 @@ const LoginForm = () => {
 					autoClose: 3000,
 					theme: 'light',
 				});
-				navigate('/');
+				navigate(from, { replace: true });
 			}
 		} catch (e) {
 			toast.update(id, {

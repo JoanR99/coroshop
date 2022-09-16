@@ -9,8 +9,8 @@ type Props = {
 const CartItemContainer = styled.div`
 	width: 100%;
 	display: flex;
-	height: 80px;
-	margin-bottom: 15px;
+	height: 8rem;
+	margin-bottom: 1.5rem;
 `;
 
 const ItemImage = styled.img`
@@ -23,7 +23,7 @@ const ItemDetails = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
-	padding: 10px 20px;
+	padding: 1rem 2rem;
 `;
 
 const ItemOnCart = ({ cartItem }: Props) => {

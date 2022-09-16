@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MainButton } from '../../components/Button';
-import ItemOnCart from './CartItem';
-import { selectCartItems } from './cartSlice';
+import ItemOnCart from './ItemOnCart';
+import { selectCartItems, toggleIsCartOpen } from './cartSlice';
+import { useDispatch } from 'react-redux';
 
 const CartDropdownContainer = styled.div`
 	position: absolute;
@@ -31,8 +32,12 @@ const CartItems = styled.div`
 const CartDropDown = () => {
 	const cartItems = selectCartItems();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
-	const clickHandler = () => navigate('/cart');
+	const clickHandler = () => {
+		dispatch(toggleIsCartOpen());
+		navigate('/cart');
+	};
 
 	return (
 		<CartDropdownContainer>
