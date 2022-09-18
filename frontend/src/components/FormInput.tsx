@@ -78,6 +78,8 @@ const FormInput = ({
 	id: string;
 	multiline?: boolean;
 	rows?: number;
+	value?: string;
+	checked?: boolean;
 }) => {
 	const {
 		control,

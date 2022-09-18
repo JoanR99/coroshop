@@ -6,16 +6,32 @@ export interface CartItem extends Product {
 	quantity: number;
 }
 
+export interface ShippingAddress {
+	address: string;
+	city: string;
+	postalCode: string;
+	country: string;
+}
+
 interface CartState {
 	cartItems: CartItem[];
 	cartCount: number;
 	isCartOpen: boolean;
+	shippingAddress: ShippingAddress;
+	paymentMethod: string;
 }
 
 const initialState: CartState = {
 	cartItems: [],
 	cartCount: 0,
 	isCartOpen: false,
+	shippingAddress: {
+		address: '',
+		city: '',
+		postalCode: '',
+		country: '',
+	},
+	paymentMethod: '',
 };
 
 const cartSlice = createSlice({
@@ -74,6 +90,12 @@ const cartSlice = createSlice({
 		toggleIsCartOpen: (state) => {
 			state.isCartOpen = !state.isCartOpen;
 		},
+		setShippingAddress: (state, action: PayloadAction<ShippingAddress>) => {
+			state.shippingAddress = action.payload;
+		},
+		setPaymentMethod: (state, action: PayloadAction<string>) => {
+			state.paymentMethod = action.payload;
+		},
 	},
 });
 
@@ -82,6 +104,8 @@ export const {
 	removeCartItem,
 	updateCartItemQuantity,
 	toggleIsCartOpen,
+	setShippingAddress,
+	setPaymentMethod,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
@@ -94,3 +118,9 @@ export const selectIsCartOpen = () =>
 
 export const selectCartCount = () =>
 	useAppSelector((state) => state.cart.cartCount);
+
+export const selectShippingAddress = () =>
+	useAppSelector((state) => state.cart.shippingAddress);
+
+export const selectPaymentMethod = () =>
+	useAppSelector((state) => state.cart.paymentMethod);

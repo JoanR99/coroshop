@@ -16,6 +16,8 @@ import AllProducts from './screens/AllProducts';
 import AddProduct from './screens/AddProduct';
 import Cart from './screens/Cart';
 import Shipping from './screens/Shipping';
+import Payment from './screens/Payment';
+import PlaceOrder from './screens/PlaceOrder';
 
 function App() {
 	return (
@@ -34,6 +36,8 @@ function App() {
 
 						<Route element={<RequireAuth />}>
 							<Route path="/shipping" element={<Shipping />} />
+							<Route path="/payment" element={<Payment />} />
+							<Route path="/placeOrder" element={<PlaceOrder />} />
 							<Route path="admin" element={<RequireAdmin />}>
 								<Route path="user-list" element={<Users />} />
 								<Route path="add-product" element={<AddProduct />} />

@@ -1,18 +1,20 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { shippingAddressSchema } from '../validation/shippingAddressSchema';
 import {
 	selectShippingAddress,
-	setShippingAddress,
-	ShippingAddress,
+	setPaymentMethod,
 } from '../features/cart/cartSlice';
 import FormInput from '../components/FormInput';
 import { MainButton } from '../components/Button';
 import styled from 'styled-components';
 import { Container } from '../components/Container';
 import { Heading3 } from '../components/Typography';
+import {
+	paymentMethodSchema,
+	defaultValues,
+} from '../validation/paymentMethodSchema';
 
 const StyledContainer = styled(Container)`
 	max-width: 60rem;
@@ -25,52 +27,43 @@ const StyledContainer = styled(Container)`
 	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
 `;
 
-const Input = styled(FormInput)`
-	width: 100%;
-`;
-
-const Shipping = () => {
+const Payment = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const shippingAddress = selectShippingAddress();
 	const methods = useForm({
-		resolver: zodResolver(shippingAddressSchema),
-		defaultValues: shippingAddress,
+		resolver: zodResolver(paymentMethodSchema),
+		defaultValues,
 	});
 
-	const submitHandler = (shippingInfo: ShippingAddress) => {
-		dispatch(setShippingAddress(shippingInfo));
-		navigate('/payment');
+	const submitHandler = ({ paymentMethod }: { paymentMethod: string }) => {
+		dispatch(setPaymentMethod(paymentMethod));
+		navigate('/placeOrder');
 	};
-	return (
+	return shippingAddress ? (
 		<StyledContainer>
-			<Heading3>Shipping Information</Heading3>
+			<Heading3>Payment Method</Heading3>
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(submitHandler)}
 					noValidate
 					autoComplete="off"
 				>
-					<Input
-						type="text"
-						name="address"
-						id="address"
-						label="Address"
+					<FormInput
+						type="radio"
+						name="paymentMethod"
+						id="PayPal"
+						label="PayPal or Credit Card"
+						value="PayPal"
+						checked
 						required
 					/>
-					<Input type="text" name="city" id="city" label="City" required />
-					<Input
-						type="text"
-						name="postalCode"
-						id="postalCode"
-						label="Postal Code"
-						required
-					/>
-					<Input
-						type="text"
-						name="country"
-						id="country"
-						label="Country"
+					<FormInput
+						type="radio"
+						name="paymentMethod"
+						id="Stripe"
+						label="Stripe"
+						value="Stripe"
 						required
 					/>
 
@@ -78,7 +71,9 @@ const Shipping = () => {
 				</form>
 			</FormProvider>
 		</StyledContainer>
+	) : (
+		<Navigate to="shipping" />
 	);
 };
 
-export default Shipping;
+export default Payment;
