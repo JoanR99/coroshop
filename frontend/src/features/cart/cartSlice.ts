@@ -1,25 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '../../app/hooks';
-import { Product } from '../product/productTypes';
-
-export interface CartItem extends Product {
-	quantity: number;
-}
-
-export interface ShippingAddress {
-	address: string;
-	city: string;
-	postalCode: string;
-	country: string;
-}
-
-interface CartState {
-	cartItems: CartItem[];
-	cartCount: number;
-	isCartOpen: boolean;
-	shippingAddress: ShippingAddress;
-	paymentMethod: string;
-}
+import { CartState, CartItem, ShippingAddress } from './cartTypes';
 
 const initialState: CartState = {
 	cartItems: [],

@@ -57,7 +57,7 @@ export class OrderResolver {
 
 	@Query(() => [Order])
 	@UseMiddleware(verifyJwt)
-	async getUerOrders(@Ctx() { payload }: MyContext) {
+	async getUserOrders(@Ctx() { payload }: MyContext) {
 		const orders = await orderService.findByUserId(payload!.userId);
 
 		return orders;

@@ -1,4 +1,9 @@
-import { getModelForClass, Prop, Ref } from '@typegoose/typegoose';
+import {
+	getModelForClass,
+	Prop,
+	Ref,
+	ModelOptions,
+} from '@typegoose/typegoose';
 import { Field as GqlField, ObjectType as GqlType } from 'type-graphql';
 
 import { User } from './User';
@@ -66,6 +71,9 @@ export class PaymentResult {
 }
 
 @GqlType()
+@ModelOptions({
+	schemaOptions: { timestamps: true },
+})
 export class Order {
 	@GqlField((_type) => String)
 	id: string;
