@@ -33,6 +33,9 @@ export class OrderItem {
 }
 
 @GqlType()
+class OrderItem2 extends OrderItem {}
+
+@GqlType()
 export class ShippingAddress {
 	@GqlField((_type) => String)
 	@Prop({ required: true })
@@ -50,6 +53,9 @@ export class ShippingAddress {
 	@Prop({ required: true })
 	public country!: string;
 }
+
+@GqlType()
+class ShippingAddress2 extends ShippingAddress {}
 
 @GqlType()
 export class PaymentResult {
@@ -71,6 +77,9 @@ export class PaymentResult {
 }
 
 @GqlType()
+class PaymentResult2 extends PaymentResult {}
+
+@GqlType()
 @ModelOptions({
 	schemaOptions: { timestamps: true },
 })
@@ -78,15 +87,18 @@ export class Order {
 	@GqlField((_type) => String)
 	id: string;
 
+	@GqlField((_type) => Date)
+	createdAt: Date;
+
 	@GqlField((_type) => String)
 	@Prop({ required: true, ref: () => User })
 	public orderBy!: Ref<User>;
 
-	@GqlField((_type) => [OrderItem])
+	@GqlField((_type) => [OrderItem2])
 	@Prop()
 	public orderItems: OrderItem[];
 
-	@GqlField((_type) => ShippingAddress)
+	@GqlField((_type) => ShippingAddress2)
 	@Prop()
 	public shippingAddress!: ShippingAddress;
 
@@ -94,7 +106,7 @@ export class Order {
 	@Prop({ required: true })
 	public paymentMethod!: string;
 
-	@GqlField((_type) => PaymentResult, { nullable: true })
+	@GqlField((_type) => PaymentResult2, { nullable: true })
 	@Prop()
 	public paymentResult?: PaymentResult;
 
@@ -114,17 +126,17 @@ export class Order {
 	@Prop({ required: true, default: false })
 	public isPaid!: boolean;
 
-	@GqlField((_type) => String)
-	@Prop({ required: true })
-	public paidAt!: Date;
+	@GqlField((_type) => String, { nullable: true })
+	@Prop()
+	public paidAt?: Date;
 
 	@GqlField((_type) => Boolean)
 	@Prop({ required: true, default: false })
 	public isDelivered!: boolean;
 
-	@GqlField((_type) => String)
-	@Prop({ required: true })
-	public deliveredAt!: Date;
+	@GqlField((_type) => String, { nullable: true })
+	@Prop()
+	public deliveredAt?: Date;
 }
 
 const OrderModel = getModelForClass(Order);

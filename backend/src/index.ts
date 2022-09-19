@@ -14,6 +14,7 @@ import connectDB from './config/database';
 import refreshTokenController from './refreshTokenController';
 import corsOptions from './config/corsOptions';
 import credentials from './middlewares/credentials';
+import { OrderResolver } from './resolvers/OrderResolvers';
 
 const start = async () => {
 	await connectDB();
@@ -32,7 +33,13 @@ const start = async () => {
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [UserResolver, AuthResolver, ProductResolver, ReviewResolver],
+			resolvers: [
+				UserResolver,
+				AuthResolver,
+				ProductResolver,
+				ReviewResolver,
+				OrderResolver,
+			],
 		}),
 		context: ({ req, res }) => ({ req, res }),
 	});

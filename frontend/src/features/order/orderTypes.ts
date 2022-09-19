@@ -18,7 +18,7 @@ export interface PaymentResult {
 export interface Order {
 	id: string;
 	orderBy: string;
-	orderItem: OrderItem;
+	orderItems: OrderItem[];
 	shippingAddress: ShippingAddress;
 	paymentMethod: string;
 	paymentResult: PaymentResult;
@@ -43,7 +43,7 @@ export interface GetOrderResponse {
 
 export type AddOrderInput = Pick<
 	Order,
-	| 'orderItem'
+	| 'orderItems'
 	| 'shippingAddress'
 	| 'paymentMethod'
 	| 'taxPrice'

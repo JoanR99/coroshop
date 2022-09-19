@@ -33,7 +33,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 		addOrder: builder.mutation<AddOrderResponse, AddOrderInput>({
 			query: (orderBody) => ({
 				document: addOrder,
-				variables: orderBody,
+				variables: { orderBody },
 			}),
 		}),
 		updateOrderToPaid: builder.mutation<

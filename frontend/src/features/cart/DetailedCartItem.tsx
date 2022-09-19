@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { GhostButton } from '../../components/Button';
 import { StyledLinkDark4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
-import { CartItem, removeCartItem, updateCartItemQuantity } from './cartSlice';
+import { removeCartItem, updateCartItemQuantity } from './cartSlice';
+import { CartItem } from './cartTypes';
 
 type Props = {
 	cartItem: CartItem;

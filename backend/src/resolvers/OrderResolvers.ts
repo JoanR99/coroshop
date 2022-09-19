@@ -12,14 +12,42 @@ import {
 import { NotFound } from '../errors';
 import verifyAdmin from '../middlewares/verifyAdmin';
 import verifyJwt from '../middlewares/verifyJwt';
-import {
-	Order,
-	OrderItem,
-	PaymentResult,
-	ShippingAddress,
-} from '../models/Order';
+import { Order } from '../models/Order';
 import { MyContext } from '../MyContext';
 import * as orderService from '../services/orderServices';
+
+@InputType()
+class OrderItem {
+	@Field()
+	productName!: string;
+
+	@Field()
+	quantity!: number;
+
+	@Field()
+	image!: string;
+
+	@Field()
+	price!: number;
+
+	@Field()
+	product!: string;
+}
+
+@InputType()
+class ShippingAddress {
+	@Field()
+	address!: string;
+
+	@Field()
+	city!: string;
+
+	@Field()
+	postalCode!: string;
+
+	@Field()
+	country!: string;
+}
 
 @InputType()
 export class AddOrderInput {
@@ -43,6 +71,21 @@ export class AddOrderInput {
 
 	@Field()
 	totalPrice: number;
+}
+
+@InputType()
+class UpdateOrderInput {
+	@Field()
+	id: string;
+
+	@Field()
+	status: string;
+
+	@Field()
+	update_time: string;
+
+	@Field()
+	email_address: string;
 }
 
 @Resolver()
@@ -97,7 +140,7 @@ export class OrderResolver {
 	@UseMiddleware(verifyJwt)
 	async updateOrderToPaid(
 		@Arg('orderId') orderId: string,
-		@Arg('paymentResultBody') paymentResultBody: PaymentResult
+		@Arg('paymentResultBody') paymentResultBody: UpdateOrderInput
 	) {
 		const updatedOrder = await orderService.findByIdAndUpdate(orderId, {
 			paymentResult: paymentResultBody,
