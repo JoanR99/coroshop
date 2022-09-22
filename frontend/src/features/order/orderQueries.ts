@@ -27,6 +27,23 @@ export const getOrder = gql`
 			paidAt
 			isDelivered
 			deliveredAt
+			shippingPrice
+			taxPrice
+			totalPrice
+			paymentMethod
+			shippingAddress {
+				address
+				city
+				postalCode
+				country
+			}
+			orderItems {
+				image
+				quantity
+				price
+				product
+				productName
+			}
 		}
 	}
 `;

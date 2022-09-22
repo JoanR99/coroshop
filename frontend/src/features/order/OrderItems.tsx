@@ -5,9 +5,10 @@ import { GhostButton } from '../../components/Button';
 import { StyledLinkDark4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { CartItem } from '../cart/cartTypes';
+import { OrderItem } from './orderTypes';
 
 type Props = {
-	cartItem: CartItem;
+	cartItem: CartItem | OrderItem;
 };
 
 const CartItemContainer = styled.div`
@@ -38,7 +39,21 @@ const PriceColumn = styled.div`
 `;
 
 const OrderItems = ({ cartItem }: Props) => {
-	const { name, image, price, quantity, id } = cartItem;
+	const { image, quantity, price } = cartItem;
+
+	let id, name;
+
+	if ('id' in cartItem) {
+		id = cartItem.id;
+	} else {
+		id = cartItem.product;
+	}
+
+	if ('name' in cartItem) {
+		name = cartItem.name;
+	} else {
+		name = cartItem.productName;
+	}
 
 	return (
 		<CartItemContainer>

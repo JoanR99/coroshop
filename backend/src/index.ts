@@ -15,6 +15,7 @@ import refreshTokenController from './refreshTokenController';
 import corsOptions from './config/corsOptions';
 import credentials from './middlewares/credentials';
 import { OrderResolver } from './resolvers/OrderResolvers';
+import clientIdController from './clientIdController';
 
 const start = async () => {
 	await connectDB();
@@ -30,6 +31,8 @@ const start = async () => {
 	});
 
 	app.get('/api/refresh_token', refreshTokenController);
+
+	app.get('/api/clientId', clientIdController);
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({

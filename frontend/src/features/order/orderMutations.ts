@@ -18,9 +18,12 @@ export const addOrder = gql`
 export const updateOrderToPaid = gql`
 	mutation UpdateOrderToPaid(
 		$orderId: String!
-		$paymentResult: PaymentResult!
+		$paymentResultBody: UpdateOrderInput!
 	) {
-		updateOrderToPaid(orderId: $orderId, paymentResult: $paymentResult) {
+		updateOrderToPaid(
+			orderId: $orderId
+			paymentResultBody: $paymentResultBody
+		) {
 			id
 			orderBy
 			createdAt

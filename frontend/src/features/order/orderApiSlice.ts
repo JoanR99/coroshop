@@ -40,11 +40,11 @@ const authApiSlice = apiSlice.injectEndpoints({
 			UpdateOrderToPaid,
 			UpdateOrderToPaidInput
 		>({
-			query: ({ orderId, paymentResult }) => ({
+			query: ({ orderId, paymentResultBody }) => ({
 				document: updateOrderToPaid,
 				variables: {
 					orderId,
-					paymentResult,
+					paymentResultBody,
 				},
 			}),
 		}),

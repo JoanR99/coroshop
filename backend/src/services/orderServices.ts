@@ -16,4 +16,4 @@ export const create = (orderBody: CreateOrderBody) =>
 	OrderModel.create(orderBody);
 
 export const findByIdAndUpdate = (id: string, orderBody: Partial<Order>) =>
-	OrderModel.findByIdAndUpdate(id, { ...orderBody });
+	OrderModel.findByIdAndUpdate(id, { ...orderBody }, { new: true });

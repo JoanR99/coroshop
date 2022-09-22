@@ -62,7 +62,7 @@ export interface UpdateOrderToPaid {
 
 export type UpdateOrderToPaidInput = {
 	orderId: string;
-	paymentResult: PaymentResult;
+	paymentResultBody: PaymentResult;
 };
 
 export interface UpdateOrderToDelivered {
