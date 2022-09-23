@@ -1,4 +1,3 @@
-import { string } from 'zod';
 import { apiSlice } from '../../app/api/apiSlice';
 import {
 	addOrder,
@@ -11,9 +10,9 @@ import {
 	GetOrderResponse,
 	GetOrdersResponse,
 	AddOrderInput,
-	UpdateOrderToPaid,
+	UpdateOrderToPaidResponse,
 	UpdateOrderToPaidInput,
-	UpdateOrderToDelivered,
+	UpdateOrderToDeliveredResponse,
 } from './orderTypes';
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -23,21 +22,24 @@ const authApiSlice = apiSlice.injectEndpoints({
 				document: getOrders,
 				variables: null,
 			}),
+			providesTags: ['orders'],
 		}),
 		getOrder: builder.query<GetOrderResponse, { orderId: string }>({
 			query: ({ orderId }) => ({
 				document: getOrder,
 				variables: { orderId },
 			}),
+			providesTags: ['orders'],
 		}),
 		addOrder: builder.mutation<AddOrderResponse, AddOrderInput>({
 			query: (orderBody) => ({
 				document: addOrder,
 				variables: { orderBody },
 			}),
+			invalidatesTags: ['orders'],
 		}),
 		updateOrderToPaid: builder.mutation<
-			UpdateOrderToPaid,
+			UpdateOrderToPaidResponse,
 			UpdateOrderToPaidInput
 		>({
 			query: ({ orderId, paymentResultBody }) => ({
@@ -47,9 +49,10 @@ const authApiSlice = apiSlice.injectEndpoints({
 					paymentResultBody,
 				},
 			}),
+			invalidatesTags: ['orders'],
 		}),
 		updateOrderToDelivered: builder.mutation<
-			UpdateOrderToDelivered,
+			UpdateOrderToDeliveredResponse,
 			{ orderId: string }
 		>({
 			query: ({ orderId }) => ({
@@ -58,6 +61,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 					orderId,
 				},
 			}),
+			invalidatesTags: ['orders'],
 		}),
 	}),
 	overrideExisting: false,

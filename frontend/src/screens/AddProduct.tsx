@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import {
@@ -8,13 +7,10 @@ import {
 	defaultValues,
 } from '../validation/addProductSchema';
 import FormInput from '../components/FormInput';
-import { useLoginMutation } from '../features/auth/authApiSlice';
-import { setCredentials } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAddProductMutation } from '../features/product/productApiSlice';
 
 const AddProduct = () => {
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const methods = useForm({
 		resolver: zodResolver(addProductSchema),

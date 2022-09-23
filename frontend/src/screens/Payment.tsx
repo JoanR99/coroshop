@@ -8,24 +8,13 @@ import {
 } from '../features/cart/cartSlice';
 import FormInput from '../components/FormInput';
 import { MainButton } from '../components/Button';
-import styled from 'styled-components';
-import { Container } from '../components/Container';
+import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import {
 	paymentMethodSchema,
 	defaultValues,
 } from '../validation/paymentMethodSchema';
-
-const StyledContainer = styled(Container)`
-	max-width: 60rem;
-	margin: auto;
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-`;
+import { PaymentMethod } from '../features/cart/cartTypes';
 
 const Payment = () => {
 	const dispatch = useDispatch();
@@ -37,11 +26,11 @@ const Payment = () => {
 	});
 
 	const submitHandler = ({ paymentMethod }: { paymentMethod: string }) => {
-		dispatch(setPaymentMethod(paymentMethod));
+		dispatch(setPaymentMethod(paymentMethod as PaymentMethod));
 		navigate('/placeOrder');
 	};
 	return shippingAddress ? (
-		<StyledContainer>
+		<MarginContainer>
 			<Heading3>Payment Method</Heading3>
 			<FormProvider {...methods}>
 				<form
@@ -70,7 +59,7 @@ const Payment = () => {
 					<MainButton>GO TO PAYMENT</MainButton>
 				</form>
 			</FormProvider>
-		</StyledContainer>
+		</MarginContainer>
 	) : (
 		<Navigate to="shipping" />
 	);

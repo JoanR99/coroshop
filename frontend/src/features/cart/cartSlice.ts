@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '../../app/hooks';
-import { CartState, CartItem, ShippingAddress } from './cartTypes';
+import {
+	CartState,
+	CartItem,
+	ShippingAddress,
+	PaymentMethod,
+} from './cartTypes';
 
 const initialState: CartState = {
 	cartItems: [],
@@ -12,7 +17,7 @@ const initialState: CartState = {
 		postalCode: '',
 		country: '',
 	},
-	paymentMethod: '',
+	paymentMethod: 'PayPal',
 };
 
 const cartSlice = createSlice({
@@ -74,7 +79,7 @@ const cartSlice = createSlice({
 		setShippingAddress: (state, action: PayloadAction<ShippingAddress>) => {
 			state.shippingAddress = action.payload;
 		},
-		setPaymentMethod: (state, action: PayloadAction<string>) => {
+		setPaymentMethod: (state, action: PayloadAction<PaymentMethod>) => {
 			state.paymentMethod = action.payload;
 		},
 	},

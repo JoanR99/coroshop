@@ -11,28 +11,20 @@ export interface Product {
 	countInStock: number;
 }
 
-export interface GetProductsResponse {
+export type GetProductsResponse = {
 	getProducts: {
 		products: Pick<Product, 'id' | 'name' | 'image' | 'rating' | 'price'>[];
 		page: number;
 		pages: number;
 	};
-}
-
-export interface GetProductResponse {
-	getProduct: Product;
-}
-
-export interface AddProductResponse {
-	addProduct: Product;
-}
-
-export type AddProductInput = {
-	name: string;
-	price: number;
-	image: string;
-	brand: string;
-	category: string;
-	description: string;
-	countInStock: number;
 };
+
+export type GetProductResponse = {
+	getProduct: Product;
+};
+
+export type AddProductResponse = {
+	addProduct: Product;
+};
+
+export type AddProductInput = Omit<Product, 'id' | 'rating' | 'numReviews'>;

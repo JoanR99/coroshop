@@ -1,19 +1,4 @@
-import { ShippingAddress } from '../cart/cartTypes';
-
-export interface OrderItem {
-	productName: string;
-	quantity: number;
-	image: string;
-	price: number;
-	product: string;
-}
-
-export interface PaymentResult {
-	id: string;
-	status: string;
-	update_time: string;
-	email_address: string;
-}
+import { CartItem, ShippingAddress } from '../cart/cartTypes';
 
 export interface Order {
 	id: string;
@@ -27,19 +12,31 @@ export interface Order {
 	shippingPrice: number;
 	totalPrice: number;
 	isPaid: boolean;
-	paidAt: Date;
+	paidAt: string;
 	isDelivered: boolean;
-	deliveredAt: Date;
-	createdAt: Date;
+	deliveredAt: string;
+	createdAt: string;
 }
 
-export interface GetOrdersResponse {
+export type OrderItem = Pick<CartItem, 'quantity' | 'image' | 'price'> & {
+	productName: string;
+	product: string;
+};
+
+export type PaymentResult = {
+	id: string;
+	status: string;
+	update_time: string;
+	email_address: string;
+};
+
+export type GetOrdersResponse = {
 	getOrders: Order[];
-}
+};
 
-export interface GetOrderResponse {
+export type GetOrderResponse = {
 	getOrderById: Order;
-}
+};
 
 export type AddOrderInput = Pick<
 	Order,
@@ -52,19 +49,19 @@ export type AddOrderInput = Pick<
 	| 'itemsPrice'
 >;
 
-export interface AddOrderResponse {
+export type AddOrderResponse = {
 	addOrder: Order;
-}
+};
 
-export interface UpdateOrderToPaid {
+export type UpdateOrderToPaidResponse = {
 	updateOrderToPaid: Order;
-}
+};
 
 export type UpdateOrderToPaidInput = {
 	orderId: string;
 	paymentResultBody: PaymentResult;
 };
 
-export interface UpdateOrderToDelivered {
+export type UpdateOrderToDeliveredResponse = {
 	updateOrderToDelivered: Order;
-}
+};

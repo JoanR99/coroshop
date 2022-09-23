@@ -1,22 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { LinkButton } from '../../components/Button';
 import { useLogoutMutation } from './authApiSlice';
 import { clearCredentials } from './authSlice';
-import styled from 'styled-components';
-
-const Button = styled.button`
-	border: none;
-	font-size: 1.6rem;
-	font-weight: bold;
-	cursor: pointer;
-
-	color: #1d3557;
-
-	&:hover {
-		color: #e63946;
-	}
-`;
 
 const LogoutButton = () => {
 	const [logout] = useLogoutMutation();
@@ -50,7 +37,7 @@ const LogoutButton = () => {
 		}
 	};
 
-	return <Button onClick={handleClick}>Logout</Button>;
+	return <LinkButton onClick={handleClick}>Logout</LinkButton>;
 };
 
 export default LogoutButton;

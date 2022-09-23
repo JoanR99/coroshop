@@ -6,23 +6,11 @@ import { StyledLinkDark4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
+import { ItemContainer, ItemImage } from '../../components/ItemContainer';
 
 type Props = {
 	cartItem: CartItem;
 };
-
-const CartItemContainer = styled.div`
-	width: 100%;
-	display: flex;
-	height: 8rem;
-	margin-bottom: 1.5rem;
-	align-items: center;
-	justify-content: space-between;
-`;
-
-const ItemImage = styled.img`
-	width: 30%;
-`;
 
 const CartColum = styled.div`
 	display: flex;
@@ -59,7 +47,7 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 	const handleRemove = () => dispatch(removeCartItem({ id }));
 
 	return (
-		<CartItemContainer>
+		<ItemContainer>
 			<CartColum>
 				<ItemImage src={image} alt={name} />
 				<StyledLinkDark4 to={`/products/${id}`}>{name}</StyledLinkDark4>
@@ -83,7 +71,7 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 			<CartColum>
 				<GhostButton onClick={handleRemove}>&#10005;</GhostButton>
 			</CartColum>
-		</CartItemContainer>
+		</ItemContainer>
 	);
 };
 

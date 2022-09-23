@@ -1,56 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import styled from 'styled-components';
 import { MainButton } from '../components/Button';
-import { Container } from '../components/Container';
-import { Heading2, Heading3, Paragraph } from '../components/Typography';
+import {
+	FlexContainer,
+	InfoContainer,
+	SummaryContainer,
+	ContainerHeading,
+} from '../components/Container';
+import { Paragraph } from '../components/Typography';
 import {
 	selectCartItems,
 	selectPaymentMethod,
 	selectShippingAddress,
 } from '../features/cart/cartSlice';
+import { Section, SectionHeading } from '../components/Section';
 import { useAddOrderMutation } from '../features/order/orderApiSlice';
 import OrderItems from '../features/order/OrderItems';
-
-const PlaceOrderContainer = styled(Container)`
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-`;
-
-const ContainerHeading = styled(Heading2)`
-	margin-bottom: 1.5rem;
-`;
-
-const InfoContainer = styled.div`
-	width: 63%;
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-`;
-
-const SummaryContainer = styled.div`
-	width: 33%;
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-`;
-
-const Section = styled.div`
-	&:not(:last-child) {
-		border-bottom: 1px solid #a8dadc;
-		margin-bottom: 2rem;
-		padding-bottom: 2rem;
-	}
-`;
-
-const SectionHeading = styled(Heading3)`
-	margin-bottom: 1rem;
-`;
 
 const PlaceOrder = () => {
 	const [addOrder] = useAddOrderMutation();
@@ -114,7 +79,7 @@ const PlaceOrder = () => {
 	};
 
 	return (
-		<PlaceOrderContainer>
+		<FlexContainer>
 			<InfoContainer>
 				<ContainerHeading>Order Information</ContainerHeading>
 				<Section>
@@ -137,7 +102,7 @@ const PlaceOrder = () => {
 				<Section>
 					<SectionHeading>Order Items</SectionHeading>
 					{cartItems.map((cartItem) => (
-						<OrderItems key={cartItem.id} cartItem={cartItem} />
+						<OrderItems key={cartItem.id} item={cartItem} />
 					))}
 				</Section>
 			</InfoContainer>
@@ -167,7 +132,7 @@ const PlaceOrder = () => {
 					Place Order
 				</MainButton>
 			</SummaryContainer>
-		</PlaceOrderContainer>
+		</FlexContainer>
 	);
 };
 

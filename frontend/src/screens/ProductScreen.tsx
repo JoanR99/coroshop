@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import ProductView from '../features/product/ProductView';
+import ProductView from '../features/product/ProductView/ProductView';
 import ReviewList from '../features/review/ReviewList';
 import AddReview from '../features/review/AddReview';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';

@@ -4,8 +4,9 @@ import { MainButton } from '../../components/Button';
 import ItemOnCart from './ItemOnCart';
 import { selectCartItems, toggleIsCartOpen } from './cartSlice';
 import { useDispatch } from 'react-redux';
+import { StyledContainer } from '../../components/Container';
 
-const CartDropdownContainer = styled.div`
+const CartDropdownContainer = styled(StyledContainer)`
 	position: absolute;
 	width: 30rem;
 	height: 40rem;
@@ -15,11 +16,6 @@ const CartDropdownContainer = styled.div`
 	top: 90px;
 	right: 40px;
 	z-index: 5;
-
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
 `;
 
 const CartItems = styled.div`

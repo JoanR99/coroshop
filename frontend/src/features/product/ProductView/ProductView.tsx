@@ -1,56 +1,27 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Rating } from 'react-simple-star-rating';
-import styled from 'styled-components';
-import { useAppDispatch } from '../../app/hooks';
-import { MainButton } from '../../components/Button';
+import { useAppDispatch } from '../../../app/hooks';
+import { MainButton } from '../../../components/Button';
+import { SectionPartImage, SectionPartText } from '../../../components/Section';
+import { Heading2, Heading4, Paragraph } from '../../../components/Typography';
+import { addToCart } from '../../cart/cartSlice';
+import { useGetProductQuery } from '../productApiSlice';
 import {
-	SectionContainer,
-	SectionPartImage,
-	SectionPartText,
-} from '../../components/Section';
-import { Heading2, Heading4, Paragraph } from '../../components/Typography';
-import { addToCart } from '../cart/cartSlice';
-import { useGetProductQuery } from './productApiSlice';
+	Detail,
+	ProductDetails,
+	ProductImage,
+	ProductViewContainer,
+	QuantityBox,
+} from './ProductViewStyles';
 
 type Props = {
 	productId: string;
 };
 
-const Section = styled(SectionContainer)`
-	margin-top: 4rem;
-	align-items: flex-start;
-`;
-
-const ProductImage = styled.img`
-	width: 100%;
-`;
-
-const ProductDetails = styled.div`
-	width: 90%;
-	margin: auto;
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-`;
-
-const Detail = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-`;
-
-const QuantityBox = styled.div`
-	display: inline-block;
-	margin-right: 1rem;
-`;
-
 const ProductView = ({ productId }: Props) => {
 	const { isLoading, isError, data } = useGetProductQuery({ productId });
 	const [quantity, setQuantity] = useState(1);
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const product = data?.getProduct;
@@ -65,7 +36,10 @@ const ProductView = ({ productId }: Props) => {
 
 	const handleClick = () => {
 		dispatch(addToCart({ ...product!, quantity }));
-		// navigate('/cart');
+		toast.success('Item added to cart', {
+			hideProgressBar: true,
+			autoClose: 1000,
+		});
 	};
 
 	return isLoading ? (
@@ -73,7 +47,7 @@ const ProductView = ({ productId }: Props) => {
 	) : isError ? (
 		<div>Error</div>
 	) : (
-		<Section>
+		<ProductViewContainer>
 			<SectionPartImage>
 				<ProductImage src={product?.image} width="500px" />
 			</SectionPartImage>
@@ -128,7 +102,7 @@ const ProductView = ({ productId }: Props) => {
 					<MainButton onClick={handleClick}>ADD TO CART</MainButton>
 				</ProductDetails>
 			</SectionPartText>
-		</Section>
+		</ProductViewContainer>
 	);
 };
 

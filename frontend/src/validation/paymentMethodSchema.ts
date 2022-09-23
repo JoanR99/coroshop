@@ -1,9 +1,13 @@
-import { object, string } from 'zod';
+import z, { object } from 'zod';
+
+const methods = ['PayPal', 'Stripe'] as const;
+
+export type Method = typeof methods[number];
+
+z.enum(methods);
 
 export const paymentMethodSchema = object({
-	paymentMethod: string({
-		required_error: 'Payment method is required',
-	}),
+	paymentMethod: z.enum(methods),
 });
 
 export const defaultValues = {

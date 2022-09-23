@@ -1,20 +1,20 @@
 import { Product } from '../product/productTypes';
 
-export interface CartItem extends Product {
-	quantity: number;
-}
+export type CartItem = Product & { quantity: number };
 
-export interface ShippingAddress {
+export type ShippingAddress = {
 	address: string;
 	city: string;
 	postalCode: string;
 	country: string;
-}
+};
+
+export type PaymentMethod = 'PayPal' | 'Stripe';
 
 export interface CartState {
 	cartItems: CartItem[];
 	cartCount: number;
 	isCartOpen: boolean;
 	shippingAddress: ShippingAddress;
-	paymentMethod: string;
+	paymentMethod: PaymentMethod;
 }

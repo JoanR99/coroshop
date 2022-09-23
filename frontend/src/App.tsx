@@ -14,7 +14,7 @@ import Users from './screens/Users';
 import Unauthorized from './screens/Unauthorized';
 import AllProducts from './screens/AllProducts';
 import AddProduct from './screens/AddProduct';
-import Cart from './screens/Cart';
+import Cart from './screens/Cart/Cart';
 import Shipping from './screens/Shipping';
 import Payment from './screens/Payment';
 import PlaceOrder from './screens/PlaceOrder';

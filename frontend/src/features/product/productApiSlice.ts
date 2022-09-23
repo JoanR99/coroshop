@@ -38,6 +38,7 @@ const productApi = apiSlice.injectEndpoints({
 					product,
 				},
 			}),
+			invalidatesTags: ['products'],
 		}),
 	}),
 	overrideExisting: false,

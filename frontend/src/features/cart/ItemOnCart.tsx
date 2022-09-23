@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Heading4, Paragraph } from '../../components/Typography';
-import { CartItem } from './cartSlice';
+import { CartItem } from './cartTypes';
 
 type Props = {
 	cartItem: CartItem;

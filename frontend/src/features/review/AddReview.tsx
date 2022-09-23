@@ -13,21 +13,11 @@ import styled from 'styled-components';
 import { MainButton } from '../../components/Button';
 import { useState } from 'react';
 import { Heading3 } from '../../components/Typography';
+import { MarginContainer } from '../../components/Container';
 
 type Props = {
 	productId: string;
 };
-
-const Container = styled.div`
-	width: 60%;
-	margin: auto;
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-	border-top: solid 1rem #a8dadc;
-	border-radius: 1rem;
-	padding: 2rem;
-	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-`;
 
 const Input = styled(FormInput)`
 	width: 100%;
@@ -83,7 +73,7 @@ const AddReview = ({ productId }: Props) => {
 	};
 
 	return (
-		<Container>
+		<MarginContainer>
 			<Heading>Add Review</Heading>
 			<FormProvider {...methods}>
 				<form
@@ -104,7 +94,7 @@ const AddReview = ({ productId }: Props) => {
 					<MainButton>Add Review</MainButton>
 				</form>
 			</FormProvider>
-		</Container>
+		</MarginContainer>
 	);
 };
 

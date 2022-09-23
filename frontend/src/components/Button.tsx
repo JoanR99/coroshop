@@ -18,3 +18,16 @@ export const GhostButton = styled(Button)`
 	border: none;
 	font-size: 2rem;
 `;
+
+export const LinkButton = styled.button`
+	border: none;
+	font-size: 1.6rem;
+	font-weight: bold;
+	cursor: pointer;
+
+	color: #1d3557;
+
+	&:hover {
+		color: #e63946;
+	}
+`;
