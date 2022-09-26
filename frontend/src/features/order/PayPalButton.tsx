@@ -11,7 +11,10 @@ const PayPalButton = ({ order }: Props) => {
 	const [updateIsPaid] = useUpdateOrderToPaidMutation();
 
 	const handleApprove = async (paymentResult: PaymentResult) => {
-		await updateIsPaid({ orderId: order.id, paymentResultBody: paymentResult });
+		await updateIsPaid({
+			orderId: order.id,
+			paymentResultBody: paymentResult,
+		}).unwrap();
 		toast.success('Payment success');
 	};
 

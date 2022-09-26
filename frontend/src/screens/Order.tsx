@@ -1,7 +1,9 @@
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { stripePromise } from '../features/order/stripe';
 import { Paragraph } from '../components/Typography';
 import { useGetOrderQuery } from '../features/order/orderApiSlice';
 import {
@@ -13,11 +15,17 @@ import {
 import { Section, SectionHeading } from '../components/Section';
 import OrderItems from '../features/order/OrderItems';
 import PayPalButton from '../features/order/PayPalButton';
+import StripeForm from '../features/order/StripeForm';
+import stripePayment from '../features/order/stripePayment';
 
 const Order = () => {
 	const [clientId, setClientId] = useState('');
+	const [clientSecret, setClientSecret] = useState('');
+	const [paymentLoading, setPaymentLoading] = useState(false);
 	const orderId = useParams().orderId!;
 	const { data: order, isLoading } = useGetOrderQuery({ orderId });
+
+	console.log(clientSecret);
 
 	const itemsPrice = order?.getOrderById.orderItems.reduce(
 		(acc, item) => acc + item.price * item.quantity,
@@ -27,15 +35,38 @@ const Order = () => {
 	useEffect(() => {
 		const getClientId = async () => {
 			try {
+				setPaymentLoading(true);
 				const { data } = await axios.get('/api/clientId');
 				setClientId(data);
 			} catch (e) {
 				console.log(e);
+			} finally {
+				setPaymentLoading(false);
 			}
 		};
 
 		if (order?.getOrderById.paymentMethod === 'PayPal') {
 			getClientId();
+		}
+	}, [order?.getOrderById.paymentMethod]);
+
+	useEffect(() => {
+		const getClientSecret = async () => {
+			try {
+				setPaymentLoading(true);
+				const clientSecret = await stripePayment(
+					order!.getOrderById.totalPrice
+				);
+				setClientSecret(clientSecret);
+			} catch (e) {
+				console.log(e);
+			} finally {
+				setPaymentLoading(false);
+			}
+		};
+
+		if (order?.getOrderById.paymentMethod === 'Stripe') {
+			getClientSecret();
 		}
 	}, [order?.getOrderById.paymentMethod]);
 
@@ -123,11 +154,26 @@ const Order = () => {
 					<Paragraph>${order?.getOrderById.totalPrice}</Paragraph>
 				</Section>
 
-				{clientId && (
-					<PayPalScriptProvider options={{ 'client-id': clientId }}>
-						<PayPalButton order={order!.getOrderById} />
-					</PayPalScriptProvider>
-				)}
+				{!order!.getOrderById.isPaid &&
+					(paymentLoading ? (
+						<div>loading...</div>
+					) : (
+						<div>
+							{clientId && (
+								<PayPalScriptProvider options={{ 'client-id': clientId }}>
+									<PayPalButton order={order!.getOrderById} />
+								</PayPalScriptProvider>
+							)}
+							{clientSecret && (
+								<Elements stripe={stripePromise}>
+									<StripeForm
+										clientSecret={clientSecret}
+										orderId={order!.getOrderById.id}
+									/>
+								</Elements>
+							)}
+						</div>
+					))}
 			</SummaryContainer>
 		</FlexContainer>
 	);

@@ -16,11 +16,13 @@ import corsOptions from './config/corsOptions';
 import credentials from './middlewares/credentials';
 import { OrderResolver } from './resolvers/OrderResolvers';
 import clientIdController from './clientIdController';
+import stripeController from './stripeController';
 
 const start = async () => {
 	await connectDB();
 	const app = express();
 
+	app.use(express.json());
 	app.use(credentials);
 	app.use(cors(corsOptions));
 	app.use(cookieParser());
@@ -33,6 +35,8 @@ const start = async () => {
 	app.get('/api/refresh_token', refreshTokenController);
 
 	app.get('/api/clientId', clientIdController);
+
+	app.post('/api/stripe', stripeController);
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({

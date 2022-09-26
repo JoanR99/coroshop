@@ -13,6 +13,8 @@
     "@paypal/react-paypal-js": "^7.8.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@rtk-query/graphql-request-base-query": "^2.2.0",
+    "@stripe/react-stripe-js": "^1.11.0",
+    "@stripe/stripe-js": "^1.37.0",
     "axios": "^0.27.2",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
@@ -28,6 +30,7 @@
     "zod": "^3.19.0"
   },
   "devDependencies": {
+    "@types/node": "^18.7.19",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",

@@ -115,8 +115,6 @@ export class OrderResolver {
 			throw new NotFound('Order not found');
 		}
 
-		console.log(order);
-
 		return order;
 	}
 

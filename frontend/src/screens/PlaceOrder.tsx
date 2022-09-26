@@ -18,7 +18,7 @@ import { useAddOrderMutation } from '../features/order/orderApiSlice';
 import OrderItems from '../features/order/OrderItems';
 
 const PlaceOrder = () => {
-	const [addOrder] = useAddOrderMutation();
+	const [addOrder, { isLoading }] = useAddOrderMutation();
 	const shippingAddress = selectShippingAddress();
 	const paymentMethod = selectPaymentMethod();
 	const cartItems = selectCartItems();
@@ -128,7 +128,10 @@ const PlaceOrder = () => {
 					<Paragraph>${totalPrice}</Paragraph>
 				</Section>
 
-				<MainButton onClick={clickHandler} disabled={cartItems.length === 0}>
+				<MainButton
+					onClick={clickHandler}
+					disabled={cartItems.length === 0 || isLoading}
+				>
 					Place Order
 				</MainButton>
 			</SummaryContainer>
