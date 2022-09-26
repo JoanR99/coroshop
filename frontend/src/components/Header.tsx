@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
+import { LinkButton } from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
 
 const HeaderBody = styled.div`
@@ -16,8 +18,18 @@ const Container = styled.div`
 	justify-content: space-between;
 `;
 
+const FlexDiv = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 13rem;
+`;
+
 const Header = () => {
 	const accessToken = selectCurrentAccessToken();
+
+	const navigate = useNavigate();
+
+	const clickHandler = () => navigate('profile');
 
 	return (
 		<HeaderBody>
@@ -25,7 +37,10 @@ const Header = () => {
 				<StyledLinkDark3 to="/">COROSHOP</StyledLinkDark3>
 
 				{accessToken ? (
-					<LogoutButton />
+					<FlexDiv>
+						<LinkButton onClick={clickHandler}>Profile</LinkButton>
+						<LogoutButton />
+					</FlexDiv>
 				) : (
 					<LinkContainer>
 						<StyledLinkDark4 to="/login">Login</StyledLinkDark4>

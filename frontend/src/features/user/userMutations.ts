@@ -7,3 +7,14 @@ export const addUser = gql`
 		}
 	}
 `;
+
+export const updateUserProfile = gql`
+	mutation UpdateUserProfile($updateBody: UpdateUserProfileInput!) {
+		updateUserProfile(updateBody: $updateBody) {
+			id
+			name
+			email
+			isAdmin
+		}
+	}
+`;

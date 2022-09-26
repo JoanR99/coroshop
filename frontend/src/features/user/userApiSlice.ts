@@ -1,13 +1,24 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { addUser } from './userMutations';
-import { AddUserResponse } from './userTypes';
+import { addUser, updateUserProfile } from './userMutations';
+import { getUserProfile } from './userQueries';
+import {
+	AddUserInput,
+	AddUserResponse,
+	UpdateUserProfileResponse,
+	UpdateUserProfileInput,
+	GetUserProfileResponse,
+} from './userTypes';
 
 const userApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		addUser: builder.mutation<
-			AddUserResponse,
-			{ name: string; email: string; password: string }
-		>({
+		getUserProfile: builder.query<GetUserProfileResponse, null>({
+			query: () => ({
+				document: getUserProfile,
+				variables: null,
+			}),
+			providesTags: ['users'],
+		}),
+		addUser: builder.mutation<AddUserResponse, AddUserInput>({
 			query: ({ name, email, password }) => ({
 				document: addUser,
 				variables: {
@@ -16,8 +27,23 @@ const userApiSlice = apiSlice.injectEndpoints({
 					password,
 				},
 			}),
+			invalidatesTags: ['users'],
+		}),
+		updateUserProfile: builder.mutation<
+			UpdateUserProfileResponse,
+			UpdateUserProfileInput
+		>({
+			query: (updateBody) => ({
+				document: updateUserProfile,
+				variables: { updateBody },
+			}),
+			invalidatesTags: ['users'],
 		}),
 	}),
 });
 
-export const { useAddUserMutation } = userApiSlice;
+export const {
+	useGetUserProfileQuery,
+	useAddUserMutation,
+	useUpdateUserProfileMutation,
+} = userApiSlice;

@@ -4,7 +4,7 @@ import {
 	updateOrderToDelivered,
 	updateOrderToPaid,
 } from './orderMutations';
-import { getOrder, getOrders } from './orderQueries';
+import { getOrder, getOrders, getUserOrders } from './orderQueries';
 import {
 	AddOrderResponse,
 	GetOrderResponse,
@@ -13,6 +13,7 @@ import {
 	UpdateOrderToPaidResponse,
 	UpdateOrderToPaidInput,
 	UpdateOrderToDeliveredResponse,
+	GetUserOrdersResponse,
 } from './orderTypes';
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -30,6 +31,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 				variables: { orderId },
 			}),
 			providesTags: ['orders'],
+		}),
+		getUserOrders: builder.query<GetUserOrdersResponse, null>({
+			query: () => ({
+				document: getUserOrders,
+				variables: null,
+			}),
 		}),
 		addOrder: builder.mutation<AddOrderResponse, AddOrderInput>({
 			query: (orderBody) => ({
@@ -73,4 +80,5 @@ export const {
 	useAddOrderMutation,
 	useUpdateOrderToPaidMutation,
 	useUpdateOrderToDeliveredMutation,
+	useGetUserOrdersQuery,
 } = authApiSlice;

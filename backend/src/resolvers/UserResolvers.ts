@@ -53,7 +53,9 @@ export class UserResolver {
 	@Query(() => User)
 	@UseMiddleware(verifyJwt)
 	async getUserProfile(@Ctx() { payload }: MyContext) {
-		const user = userService.findById(payload!.userId).select('-password');
+		const user = await userService
+			.findById(payload!.userId)
+			.select('-password');
 
 		if (!user) throw new NotFound('User not found');
 
@@ -68,7 +70,7 @@ export class UserResolver {
 	@Query(() => User)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async getUser(@Arg('userId') userId: string) {
-		const user = userService.findById(userId).select('-password');
+		const user = await userService.findById(userId).select('-password');
 
 		if (!user) throw new NotFound('User not found');
 

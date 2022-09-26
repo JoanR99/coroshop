@@ -60,6 +60,7 @@ const AddReview = ({ productId }: Props) => {
 				autoClose: 3000,
 				theme: 'light',
 			});
+			methods.reset();
 		} catch (e) {
 			toast.update(id, {
 				render: 'Add review Fail',

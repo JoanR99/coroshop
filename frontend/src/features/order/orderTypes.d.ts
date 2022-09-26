@@ -65,3 +65,7 @@ export type UpdateOrderToPaidInput = {
 export type UpdateOrderToDeliveredResponse = {
 	updateOrderToDelivered: Order;
 };
+
+export type GetUserOrdersResponse = {
+	getUserOrders: Order[];
+};

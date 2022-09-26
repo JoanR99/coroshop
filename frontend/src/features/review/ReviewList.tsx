@@ -8,7 +8,7 @@ type Props = { productId: string };
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 30rem));
 	gap: 4rem;
 	width: 100%;
 	margin-top: 2rem;

@@ -1,17 +1,17 @@
 import { gql } from 'graphql-request';
 
 export const getOrders = gql`
-	query GetOrders() {
-		getProducts() {
+	query GetOrders {
+		getOrders {
 			id
-            orderBy
-            createdAt
-            totalPrice
-            isPaid
-            paidAt
-            isDelivered
-            deliveredAt
-            createdAt
+			orderBy
+			createdAt
+			totalPrice
+			isPaid
+			paidAt
+			isDelivered
+			deliveredAt
+			createdAt
 		}
 	}
 `;
@@ -44,6 +44,22 @@ export const getOrder = gql`
 				product
 				productName
 			}
+		}
+	}
+`;
+
+export const getUserOrders = gql`
+	query GetUserOrders {
+		getUserOrders {
+			id
+			orderBy
+			createdAt
+			totalPrice
+			isPaid
+			paidAt
+			isDelivered
+			deliveredAt
+			createdAt
 		}
 	}
 `;
