@@ -31,3 +31,8 @@ export const LinkButton = styled.button`
 		color: #e63946;
 	}
 `;
+
+export const SearchButton = styled(Button)`
+	background-color: #a8dadc;
+	padding: 0.5rem 1rem;
+`;

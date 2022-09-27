@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../../components/Container';
 
@@ -13,10 +14,11 @@ const Grid = styled.div`
 `;
 
 const ProductList = () => {
+	const params = useParams();
 	const { isLoading, error, data } = useGetProductsQuery({
 		pageNumber: 1,
 		pageSize: 3,
-		keyword: '',
+		keyword: params.keyword ?? '',
 	});
 
 	return isLoading ? (

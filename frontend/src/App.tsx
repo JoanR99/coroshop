@@ -30,6 +30,7 @@ function App() {
 					<Route element={<PersistLogin />}>
 						<Route index element={<Home />} />
 						<Route path="/products" element={<AllProducts />} />
+						<Route path="/products/search/:keyword" element={<AllProducts />} />
 						<Route path="products/:id" element={<ProductScreen />} />
 						<Route path="login" element={<Login />} />
 						<Route path="register" element={<Register />} />
