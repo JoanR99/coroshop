@@ -1,6 +1,11 @@
+import { Container } from '../components/Container';
 import ProductList from '../features/product/ProductList';
 
 const AllProducts = () => {
-	return <ProductList />;
+	return (
+		<Container>
+			<ProductList />
+		</Container>
+	);
 };
 export default AllProducts;
