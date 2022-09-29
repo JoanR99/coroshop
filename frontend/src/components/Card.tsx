@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+	min-height: 34rem;
 	padding: 0;
 	padding-bottom: 2rem;
 	border-radius: 0.3rem;

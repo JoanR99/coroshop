@@ -161,7 +161,7 @@ export const StyledLinkLight5 = styled(StyledLink5)`
 `;
 
 export const LinkContainer = styled.div`
-	width: 15rem;
+	width: 30rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

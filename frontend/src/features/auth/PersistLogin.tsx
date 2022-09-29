@@ -6,11 +6,11 @@ import { selectCurrentAccessToken, setCredentials } from './authSlice';
 import getNewAccessToken from './getNewAccessToken';
 
 const PersistLogin = () => {
+	const [isLoading, setIsLoading] = useState(true);
 	const dispatch = useDispatch();
 	const accessToken = selectCurrentAccessToken();
 	const item: string | null = localStorage.getItem('persist');
 	const persist = item ? JSON.parse(item) : false;
-	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		let isMounted = true;

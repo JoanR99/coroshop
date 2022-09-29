@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import jwtDecode from 'jwt-decode';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
 import { LinkButton } from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
+import AdminButton from '../features/auth/AdminButton';
 
 const HeaderBody = styled.div`
 	background-color: #f1faee;
@@ -21,7 +23,8 @@ const Container = styled.div`
 const FlexDiv = styled.div`
 	display: flex;
 	justify-content: space-between;
-	width: 13rem;
+	width: 18rem;
+	align-items: center;
 `;
 
 const Header = () => {

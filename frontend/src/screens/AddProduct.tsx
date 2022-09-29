@@ -9,6 +9,8 @@ import {
 import FormInput from '../components/FormInput';
 import { useNavigate } from 'react-router-dom';
 import { useAddProductMutation } from '../features/product/productApiSlice';
+import { MarginContainer } from '../components/Container';
+import { MainButton } from '../components/Button';
 
 const AddProduct = () => {
 	const navigate = useNavigate();
@@ -17,7 +19,7 @@ const AddProduct = () => {
 		defaultValues,
 	});
 
-	const [addProduct] = useAddProductMutation();
+	const [addProduct, { isLoading }] = useAddProductMutation();
 
 	const submitHandler = async ({
 		name,
@@ -69,60 +71,68 @@ const AddProduct = () => {
 	};
 
 	return (
-		<FormProvider {...methods}>
-			<h1>Add product</h1>
+		<MarginContainer>
+			<FormProvider {...methods}>
+				<h1>Add product</h1>
 
-			<form
-				onSubmit={methods.handleSubmit(submitHandler)}
-				noValidate
-				autoComplete="off"
-			>
-				<FormInput label="Name" type="text" name="name" id="name" required />
-				<FormInput
-					label="Price"
-					type="number"
-					name="price"
-					id="price"
-					required
-				/>
+				<form
+					onSubmit={methods.handleSubmit(submitHandler)}
+					noValidate
+					autoComplete="off"
+				>
+					<FormInput label="Name" type="text" name="name" id="name" required />
+					<FormInput
+						label="Price"
+						type="number"
+						name="price"
+						id="price"
+						required
+					/>
 
-				<FormInput
-					label="Image url"
-					type="text"
-					name="image"
-					id="image"
-					required
-				/>
+					<FormInput
+						label="Image url"
+						type="text"
+						name="image"
+						id="image"
+						required
+					/>
 
-				<FormInput label="Brand" type="text" name="brand" id="brand" required />
+					<FormInput
+						label="Brand"
+						type="text"
+						name="brand"
+						id="brand"
+						required
+					/>
 
-				<FormInput
-					label="Category"
-					type="text"
-					name="category"
-					id="category"
-					required
-				/>
+					<FormInput
+						label="Category"
+						type="text"
+						name="category"
+						id="category"
+						required
+					/>
 
-				<FormInput
-					label="Description"
-					type="text"
-					name="description"
-					id="description"
-					required
-				/>
+					<FormInput
+						label="Description"
+						type="text"
+						name="description"
+						id="description"
+						required
+					/>
 
-				<FormInput
-					label="Count in stock"
-					type="number"
-					name="countInStock"
-					id="countInStock"
-					required
-				/>
+					<FormInput
+						label="Count in stock"
+						type="number"
+						name="countInStock"
+						id="countInStock"
+						required
+					/>
 
-				<button>Add Product</button>
-			</form>
-		</FormProvider>
+					<MainButton disabled={isLoading}>Add Product</MainButton>
+				</form>
+			</FormProvider>
+		</MarginContainer>
 	);
 };
 

@@ -11,9 +11,14 @@ export interface Product {
 	countInStock: number;
 }
 
+export type CardProduct = Pick<
+	Product,
+	'id' | 'name' | 'image' | 'rating' | 'price'
+>;
+
 export type GetProductsResponse = {
 	getProducts: {
-		products: Pick<Product, 'id' | 'name' | 'image' | 'rating' | 'price'>[];
+		products: CardProduct[];
 		page: number;
 		pages: number;
 	};

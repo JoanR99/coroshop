@@ -1,5 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import jwtDecode from 'jwt-decode';
+
+import {
+	selectCurrentAccessToken,
+	setIsAdmin,
+} from './features/auth/authSlice';
 
 import Layout from './components/Layout';
 import Home from './screens/Home';
@@ -20,8 +26,20 @@ import Payment from './screens/Payment';
 import PlaceOrder from './screens/PlaceOrder';
 import Order from './screens/Order';
 import Profile from './screens/Profile';
+import { useDispatch } from 'react-redux';
 
 function App() {
+	const dispatch = useDispatch();
+	const accessToken = selectCurrentAccessToken();
+
+	const decoded = accessToken
+		? jwtDecode<{ isAdmin: boolean }>(accessToken)
+		: undefined;
+
+	const isAdmin = decoded?.isAdmin || false;
+
+	dispatch(setIsAdmin({ isAdmin }));
+
 	return (
 		<>
 			<ToastContainer />

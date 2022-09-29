@@ -32,6 +32,20 @@ export const LinkButton = styled.button`
 	}
 `;
 
+export const LinkButtonDark = styled.button`
+	border: none;
+	font-size: 1.6rem;
+	font-weight: bold;
+	cursor: pointer;
+	background-color: #457b9d;
+
+	color: #f1faee;
+
+	&:hover {
+		color: #e63946;
+	}
+`;
+
 export const SearchButton = styled(Button)`
 	background-color: #a8dadc;
 	padding: 0.5rem 1rem;

@@ -1,14 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectCurrentAccessToken } from './authSlice';
-import jwtDecode from 'jwt-decode';
+import { selectIsAdmin } from './authSlice';
 
 const RequireAdmin = () => {
-	const accessToken = useSelector(selectCurrentAccessToken);
-	const decoded = accessToken
-		? jwtDecode<{ isAdmin: boolean }>(accessToken)
-		: undefined;
-	const isAdmin = decoded?.isAdmin || false;
+	const isAdmin = selectIsAdmin();
 
 	return isAdmin ? <Outlet /> : <Navigate to="/unauthorized" replace />;
 };
