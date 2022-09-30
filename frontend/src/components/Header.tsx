@@ -6,6 +6,7 @@ import LogoutButton from '../features/auth/LogoutButton';
 import { LinkButton } from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
 import AdminButton from '../features/auth/AdminButton';
+import { useAppSelector } from '../app/hooks';
 
 const HeaderBody = styled.div`
 	background-color: #f1faee;
@@ -28,7 +29,7 @@ const FlexDiv = styled.div`
 `;
 
 const Header = () => {
-	const accessToken = selectCurrentAccessToken();
+	const accessToken = useAppSelector(selectCurrentAccessToken);
 
 	const navigate = useNavigate();
 

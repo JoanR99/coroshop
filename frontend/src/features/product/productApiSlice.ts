@@ -1,11 +1,13 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { addProduct } from './productMutations';
+import { addProduct, deleteProduct } from './productMutations';
 import { getProduct, getProducts } from './productQueries';
 import {
 	GetProductsResponse,
 	GetProductResponse,
 	AddProductResponse,
 	AddProductInput,
+	DeleteProductResponse,
+	DeleteProductInput,
 } from './productTypes';
 
 const productApi = apiSlice.injectEndpoints({
@@ -40,6 +42,15 @@ const productApi = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: ['products'],
 		}),
+		deleteProduct: builder.mutation<DeleteProductResponse, DeleteProductInput>({
+			query: ({ productId }) => ({
+				document: deleteProduct,
+				variables: {
+					productId,
+				},
+			}),
+			invalidatesTags: ['products'],
+		}),
 	}),
 	overrideExisting: false,
 });
@@ -48,4 +59,5 @@ export const {
 	useGetProductsQuery,
 	useGetProductQuery,
 	useAddProductMutation,
+	useDeleteProductMutation,
 } = productApi;

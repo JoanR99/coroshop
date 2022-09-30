@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from '../../app/hooks';
+import { RootState } from '../../app/store';
 
 interface AuthState {
 	accessToken: string | null;
@@ -34,8 +35,7 @@ export const { setCredentials, clearCredentials, setIsAdmin } =
 
 export default authSlice.reducer;
 
-export const selectCurrentAccessToken = () =>
-	useAppSelector((state) => state.auth.accessToken);
+export const selectCurrentAccessToken = (state: RootState) =>
+	state.auth.accessToken;
 
-export const selectIsAdmin = () =>
-	useAppSelector((state) => state.auth.isAdmin);
+export const selectIsAdmin = (state: RootState) => state.auth.isAdmin;

@@ -13,7 +13,6 @@ export type PaymentMethod = 'PayPal' | 'Stripe';
 
 export interface CartState {
 	cartItems: CartItem[];
-	cartCount: number;
 	isCartOpen: boolean;
 	shippingAddress: ShippingAddress;
 	paymentMethod: PaymentMethod;

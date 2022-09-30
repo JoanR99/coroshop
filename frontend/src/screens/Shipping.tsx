@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,15 +12,16 @@ import { MainButton } from '../components/Button';
 import styled from 'styled-components';
 import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 const Input = styled(FormInput)`
 	width: 100%;
 `;
 
 const Shipping = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const shippingAddress = selectShippingAddress();
+	const shippingAddress = useAppSelector(selectShippingAddress);
 	const methods = useForm({
 		resolver: zodResolver(shippingAddressSchema),
 		defaultValues: shippingAddress,

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 import { MainButton } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Heading3, Heading4 } from '../../components/Typography';
@@ -20,8 +21,8 @@ import {
 } from './CartStyles';
 
 const Cart = () => {
-	const cartItems = selectCartItems();
-	const itemsCount = selectCartCount();
+	const cartItems = useAppSelector(selectCartItems);
+	const itemsCount = useAppSelector(selectCartCount);
 	const navigate = useNavigate();
 
 	const handleClick = () => navigate('/shipping');

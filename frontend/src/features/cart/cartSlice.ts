@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useAppSelector } from '../../app/hooks';
+import { RootState } from '../../app/store';
 import {
 	CartState,
 	CartItem,
@@ -9,7 +9,6 @@ import {
 
 const initialState: CartState = {
 	cartItems: [],
-	cartCount: 0,
 	isCartOpen: false,
 	shippingAddress: {
 		address: '',
@@ -44,20 +43,11 @@ const cartSlice = createSlice({
 			} else {
 				state.cartItems = [...state.cartItems, cartItemToAdd];
 			}
-
-			state.cartCount = state.cartItems.reduce(
-				(total, cartItem) => total + cartItem.quantity,
-				0
-			);
 		},
 		removeCartItem: (state, action: PayloadAction<{ id: string }>) => {
 			const { id } = action.payload;
 			state.cartItems = state.cartItems.filter(
 				(cartItem) => cartItem.id !== id
-			);
-			state.cartCount = state.cartItems.reduce(
-				(total, cartItem) => total + cartItem.quantity,
-				0
 			);
 		},
 		updateCartItemQuantity: (
@@ -67,10 +57,6 @@ const cartSlice = createSlice({
 			const { id, quantity } = action.payload;
 			state.cartItems = state.cartItems.map((cartItem) =>
 				cartItem.id === id ? { ...cartItem, quantity: quantity } : cartItem
-			);
-			state.cartCount = state.cartItems.reduce(
-				(total, cartItem) => total + cartItem.quantity,
-				0
 			);
 		},
 		toggleIsCartOpen: (state) => {
@@ -96,17 +82,24 @@ export const {
 
 export default cartSlice.reducer;
 
-export const selectCartItems = () =>
-	useAppSelector((state) => state.cart.cartItems);
+export const selectCartItems = (state: RootState) => state.cart.cartItems;
 
-export const selectIsCartOpen = () =>
-	useAppSelector((state) => state.cart.isCartOpen);
+export const selectIsCartOpen = (state: RootState) => state.cart.isCartOpen;
 
-export const selectCartCount = () =>
-	useAppSelector((state) => state.cart.cartCount);
+export const selectShippingAddress = (state: RootState) =>
+	state.cart.shippingAddress;
 
-export const selectShippingAddress = () =>
-	useAppSelector((state) => state.cart.shippingAddress);
+export const selectPaymentMethod = (state: RootState) =>
+	state.cart.paymentMethod;
 
-export const selectPaymentMethod = () =>
-	useAppSelector((state) => state.cart.paymentMethod);
+export const selectCartCount = (state: RootState) =>
+	state.cart.cartItems.reduce(
+		(total, cartItem) => total + cartItem.quantity,
+		0
+	);
+
+export const selectCartTotalPrice = (state: RootState) =>
+	state.cart.cartItems.reduce(
+		(acc, item) => acc + item.price * item.quantity,
+		0
+	);

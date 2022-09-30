@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate, Location } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ import { useLoginMutation } from '../../features/auth/authApiSlice';
 import { setCredentials } from '../../features/auth/authSlice';
 import CheckboxInput from '../../components/CheckboxInput';
 import { MainButton } from '../../components/Button';
+import { useAppDispatch } from '../../app/hooks';
 
 interface OwnLocation extends Location {
 	state: {
@@ -20,7 +20,7 @@ interface OwnLocation extends Location {
 }
 
 const LoginForm = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const location = useLocation() as OwnLocation;
 	const navigate = useNavigate();
 	const methods = useForm({

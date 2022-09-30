@@ -13,7 +13,7 @@ export interface Product {
 
 export type CardProduct = Pick<
 	Product,
-	'id' | 'name' | 'image' | 'rating' | 'price'
+	'id' | 'name' | 'image' | 'rating' | 'price' | 'category' | 'brand'
 >;
 
 export type GetProductsResponse = {
@@ -33,3 +33,9 @@ export type AddProductResponse = {
 };
 
 export type AddProductInput = Omit<Product, 'id' | 'rating' | 'numReviews'>;
+
+export type DeleteProductInput = { productId: string };
+
+export type DeleteProductResponse = {
+	deleteProduct: { message: string };
+};

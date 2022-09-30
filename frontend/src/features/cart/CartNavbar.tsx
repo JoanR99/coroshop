@@ -1,9 +1,10 @@
 import { selectIsCartOpen } from './cartSlice';
 import CartIcon from './CartIcon';
 import CartDropDown from './CartDropDown';
+import { useAppSelector } from '../../app/hooks';
 
 const CartNavbar = () => {
-	const isCartOpen = selectIsCartOpen();
+	const isCartOpen = useAppSelector(selectIsCartOpen);
 
 	return (
 		<div>

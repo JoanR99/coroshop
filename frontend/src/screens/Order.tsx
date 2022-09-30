@@ -25,8 +25,6 @@ const Order = () => {
 	const orderId = useParams().orderId!;
 	const { data: order, isLoading } = useGetOrderQuery({ orderId });
 
-	console.log(clientSecret);
-
 	const itemsPrice = order?.getOrderById.orderItems.reduce(
 		(acc, item) => acc + item.price * item.quantity,
 		0

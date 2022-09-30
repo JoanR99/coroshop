@@ -22,7 +22,7 @@ export const findById = (id: string) => ProductModel.findById(id);
 export const create = (product: ProductCreateBody) =>
 	ProductModel.create(product);
 
-export const remove = (id: string) => ProductModel.deleteOne({ id });
+export const remove = (id: string) => ProductModel.findByIdAndDelete(id);
 
 export const findByIdAndUpdate = (
 	productId: string,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { GhostButton } from '../../components/Button';
 import { StyledLinkDark4 } from '../../components/StyledLink';
@@ -7,6 +6,7 @@ import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
 import { ItemContainer, ItemImage } from '../../components/ItemContainer';
+import { useAppDispatch } from '../../app/hooks';
 
 type Props = {
 	cartItem: CartItem;
@@ -24,7 +24,7 @@ const CartColum = styled.div`
 
 const DetailedCartItem = ({ cartItem }: Props) => {
 	const { name, image, price, quantity, id } = cartItem;
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const handleQuantityChange = (e: React.FormEvent<HTMLInputElement>) => {
 		if (Number(e!.currentTarget!.value) > cartItem.countInStock) {

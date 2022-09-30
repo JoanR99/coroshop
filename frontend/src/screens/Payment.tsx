@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,11 +14,12 @@ import {
 	defaultValues,
 } from '../validation/paymentMethodSchema';
 import { PaymentMethod } from '../features/cart/cartTypes';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 const Payment = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const shippingAddress = selectShippingAddress();
+	const shippingAddress = useAppSelector(selectShippingAddress);
 	const methods = useForm({
 		resolver: zodResolver(paymentMethodSchema),
 		defaultValues,

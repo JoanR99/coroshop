@@ -1,8 +1,9 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 import { selectCurrentAccessToken } from './authSlice';
 
 const RequireAuth = () => {
-	const accessToken = selectCurrentAccessToken();
+	const accessToken = useAppSelector(selectCurrentAccessToken);
 	const location = useLocation();
 
 	return accessToken ? (

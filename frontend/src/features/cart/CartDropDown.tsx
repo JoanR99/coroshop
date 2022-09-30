@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { MainButton } from '../../components/Button';
 import ItemOnCart from './ItemOnCart';
 import { selectCartItems, toggleIsCartOpen } from './cartSlice';
-import { useDispatch } from 'react-redux';
 import { StyledContainer } from '../../components/Container';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 const CartDropdownContainer = styled(StyledContainer)`
 	position: absolute;
@@ -26,9 +26,9 @@ const CartItems = styled.div`
 `;
 
 const CartDropDown = () => {
-	const cartItems = selectCartItems();
+	const cartItems = useAppSelector(selectCartItems);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const clickHandler = () => {
 		dispatch(toggleIsCartOpen());

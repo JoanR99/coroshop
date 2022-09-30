@@ -26,20 +26,10 @@ import Payment from './screens/Payment';
 import PlaceOrder from './screens/PlaceOrder';
 import Order from './screens/Order';
 import Profile from './screens/Profile';
-import { useDispatch } from 'react-redux';
+import ProductList from './screens/ProductList';
+import EditProduct from './screens/EditProduct';
 
 function App() {
-	const dispatch = useDispatch();
-	const accessToken = selectCurrentAccessToken();
-
-	const decoded = accessToken
-		? jwtDecode<{ isAdmin: boolean }>(accessToken)
-		: undefined;
-
-	const isAdmin = decoded?.isAdmin || false;
-
-	dispatch(setIsAdmin({ isAdmin }));
-
 	return (
 		<>
 			<ToastContainer />
@@ -73,6 +63,8 @@ function App() {
 							<Route path="admin" element={<RequireAdmin />}>
 								<Route path="user-list" element={<Users />} />
 								<Route path="add-product" element={<AddProduct />} />
+								<Route path="product-list" element={<ProductList />} />
+								<Route path="product/:id/edit" element={<EditProduct />} />
 							</Route>
 						</Route>
 					</Route>

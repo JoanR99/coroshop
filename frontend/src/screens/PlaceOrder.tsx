@@ -10,27 +10,25 @@ import {
 import { Paragraph } from '../components/Typography';
 import {
 	selectCartItems,
+	selectCartTotalPrice,
 	selectPaymentMethod,
 	selectShippingAddress,
 } from '../features/cart/cartSlice';
 import { Section, SectionHeading } from '../components/Section';
 import { useAddOrderMutation } from '../features/order/orderApiSlice';
 import OrderItems from '../features/order/OrderItems';
+import { useAppSelector } from '../app/hooks';
 
 const PlaceOrder = () => {
 	const [addOrder, { isLoading }] = useAddOrderMutation();
-	const shippingAddress = selectShippingAddress();
-	const paymentMethod = selectPaymentMethod();
-	const cartItems = selectCartItems();
+	const shippingAddress = useAppSelector(selectShippingAddress);
+	const paymentMethod = useAppSelector(selectPaymentMethod);
+	const cartItems = useAppSelector(selectCartItems);
+	const itemsPrice = useAppSelector(selectCartTotalPrice);
 	const navigate = useNavigate();
 
 	const addDecimals = (num: number) =>
 		Number((Math.round(num * 100) / 100).toFixed(2));
-
-	const itemsPrice = cartItems.reduce(
-		(acc, item) => acc + item.price * item.quantity,
-		0
-	);
 
 	const orderItems = cartItems.map((cartItem) => ({
 		productName: cartItem.name,

@@ -4,7 +4,7 @@ import { Container } from '../components/Container';
 
 import { useGetProductsQuery } from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
-import ProductList from '../features/product/ProductList';
+import ProductList from '../features/product/ProducCardtList';
 import { Heading2 } from '../components/Typography';
 
 const ProductPageContainer = styled(Container)`

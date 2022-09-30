@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '../../app/hooks';
 import { LinkButton } from '../../components/Button';
 import { useLogoutMutation } from './authApiSlice';
 import { clearCredentials } from './authSlice';
 
 const LogoutButton = () => {
 	const [logout] = useLogoutMutation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const handleClick = async () => {

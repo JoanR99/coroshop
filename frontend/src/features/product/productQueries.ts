@@ -15,6 +15,8 @@ export const getProducts = gql`
 				image
 				rating
 				price
+				category
+				brand
 			}
 		}
 	}

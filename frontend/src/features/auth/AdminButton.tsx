@@ -2,8 +2,8 @@ import { useState } from 'react';
 import AdminDropDown from './AdminDropDown';
 import { LinkButtonDark } from '../../components/Button';
 import styled from 'styled-components';
-import { selectCurrentAccessToken, selectIsAdmin } from './authSlice';
-import jwtDecode from 'jwt-decode';
+import { selectIsAdmin } from './authSlice';
+import { useAppSelector } from '../../app/hooks';
 
 const LinkText = styled.p`
 	font-size: 1.6rem;
@@ -12,7 +12,7 @@ const LinkText = styled.p`
 
 const AdminButton = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const isAdmin = selectIsAdmin();
+	const isAdmin = useAppSelector(selectIsAdmin);
 
 	const toggleOpen = () => setIsOpen((open) => !open);
 

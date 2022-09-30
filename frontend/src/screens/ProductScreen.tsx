@@ -4,10 +4,11 @@ import ReviewList from '../features/review/ReviewList';
 import AddReview from '../features/review/AddReview';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import { Container } from '../components/Container';
+import { useAppSelector } from '../app/hooks';
 
 const ProductScreen = () => {
 	const { id } = useParams();
-	const accessToken = selectCurrentAccessToken();
+	const accessToken = useAppSelector(selectCurrentAccessToken);
 
 	return (
 		<Container>

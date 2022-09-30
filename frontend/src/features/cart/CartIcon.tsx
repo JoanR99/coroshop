@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { selectCartCount, toggleIsCartOpen } from './cartSlice';
 
 import BagIcon from '../../components/BagIcon';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 const CartIconContainer = styled.div`
 	width: 30px;
@@ -23,8 +23,8 @@ const ItemCount = styled.span`
 `;
 
 const CartIcon = () => {
-	const cartCount = selectCartCount();
-	const dispatch = useDispatch();
+	const cartCount = useAppSelector(selectCartCount);
+	const dispatch = useAppDispatch();
 
 	const toggleCartOpen = () => dispatch(toggleIsCartOpen());
 
