@@ -19,3 +19,15 @@ export const deleteProduct = gql`
 		}
 	}
 `;
+
+export const updateProduct = gql`
+	mutation UpdateProduct($productBody: ProductBody!, $productId: String!) {
+		updateProduct(productBody: $productBody, productId: $productId) {
+			id
+			name
+			image
+			rating
+			price
+		}
+	}
+`;

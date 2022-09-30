@@ -24,3 +24,25 @@ export type UpdateUserProfileResponse = {
 export type GetUserProfileResponse = {
 	getUserProfile: User;
 };
+
+export type GetUsersInput = {
+	pageSize: number;
+	keyword: string;
+	pageNumber: number;
+};
+
+export type GetUsersResponse = {
+	getUsers: {
+		users: User[];
+		page: number;
+		pages: number;
+	};
+};
+
+export type DeleteUserInput = {
+	userId: string;
+};
+
+export type DeleteUserResponse = {
+	message: string;
+};

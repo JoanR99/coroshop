@@ -31,6 +31,7 @@ const AdminDropDown = ({ toggleOpen }: Props) => {
 			<DropDownItems onClick={toggleOpen}>
 				<StyledLinkDark5 to="/admin/add-product">Add Product</StyledLinkDark5>
 				<StyledLinkDark5 to="/admin/product-list">Product List</StyledLinkDark5>
+				<StyledLinkDark5 to="/admin/user-list">User List</StyledLinkDark5>
 			</DropDownItems>
 		</DropDownContainer>
 	);

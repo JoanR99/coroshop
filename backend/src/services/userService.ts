@@ -5,7 +5,10 @@ import {
 	UpdateUserProfile,
 } from '../resolvers/UserResolvers';
 
-export const findAll = () => UserModel.find();
+type QueryUsers = { name: { $regex: string; $options: string } };
+
+export const findAll = (keyword: QueryUsers | {}) =>
+	UserModel.find({ ...keyword });
 
 export const findByEmail = (email: string) => UserModel.findOne({ email });
 
@@ -25,3 +28,6 @@ export const findByIdAndUpdate = async (
 
 	return UserModel.findByIdAndUpdate(userId, updateBody, { new: true });
 };
+
+export const count = (keyword: QueryUsers | {}) =>
+	UserModel.countDocuments({ ...keyword });

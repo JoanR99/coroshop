@@ -18,3 +18,11 @@ export const updateUserProfile = gql`
 		}
 	}
 `;
+
+export const deleteUser = gql`
+	mutation DeleteUser($userId: String!) {
+		deleteUser(userId: $userId) {
+			message
+		}
+	}
+`;

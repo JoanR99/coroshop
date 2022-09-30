@@ -39,3 +39,12 @@ export type DeleteProductInput = { productId: string };
 export type DeleteProductResponse = {
 	deleteProduct: { message: string };
 };
+
+export type UpdateProductInput = {
+	productBody: Omit<Product, 'id' | 'rating' | 'numReviews'>;
+	productId: string;
+};
+
+export type UpdateProductResponse = {
+	updateProduct: Product;
+};

@@ -19,6 +19,18 @@ import { NotFound } from '../errors';
 import { MyContext } from '../MyContext';
 
 @ObjectType()
+class GetUsersResponse {
+	@Field((type) => [User])
+	users: [User];
+
+	@Field()
+	page: number;
+
+	@Field()
+	pages: number;
+}
+
+@ObjectType()
 class BasicMutationResponse {
 	@Field()
 	message: string;
@@ -44,10 +56,37 @@ export class UpdateUserProfile extends UpdateUserProfileInput {
 
 @Resolver()
 export class UserResolver {
-	@Query(() => [User])
+	@Query(() => GetUsersResponse)
 	@UseMiddleware([verifyJwt, verifyAdmin])
-	async getUsers() {
-		return await userService.findAll();
+	async getUsers(
+		@Arg('pageSize') pageSize: number,
+		@Arg('keyword') keyword?: string,
+		@Arg('pageNumber') pageNumber?: number
+	) {
+		const page = pageNumber || 1;
+		const keywordRegex = keyword
+			? {
+					name: {
+						$regex: keyword,
+						$options: 'i',
+					},
+			  }
+			: {};
+
+		const count = await userService.count(keywordRegex);
+
+		const users = await userService
+			.findAll(keywordRegex)
+			.limit(pageSize)
+			.skip(pageSize * (page - 1));
+
+		const pages = Math.ceil(count / pageSize);
+
+		return {
+			users,
+			page,
+			pages,
+		};
 	}
 
 	@Query(() => User)

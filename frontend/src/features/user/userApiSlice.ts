@@ -1,12 +1,16 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { addUser, updateUserProfile } from './userMutations';
-import { getUserProfile } from './userQueries';
+import { addUser, deleteUser, updateUserProfile } from './userMutations';
+import { getUserProfile, getUsers } from './userQueries';
 import {
 	AddUserInput,
 	AddUserResponse,
 	UpdateUserProfileResponse,
 	UpdateUserProfileInput,
 	GetUserProfileResponse,
+	GetUsersResponse,
+	GetUsersInput,
+	DeleteUserResponse,
+	DeleteUserInput,
 } from './userTypes';
 
 const userApiSlice = apiSlice.injectEndpoints({
@@ -15,6 +19,17 @@ const userApiSlice = apiSlice.injectEndpoints({
 			query: () => ({
 				document: getUserProfile,
 				variables: null,
+			}),
+			providesTags: ['users'],
+		}),
+		getUsers: builder.query<GetUsersResponse, GetUsersInput>({
+			query: ({ pageSize, keyword, pageNumber }) => ({
+				document: getUsers,
+				variables: {
+					pageSize,
+					keyword,
+					pageNumber,
+				},
 			}),
 			providesTags: ['users'],
 		}),
@@ -39,11 +54,22 @@ const userApiSlice = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: ['users'],
 		}),
+		deleteUser: builder.mutation<DeleteUserResponse, DeleteUserInput>({
+			query: ({ userId }) => ({
+				document: deleteUser,
+				variables: {
+					userId,
+				},
+			}),
+			invalidatesTags: ['users'],
+		}),
 	}),
 });
 
 export const {
 	useGetUserProfileQuery,
+	useGetUsersQuery,
 	useAddUserMutation,
 	useUpdateUserProfileMutation,
+	useDeleteUserMutation,
 } = userApiSlice;

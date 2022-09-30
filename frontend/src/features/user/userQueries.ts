@@ -10,3 +10,18 @@ export const getUserProfile = gql`
 		}
 	}
 `;
+
+export const getUsers = gql`
+	query getUsers($pageSize: Float!, $keyword: String!, $pageNumber: Float!) {
+		getUsers(pageSize: $pageSize, keyword: $keyword, pageNumber: $pageNumber) {
+			users {
+				id
+				name
+				email
+				isAdmin
+			}
+			page
+			pages
+		}
+	}
+`;
