@@ -29,6 +29,7 @@ import Profile from './screens/Profile';
 import ProductList from './screens/ProductList';
 import EditProduct from './screens/EditProduct';
 import EditUser from './screens/EditUser';
+import OrdersList from './screens/OrdersList';
 
 function App() {
 	return (
@@ -65,6 +66,7 @@ function App() {
 								<Route path="user-list" element={<Users />} />
 								<Route path="add-product" element={<AddProduct />} />
 								<Route path="product-list" element={<ProductList />} />
+								<Route path="order-list" element={<OrdersList />} />
 								<Route path="product/:id/edit" element={<EditProduct />} />
 								<Route path="user/:id/edit" element={<EditUser />} />
 							</Route>

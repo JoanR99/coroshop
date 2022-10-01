@@ -3,6 +3,7 @@ import { CartItem, ShippingAddress } from '../cart/cartTypes';
 export interface Order {
 	id: string;
 	orderBy: string;
+	orderByName: string;
 	orderItems: OrderItem[];
 	shippingAddress: ShippingAddress;
 	paymentMethod: string;

@@ -4,7 +4,7 @@ import { StyledLinkDark5 } from '../../components/StyledLink';
 const DropDownContainer = styled.div`
 	position: absolute;
 	width: 15rem;
-	height: 10rem;
+	height: 12rem;
 	display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -15,7 +15,7 @@ const DropDownContainer = styled.div`
 `;
 
 const DropDownItems = styled.div`
-	height: 10rem;
+	height: 12rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -32,6 +32,7 @@ const AdminDropDown = ({ toggleOpen }: Props) => {
 				<StyledLinkDark5 to="/admin/add-product">Add Product</StyledLinkDark5>
 				<StyledLinkDark5 to="/admin/product-list">Product List</StyledLinkDark5>
 				<StyledLinkDark5 to="/admin/user-list">User List</StyledLinkDark5>
+				<StyledLinkDark5 to="/admin/order-list">Order List</StyledLinkDark5>
 			</DropDownItems>
 		</DropDownContainer>
 	);

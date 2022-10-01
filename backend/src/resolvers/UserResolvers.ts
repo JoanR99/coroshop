@@ -49,7 +49,13 @@ export class UpdateUserProfileInput {
 }
 
 @InputType()
-export class UpdateUserProfile extends UpdateUserProfileInput {
+export class UpdateUser {
+	@Field({ nullable: true })
+	name?: string;
+
+	@Field({ nullable: true })
+	email?: string;
+
 	@Field({ nullable: true })
 	isAdmin?: boolean;
 }
@@ -157,7 +163,7 @@ export class UserResolver {
 	@Mutation(() => User)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async updateUser(
-		@Arg('updateBody') updateBody: UpdateUserProfile,
+		@Arg('updateBody') updateBody: UpdateUser,
 		@Arg('userId') userId: string
 	) {
 		const updatedUser = await userService.findByIdAndUpdate(userId, updateBody);

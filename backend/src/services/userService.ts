@@ -1,9 +1,6 @@
 import { hash } from 'bcrypt';
 import UserModel from '../models/User';
-import {
-	UpdateUserProfileInput,
-	UpdateUserProfile,
-} from '../resolvers/UserResolvers';
+import { UpdateUserProfileInput, UpdateUser } from '../resolvers/UserResolvers';
 
 type QueryUsers = { name: { $regex: string; $options: string } };
 
@@ -19,10 +16,10 @@ export const create = (name: string, email: string, password: string) =>
 
 export const findByIdAndUpdate = async (
 	userId: string,
-	updateBody: UpdateUserProfileInput | UpdateUserProfile
+	updateBody: UpdateUserProfileInput | UpdateUser
 ) => {
-	if (updateBody.password) {
-		const hashedPassword = await hash(updateBody.password, 10);
+	if ('password' in updateBody) {
+		const hashedPassword = await hash(updateBody.password!, 10);
 		updateBody.password = hashedPassword;
 	}
 

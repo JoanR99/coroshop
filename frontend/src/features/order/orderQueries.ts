@@ -5,6 +5,7 @@ export const getOrders = gql`
 		getOrders {
 			id
 			orderBy
+			orderByName
 			createdAt
 			totalPrice
 			isPaid
@@ -21,6 +22,7 @@ export const getOrder = gql`
 		getOrderById(orderId: $orderId) {
 			id
 			orderBy
+			orderByName
 			createdAt
 			totalPrice
 			isPaid
@@ -53,6 +55,7 @@ export const getUserOrders = gql`
 		getUserOrders {
 			id
 			orderBy
+			orderByName
 			createdAt
 			totalPrice
 			isPaid

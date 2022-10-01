@@ -5,7 +5,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { stripePromise } from '../features/order/stripe';
 import { Paragraph } from '../components/Typography';
-import { useGetOrderQuery } from '../features/order/orderApiSlice';
+import {
+	useGetOrderQuery,
+	useUpdateOrderToDeliveredMutation,
+} from '../features/order/orderApiSlice';
 import {
 	FlexContainer,
 	InfoContainer,
@@ -17,13 +20,20 @@ import OrderItems from '../features/order/OrderItems';
 import PayPalButton from '../features/order/PayPalButton';
 import StripeForm from '../features/order/StripeForm';
 import stripePayment from '../features/order/stripePayment';
+import { useAppSelector } from '../app/hooks';
+import { selectIsAdmin } from '../features/auth/authSlice';
+import { MainButton } from '../components/Button';
+import { toast } from 'react-toastify';
 
 const Order = () => {
+	const isAdmin = useAppSelector(selectIsAdmin);
 	const [clientId, setClientId] = useState('');
 	const [clientSecret, setClientSecret] = useState('');
 	const [paymentLoading, setPaymentLoading] = useState(false);
 	const orderId = useParams().orderId!;
 	const { data: order, isLoading } = useGetOrderQuery({ orderId });
+	const [updateDelivered, { isLoading: loadingUpdate }] =
+		useUpdateOrderToDeliveredMutation();
 
 	const itemsPrice = order?.getOrderById.orderItems.reduce(
 		(acc, item) => acc + item.price * item.quantity,
@@ -43,7 +53,7 @@ const Order = () => {
 			}
 		};
 
-		if (order?.getOrderById.paymentMethod === 'PayPal') {
+		if (order?.getOrderById.paymentMethod === 'PayPal' && !isAdmin) {
 			getClientId();
 		}
 	}, [order?.getOrderById.paymentMethod]);
@@ -63,10 +73,33 @@ const Order = () => {
 			}
 		};
 
-		if (order?.getOrderById.paymentMethod === 'Stripe') {
+		if (order?.getOrderById.paymentMethod === 'Stripe' && !isAdmin) {
 			getClientSecret();
 		}
 	}, [order?.getOrderById.paymentMethod]);
+
+	const updateHandler = async () => {
+		const id = toast.loading('Updating...', { theme: 'light' });
+		try {
+			await updateDelivered({ orderId }).unwrap();
+			toast.update(id, {
+				render: 'Update Success',
+				type: 'success',
+				isLoading: false,
+				autoClose: 3000,
+				theme: 'light',
+			});
+		} catch (e) {
+			toast.update(id, {
+				render: 'Update Fail',
+				type: 'error',
+				isLoading: false,
+				autoClose: 3000,
+				theme: 'light',
+			});
+			console.log(e);
+		}
+	};
 
 	return isLoading ? (
 		<div>Loading</div>
@@ -153,6 +186,7 @@ const Order = () => {
 				</Section>
 
 				{!order!.getOrderById.isPaid &&
+					!isAdmin &&
 					(paymentLoading ? (
 						<div>loading...</div>
 					) : (
@@ -172,6 +206,16 @@ const Order = () => {
 							)}
 						</div>
 					))}
+
+				{loadingUpdate ? (
+					<div>Loading</div>
+				) : (
+					isAdmin &&
+					order!.getOrderById.isPaid &&
+					!order!.getOrderById.isDelivered && (
+						<MainButton onClick={updateHandler}>Mark as delivered</MainButton>
+					)
+				)}
 			</SummaryContainer>
 		</FlexContainer>
 	);

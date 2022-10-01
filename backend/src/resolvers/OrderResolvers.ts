@@ -15,6 +15,7 @@ import verifyJwt from '../middlewares/verifyJwt';
 import { Order } from '../models/Order';
 import { MyContext } from '../MyContext';
 import * as orderService from '../services/orderServices';
+import * as userService from '../services/userService';
 
 @InputType()
 class OrderItem {
@@ -127,9 +128,16 @@ export class OrderResolver {
 		if (orderBody.orderItems && orderBody.orderItems.length === 0) {
 			throw new ApolloError('No order items');
 		} else {
+			const userOrder = await userService.findById(payload!.userId);
+
+			if (!userOrder) {
+				throw new NotFound('User not found');
+			}
+
 			const order = await orderService.create({
 				...orderBody,
 				orderBy: payload!.userId,
+				orderByName: userOrder.name,
 			});
 
 			return order;

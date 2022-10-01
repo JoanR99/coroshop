@@ -25,3 +25,14 @@ export const getUsers = gql`
 		}
 	}
 `;
+
+export const getUser = gql`
+	query GetUser($userId: String!) {
+		getUser(userId: $userId) {
+			id
+			name
+			email
+			isAdmin
+		}
+	}
+`;

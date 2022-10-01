@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAppSelector } from '../../app/hooks';
 import { MainButton } from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
-import { useGetUserOrdersQuery } from './orderApiSlice';
+import { selectIsAdmin } from '../auth/authSlice';
+import { Order } from './orderTypes';
 
 const Table = styled.table`
 	width: 100%;
@@ -19,12 +21,16 @@ const Td = styled.td`
 	padding: 0.5rem;
 `;
 
-const OrdersTable = () => {
-	const { data, isLoading } = useGetUserOrdersQuery(null);
-	const navigate = useNavigate();
+type Props = {
+	orders: Order[];
+};
 
-	return isLoading ? (
-		<div>Loading</div>
+const OrdersTable = ({ orders }: Props) => {
+	const navigate = useNavigate();
+	const isAdmin = useAppSelector(selectIsAdmin);
+
+	return orders.length === 0 ? (
+		<Heading4>No orders to show</Heading4>
 	) : (
 		<Table>
 			<thead>
@@ -32,6 +38,13 @@ const OrdersTable = () => {
 					<Th>
 						<Heading4>ID</Heading4>
 					</Th>
+
+					{isAdmin && (
+						<Th>
+							<Heading4>User</Heading4>
+						</Th>
+					)}
+
 					<Th>
 						<Heading4>DATE</Heading4>
 					</Th>
@@ -49,11 +62,16 @@ const OrdersTable = () => {
 				</tr>
 			</thead>
 			<tbody>
-				{data?.getUserOrders.map((userOrder) => (
+				{orders.map((userOrder) => (
 					<tr key={userOrder.id}>
 						<Td>
 							<Paragraph>{userOrder.id}</Paragraph>
 						</Td>
+						{isAdmin && (
+							<Td>
+								<Paragraph>{userOrder.orderBy}</Paragraph>
+							</Td>
+						)}
 						<Td>
 							<Paragraph>
 								{new Date(userOrder.createdAt).toLocaleDateString()}
@@ -65,20 +83,16 @@ const OrdersTable = () => {
 
 						<Td>
 							<Paragraph>
-								{userOrder.isPaid ? (
-									new Date(Number(userOrder.paidAt)).toLocaleDateString()
-								) : (
-									<div>Not paid</div>
-								)}
+								{userOrder.isPaid
+									? new Date(Number(userOrder.paidAt)).toLocaleDateString()
+									: 'Not paid'}
 							</Paragraph>
 						</Td>
 						<Td>
 							<Paragraph>
-								{userOrder.isDelivered ? (
-									new Date(Number(userOrder.deliveredAt)).toLocaleDateString()
-								) : (
-									<div>Not delivered</div>
-								)}
+								{userOrder.isDelivered
+									? new Date(Number(userOrder.deliveredAt)).toLocaleDateString()
+									: 'Not delivered'}
 							</Paragraph>
 						</Td>
 						<Td>

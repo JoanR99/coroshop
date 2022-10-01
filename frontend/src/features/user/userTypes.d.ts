@@ -46,3 +46,34 @@ export type DeleteUserInput = {
 export type DeleteUserResponse = {
 	message: string;
 };
+
+export type UpdateUserInput = {
+	updateBody: {
+		name: string;
+		email: string;
+		isAdmin: boolean;
+	};
+	userId: string;
+};
+
+export type UpdateUserResponse = {
+	updateUser: {
+		id: string;
+		name: string;
+		email: string;
+		isAdmin: boolean;
+	};
+};
+
+export type GetUserInput = {
+	userId: string;
+};
+
+export type GetUserResponse = {
+	getUser: {
+		id: string;
+		name: string;
+		email: string;
+		isAdmin: boolean;
+	};
+};

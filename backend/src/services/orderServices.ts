@@ -3,9 +3,10 @@ import { AddOrderInput } from '../resolvers/OrderResolvers';
 
 interface CreateOrderBody extends AddOrderInput {
 	orderBy: string;
+	orderByName: string;
 }
 
-export const findAll = () => OrderModel.find().populate('user', 'id name');
+export const findAll = () => OrderModel.find();
 
 export const findByUserId = (userId: string) =>
 	OrderModel.find({ user: userId });

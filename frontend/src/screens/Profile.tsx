@@ -7,6 +7,7 @@ import { Heading2, Heading3 } from '../components/Typography';
 import UpdateUserForm from '../features/user/UpdateUserForm';
 import OrdersTable from '../features/order/OrdersTable';
 import styled from 'styled-components';
+import { useGetUserOrdersQuery } from '../features/order/orderApiSlice';
 
 const Heading = styled(Heading2)`
 	margin-top: 2rem;
@@ -24,7 +25,11 @@ const TableSection = styled(StyledContainer)`
 `;
 
 const Profile = () => {
-	return (
+	const { data, isLoading } = useGetUserOrdersQuery(null);
+
+	return isLoading ? (
+		<div>Loading...</div>
+	) : (
 		<Container>
 			<Heading>Profile</Heading>
 			<FlexSection>
@@ -34,7 +39,7 @@ const Profile = () => {
 				</FormSection>
 				<TableSection>
 					<Heading3>Orders</Heading3>
-					<OrdersTable />
+					<OrdersTable orders={data!.getUserOrders} />
 				</TableSection>
 			</FlexSection>
 		</Container>

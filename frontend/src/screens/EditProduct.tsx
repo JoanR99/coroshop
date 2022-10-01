@@ -15,6 +15,7 @@ import {
 } from '../features/product/productApiSlice';
 import { MarginContainer } from '../components/Container';
 import { MainButton } from '../components/Button';
+import { Heading2 } from '../components/Typography';
 
 const EditProduct = () => {
 	const navigate = useNavigate();
@@ -98,10 +99,12 @@ const EditProduct = () => {
 		}
 	};
 
-	return (
+	return isLoading ? (
+		<div>Loading...</div>
+	) : (
 		<MarginContainer>
 			<FormProvider {...methods}>
-				<h1>Update product</h1>
+				<Heading2>Update product</Heading2>
 
 				<form
 					onSubmit={methods.handleSubmit(submitHandler)}

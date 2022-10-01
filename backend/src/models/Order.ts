@@ -94,6 +94,10 @@ export class Order {
 	@Prop({ required: true, ref: () => User })
 	public orderBy!: Ref<User>;
 
+	@GqlField((_type) => String)
+	@Prop()
+	public orderByName!: string;
+
 	@GqlField((_type) => [OrderItem2])
 	@Prop()
 	public orderItems: OrderItem[];

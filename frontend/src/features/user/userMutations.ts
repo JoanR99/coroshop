@@ -26,3 +26,14 @@ export const deleteUser = gql`
 		}
 	}
 `;
+
+export const updateUser = gql`
+	mutation UpdateUser($updateBody: UpdateUser!, $userId: String!) {
+		updateUser(updateBody: $updateBody, userId: $userId) {
+			id
+			name
+			email
+			isAdmin
+		}
+	}
+`;
