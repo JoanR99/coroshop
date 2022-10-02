@@ -5,6 +5,7 @@ import {
 	getModelForClass,
 } from '@typegoose/typegoose';
 import { Field as GqlField, ObjectType as GqlType } from 'type-graphql';
+
 import { Product } from './Product';
 import { User } from './User';
 

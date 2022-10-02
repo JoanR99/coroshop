@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container } from '../components/Container';
 
+import { Container } from '../components/Container';
 import { useGetProductsQuery } from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
 import ProductList from '../features/product/ProducCardtList';

@@ -3,6 +3,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { stripePromise } from '../features/order/stripe';
 import { Paragraph } from '../components/Typography';
 import {
@@ -23,7 +25,6 @@ import stripePayment from '../features/order/stripePayment';
 import { useAppSelector } from '../app/hooks';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { MainButton } from '../components/Button';
-import { toast } from 'react-toastify';
 
 const Order = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);

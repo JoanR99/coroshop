@@ -5,34 +5,17 @@ import {
 	Mutation,
 	Resolver,
 	UseMiddleware,
-	InputType,
-	ObjectType,
-	Field,
 	Query,
 } from 'type-graphql';
+
 import { NotFound } from '../errors';
 import verifyJwt from '../middlewares/verifyJwt';
 import { MyContext } from '../MyContext';
-
 import * as productService from '../services/productServices';
 import * as userService from '../services/userService';
 import * as reviewService from '../services/reviewService';
 import { Review } from '../models/Review';
-
-@InputType()
-export class ProductReview {
-	@Field()
-	rating: number;
-
-	@Field()
-	comment: string;
-}
-
-@ObjectType()
-class MutationBasicResponse {
-	@Field()
-	message: string;
-}
+import { MutationBasicResponse, ProductReview } from '../Types/reviewTypes';
 
 @Resolver()
 export class ReviewResolver {

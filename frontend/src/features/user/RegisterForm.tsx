@@ -1,9 +1,9 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 import FormInput from '../../components/FormInput';
-import { useNavigate } from 'react-router-dom';
 import { registerSchema, defaultValues } from '../../validation/registerSchema';
 import { useAddUserMutation } from '../user/userApiSlice';
 import { MainButton } from '../../components/Button';

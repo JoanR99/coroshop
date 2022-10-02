@@ -1,5 +1,5 @@
 import OrderModel, { Order } from '../models/Order';
-import { AddOrderInput } from '../resolvers/OrderResolvers';
+import { AddOrderInput } from '../Types/orderTypes';
 
 interface CreateOrderBody extends AddOrderInput {
 	orderBy: string;

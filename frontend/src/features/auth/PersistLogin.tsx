@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectCurrentAccessToken, setCredentials } from './authSlice';
 import getNewAccessToken from './getNewAccessToken';
 import { setIsAdmin } from './authSlice';

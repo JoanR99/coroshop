@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { Product } from './productTypes';
 import { Rating } from 'react-simple-star-rating';
+
+import { Product } from './productTypes';
 import { Heading4 } from '../../components/Typography';
 import { Card, CardImage, CardBody, CardPrice } from '../../components/Card';
 

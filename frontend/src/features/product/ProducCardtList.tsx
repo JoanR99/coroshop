@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Container } from '../../components/Container';
 
 import ProductCard from './ProductCard';
 import { Heading2 } from '../../components/Typography';

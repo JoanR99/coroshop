@@ -1,7 +1,6 @@
 import { Review } from '../models/Review';
-
 import ReviewModel from '../models/Review';
-import { ProductReview } from '../resolvers/ReviewResolvers';
+import { ProductReview } from '../Types/reviewTypes';
 
 export const create = (review: Partial<Review>) => ReviewModel.create(review);
 

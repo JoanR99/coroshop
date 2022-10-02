@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { MainButton } from '../../components/Button';
 import ItemOnCart from './ItemOnCart';
 import { selectCartItems, toggleIsCartOpen } from './cartSlice';

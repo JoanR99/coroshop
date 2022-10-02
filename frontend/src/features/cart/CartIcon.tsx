@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { selectCartCount, toggleIsCartOpen } from './cartSlice';
 
+import { selectCartCount, toggleIsCartOpen } from './cartSlice';
 import BagIcon from '../../components/BagIcon';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 

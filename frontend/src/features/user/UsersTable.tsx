@@ -1,39 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import styled from 'styled-components';
+
 import { MainButton } from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
-
-const Table = styled.table`
-	width: 100%;
-	padding: 1rem;
-`;
-
-const Th = styled.th`
-	width: 16%;
-`;
-
-const Td = styled.td`
-	width: 16%;
-	text-align: center;
-	padding: 0.5rem;
-`;
-
-const Flex = styled.div`
-	display: flex;
-	width: 100%;
-	justify-content: space-around;
-`;
-
-const TableContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-`;
+import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);

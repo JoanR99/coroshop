@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import SearchBar from './SearchBar';
 import { StyledLinkLight5, LinkContainer } from './StyledLink';
 import AdminButton from '../features/auth/AdminButton';

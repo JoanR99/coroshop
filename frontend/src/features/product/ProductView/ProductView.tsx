@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Rating } from 'react-simple-star-rating';
+
 import { useAppDispatch } from '../../../app/hooks';
 import { MainButton } from '../../../components/Button';
 import { SectionPartImage, SectionPartText } from '../../../components/Section';

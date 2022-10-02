@@ -1,28 +1,15 @@
-import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from 'type-graphql';
+import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
+import { ForbiddenError } from 'apollo-server-express';
 
 import * as userService from '../services/userService';
 import * as authService from '../services/authService';
 import { MyContext } from '../MyContext';
 import { NotFound } from '../errors';
-import { ForbiddenError } from 'apollo-server-express';
-
-@ObjectType()
-class LoginResponse {
-	@Field()
-	accessToken: string;
-}
-
-@ObjectType()
-class LogoutResponse {
-	@Field()
-	message: string;
-}
-
-@ObjectType()
-class RevokeResponse {
-	@Field()
-	message: string;
-}
+import {
+	LoginResponse,
+	LogoutResponse,
+	RevokeResponse,
+} from '../Types/authTypes';
 
 @Resolver()
 export class AuthResolver {

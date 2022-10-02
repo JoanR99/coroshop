@@ -2,63 +2,23 @@ import {
 	Arg,
 	Ctx,
 	Mutation,
-	ObjectType,
 	Query,
 	Resolver,
 	UseMiddleware,
-	InputType,
-	Field,
 } from 'type-graphql';
+
 import { NotFound } from '../errors';
 import verifyAdmin from '../middlewares/verifyAdmin';
 import verifyJwt from '../middlewares/verifyJwt';
 import { Product } from '../models/Product';
 import { MyContext } from '../MyContext';
-
 import * as productService from '../services/productServices';
 import * as userService from '../services/userService';
-
-@ObjectType()
-class GetProductsResponse {
-	@Field((type) => [Product])
-	products: [Product];
-
-	@Field()
-	page: number;
-
-	@Field()
-	pages: number;
-}
-
-@ObjectType()
-class ProductMutationBasicResponse {
-	@Field()
-	message: string;
-}
-
-@InputType()
-export class ProductBody {
-	@Field()
-	name: string;
-
-	@Field()
-	price: number;
-
-	@Field()
-	image: string;
-
-	@Field()
-	brand: string;
-
-	@Field()
-	category: string;
-
-	@Field()
-	countInStock: number;
-
-	@Field()
-	description: string;
-}
+import {
+	GetProductsResponse,
+	ProductBody,
+	ProductMutationBasicResponse,
+} from '../Types/productTypes';
 
 @Resolver()
 export class ProductResolver {

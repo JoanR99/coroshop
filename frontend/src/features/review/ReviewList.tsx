@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Heading2 } from '../../components/Typography';
 
+import { Heading2 } from '../../components/Typography';
 import { useGetReviewsQuery } from './reviewApiSlice';
 import ReviewCard from './ReviewCard';
 

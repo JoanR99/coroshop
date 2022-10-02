@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import styled from 'styled-components';
+
 import AdminDropDown from './AdminDropDown';
 import { LinkButtonDark } from '../../components/Button';
-import styled from 'styled-components';
 import { selectIsAdmin } from './authSlice';
 import { useAppSelector } from '../../app/hooks';
 

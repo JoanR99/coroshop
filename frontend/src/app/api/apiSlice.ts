@@ -3,10 +3,10 @@ import {
 	GraphQLClient,
 	ClientError,
 } from '@rtk-query/graphql-request-base-query/node_modules/graphql-request/dist/index';
+import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import { RootState } from '../store';
-import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {
 	clearCredentials,
 	setCredentials,

@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import jwtDecode from 'jwt-decode';
+
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
 import { LinkButton } from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
-import AdminButton from '../features/auth/AdminButton';
 import { useAppSelector } from '../app/hooks';
 
 const HeaderBody = styled.div`

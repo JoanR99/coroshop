@@ -2,13 +2,12 @@ import { ApolloError } from 'apollo-server-express';
 import {
 	Arg,
 	Ctx,
-	InputType,
 	Mutation,
 	Query,
 	Resolver,
 	UseMiddleware,
-	Field,
 } from 'type-graphql';
+
 import { NotFound } from '../errors';
 import verifyAdmin from '../middlewares/verifyAdmin';
 import verifyJwt from '../middlewares/verifyJwt';
@@ -16,78 +15,7 @@ import { Order } from '../models/Order';
 import { MyContext } from '../MyContext';
 import * as orderService from '../services/orderServices';
 import * as userService from '../services/userService';
-
-@InputType()
-class OrderItem {
-	@Field()
-	productName!: string;
-
-	@Field()
-	quantity!: number;
-
-	@Field()
-	image!: string;
-
-	@Field()
-	price!: number;
-
-	@Field()
-	product!: string;
-}
-
-@InputType()
-class ShippingAddress {
-	@Field()
-	address!: string;
-
-	@Field()
-	city!: string;
-
-	@Field()
-	postalCode!: string;
-
-	@Field()
-	country!: string;
-}
-
-@InputType()
-export class AddOrderInput {
-	@Field((type) => [OrderItem])
-	orderItems: OrderItem[];
-
-	@Field((type) => ShippingAddress)
-	shippingAddress: ShippingAddress;
-
-	@Field()
-	paymentMethod: string;
-
-	@Field()
-	itemsPrice: number;
-
-	@Field()
-	taxPrice: number;
-
-	@Field()
-	shippingPrice: number;
-
-	@Field()
-	totalPrice: number;
-}
-
-@InputType()
-class UpdateOrderInput {
-	@Field()
-	id: string;
-
-	@Field()
-	status: string;
-
-	@Field()
-	update_time: string;
-
-	@Field()
-	email_address: string;
-}
+import { UpdateOrderInput, AddOrderInput } from '../Types/orderTypes';
 
 @Resolver()
 export class OrderResolver {

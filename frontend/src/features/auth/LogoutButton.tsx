@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { useAppDispatch } from '../../app/hooks';
 import { LinkButton } from '../../components/Button';
 import { useLogoutMutation } from './authApiSlice';

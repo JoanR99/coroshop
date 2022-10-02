@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import styled from 'styled-components';
+
 import { shippingAddressSchema } from '../validation/shippingAddressSchema';
 import {
 	selectShippingAddress,
@@ -9,7 +11,6 @@ import {
 import { ShippingAddress } from '../features/cart/cartTypes';
 import FormInput from '../components/FormInput';
 import { MainButton } from '../components/Button';
-import styled from 'styled-components';
 import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import { useAppDispatch, useAppSelector } from '../app/hooks';

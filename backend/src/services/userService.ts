@@ -1,6 +1,7 @@
 import { hash } from 'bcrypt';
+
 import UserModel from '../models/User';
-import { UpdateUserProfileInput, UpdateUser } from '../resolvers/UserResolvers';
+import { UpdateUserProfileInput, UpdateUser } from '../Types/userTypes';
 
 type QueryUsers = { name: { $regex: string; $options: string } };
 

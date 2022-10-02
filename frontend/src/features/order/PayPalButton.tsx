@@ -1,5 +1,6 @@
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { toast } from 'react-toastify';
+
 import { useUpdateOrderToPaidMutation } from './orderApiSlice';
 import { Order, PaymentResult } from './orderTypes';
 

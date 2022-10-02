@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { Rating } from 'react-simple-star-rating';
+
 import { Heading4 } from '../../components/Typography';
 import { Review } from './reviewTypes';
-import { Rating } from 'react-simple-star-rating';
 import { CardReview } from '../../components/Card';
 
 type Props = {

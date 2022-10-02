@@ -1,25 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+
 import { useAppSelector } from '../../app/hooks';
 import { MainButton } from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import { selectIsAdmin } from '../auth/authSlice';
 import { Order } from './orderTypes';
-
-const Table = styled.table`
-	width: 100%;
-	padding: 1rem;
-`;
-
-const Th = styled.th`
-	width: 16%;
-`;
-
-const Td = styled.td`
-	width: 16%;
-	text-align: center;
-	padding: 0.5rem;
-`;
+import { Table, Td, Th } from '../../components/Table';
 
 type Props = {
 	orders: Order[];

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Heading2 } from './Typography';
 
 export const Container = styled.div`

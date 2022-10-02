@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { usePagination } from './usePagination';
 
 const PaginationContainer = styled.ul`

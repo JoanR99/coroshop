@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Heading4, Paragraph } from '../../components/Typography';
 import { CartItem } from './cartTypes';
 

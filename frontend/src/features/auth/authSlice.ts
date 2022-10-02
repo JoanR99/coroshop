@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useAppSelector } from '../../app/hooks';
+
 import { RootState } from '../../app/store';
 
 interface AuthState {

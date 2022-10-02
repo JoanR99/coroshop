@@ -1,4 +1,5 @@
 import { CorsOptions } from 'cors';
+
 import allowedOrigins from './allowedOrigins';
 
 const corsOptions: CorsOptions = {

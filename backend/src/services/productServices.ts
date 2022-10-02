@@ -1,5 +1,5 @@
 import ProductModel, { Product } from '../models/Product';
-import { ProductBody } from '../resolvers/ProductResolvers';
+import { ProductBody } from '../Types/productTypes';
 
 type QueryProducts = { name: { $regex: string; $options: string } };
 

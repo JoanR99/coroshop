@@ -5,60 +5,21 @@ import {
 	Query,
 	Resolver,
 	UseMiddleware,
-	ObjectType,
-	Field,
-	InputType,
 } from 'type-graphql';
-import { User } from '../models/User';
 
+import { User } from '../models/User';
 import * as userService from '../services/userService';
 import * as authService from '../services/authService';
 import verifyJwt from '../middlewares/verifyJwt';
 import verifyAdmin from '../middlewares/verifyAdmin';
 import { NotFound } from '../errors';
 import { MyContext } from '../MyContext';
-
-@ObjectType()
-class GetUsersResponse {
-	@Field((type) => [User])
-	users: [User];
-
-	@Field()
-	page: number;
-
-	@Field()
-	pages: number;
-}
-
-@ObjectType()
-class BasicMutationResponse {
-	@Field()
-	message: string;
-}
-
-@InputType()
-export class UpdateUserProfileInput {
-	@Field({ nullable: true })
-	name?: string;
-
-	@Field({ nullable: true })
-	email?: string;
-
-	@Field({ nullable: true })
-	password?: string;
-}
-
-@InputType()
-export class UpdateUser {
-	@Field({ nullable: true })
-	name?: string;
-
-	@Field({ nullable: true })
-	email?: string;
-
-	@Field({ nullable: true })
-	isAdmin?: boolean;
-}
+import {
+	GetUsersResponse,
+	BasicMutationResponse,
+	UpdateUser,
+	UpdateUserProfileInput,
+} from '../Types/userTypes';
 
 @Resolver()
 export class UserResolver {

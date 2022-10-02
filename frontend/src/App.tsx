@@ -1,11 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import jwtDecode from 'jwt-decode';
-
-import {
-	selectCurrentAccessToken,
-	setIsAdmin,
-} from './features/auth/authSlice';
 
 import Layout from './components/Layout';
 import Home from './screens/Home';

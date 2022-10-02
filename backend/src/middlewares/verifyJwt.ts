@@ -1,4 +1,5 @@
 import { MiddlewareFn, UnauthorizedError } from 'type-graphql';
+
 import { MyContext } from '../MyContext';
 import * as authService from '../services/authService';
 

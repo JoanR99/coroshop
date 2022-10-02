@@ -9,7 +9,6 @@ import { UserResolver } from './resolvers/UserResolvers';
 import { AuthResolver } from './resolvers/AuthResolvers';
 import { ProductResolver } from './resolvers/ProductResolvers';
 import { ReviewResolver } from './resolvers/ReviewResolvers';
-
 import connectDB from './config/database';
 import refreshTokenController from './refreshTokenController';
 import corsOptions from './config/corsOptions';

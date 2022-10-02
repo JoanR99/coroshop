@@ -1,10 +1,11 @@
+import { FormEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
-import { MainButton } from '../../components/Button';
 import styled from 'styled-components';
+
+import { MainButton } from '../../components/Button';
 import { Heading3 } from '../../components/Typography';
-import { FormEvent, useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { useUpdateOrderToPaidMutation } from './orderApiSlice';
 
 type Props = {

@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
+
 import { useAppSelector } from '../../app/hooks';
 import { selectIsAdmin } from './authSlice';
 

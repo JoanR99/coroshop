@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
@@ -9,7 +10,6 @@ import {
 	useUpdateUserProfileMutation,
 } from '../user/userApiSlice';
 import { MainButton } from '../../components/Button';
-import { useEffect } from 'react';
 
 const UpdateUserForm = () => {
 	const { data: userProfile, isLoading } = useGetUserProfileQuery(null);

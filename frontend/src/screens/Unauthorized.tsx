@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { Container } from '../components/Container';
 import { Heading1, Paragraph } from '../components/Typography';
 import { MainButton } from '../components/Button';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 const StyledHeading = styled(Heading1)`
 	margin-top: 2rem;
