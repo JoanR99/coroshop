@@ -59,21 +59,8 @@ export class ReviewResolver {
 			product: product.id,
 		});
 
-		product.numReviews = product.numReviews + 1;
-
-		const currentReviewsOfProduct = await reviewService.findByProductId(
-			product.id
-		);
-
-		const newRatingOfProduct =
-			currentReviewsOfProduct.reduce(
-				(acc: number, review: Review) => review?.rating + acc,
-				0
-			) / product.numReviews;
-
-		product.rating = newRatingOfProduct;
-
-		await product.save();
+		await productService.updateRating(productId);
+		await productService.updateNumReviews(productId);
 
 		return {
 			message: 'Review added',
@@ -103,22 +90,7 @@ export class ReviewResolver {
 		);
 
 		if (updatedReview) {
-			const reviewsOfProduct = await reviewService.findByProductId(
-				updatedReview.product!.toString()
-			);
-
-			const ratingOfProduct =
-				reviewsOfProduct.reduce(
-					(acc: number, review: Review) => review.rating + acc,
-					0
-				) / reviewsOfProduct.length;
-
-			await productService.findByIdAndUpdate(
-				updatedReview.product!.toString(),
-				{
-					rating: ratingOfProduct,
-				}
-			);
+			await productService.updateRating(updatedReview.product!.toString());
 		}
 
 		return updatedReview;
@@ -142,28 +114,8 @@ export class ReviewResolver {
 
 		await reviewService.destroy(reviewId);
 
-		const reviewsOfProduct = await reviewService.findByProductId(
-			review.product!.toString()
-		);
-
-		const ratingOfProduct =
-			reviewsOfProduct.length > 0
-				? reviewsOfProduct.reduce(
-						(acc: number, review: Review) => review.rating + acc,
-						0
-				  ) / reviewsOfProduct.length
-				: 0;
-
-		const product = await productService.findByIdAndUpdate(
-			review.product!.toString(),
-			{ rating: ratingOfProduct, $inc: { numReviews: -1 } }
-		);
-
-		if (product) {
-			(product.rating = ratingOfProduct),
-				(product.numReviews = reviewsOfProduct.length),
-				await product.save();
-		}
+		await productService.updateRating(review.product!.toString());
+		await productService.updateNumReviews(review.product!.toString());
 
 		return {
 			message: 'Review deleted',

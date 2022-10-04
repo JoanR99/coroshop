@@ -55,9 +55,11 @@ const userApiSlice = apiSlice.injectEndpoints({
 			query: ({ name, email, password }) => ({
 				document: addUser,
 				variables: {
-					name,
-					email,
-					password,
+					addUserInput: {
+						name,
+						email,
+						password,
+					},
 				},
 			}),
 			invalidatesTags: ['users'],

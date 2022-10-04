@@ -4,7 +4,7 @@ env.config();
 
 let connection: typeof mongoose;
 
-const connectionUri = process.env.MONGO_URI as string;
+const connectionUri = process.env.MONGO_URI_TEST as string;
 
 const connect = async () => {
 	try {
@@ -19,4 +19,11 @@ const connect = async () => {
 
 const close = async () => await connection.connection.close();
 
-export default { connect, close };
+const clear = async () => {
+	const collections = connection.connection.collections;
+	for (const key in collections) {
+		await collections[key].deleteMany({});
+	}
+};
+
+export default { connect, close, clear };

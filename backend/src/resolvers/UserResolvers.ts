@@ -19,6 +19,7 @@ import {
 	BasicMutationResponse,
 	UpdateUser,
 	UpdateUserProfileInput,
+	AddUserInput,
 } from '../Types/userTypes';
 
 @Resolver()
@@ -83,19 +84,15 @@ export class UserResolver {
 		return user;
 	}
 
-	@Mutation(() => BasicMutationResponse)
+	@Mutation(() => User)
 	async addUser(
-		@Arg('name') name: string,
-		@Arg('email') email: string,
-		@Arg('password') password: string
-	) {
+		@Arg('addUserInput') { name, email, password }: AddUserInput
+	): Promise<User> {
 		const hash = await authService.hash(password);
 
-		await userService.create(name, email, hash);
+		const user = await userService.create(name, email, hash);
 
-		return {
-			message: 'User created',
-		};
+		return user;
 	}
 
 	@Mutation(() => User)

@@ -1,5 +1,7 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 
+import { Product } from '../models/Product';
+
 @ObjectType()
 export class GetProductsResponse {
 	@Field((type) => [Product])
