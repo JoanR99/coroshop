@@ -8,8 +8,10 @@ const authApiSlice = apiSlice.injectEndpoints({
 			query: ({ email, password }) => ({
 				document: loginMutation,
 				variables: {
-					email,
-					password,
+					loginInput: {
+						email,
+						password,
+					},
 				},
 			}),
 		}),

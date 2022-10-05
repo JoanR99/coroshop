@@ -1,11 +1,11 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
-import { ForbiddenError } from 'apollo-server-express';
 
 import * as userService from '../services/userService';
 import * as authService from '../services/authService';
 import { MyContext } from '../MyContext';
-import { NotFound } from '../errors';
+import { NotFound, Unauthorized } from '../errors';
 import {
+	LoginInput,
 	LoginResponse,
 	LogoutResponse,
 	RevokeResponse,
@@ -15,8 +15,7 @@ import {
 export class AuthResolver {
 	@Mutation(() => LoginResponse)
 	async login(
-		@Arg('email') email: string,
-		@Arg('password') password: string,
+		@Arg('loginInput') { email, password }: LoginInput,
 		@Ctx() { res }: MyContext
 	): Promise<LoginResponse> {
 		const user = await userService.findByEmail(email);
@@ -28,7 +27,7 @@ export class AuthResolver {
 		const match = await authService.compare(password, user.password);
 
 		if (!match) {
-			throw new ForbiddenError('Forbidden');
+			throw new Unauthorized('Wrong credentials');
 		}
 
 		user.refreshTokenVersion = user.refreshTokenVersion + 1;
