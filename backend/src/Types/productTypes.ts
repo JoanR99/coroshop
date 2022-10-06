@@ -4,8 +4,8 @@ import { Product } from '../models/Product';
 
 @ObjectType()
 export class GetProductsResponse {
-	@Field((type) => [Product])
-	products: [Product];
+	@Field((_type) => [Product])
+	products: Product[];
 
 	@Field()
 	page: number;
@@ -42,4 +42,16 @@ export class ProductBody {
 
 	@Field()
 	description: string;
+}
+
+@InputType()
+export class GetProductsInput {
+	@Field()
+	keyword: string;
+
+	@Field()
+	pageSize: number;
+
+	@Field()
+	pageNumber: number;
 }

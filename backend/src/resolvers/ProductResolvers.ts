@@ -15,6 +15,7 @@ import { MyContext } from '../MyContext';
 import * as productService from '../services/productServices';
 import * as userService from '../services/userService';
 import {
+	GetProductsInput,
 	GetProductsResponse,
 	ProductBody,
 	ProductMutationBasicResponse,
@@ -24,11 +25,8 @@ import {
 export class ProductResolver {
 	@Query(() => GetProductsResponse)
 	async getProducts(
-		@Arg('pageSize') pageSize: number,
-		@Arg('keyword') keyword?: string,
-		@Arg('pageNumber') pageNumber?: number
-	) {
-		const page = pageNumber || 1;
+		@Arg('getProductsInput') { pageNumber, pageSize, keyword }: GetProductsInput
+	): Promise<GetProductsResponse> {
 		const keywordRegex = keyword
 			? {
 					name: {
@@ -40,12 +38,17 @@ export class ProductResolver {
 
 		const count = await productService.count(keywordRegex);
 
+		const pageS = !pageSize || pageSize < 1 ? 12 : pageSize;
+
+		const pages = Math.ceil(count / pageS);
+
+		const page =
+			!pageNumber || pageNumber < 1 || pageNumber > pages ? 1 : pageNumber;
+
 		const products = await productService
 			.findAll(keywordRegex)
-			.limit(pageSize)
-			.skip(pageSize * (page - 1));
-
-		const pages = Math.ceil(count / pageSize);
+			.limit(pageS)
+			.skip(pageS * (page - 1));
 
 		return {
 			products,

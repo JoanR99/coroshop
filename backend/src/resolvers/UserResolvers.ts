@@ -86,7 +86,8 @@ export class UserResolver {
 
 	@Mutation(() => User)
 	async addUser(
-		@Arg('addUserInput') { name, email, password }: AddUserInput
+		@Arg('addUserInput')
+		{ name, email, password }: AddUserInput
 	): Promise<User> {
 		const hash = await authService.hash(password);
 

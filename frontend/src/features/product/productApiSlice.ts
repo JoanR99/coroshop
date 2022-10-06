@@ -21,9 +21,11 @@ const productApi = apiSlice.injectEndpoints({
 			query: ({ pageSize, keyword, pageNumber }) => ({
 				document: getProducts,
 				variables: {
-					pageNumber,
-					keyword,
-					pageSize,
+					getProductsInput: {
+						pageNumber,
+						keyword,
+						pageSize,
+					},
 				},
 			}),
 			providesTags: ['products'],

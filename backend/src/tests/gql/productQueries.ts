@@ -1,6 +1,6 @@
-import { gql } from 'graphql-request';
+import { gql } from 'apollo-server-express';
 
-export const getProducts = gql`
+export const getProductsQuery = gql`
 	query GetProducts($getProductsInput: GetProductsInput!) {
 		getProducts(getProductsInput: $getProductsInput) {
 			page
