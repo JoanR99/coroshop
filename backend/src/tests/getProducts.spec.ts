@@ -2,23 +2,17 @@ import { Server } from 'http';
 import request from 'supertest-graphql';
 import app from '../app';
 import server from '../config/apolloServer';
-import UserModel from '../models/User';
 import db from './config/database';
-import { loginMutation } from './gql/authMutations';
-import bcrypt from 'bcrypt';
 import { getProductsQuery } from './gql/productQueries';
-import ProductModel, { Product } from '../models/Product';
-
-type LoginInput = {
-	email?: string;
-	password?: string;
-};
-
-type LoginResponse = {
-	login: {
-		accessToken: string;
-	};
-};
+import { Product } from '../models/Product';
+import { createUser } from './utils/authUtils';
+import {
+	VALID_CREDENTIALS,
+	BAD_FLOAT_INPUT,
+	BAD_STRING_INPUT,
+} from './utils/constants';
+import { createProducts } from './utils/productUtils';
+import { loginMutation } from './gql/authMutations';
 
 type GetProductsInput = {
 	pageSize?: any;
@@ -32,44 +26,6 @@ type GetProductsResponse = {
 		pages: number;
 		page: number;
 	};
-};
-
-const VALID_CREDENTIALS = {
-	email: 'user@testing.com',
-	password: 'P4ssw0rd',
-};
-
-const login = (loginInput: LoginInput = {}) =>
-	request(app)
-		.path('/api/graphql')
-		.query(loginMutation)
-		.variables({ loginInput });
-
-const createUser = async (
-	credentials = { ...VALID_CREDENTIALS, name: 'user' }
-) => {
-	credentials.password = await bcrypt.hash(credentials.password, 10);
-	return UserModel.create({ ...credentials });
-};
-
-const createProducts = async (
-	productsNumber: number = 1,
-	createdBy: string,
-	createdByName: string
-) => {
-	for (let i = 0; i < productsNumber; i++) {
-		await ProductModel.create({
-			name: `product${i}`,
-			description: `description${i}`,
-			price: i * 100,
-			image: `/image${i}`,
-			brand: `brand${i}`,
-			category: `category${i}`,
-			countInStock: i * 20,
-			createdBy,
-			createdByName,
-		});
-	}
 };
 
 const getProducts = (
@@ -92,6 +48,23 @@ const getProducts = (
 	return agent;
 };
 
+type LoginInput = {
+	email?: string;
+	password?: string;
+};
+
+type LoginResponse = {
+	login: {
+		accessToken: string;
+	};
+};
+
+const login = (loginInput: LoginInput = {}) =>
+	request(app)
+		.path('/api/graphql')
+		.query(loginMutation)
+		.variables({ loginInput });
+
 let expressServer: Server;
 
 beforeAll(async () => {
@@ -112,9 +85,6 @@ afterAll(async () => {
 	await db.close();
 	expressServer.close();
 });
-
-const BAD_FLOAT_INPUT = 'Float cannot represent non numeric value';
-const BAD_STRING_INPUT = 'String cannot represent a non string value';
 
 describe('Get Products', () => {
 	describe('Fail cases', () => {

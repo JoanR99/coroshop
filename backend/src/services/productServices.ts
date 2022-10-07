@@ -1,6 +1,6 @@
 import { NotFound } from '../errors';
 import ProductModel, { Product } from '../models/Product';
-import { ProductBody } from '../Types/productTypes';
+import { AddProductInput } from '../Types/productTypes';
 import * as reviewService from './reviewService';
 
 type QueryProducts = { name: { $regex: string; $options: string } };
@@ -9,7 +9,7 @@ interface ProductUpdate extends Product {
 	$inc?: any;
 }
 
-interface ProductCreateBody extends ProductBody {
+interface ProductCreateBody extends AddProductInput {
 	createdBy: string;
 }
 

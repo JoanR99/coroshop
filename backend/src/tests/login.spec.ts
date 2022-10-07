@@ -5,7 +5,12 @@ import server from '../config/apolloServer';
 import UserModel from '../models/User';
 import db from './config/database';
 import { loginMutation } from './gql/authMutations';
-import bcrypt from 'bcrypt';
+import { createUser } from './utils/authUtils';
+import {
+	VALID_CREDENTIALS,
+	INVALID_EMAIL,
+	INVALID_PASSWORD,
+} from './utils/constants';
 
 type LoginInput = {
 	email?: string;
@@ -18,23 +23,11 @@ type LoginResponse = {
 	};
 };
 
-const VALID_CREDENTIALS = {
-	email: 'user@testing.com',
-	password: 'P4ssw0rd',
-};
-
 const login = (loginInput: LoginInput = {}) =>
 	request(app)
 		.path('/api/graphql')
 		.query(loginMutation)
 		.variables({ loginInput });
-
-const createUser = async (
-	credentials = { ...VALID_CREDENTIALS, name: 'user' }
-) => {
-	credentials.password = await bcrypt.hash(credentials.password, 10);
-	return UserModel.create({ ...credentials });
-};
 
 let expressServer: Server;
 
@@ -56,11 +49,6 @@ afterAll(async () => {
 	await db.close();
 	expressServer.close();
 });
-
-const INVALID_EMAIL =
-	'Field "email" of required type "String!" was not provided.';
-const INVALID_PASSWORD =
-	'Field "password" of required type "String!" was not provided.';
 
 describe('Login', () => {
 	describe('Failing cases', () => {

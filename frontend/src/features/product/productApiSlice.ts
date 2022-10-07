@@ -38,10 +38,10 @@ const productApi = apiSlice.injectEndpoints({
 			providesTags: ['products'],
 		}),
 		addProduct: builder.mutation<AddProductResponse, AddProductInput>({
-			query: (product) => ({
+			query: (addProductInput) => ({
 				document: addProduct,
 				variables: {
-					product,
+					addProductInput,
 				},
 			}),
 			invalidatesTags: ['products'],

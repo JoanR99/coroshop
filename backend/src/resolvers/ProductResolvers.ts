@@ -17,7 +17,7 @@ import * as userService from '../services/userService';
 import {
 	GetProductsInput,
 	GetProductsResponse,
-	ProductBody,
+	AddProductInput,
 	ProductMutationBasicResponse,
 } from '../Types/productTypes';
 
@@ -81,7 +81,7 @@ export class ProductResolver {
 	@Mutation(() => Product)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async addProduct(
-		@Arg('product', () => ProductBody) product: ProductBody,
+		@Arg('addProductInput') product: AddProductInput,
 		@Ctx() { payload }: MyContext
 	) {
 		const user = await userService.findById(payload!.userId);
@@ -113,7 +113,7 @@ export class ProductResolver {
 	@Mutation(() => Product)
 	@UseMiddleware([verifyJwt, verifyAdmin])
 	async updateProduct(
-		@Arg('productBody', () => ProductBody) productBody: ProductBody,
+		@Arg('productBody') productBody: AddProductInput,
 		@Arg('productId') productId: string
 	) {
 		const product = await productService.findByIdAndUpdate(

@@ -4,8 +4,12 @@ import app from '../app';
 import server from '../config/apolloServer';
 import UserModel from '../models/User';
 import db from './config/database';
-
 import { addUser } from './gql/userMutations';
+import {
+	INVALID_EMAIL,
+	INVALID_NAME,
+	INVALID_PASSWORD,
+} from './utils/constants';
 
 type AddUserInput = {
 	name?: string;
@@ -57,13 +61,6 @@ const VALID_CREDENTIALS = {
 	email: 'user@example.com',
 	password: '#User999',
 };
-
-const INVALID_PASSWORD =
-	'Field "password" of required type "String!" was not provided.';
-const INVALID_EMAIL =
-	'Field "email" of required type "String!" was not provided.';
-const INVALID_NAME =
-	'Field "name" of required type "String!" was not provided.';
 
 describe('Register', () => {
 	describe('Failing cases', () => {

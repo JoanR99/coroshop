@@ -1,6 +1,6 @@
-import { gql } from 'graphql-request';
+import { gql } from 'apollo-server-express';
 
-export const addProduct = gql`
+export const addProductMutation = gql`
 	mutation AddProduct($addProductInput: AddProductInput!) {
 		addProduct(addProductInput: $addProductInput) {
 			id

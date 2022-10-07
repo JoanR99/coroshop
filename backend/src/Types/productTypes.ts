@@ -21,7 +21,7 @@ export class ProductMutationBasicResponse {
 }
 
 @InputType()
-export class ProductBody {
+export class AddProductInput {
 	@Field()
 	name: string;
 
