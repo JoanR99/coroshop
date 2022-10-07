@@ -35,3 +35,7 @@ export const createProducts = async (
 };
 
 export const findProduct = (id: string) => ProductModel.findById(id);
+
+export const findAllProducts = () => ProductModel.find();
+
+export const deleteProduct = (id: string) => ProductModel.findByIdAndDelete(id);

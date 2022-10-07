@@ -18,7 +18,7 @@ export const getProductsQuery = gql`
 	}
 `;
 
-export const getProduct = gql`
+export const getProductQuery = gql`
 	query GetProduct($productId: String!) {
 		getProduct(productId: $productId) {
 			id

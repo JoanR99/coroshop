@@ -24,3 +24,7 @@ export const ADD_PRODUCT_INPUT = {
 
 export const UNAUTHORIZED_MESSAGE =
 	'Access denied! You need to be authorized to perform this action!';
+
+export const BAD_ID = 'Cast to ObjectId failed for value';
+
+export const PRODUCT_NOT_FOUND = 'Product not found';
