@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getNewAccessToken = async () => {
-	const { data } = await axios.get('http://localhost:8080/api/refresh_token', {
+	const { data } = await axios.get('http://localhost:3000/api/refresh_token', {
 		withCredentials: true,
 	});
 

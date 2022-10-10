@@ -12,8 +12,8 @@ export const getUserProfile = gql`
 `;
 
 export const getUsers = gql`
-	query getUsers($pageSize: Float!, $keyword: String!, $pageNumber: Float!) {
-		getUsers(pageSize: $pageSize, keyword: $keyword, pageNumber: $pageNumber) {
+	query getUsers($getUsersInput: GetItemsInput!) {
+		getUsers(getUsersInput: $getUsersInput) {
 			users {
 				id
 				name

@@ -35,9 +35,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 			query: ({ pageSize, keyword, pageNumber }) => ({
 				document: getUsers,
 				variables: {
-					pageSize,
-					keyword,
-					pageNumber,
+					getUsersInput: { pageSize, keyword, pageNumber },
 				},
 			}),
 			providesTags: ['users'],

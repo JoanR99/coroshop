@@ -13,7 +13,7 @@ import {
 } from '../../features/auth/authSlice';
 import getNewAccessToken from '../../features/auth/getNewAccessToken';
 
-const client = new GraphQLClient('http://localhost:8080/api/graphql', {
+const client = new GraphQLClient('http://localhost:3000/api/graphql', {
 	credentials: 'include',
 });
 

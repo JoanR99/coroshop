@@ -21,7 +21,7 @@ export const deleteProduct = gql`
 `;
 
 export const updateProduct = gql`
-	mutation UpdateProduct($productBody: ProductBody!, $productId: String!) {
+	mutation UpdateProduct($productBody: AddProductInput!, $productId: String!) {
 		updateProduct(productBody: $productBody, productId: $productId) {
 			id
 			name
