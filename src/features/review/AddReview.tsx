@@ -53,6 +53,8 @@ const AddReview = ({ productId }: Props) => {
 				rating: Number(rating / 20),
 			}).unwrap();
 
+			setRating(0);
+
 			toast.update(id, {
 				render: 'Add review success',
 				type: 'success',

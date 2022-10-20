@@ -26,7 +26,7 @@ const reviewApi = apiSlice.injectEndpoints({
 					},
 				},
 			}),
-			invalidatesTags: ['reviews'],
+			invalidatesTags: ['reviews', 'products'],
 		}),
 	}),
 	overrideExisting: false,
