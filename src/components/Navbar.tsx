@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
 import { StyledLinkLight5, LinkContainer } from './StyledLink';
-import AdminButton from '../features/auth/AdminButton';
 import CartNavbar from '../features/cart/CartNavbar';
+import { useSelector } from 'react-redux';
+import { selectCurrentAccessToken } from '../features/auth/authSlice';
 
 const NavbarBody = styled.div`
 	background-color: #457b9d;
@@ -20,13 +21,16 @@ const Container = styled.div`
 `;
 
 const Navbar = () => {
+	const accessToken = useSelector(selectCurrentAccessToken);
 	return (
 		<NavbarBody>
 			<Container>
 				<LinkContainer>
 					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
 					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
-					<AdminButton />
+					{accessToken && (
+						<StyledLinkLight5 to="/admin">Admin</StyledLinkLight5>
+					)}
 				</LinkContainer>
 				<div>
 					<SearchBar />

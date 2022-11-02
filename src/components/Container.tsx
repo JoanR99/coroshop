@@ -37,6 +37,4 @@ export const ContainerHeading = styled(Heading2)`
 export const MarginContainer = styled(StyledContainer)`
 	max-width: 60rem;
 	margin: auto;
-	margin-top: 4rem;
-	margin-bottom: 4rem;
 `;

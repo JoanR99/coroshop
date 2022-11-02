@@ -24,6 +24,7 @@ import ProductList from './screens/ProductList';
 import EditProduct from './screens/EditProduct';
 import EditUser from './screens/EditUser';
 import OrdersList from './screens/OrdersList';
+import Admin from './screens/Admin';
 
 function App() {
 	return (
@@ -57,6 +58,7 @@ function App() {
 							<Route path="/profile" element={<Profile />} />
 
 							<Route path="admin" element={<RequireAdmin />}>
+								<Route index element={<Admin />} />
 								<Route path="user-list" element={<Users />} />
 								<Route path="add-product" element={<AddProduct />} />
 								<Route path="product-list" element={<ProductList />} />
