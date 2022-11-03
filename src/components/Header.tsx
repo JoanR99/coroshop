@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
@@ -7,10 +7,16 @@ import { LinkButton } from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
 import { useAppSelector } from '../app/hooks';
 
-const HeaderBody = styled.div`
+const HeaderBody = styled.div<{ shadow: boolean }>`
 	background-color: #f1faee;
 	height: 5rem;
 	padding: 1rem;
+	${(props) =>
+		props.shadow
+			? css`
+					box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+			  `
+			: ''}
 `;
 
 const Container = styled.div`
@@ -27,7 +33,11 @@ const FlexDiv = styled.div`
 	align-items: center;
 `;
 
-const Header = () => {
+type Props = {
+	shadow: boolean;
+};
+
+const Header = ({ shadow }: Props) => {
 	const accessToken = useAppSelector(selectCurrentAccessToken);
 
 	const navigate = useNavigate();
@@ -35,7 +45,7 @@ const Header = () => {
 	const clickHandler = () => navigate('profile');
 
 	return (
-		<HeaderBody>
+		<HeaderBody shadow={shadow}>
 			<Container>
 				<StyledLinkDark3 to="/">COROSHOP</StyledLinkDark3>
 

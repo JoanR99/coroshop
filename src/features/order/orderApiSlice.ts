@@ -4,7 +4,12 @@ import {
 	updateOrderToDelivered,
 	updateOrderToPaid,
 } from './orderMutations';
-import { getOrder, getOrders, getUserOrders } from './orderQueries';
+import {
+	getOrder,
+	getOrders,
+	getOrdersCount,
+	getUserOrders,
+} from './orderQueries';
 import {
 	AddOrderResponse,
 	GetOrderResponse,
@@ -35,6 +40,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 		getUserOrders: builder.query<GetUserOrdersResponse, null>({
 			query: () => ({
 				document: getUserOrders,
+				variables: null,
+			}),
+		}),
+		getOrdersCount: builder.query<{ getOrdersCount: number }, null>({
+			query: () => ({
+				document: getOrdersCount,
 				variables: null,
 			}),
 		}),
@@ -77,6 +88,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 export const {
 	useGetOrdersQuery,
 	useGetOrderQuery,
+	useGetOrdersCountQuery,
 	useAddOrderMutation,
 	useUpdateOrderToPaidMutation,
 	useUpdateOrderToDeliveredMutation,

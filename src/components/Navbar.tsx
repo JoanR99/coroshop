@@ -29,7 +29,7 @@ const Navbar = () => {
 					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
 					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
 					{accessToken && (
-						<StyledLinkLight5 to="/admin">Admin</StyledLinkLight5>
+						<StyledLinkLight5 to="/admin/product-list">Admin</StyledLinkLight5>
 					)}
 				</LinkContainer>
 				<div>

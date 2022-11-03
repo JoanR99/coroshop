@@ -5,7 +5,12 @@ import {
 	updateUser,
 	updateUserProfile,
 } from './userMutations';
-import { getUser, getUserProfile, getUsers } from './userQueries';
+import {
+	getUser,
+	getUserProfile,
+	getUsers,
+	getUsersCount,
+} from './userQueries';
 import {
 	AddUserInput,
 	AddUserResponse,
@@ -48,6 +53,12 @@ const userApiSlice = apiSlice.injectEndpoints({
 				},
 			}),
 			providesTags: ['users'],
+		}),
+		getUsersCount: builder.query<{ getUsersCount: number }, null>({
+			query: () => ({
+				document: getUsersCount,
+				variables: null,
+			}),
 		}),
 		addUser: builder.mutation<AddUserResponse, AddUserInput>({
 			query: ({ name, email, password }) => ({
@@ -98,6 +109,7 @@ export const {
 	useGetUserProfileQuery,
 	useGetUsersQuery,
 	useGetUserQuery,
+	useGetUsersCountQuery,
 	useAddUserMutation,
 	useUpdateUserProfileMutation,
 	useDeleteUserMutation,

@@ -66,3 +66,9 @@ export const getUserOrders = gql`
 		}
 	}
 `;
+
+export const getOrdersCount = gql`
+	query GetOrdersCount {
+		getOrdersCount
+	}
+`;

@@ -34,3 +34,9 @@ export const getProduct = gql`
 		}
 	}
 `;
+
+export const getProductsCount = gql`
+	query GetProductsCount {
+		getProductsCount
+	}
+`;

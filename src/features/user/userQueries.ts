@@ -36,3 +36,9 @@ export const getUser = gql`
 		}
 	}
 `;
+
+export const getUsersCount = gql`
+	query GetUsersCount {
+		getUsersCount
+	}
+`;

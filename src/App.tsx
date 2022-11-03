@@ -58,13 +58,14 @@ function App() {
 							<Route path="/profile" element={<Profile />} />
 
 							<Route path="admin" element={<RequireAdmin />}>
-								<Route index element={<Admin />} />
-								<Route path="user-list" element={<Users />} />
-								<Route path="add-product" element={<AddProduct />} />
-								<Route path="product-list" element={<ProductList />} />
-								<Route path="order-list" element={<OrdersList />} />
-								<Route path="product/:id/edit" element={<EditProduct />} />
-								<Route path="user/:id/edit" element={<EditUser />} />
+								<Route element={<Admin />}>
+									<Route path="user-list" element={<Users />} />
+									<Route path="add-product" element={<AddProduct />} />
+									<Route path="product-list" element={<ProductList />} />
+									<Route path="order-list" element={<OrdersList />} />
+									<Route path="product/:id/edit" element={<EditProduct />} />
+									<Route path="user/:id/edit" element={<EditUser />} />
+								</Route>
 							</Route>
 						</Route>
 					</Route>
