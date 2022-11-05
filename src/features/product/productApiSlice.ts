@@ -16,19 +16,27 @@ const productApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getProducts: builder.query<
 			GetProductsResponse,
-			{ pageSize?: number; keyword?: string; pageNumber?: number }
+			{
+				pageSize?: number;
+				keyword?: string;
+				pageNumber?: number;
+				category?: string;
+			}
 		>({
-			query: ({ pageSize, keyword, pageNumber }) => ({
+			query: ({ pageSize, keyword, pageNumber, category }) => ({
 				document: getProducts,
 				variables: {
 					getProductsInput: {
 						pageNumber,
 						keyword,
 						pageSize,
+						category,
 					},
 				},
 			}),
-			providesTags: ['products'],
+			providesTags: (result, error, { category }) => [
+				{ type: 'products', category },
+			],
 		}),
 		getProduct: builder.query<GetProductResponse, { productId: string }>({
 			query: ({ productId }) => ({

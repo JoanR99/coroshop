@@ -25,6 +25,7 @@ import EditProduct from './screens/EditProduct';
 import EditUser from './screens/EditUser';
 import OrdersList from './screens/OrdersList';
 import Admin from './screens/Admin';
+import Categories from './screens/Categories';
 
 function App() {
 	return (
@@ -45,6 +46,7 @@ function App() {
 							element={<AllProducts />}
 						/>
 						<Route path="products/:id" element={<ProductScreen />} />
+						<Route path="categories" element={<Categories />} />
 						<Route path="login" element={<Login />} />
 						<Route path="register" element={<Register />} />
 						<Route path="unauthorized" element={<Unauthorized />} />

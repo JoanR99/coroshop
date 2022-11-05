@@ -12,7 +12,6 @@ import {
 	useGetProductsQuery,
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
-import EditProduct from '../../screens/EditProduct';
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);

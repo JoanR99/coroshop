@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { MdDelete } from 'react-icons/md';
+import { FaEdit } from 'react-icons/fa';
+import { BsCheckLg } from 'react-icons/bs';
+import { IoCloseSharp } from 'react-icons/io5';
 
-import { MainButton } from '../../components/Button';
+import { EditButton, MainButton } from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
@@ -70,19 +74,27 @@ const UsersTable = () => {
 							</Td>
 
 							<Td>
-								<Paragraph>{user.isAdmin}</Paragraph>
+								<Paragraph>
+									{user.isAdmin ? (
+										<BsCheckLg style={{ color: 'green' }} />
+									) : (
+										<IoCloseSharp
+											style={{ color: 'red', height: '20px', width: '20px' }}
+										/>
+									)}
+								</Paragraph>
 							</Td>
 
 							<Td>
 								<Flex>
-									<MainButton onClick={() => editHandler(user.id)}>
-										Edit
-									</MainButton>
+									<EditButton onClick={() => editHandler(user.id)}>
+										<FaEdit />
+									</EditButton>
 									<MainButton
 										onClick={() => deleteHandler(user.id)}
 										disabled={deleteLoading}
 									>
-										Delete
+										<MdDelete />
 									</MainButton>
 								</Flex>
 							</Td>
