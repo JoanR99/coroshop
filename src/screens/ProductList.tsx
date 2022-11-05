@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { MainButton } from '../components/Button';
+import { AddButton } from '../components/Button';
+import { MdOutlineAdd } from 'react-icons/md';
 
 import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
@@ -25,7 +26,7 @@ const ProductList = () => {
 		<ProductListContainer>
 			<HeadingSection>
 				<Heading2>Products</Heading2>
-				<MainButton onClick={handleClick}>Add Product</MainButton>
+				<AddButton onClick={handleClick}>Add Product</AddButton>
 			</HeadingSection>
 
 			<ProductsTable />

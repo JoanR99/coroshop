@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { MdDelete } from 'react-icons/md';
+import { FaEdit } from 'react-icons/fa';
 
-import { MainButton } from '../../components/Button';
+import { EditButton, MainButton } from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import {
@@ -10,6 +12,7 @@ import {
 	useGetProductsQuery,
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
+import EditProduct from '../../screens/EditProduct';
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -85,14 +88,14 @@ const ProductsTable = () => {
 							</Td>
 							<Td>
 								<Flex>
-									<MainButton onClick={() => editHandler(product.id)}>
-										Edit
-									</MainButton>
+									<EditButton onClick={() => editHandler(product.id)}>
+										<FaEdit />
+									</EditButton>
 									<MainButton
 										onClick={() => deleteHandler(product.id)}
 										disabled={deleteLoading}
 									>
-										Delete
+										<MdDelete />
 									</MainButton>
 								</Flex>
 							</Td>

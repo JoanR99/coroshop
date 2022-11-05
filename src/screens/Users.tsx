@@ -6,12 +6,10 @@ import UsersTable from '../features/user/UsersTable';
 
 const Users = () => {
 	return (
-		<Container>
-			<StyledContainer>
-				<Heading2>Users</Heading2>
-				<UsersTable />
-			</StyledContainer>
-		</Container>
+		<StyledContainer>
+			<Heading2>Users</Heading2>
+			<UsersTable />
+		</StyledContainer>
 	);
 };
 

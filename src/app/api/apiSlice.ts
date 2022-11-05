@@ -36,11 +36,7 @@ const baseQueryWithReAuth = async (
 ) => {
 	let result = await baseQuery(args, api, extraOptions);
 
-	if (
-		result?.error?.message?.includes(
-			'Access denied! You need to be authorized to perform this action!'
-		)
-	) {
+	if (result?.error?.message?.includes('Forbidden resource')) {
 		console.log('sending refresh token');
 		const accessToken = await getNewAccessToken();
 

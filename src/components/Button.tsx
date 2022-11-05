@@ -12,6 +12,16 @@ export const MainButton = styled(Button)`
 	color: #f1faee;
 `;
 
+export const AddButton = styled(Button)`
+	background-color: #2067b8;
+	color: #f1faee;
+`;
+
+export const EditButton = styled(Button)`
+	background-color: #f7cb07;
+	color: #1d3557;
+`;
+
 export const GhostButton = styled(Button)`
 	background-color: #f1faee;
 	color: #e63946;

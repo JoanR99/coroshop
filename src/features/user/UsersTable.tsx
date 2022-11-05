@@ -10,7 +10,7 @@ import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
-	const { data, isLoading } = useGetUsersQuery({
+	const { data, isLoading, error } = useGetUsersQuery({
 		pageNumber,
 		keyword: '',
 		pageSize: 10,
@@ -35,7 +35,7 @@ const UsersTable = () => {
 
 	return isLoading ? (
 		<div>Loading</div>
-	) : data!.getUsers.users.length > 0 ? (
+	) : data?.getUsers && data.getUsers.users.length > 0 ? (
 		<TableContainer>
 			<Table>
 				<thead>
@@ -57,7 +57,7 @@ const UsersTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{data!.getUsers.users.map((user) => (
+					{data.getUsers.users.map((user) => (
 						<tr key={user.id}>
 							<Td>
 								<Paragraph>{user.id}</Paragraph>
@@ -93,7 +93,7 @@ const UsersTable = () => {
 			<Pagination
 				currentPage={pageNumber}
 				siblingCount={2}
-				totalPageCount={data!.getUsers.pages}
+				totalPageCount={data.getUsers.pages}
 				onPageChange={onPageChange}
 			/>
 		</TableContainer>
