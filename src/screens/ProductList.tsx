@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AddButton } from '../components/Button';
-import { MdOutlineAdd } from 'react-icons/md';
 
 import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { LinkButton } from '../components/Button';
 import { Container, StyledContainer } from '../components/Container';
+import { StyledLinkDark4 } from '../components/StyledLink';
 import { Heading2, Heading3 } from '../components/Typography';
 import { useGetProductsQuery } from '../features/product/productApiSlice';
 import ProductCard from '../features/product/ProductCard';
@@ -22,6 +24,10 @@ const FlexColumn = styled.div`
 	gap: 6rem;
 `;
 
+const LinkDiv = styled.div`
+	align-self: center;
+`;
+
 const CategoryStack = ({ category }: { category: string }) => {
 	const { data } = useGetProductsQuery({
 		pageSize: 4,
@@ -37,6 +43,11 @@ const CategoryStack = ({ category }: { category: string }) => {
 				{data?.getProducts.products.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
+				<LinkDiv>
+					<StyledLinkDark4 to={`/categories/${category}`}>
+						View more
+					</StyledLinkDark4>
+				</LinkDiv>
 			</Grid>
 		</div>
 	);
