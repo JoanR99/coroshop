@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { apiSlice } from '../../app/api/apiSlice';
 
 import { useAppDispatch } from '../../app/hooks';
 import { LinkButton } from '../../components/Button';
@@ -12,10 +13,11 @@ const LogoutButton = () => {
 	const navigate = useNavigate();
 
 	const handleClick = async () => {
-		const id = toast.loading('Login In...', { theme: 'light' });
+		const id = toast.loading('Login Out...', { theme: 'light' });
 		try {
 			await logout(null);
 			dispatch(clearCredentials());
+			dispatch(apiSlice.util.resetApiState());
 			localStorage.setItem('persist', JSON.stringify(false));
 
 			toast.update(id, {
