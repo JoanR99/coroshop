@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import { StyledLinkLight5, LinkContainer } from './StyledLink';
 import CartNavbar from '../features/cart/CartNavbar';
-import { useSelector } from 'react-redux';
-import { selectCurrentAccessToken } from '../features/auth/authSlice';
+import { selectIsAdmin } from '../features/auth/authSlice';
+import { useAppSelector } from '../app/hooks';
 
 const NavbarBody = styled.div`
 	background-color: #457b9d;
@@ -21,14 +21,14 @@ const Container = styled.div`
 `;
 
 const Navbar = () => {
-	const accessToken = useSelector(selectCurrentAccessToken);
+	const isAdmin = useAppSelector(selectIsAdmin);
 	return (
 		<NavbarBody>
 			<Container>
 				<LinkContainer>
 					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
 					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
-					{accessToken && (
+					{isAdmin && (
 						<StyledLinkLight5 to="/admin/product-list">Admin</StyledLinkLight5>
 					)}
 				</LinkContainer>
