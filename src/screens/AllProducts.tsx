@@ -16,6 +16,10 @@ const ProductPageContainer = styled(Container)`
 	margin-bottom: 2rem;
 `;
 
+const MarginTopHeading = styled(Heading2)`
+	margin-top: 2rem;
+`;
+
 const AllProducts = () => {
 	const params = useParams();
 	const navigate = useNavigate();
@@ -39,15 +43,18 @@ const AllProducts = () => {
 	) : error ? (
 		<div>Something went wrong</div>
 	) : (
-		<ProductPageContainer>
-			<ProductList products={data!.getProducts.products} />
-			<Pagination
-				currentPage={pageNumber}
-				siblingCount={3}
-				totalPageCount={data!.getProducts.pages}
-				onPageChange={pageChangeHandler}
-			/>
-		</ProductPageContainer>
+		<Container>
+			<MarginTopHeading>All Products</MarginTopHeading>
+			<ProductPageContainer>
+				<ProductList products={data!.getProducts.products} />
+				<Pagination
+					currentPage={pageNumber}
+					siblingCount={3}
+					totalPageCount={data!.getProducts.pages}
+					onPageChange={pageChangeHandler}
+				/>
+			</ProductPageContainer>
+		</Container>
 	);
 };
 

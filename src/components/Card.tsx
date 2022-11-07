@@ -8,6 +8,7 @@ export const Card = styled.div`
 	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 	transition: all 0.3s;
 	cursor: pointer;
+	background-color: white;
 
 	&:hover {
 		transform: translateY(-0.8rem) scale(1.03);

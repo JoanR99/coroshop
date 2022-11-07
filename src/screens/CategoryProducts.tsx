@@ -5,7 +5,7 @@ import { Container } from '../components/Container';
 import { useGetProductsQuery } from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
 import ProductList from '../features/product/ProducCardtList';
-import { Heading3 } from '../components/Typography';
+import { Heading2 } from '../components/Typography';
 
 const ProductPageContainer = styled.div`
 	min-height: 80vh;
@@ -14,6 +14,10 @@ const ProductPageContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 2rem;
+`;
+
+const MarginHeading = styled(Heading2)`
+	margin: 2rem 0;
 `;
 
 const CategoryProducts = () => {
@@ -42,7 +46,7 @@ const CategoryProducts = () => {
 		<div>Something went wrong</div>
 	) : (
 		<Container>
-			<Heading3>{category}</Heading3>
+			<MarginHeading>{category}</MarginHeading>
 			<ProductPageContainer>
 				<ProductList products={data!.getProducts.products} />
 				<Pagination

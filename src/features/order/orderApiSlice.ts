@@ -35,7 +35,9 @@ const authApiSlice = apiSlice.injectEndpoints({
 				document: getOrder,
 				variables: { orderId },
 			}),
-			providesTags: ['orders'],
+			providesTags: (result, error, { orderId }) => [
+				{ type: 'orders', orderId },
+			],
 		}),
 		getUserOrders: builder.query<GetUserOrdersResponse, null>({
 			query: () => ({
