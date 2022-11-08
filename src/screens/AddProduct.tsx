@@ -9,8 +9,14 @@ import {
 } from '../validation/addProductSchema';
 import FormInput from '../components/FormInput';
 import { useAddProductMutation } from '../features/product/productApiSlice';
-import { MarginContainer } from '../components/Container';
+import { MarginContainer, StyledContainer } from '../components/Container';
 import { MainButton } from '../components/Button';
+import styled from 'styled-components';
+
+const AddProductContainer = styled(MarginContainer)`
+	margin-top: 2rem;
+	margin-bottom: 4rem;
+`;
 
 const AddProduct = () => {
 	const navigate = useNavigate();
@@ -56,9 +62,9 @@ const AddProduct = () => {
 				isLoading: false,
 				hideProgressBar: true,
 				autoClose: 1000,
-				theme: 'dark',
+				theme: 'light',
 			});
-			navigate('/products');
+			navigate('/admin/product-list');
 		} catch (e) {
 			toast.update(id, {
 				render: 'Add product Fail',
@@ -66,14 +72,14 @@ const AddProduct = () => {
 				isLoading: false,
 				hideProgressBar: true,
 				autoClose: 1000,
-				theme: 'dark',
+				theme: 'light',
 			});
 			console.log(e);
 		}
 	};
 
 	return (
-		<MarginContainer>
+		<AddProductContainer>
 			<FormProvider {...methods}>
 				<h1>Add product</h1>
 
@@ -134,7 +140,7 @@ const AddProduct = () => {
 					<MainButton disabled={isLoading}>Add Product</MainButton>
 				</form>
 			</FormProvider>
-		</MarginContainer>
+		</AddProductContainer>
 	);
 };
 

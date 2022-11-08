@@ -50,6 +50,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 				document: getOrdersCount,
 				variables: null,
 			}),
+			providesTags: ['orders'],
 		}),
 		addOrder: builder.mutation<AddOrderResponse, AddOrderInput>({
 			query: (orderBody) => ({

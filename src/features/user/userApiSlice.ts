@@ -59,6 +59,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 				document: getUsersCount,
 				variables: null,
 			}),
+			providesTags: ['users'],
 		}),
 		addUser: builder.mutation<AddUserResponse, AddUserInput>({
 			query: ({ name, email, password }) => ({

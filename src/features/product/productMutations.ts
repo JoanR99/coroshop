@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 
 export const addProduct = gql`
-	mutation AddProduct($addProductInput: AddProductInput!) {
+	mutation AddProduct($addProductInput: ProductInput!) {
 		addProduct(addProductInput: $addProductInput) {
 			id
 			name
