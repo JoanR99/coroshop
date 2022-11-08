@@ -13,9 +13,12 @@ import {
 } from '../../features/auth/authSlice';
 import getNewAccessToken from '../../features/auth/getNewAccessToken';
 
-const client = new GraphQLClient('http://localhost:3000/api/graphql', {
-	credentials: 'include',
-});
+const client = new GraphQLClient(
+	'https://coroshop-server.onrender.com/api/graphql',
+	{
+		credentials: 'include',
+	}
+);
 
 const baseQuery = graphqlRequestBaseQuery({
 	client,
