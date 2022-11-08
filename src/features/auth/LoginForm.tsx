@@ -52,7 +52,8 @@ const LoginForm = () => {
 					render: 'Login Success',
 					type: 'success',
 					isLoading: false,
-					autoClose: 3000,
+					hideProgressBar: true,
+					autoClose: 1000,
 					theme: 'light',
 				});
 				navigate(from, { replace: true });
@@ -62,10 +63,10 @@ const LoginForm = () => {
 				render: 'Login Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

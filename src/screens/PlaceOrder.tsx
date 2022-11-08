@@ -61,7 +61,8 @@ const PlaceOrder = () => {
 				render: 'Add order Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 			navigate(`/order/${order.addOrder.id}`);
@@ -70,10 +71,10 @@ const PlaceOrder = () => {
 				render: 'Add order Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

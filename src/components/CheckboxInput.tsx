@@ -45,7 +45,6 @@ const Button = styled.span<InputProps>`
 	}
 
 	${(props) => {
-		console.log(props.value);
 		return props.value
 			? css`
 					&::after {

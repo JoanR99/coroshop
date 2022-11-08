@@ -16,7 +16,10 @@ const PayPalButton = ({ order }: Props) => {
 			orderId: order.id,
 			paymentResultBody: paymentResult,
 		}).unwrap();
-		toast.success('Payment success');
+		toast.success('Payment success', {
+			hideProgressBar: true,
+			autoClose: 1000,
+		});
 	};
 
 	return (
@@ -45,14 +48,20 @@ const PayPalButton = ({ order }: Props) => {
 					update_time: order!.update_time,
 					email_address: order!.payer.email_address!,
 				};
-				console.log('order', order);
+
 				handleApprove(paymentResult);
 			}}
 			onError={(err) => {
-				toast.error('Something went wrong with the payment');
+				toast.error('Something went wrong with the payment', {
+					hideProgressBar: true,
+					autoClose: 1000,
+				});
 			}}
 			onCancel={() => {
-				toast.error('Payment canceled');
+				toast.error('Payment canceled', {
+					hideProgressBar: true,
+					autoClose: 1000,
+				});
 			}}
 		/>
 	);

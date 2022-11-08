@@ -27,10 +27,9 @@ const UsersTable = () => {
 	const deleteHandler = async (userId: string) => {
 		try {
 			await deleteUser({ userId }).unwrap();
-			toast.success('User deleted');
+			toast.success('User deleted', { hideProgressBar: true, autoClose: 1000 });
 		} catch (e) {
-			console.log(e);
-			toast.error('Error');
+			toast.error('Error', { hideProgressBar: true, autoClose: 1000 });
 		}
 	};
 

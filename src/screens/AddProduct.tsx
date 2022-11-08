@@ -38,7 +38,7 @@ const AddProduct = () => {
 		description: string;
 		countInStock: string;
 	}) => {
-		const id = toast.loading('Adding product...', { theme: 'dark' });
+		const id = toast.loading('Adding product...', { theme: 'light' });
 		try {
 			await addProduct({
 				name,
@@ -54,7 +54,8 @@ const AddProduct = () => {
 				render: 'Add product Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'dark',
 			});
 			navigate('/products');
@@ -63,7 +64,8 @@ const AddProduct = () => {
 				render: 'Add product Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'dark',
 			});
 			console.log(e);

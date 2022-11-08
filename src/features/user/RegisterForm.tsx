@@ -26,7 +26,9 @@ const RegisterForm = () => {
 		email: string;
 		password: string;
 	}) => {
-		const id = toast.loading('Register...', { theme: 'light' });
+		const id = toast.loading('Register...', {
+			theme: 'light',
+		});
 		try {
 			await register({ name, email, password }).unwrap();
 
@@ -34,7 +36,8 @@ const RegisterForm = () => {
 				render: 'Register Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 			navigate('/login');
@@ -43,10 +46,10 @@ const RegisterForm = () => {
 				render: 'Register Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

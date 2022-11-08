@@ -24,7 +24,8 @@ const LogoutButton = () => {
 				render: 'Logout Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 			navigate('/');
@@ -33,10 +34,10 @@ const LogoutButton = () => {
 				render: 'Login Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

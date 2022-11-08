@@ -54,7 +54,10 @@ const StripeForm = ({ clientSecret, orderId }: Props) => {
 		});
 
 		if (paymentResult.error) {
-			toast.error(paymentResult.error.message);
+			toast.error(paymentResult.error.message, {
+				hideProgressBar: true,
+				autoClose: 1000,
+			});
 		} else {
 			const paymentResultBody = {
 				id: paymentResult.paymentIntent.id,
@@ -67,7 +70,10 @@ const StripeForm = ({ clientSecret, orderId }: Props) => {
 				orderId,
 				paymentResultBody,
 			}).unwrap();
-			toast.success('Payment Success');
+			toast.success('Payment Success', {
+				hideProgressBar: true,
+				autoClose: 1000,
+			});
 		}
 
 		setIsLoading(false);

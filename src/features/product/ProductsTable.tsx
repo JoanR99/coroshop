@@ -28,12 +28,13 @@ const ProductsTable = () => {
 
 	const deleteHandler = async (productId: string) => {
 		try {
-			console.log(productId);
 			await deleteProduct({ productId }).unwrap();
-			toast.success('Product deleted');
+			toast.success('Product deleted', {
+				hideProgressBar: true,
+				autoClose: 1000,
+			});
 		} catch (e) {
-			console.log(e);
-			toast.error('Error');
+			toast.error('Error', { hideProgressBar: true, autoClose: 1000 });
 		}
 	};
 

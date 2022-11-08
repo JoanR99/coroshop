@@ -41,11 +41,12 @@ const AddReview = ({ productId }: Props) => {
 
 	const handleRating = (rate: number) => {
 		setRating(rate);
-		console.log(rate / 20);
 	};
 
 	const submitHandler = async ({ comment }: { comment: string }) => {
-		const id = toast.loading('Adding review...', { theme: 'light' });
+		const id = toast.loading('Adding review...', {
+			theme: 'light',
+		});
 		try {
 			await addReview({
 				productId,
@@ -59,19 +60,20 @@ const AddReview = ({ productId }: Props) => {
 				render: 'Add review success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 			methods.reset();
 		} catch (e) {
 			toast.update(id, {
-				render: 'Add review Fail',
+				render: (e as { message: string }).message.split(':')[0],
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

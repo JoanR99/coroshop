@@ -83,7 +83,8 @@ const EditProduct = () => {
 				render: 'Update product Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 			navigate('/admin/product-list');
@@ -92,10 +93,10 @@ const EditProduct = () => {
 				render: 'Update product Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 

@@ -87,7 +87,8 @@ const Order = () => {
 				render: 'Update Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 		} catch (e) {
@@ -95,10 +96,10 @@ const Order = () => {
 				render: 'Update Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 
@@ -112,7 +113,7 @@ const Order = () => {
 				<Section>
 					<SectionHeading>Shipping</SectionHeading>
 					<Paragraph>
-						<strong>Name: </strong> {order?.getOrderById.orderBy}
+						<strong>Name: </strong> {order?.getOrderById.orderByName}
 					</Paragraph>
 				</Section>
 

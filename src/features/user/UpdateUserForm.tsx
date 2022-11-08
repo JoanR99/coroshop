@@ -48,7 +48,8 @@ const UpdateUserForm = () => {
 				render: 'Update Profile Success',
 				type: 'success',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
 		} catch (e) {
@@ -56,10 +57,10 @@ const UpdateUserForm = () => {
 				render: 'Update Profile Fail',
 				type: 'error',
 				isLoading: false,
-				autoClose: 3000,
+				hideProgressBar: true,
+				autoClose: 1000,
 				theme: 'light',
 			});
-			console.log(e);
 		}
 	};
 
