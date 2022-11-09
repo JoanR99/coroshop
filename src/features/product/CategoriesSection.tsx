@@ -34,20 +34,19 @@ const Text = styled(Paragraph)`
 const CategoriesSection = () => {
 	const navigate = useNavigate();
 
-	const clickHandler = () => navigate('/products');
+	const clickHandler = () => navigate('/categories');
 
 	return (
 		<Section>
 			<SectionPartText>
 				<Container>
-					<Heading1>Here you can find the most recent tech products</Heading1>
+					<Heading1>We got you cover</Heading1>
 					<Text>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-						totam sequi fuga libero, voluptates numquam culpa dolorem et
-						perferendis quod at quae qui vitae ab distinctio velit iure officiis
-						corporis!
+						Search through the different categories to find the ideal device.
+						Here you can find the latest trends in smartphones, laptops, TV and
+						accessories.
 					</Text>
-					<MainButton onClick={clickHandler}>All Products</MainButton>
+					<MainButton onClick={clickHandler}>Categories</MainButton>
 				</Container>
 			</SectionPartText>
 			<SectionImage />

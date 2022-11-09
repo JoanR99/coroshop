@@ -42,10 +42,10 @@ const ProductSection = () => {
 				<Container>
 					<Heading1>Here you can find the most recent tech products</Heading1>
 					<Text>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-						totam sequi fuga libero, voluptates numquam culpa dolorem et
-						perferendis quod at quae qui vitae ab distinctio velit iure officiis
-						corporis!
+						Coroshop brings you the latest products on the market with the most
+						modern technology at the best prices. In addition, we also offer
+						international shipping and a panel where you can see the status of
+						your orders.
 					</Text>
 					<MainButton onClick={clickHandler}>All Products</MainButton>
 				</Container>
