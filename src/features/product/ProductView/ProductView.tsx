@@ -15,6 +15,7 @@ import {
 	ProductViewContainer,
 	QuantityBox,
 } from './ProductViewStyles';
+import Spinner from '../../../components/Spinner';
 
 type Props = {
 	productId: string;
@@ -44,7 +45,7 @@ const ProductView = ({ productId }: Props) => {
 	};
 
 	return isLoading ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : isError ? (
 		<div>Error</div>
 	) : (

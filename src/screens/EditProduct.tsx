@@ -16,6 +16,7 @@ import {
 import { MarginContainer } from '../components/Container';
 import { MainButton } from '../components/Button';
 import { Heading2 } from '../components/Typography';
+import Spinner from '../components/Spinner';
 
 const EditProduct = () => {
 	const navigate = useNavigate();
@@ -101,7 +102,7 @@ const EditProduct = () => {
 	};
 
 	return isLoading ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<MarginContainer>
 			<FormProvider {...methods}>

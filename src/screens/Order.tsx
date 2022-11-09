@@ -25,6 +25,7 @@ import stripePayment from '../features/order/stripePayment';
 import { useAppSelector } from '../app/hooks';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { MainButton } from '../components/Button';
+import Spinner from '../components/Spinner';
 
 const Order = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);
@@ -190,7 +191,7 @@ const Order = () => {
 				{!order!.getOrderById.isPaid &&
 					!isAdmin &&
 					(paymentLoading ? (
-						<div>loading...</div>
+						<Spinner />
 					) : (
 						<div>
 							{clientId && (

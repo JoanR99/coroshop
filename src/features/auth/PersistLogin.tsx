@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectCurrentAccessToken, setCredentials } from './authSlice';
 import getNewAccessToken from './getNewAccessToken';
 import { setIsAdmin } from './authSlice';
+import Spinner from '../../components/Spinner';
 
 const PersistLogin = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +46,7 @@ const PersistLogin = () => {
 		};
 	}, []);
 
-	return isLoading ? <div>Loading...</div> : <Outlet />;
+	return isLoading ? <Spinner /> : <Outlet />;
 };
 
 export default PersistLogin;

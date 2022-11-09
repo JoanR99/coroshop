@@ -9,6 +9,7 @@ import { Heading2, Heading3 } from '../components/Typography';
 import UpdateUserForm from '../features/user/UpdateUserForm';
 import OrdersTable from '../features/order/OrdersTable';
 import { useGetUserOrdersQuery } from '../features/order/orderApiSlice';
+import Spinner from '../components/Spinner';
 
 const Heading = styled(Heading2)`
 	margin-top: 2rem;
@@ -29,7 +30,7 @@ const Profile = () => {
 	const { data, isLoading } = useGetUserOrdersQuery(null);
 
 	return isLoading ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<Container>
 			<Heading>Profile</Heading>

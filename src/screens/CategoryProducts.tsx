@@ -6,6 +6,7 @@ import { useGetProductsQuery } from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
 import ProductList from '../features/product/ProducCardtList';
 import { Heading2 } from '../components/Typography';
+import Spinner from '../components/Spinner';
 
 const ProductPageContainer = styled.div`
 	min-height: 80vh;
@@ -41,7 +42,7 @@ const CategoryProducts = () => {
 	};
 
 	return isLoading ? (
-		<div>Is loading...</div>
+		<Spinner />
 	) : error ? (
 		<div>Something went wrong</div>
 	) : (

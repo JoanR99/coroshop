@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Spinner from '../../components/Spinner';
 
 import { Heading2, Heading3 } from '../../components/Typography';
 import { useGetReviewsQuery } from './reviewApiSlice';
@@ -26,7 +27,7 @@ const ReviewList = ({ productId }: Props) => {
 	});
 
 	return isLoading ? (
-		<div>Is loading...</div>
+		<Spinner />
 	) : error ? (
 		<div>Something went wrong</div>
 	) : (

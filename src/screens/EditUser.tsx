@@ -17,6 +17,7 @@ import {
 } from '../features/user/userApiSlice';
 import { MarginContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
+import Spinner from '../components/Spinner';
 
 const EditUser = () => {
 	const navigate = useNavigate();
@@ -82,7 +83,7 @@ const EditUser = () => {
 	};
 
 	return isLoading ? (
-		<div>Loading...</div>
+		<Spinner />
 	) : (
 		<MarginContainer>
 			<FormProvider {...methods}>
