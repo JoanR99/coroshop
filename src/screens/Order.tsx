@@ -24,7 +24,7 @@ import StripeForm from '../features/order/StripeForm';
 import stripePayment from '../features/order/stripePayment';
 import { useAppSelector } from '../app/hooks';
 import { selectIsAdmin } from '../features/auth/authSlice';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import Spinner from '../components/Spinner';
 
 const Order = () => {
@@ -216,7 +216,9 @@ const Order = () => {
 					isAdmin &&
 					order!.getOrderById.isPaid &&
 					!order!.getOrderById.isDelivered && (
-						<MainButton onClick={updateHandler}>Mark as delivered</MainButton>
+						<Button variant="main" onClick={updateHandler}>
+							Mark as delivered
+						</Button>
 					)
 				)}
 			</SummaryContainer>

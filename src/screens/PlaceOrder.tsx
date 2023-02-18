@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import {
 	FlexContainer,
 	InfoContainer,
@@ -128,12 +128,13 @@ const PlaceOrder = () => {
 					<Paragraph>${totalPrice}</Paragraph>
 				</Section>
 
-				<MainButton
+				<Button
+					variant="main"
 					onClick={clickHandler}
 					disabled={cartItems.length === 0 || isLoading}
 				>
 					Place Order
-				</MainButton>
+				</Button>
 			</SummaryContainer>
 		</FlexContainer>
 	);

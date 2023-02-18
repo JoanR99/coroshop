@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../app/hooks';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import { selectIsAdmin } from '../auth/authSlice';
 import { Order } from './orderTypes';
@@ -82,9 +82,12 @@ const OrdersTable = ({ orders }: Props) => {
 							</Paragraph>
 						</Td>
 						<Td>
-							<MainButton onClick={() => navigate(`/order/${userOrder.id}`)}>
+							<Button
+								variant="main"
+								onClick={() => navigate(`/order/${userOrder.id}`)}
+							>
 								Details
-							</MainButton>
+							</Button>
 						</Td>
 					</tr>
 				))}

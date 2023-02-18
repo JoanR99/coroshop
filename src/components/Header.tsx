@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
-import { LinkButton } from './Button';
+import Button from './Button';
 import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
 import { useAppSelector } from '../app/hooks';
 
@@ -51,7 +51,9 @@ const Header = ({ shadow }: Props) => {
 
 				{accessToken ? (
 					<FlexDiv>
-						<LinkButton onClick={clickHandler}>Profile</LinkButton>
+						<Button variant="linkLight" onClick={clickHandler}>
+							Profile
+						</Button>
 						<LogoutButton />
 					</FlexDiv>
 				) : (

@@ -14,7 +14,7 @@ import {
 	useUpdateProductMutation,
 } from '../features/product/productApiSlice';
 import { MarginContainer } from '../components/Container';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
 
@@ -162,7 +162,9 @@ const EditProduct = () => {
 						required
 					/>
 
-					<MainButton disabled={updateLoading}>Update Product</MainButton>
+					<Button variant="main" disabled={updateLoading}>
+						Update Product
+					</Button>
 				</form>
 			</FormProvider>
 		</MarginContainer>

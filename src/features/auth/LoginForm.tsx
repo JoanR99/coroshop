@@ -8,7 +8,7 @@ import FormInput from '../../components/FormInput';
 import { useLoginMutation } from '../../features/auth/authApiSlice';
 import { setCredentials } from '../../features/auth/authSlice';
 import CheckboxInput from '../../components/CheckboxInput';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { useAppDispatch } from '../../app/hooks';
 
 interface OwnLocation extends Location {
@@ -99,7 +99,7 @@ const LoginForm = () => {
 					required
 				/>
 
-				<MainButton>Login</MainButton>
+				<Button variant="main">Login</Button>
 			</form>
 		</FormProvider>
 	);

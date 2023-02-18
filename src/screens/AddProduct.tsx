@@ -10,7 +10,7 @@ import {
 import FormInput from '../components/FormInput';
 import { useAddProductMutation } from '../features/product/productApiSlice';
 import { MarginContainer, StyledContainer } from '../components/Container';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import styled from 'styled-components';
 
 const AddProductContainer = styled(MarginContainer)`
@@ -137,7 +137,9 @@ const AddProduct = () => {
 						required
 					/>
 
-					<MainButton disabled={isLoading}>Add Product</MainButton>
+					<Button variant="main" disabled={isLoading}>
+						Add Product
+					</Button>
 				</form>
 			</FormProvider>
 		</AddProductContainer>

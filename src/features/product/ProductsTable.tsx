@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { MdDelete } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 
-import { EditButton, MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import {
@@ -88,15 +88,19 @@ const ProductsTable = () => {
 							</Td>
 							<Td>
 								<Flex>
-									<EditButton onClick={() => editHandler(product.id)}>
+									<Button
+										variant="edit"
+										onClick={() => editHandler(product.id)}
+									>
 										<FaEdit />
-									</EditButton>
-									<MainButton
+									</Button>
+									<Button
+										variant="main"
 										onClick={() => deleteHandler(product.id)}
 										disabled={deleteLoading}
 									>
 										<MdDelete />
-									</MainButton>
+									</Button>
 								</Flex>
 							</Td>
 						</tr>

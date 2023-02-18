@@ -6,7 +6,7 @@ import { FaEdit } from 'react-icons/fa';
 import { BsCheckLg } from 'react-icons/bs';
 import { IoCloseSharp } from 'react-icons/io5';
 
-import { EditButton, MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
@@ -86,15 +86,16 @@ const UsersTable = () => {
 
 							<Td>
 								<Flex>
-									<EditButton onClick={() => editHandler(user.id)}>
+									<Button variant="edit" onClick={() => editHandler(user.id)}>
 										<FaEdit />
-									</EditButton>
-									<MainButton
+									</Button>
+									<Button
+										variant="main"
 										onClick={() => deleteHandler(user.id)}
 										disabled={deleteLoading}
 									>
 										<MdDelete />
-									</MainButton>
+									</Button>
 								</Flex>
 							</Td>
 						</tr>

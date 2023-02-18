@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { Rating } from 'react-simple-star-rating';
 
 import { useAppDispatch } from '../../../app/hooks';
-import { MainButton } from '../../../components/Button';
+import Button from '../../../components/Button';
 import { SectionPartImage, SectionPartText } from '../../../components/Section';
 import { Heading2, Heading4, Paragraph } from '../../../components/Typography';
 import { addToCart } from '../../cart/cartSlice';
@@ -101,7 +101,9 @@ const ProductView = ({ productId }: Props) => {
 							/>
 						</QuantityBox>
 					)}
-					<MainButton onClick={handleClick}>ADD TO CART</MainButton>
+					<Button variant="main" onClick={handleClick}>
+						ADD TO CART
+					</Button>
 				</ProductDetails>
 			</SectionPartText>
 		</ProductViewContainer>

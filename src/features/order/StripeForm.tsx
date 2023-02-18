@@ -4,7 +4,7 @@ import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import styled from 'styled-components';
 
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading3 } from '../../components/Typography';
 import { useUpdateOrderToPaidMutation } from './orderApiSlice';
 
@@ -84,9 +84,9 @@ const StripeForm = ({ clientSecret, orderId }: Props) => {
 			<FormContainer onSubmit={paymentHandler}>
 				<Heading3>Credit card payment:</Heading3>
 				<StyledCard />
-				<MainButton disabled={isLoading || !stripe || !elements}>
+				<Button variant="main" disabled={isLoading || !stripe || !elements}>
 					Pay Now
-				</MainButton>
+				</Button>
 			</FormContainer>
 		</PaymentFormContainer>
 	);

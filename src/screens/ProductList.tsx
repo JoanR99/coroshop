@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AddButton } from '../components/Button';
+import Button from '../components/Button';
 
 import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
@@ -25,7 +25,9 @@ const ProductList = () => {
 		<ProductListContainer>
 			<HeadingSection>
 				<Heading2>Products</Heading2>
-				<AddButton onClick={handleClick}>Add Product</AddButton>
+				<Button variant="add" onClick={handleClick}>
+					Add Product
+				</Button>
 			</HeadingSection>
 
 			<ProductsTable />

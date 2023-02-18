@@ -10,7 +10,7 @@ import {
 } from '../validation/updateUserSchema';
 import FormInput from '../components/FormInput';
 import CheckboxInput from '../components/CheckboxInput';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import {
 	useGetUserQuery,
 	useUpdateUserMutation,
@@ -110,7 +110,9 @@ const EditUser = () => {
 						required
 					/>
 
-					<MainButton disabled={updateLoading}>Update User</MainButton>
+					<Button variant="main" disabled={updateLoading}>
+						Update User
+					</Button>
 				</form>
 			</FormProvider>
 		</MarginContainer>

@@ -9,7 +9,7 @@ import {
 	useGetUserProfileQuery,
 	useUpdateUserProfileMutation,
 } from '../user/userApiSlice';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 
 const UpdateUserForm = () => {
 	const { data: userProfile, isLoading } = useGetUserProfileQuery(null);
@@ -97,7 +97,9 @@ const UpdateUserForm = () => {
 					id="passwordConfirm"
 					required
 				/>
-				<MainButton disabled={updateLoading}>Update Profile</MainButton>
+				<Button variant="main" disabled={updateLoading}>
+					Update Profile
+				</Button>
 			</form>
 		</FormProvider>
 	);

@@ -1,62 +1,53 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import { styled } from '../../stitches.config';
 
-export const Button = styled.button`
-	border-radius: 5rem;
-	padding: 1rem 2rem;
-	border: none;
-	cursor: pointer;
-`;
+const Button = styled('button', {
+	borderRadius: '5rem',
+	padding: '1rem 2rem',
+	border: 'none',
+	cursor: 'pointer',
 
-export const MainButton = styled(Button)`
-	background-color: #e63946;
-	color: #f1faee;
-`;
+	variants: {
+		variant: {
+			main: {
+				backgroundColor: '$action',
+				color: '$light',
+			},
+			add: {
+				backgroundColor: '$add',
+				color: '$light',
+			},
+			edit: {
+				backgroundColor: '$edit',
+				color: '$main_dark',
+			},
+			ghost: {
+				backgroundColor: '$light',
+				color: '$action',
+				fontSize: '2rem',
+			},
+			search: {
+				backgroundColor: '$main_light',
+				padding: '0.5rem 1rem',
+			},
+			linkLight: {
+				fontSize: '1.6rem',
+				fontWeight: 'bold',
+				color: '$main_dark',
+				'&:hover': {
+					color: '$action',
+				},
+			},
+			linkDark: {
+				fontSize: '1.6rem',
+				fontWeight: 'bold',
+				color: '$light',
+				'&:hover': {
+					color: '$action',
+				},
+			},
+		},
+	},
+});
 
-export const AddButton = styled(Button)`
-	background-color: #2067b8;
-	color: #f1faee;
-`;
-
-export const EditButton = styled(Button)`
-	background-color: #f7cb07;
-	color: #1d3557;
-`;
-
-export const GhostButton = styled(Button)`
-	background-color: #f1faee;
-	color: #e63946;
-	border: none;
-	font-size: 2rem;
-`;
-
-export const LinkButton = styled.button`
-	border: none;
-	font-size: 1.6rem;
-	font-weight: bold;
-	cursor: pointer;
-
-	color: #1d3557;
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const LinkButtonDark = styled.button`
-	border: none;
-	font-size: 1.6rem;
-	font-weight: bold;
-	cursor: pointer;
-	background-color: #457b9d;
-
-	color: #f1faee;
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const SearchButton = styled(Button)`
-	background-color: #a8dadc;
-	padding: 0.5rem 1rem;
-`;
+export default Button;

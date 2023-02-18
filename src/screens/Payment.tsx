@@ -7,7 +7,7 @@ import {
 	setPaymentMethod,
 } from '../features/cart/cartSlice';
 import FormInput from '../components/FormInput';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import {
@@ -57,7 +57,7 @@ const Payment = () => {
 						required
 					/>
 
-					<MainButton>GO TO PAYMENT</MainButton>
+					<Button variant="main">GO TO PAYMENT</Button>
 				</form>
 			</FormProvider>
 		</MarginContainer>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Container } from '../components/Container';
 import { Heading1, Paragraph } from '../components/Typography';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 
 const StyledHeading = styled(Heading1)`
 	margin-top: 2rem;
@@ -25,7 +25,9 @@ const Unauthorized = () => {
 			<StyledParagraph>
 				You are not authorized to visit this page.
 			</StyledParagraph>
-			<MainButton onClick={clickHandler}>Go to Home</MainButton>
+			<Button variant="main" onClick={clickHandler}>
+				Go to Home
+			</Button>
 		</Container>
 	);
 };

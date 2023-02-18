@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SearchButton } from './Button';
+import Button from './Button';
 
 const SearchContainer = styled.div`
 	display: flex;
@@ -30,7 +30,9 @@ const SearchBar = () => {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-			<SearchButton onClick={onClickHandler}>Search</SearchButton>
+			<Button variant="search" onClick={onClickHandler}>
+				Search
+			</Button>
 		</SearchContainer>
 	);
 };

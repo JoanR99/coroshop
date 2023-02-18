@@ -10,7 +10,7 @@ import {
 } from '../features/cart/cartSlice';
 import { ShippingAddress } from '../features/cart/cartTypes';
 import FormInput from '../components/FormInput';
-import { MainButton } from '../components/Button';
+import Button from '../components/Button';
 import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
@@ -64,7 +64,7 @@ const Shipping = () => {
 						required
 					/>
 
-					<MainButton>GO TO PAYMENT</MainButton>
+					<Button variant="main">GO TO PAYMENT</Button>
 				</form>
 			</FormProvider>
 		</MarginContainer>

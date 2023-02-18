@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { apiSlice } from '../../app/api/apiSlice';
 
 import { useAppDispatch } from '../../app/hooks';
-import { LinkButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { useLogoutMutation } from './authApiSlice';
 import { clearCredentials } from './authSlice';
 
@@ -41,7 +41,11 @@ const LogoutButton = () => {
 		}
 	};
 
-	return <LinkButton onClick={handleClick}>Logout</LinkButton>;
+	return (
+		<Button variant="linkLight" onClick={handleClick}>
+			Logout
+		</Button>
+	);
 };
 
 export default LogoutButton;

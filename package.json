@@ -13,6 +13,7 @@
     "@paypal/react-paypal-js": "^7.8.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@rtk-query/graphql-request-base-query": "^2.2.0",
+    "@stitches/react": "^1.2.8",
     "@stripe/react-stripe-js": "^1.11.0",
     "@stripe/stripe-js": "^1.37.0",
     "axios": "^0.27.2",

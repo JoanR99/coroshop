@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import ItemOnCart from './ItemOnCart';
 import { selectCartItems, toggleIsCartOpen } from './cartSlice';
 import { StyledContainer } from '../../components/Container';
@@ -44,7 +44,9 @@ const CartDropDown = () => {
 				))}
 			</CartItems>
 
-			<MainButton onClick={clickHandler}>GO TO CART</MainButton>
+			<Button variant="main" onClick={clickHandler}>
+				GO TO CART
+			</Button>
 		</CartDropdownContainer>
 	);
 };

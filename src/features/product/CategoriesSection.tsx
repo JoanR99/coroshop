@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading1, Paragraph } from '../../components/Typography';
 import img from '../../assets/images/iphone.jpg';
 import {
@@ -46,7 +46,9 @@ const CategoriesSection = () => {
 						Here you can find the latest trends in smartphones, laptops, TV and
 						accessories.
 					</Text>
-					<MainButton onClick={clickHandler}>Categories</MainButton>
+					<Button variant="main" onClick={clickHandler}>
+						Categories
+					</Button>
 				</Container>
 			</SectionPartText>
 			<SectionImage />

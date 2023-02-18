@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { GhostButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { StyledLinkDark4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
@@ -70,7 +70,9 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 			</CartColum>
 
 			<CartColum>
-				<GhostButton onClick={handleRemove}>&#10005;</GhostButton>
+				<Button variant="ghost" onClick={handleRemove}>
+					&#10005;
+				</Button>
 			</CartColum>
 		</ItemContainer>
 	);

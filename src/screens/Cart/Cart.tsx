@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../app/hooks';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Heading3, Heading4 } from '../../components/Typography';
 import {
@@ -64,7 +64,9 @@ const Cart = () => {
 								.toFixed(2)}
 						</PriceParagraph>
 
-						<MainButton onClick={handleClick}>PROCEED TO CHECKOUT</MainButton>
+						<Button variant="main" onClick={handleClick}>
+							PROCEED TO CHECKOUT
+						</Button>
 					</CartSubTotalContainer>
 				</CartContainer>
 			)}

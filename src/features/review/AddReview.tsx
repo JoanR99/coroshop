@@ -10,7 +10,7 @@ import {
 } from '../../validation/addReviewSchema';
 import FormInput from '../../components/FormInput';
 import styled from 'styled-components';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { useState } from 'react';
 import { Heading3 } from '../../components/Typography';
 import { MarginContainer } from '../../components/Container';
@@ -96,7 +96,7 @@ const AddReview = ({ productId }: Props) => {
 						required
 					/>
 
-					<MainButton>Add Review</MainButton>
+					<Button variant="main">Add Review</Button>
 				</form>
 			</FormProvider>
 		</MarginContainer>

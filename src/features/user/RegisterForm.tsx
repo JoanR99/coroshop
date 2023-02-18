@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../../components/FormInput';
 import { registerSchema, defaultValues } from '../../validation/registerSchema';
 import { useAddUserMutation } from '../user/userApiSlice';
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 
 const RegisterForm = () => {
 	const navigate = useNavigate();
@@ -84,7 +84,7 @@ const RegisterForm = () => {
 					id="passwordConfirm"
 					required
 				/>
-				<MainButton>Register</MainButton>
+				<Button variant="main">Register</Button>
 			</form>
 		</FormProvider>
 	);

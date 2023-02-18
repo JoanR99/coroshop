@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { MainButton } from '../../components/Button';
+import Button from '../../components/Button';
 import { Heading1, Paragraph } from '../../components/Typography';
 import img from '../../assets/images/products.jpg';
 import {
@@ -47,7 +47,9 @@ const ProductSection = () => {
 						international shipping and a panel where you can see the status of
 						your orders.
 					</Text>
-					<MainButton onClick={clickHandler}>All Products</MainButton>
+					<Button variant="main" onClick={clickHandler}>
+						All Products
+					</Button>
 				</Container>
 			</SectionPartText>
 		</SectionContainer>
