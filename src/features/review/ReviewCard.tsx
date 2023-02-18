@@ -2,7 +2,7 @@ import { Rating } from 'react-simple-star-rating';
 
 import { Heading4 } from '../../components/Typography';
 import { Review } from './reviewTypes';
-import { CardReview } from '../../components/Card';
+import { CardBody, CardItem, CardReview } from '../../components/Card';
 
 type Props = {
 	review: Review;
@@ -10,23 +10,23 @@ type Props = {
 
 const ReviewCard = ({ review }: Props) => (
 	<CardReview>
-		<ul>
-			<li>
+		<CardBody>
+			<CardItem>
 				<Heading4>{review.authorName}</Heading4>
-			</li>
-			<li>
+			</CardItem>
+			<CardItem>
 				<Rating
 					ratingValue={0}
 					initialValue={review.rating}
 					size={22}
 					readonly
 				/>
-			</li>
+			</CardItem>
 
-			<li>
+			<CardItem>
 				<p>{review.comment}</p>
-			</li>
-		</ul>
+			</CardItem>
+		</CardBody>
 	</CardReview>
 );
 

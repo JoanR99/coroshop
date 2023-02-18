@@ -3,7 +3,13 @@ import { Rating } from 'react-simple-star-rating';
 
 import { Product } from './productTypes';
 import { Heading4 } from '../../components/Typography';
-import { Card, CardImage, CardBody, CardPrice } from '../../components/Card';
+import {
+	Card,
+	CardImage,
+	CardBody,
+	CardPrice,
+	CardItem,
+} from '../../components/Card';
 
 type Props = {
 	product: Pick<Product, 'id' | 'name' | 'image' | 'price' | 'rating'>;
@@ -18,22 +24,20 @@ const ProductCard = ({ product }: Props) => {
 		<Card onClick={handleClick}>
 			<CardImage src={product.image} />
 			<CardBody>
-				<ul>
-					<li>
-						<Heading4>{product.name}</Heading4>
-					</li>
-					<li>
-						<Rating
-							ratingValue={0}
-							initialValue={product.rating}
-							size={22}
-							readonly
-						/>
-					</li>
-					<li>
-						<CardPrice>$ {product.price}</CardPrice>
-					</li>
-				</ul>
+				<CardItem>
+					<Heading4>{product.name}</Heading4>
+				</CardItem>
+				<CardItem>
+					<Rating
+						ratingValue={0}
+						initialValue={product.rating}
+						size={22}
+						readonly
+					/>
+				</CardItem>
+				<CardItem>
+					<CardPrice>$ {product.price}</CardPrice>
+				</CardItem>
 			</CardBody>
 		</Card>
 	);

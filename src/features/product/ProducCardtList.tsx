@@ -6,10 +6,10 @@ import { CardProduct } from './productTypes';
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 28rem));
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 18rem));
 	gap: 4rem;
 	width: 100%;
-	margin-top: 4rem;
+	margin-top: 2rem;
 	margin-bottom: 2rem;
 	justify-content: center;
 `;

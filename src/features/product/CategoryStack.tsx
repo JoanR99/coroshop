@@ -16,7 +16,7 @@ const LinkDiv = styled.div`
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 28rem));
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 18rem));
 	gap: 4rem;
 	width: 100%;
 	margin-top: 4rem;
