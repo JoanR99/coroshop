@@ -27,9 +27,28 @@ export const {
 		lg: '(min-width: 1024px)',
 	},
 	utils: {
-		marginX: (value: number) => ({
+		m: (value: string) => ({
+			margin: value,
+		}),
+		mt: (value: string) => ({
+			marginTop: value,
+		}),
+		mr: (value: string) => ({
+			marginRight: value,
+		}),
+		mb: (value: string) => ({
+			marginBottom: value,
+		}),
+		ml: (value: string) => ({
+			marginLeft: value,
+		}),
+		mx: (value: string) => ({
 			marginLeft: value,
 			marginRight: value,
+		}),
+		my: (value: string) => ({
+			marginTop: value,
+			marginBottom: value,
 		}),
 	},
 });
