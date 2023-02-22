@@ -1,63 +1,35 @@
-import styled, { css } from 'styled-components';
 import { useFormContext, Controller } from 'react-hook-form';
+import * as Checkbox from '@radix-ui/react-checkbox';
+import { styled } from '../../stitches.config';
 
-interface InputProps {
-	readonly value: boolean;
-}
+const Input = styled(Checkbox.Root, {
+	width: '2.4rem',
+	height: '2.4rem',
+	border: '0.5rem solid $main_dark',
+	borderRadius: '50%',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+});
 
-const FormGroup = styled.div`
-	margin-bottom: 3rem;
-`;
+const Indicator = styled(Checkbox.Indicator, {
+	width: '0.8rem',
+	height: '0.8rem',
+	backgroundColor: '$main_dark',
+	borderRadius: '50%',
+});
 
-const Input = styled.input`
-	display: none;
-`;
+const FormGroup = styled('div', {
+	mb: '3rem',
+	display: 'flex',
+	alignItems: 'center',
+});
 
-const Label = styled.label`
-	font-size: 1.2rem;
-	cursor: pointer;
-	position: relative;
-	padding-left: 4.5rem;
-`;
-
-const Button = styled.span<InputProps>`
-	width: 2.4rem;
-	height: 2.4rem;
-	border: 0.5rem solid #1d3557;
-	border-radius: 50%;
-	display: inline-block;
-	position: absolute;
-	top: -0.5rem;
-	left: 0;
-
-	&::after {
-		content: '';
-		display: block;
-		width: 0.8rem;
-		height: 0.8rem;
-		border-radius: 50%;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		background-color: #1d3557;
-		transition: opacity 0.2s;
-	}
-
-	${(props) => {
-		return props.value
-			? css`
-					&::after {
-						opacity: 1;
-					}
-			  `
-			: css`
-					&::after {
-						opacity: 0;
-					}
-			  `;
-	}}
-`;
+const Label = styled('label', {
+	fontSize: '1.4rem',
+	cursor: 'pointer',
+	paddingLeft: '0.5rem',
+});
 
 const CheckboxInput = ({
 	name,
@@ -76,16 +48,23 @@ const CheckboxInput = ({
 		<Controller
 			control={control}
 			name={name}
-			defaultValue=""
-			render={({ field }) => (
-				<FormGroup>
-					<Input type="checkbox" {...field} {...otherProps} />
-					<Label htmlFor={otherProps.id}>
-						<Button value={field.value} />
-						{otherProps.label}
-					</Label>
-				</FormGroup>
-			)}
+			render={({ field }) => {
+				console.log(field);
+				return (
+					<FormGroup>
+						<Input
+							{...field}
+							value={undefined}
+							checked={field.value}
+							onCheckedChange={field.onChange}
+							{...otherProps}
+						>
+							<Indicator />
+						</Input>
+						<Label htmlFor={otherProps.id}>{otherProps.label}</Label>
+					</FormGroup>
+				);
+			}}
 		/>
 	);
 };
