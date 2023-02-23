@@ -1,71 +1,60 @@
-import styled, { css } from 'styled-components';
 import { useFormContext, Controller } from 'react-hook-form';
+import { styled } from '../../stitches.config';
 
-interface HelperTextProps {
-	readonly error: boolean;
-}
+const FormGroup = styled('div', {
+	mb: '2rem',
+});
 
-const HelperText = styled.p<HelperTextProps>`
-	width: 80%;
-	${(props) =>
-		props.error
-			? css`
-					background-color: lightpink;
-					color: firebrick;
-					font-weight: bold;
-					padding: 0.5rem;
-					margin-bottom: 0.5rem;
-			  `
-			: css`
-					position: absolute;
-					left: -9999px;
-			  `}
-`;
+const HelperText = styled('p', {
+	width: '100%',
+	mb: '0',
 
-const FormGroup = styled.div`
-	margin-bottom: 2rem;
-`;
+	'&.error': {
+		fontSize: '1.2rem',
+		color: 'firebrick',
+		fontWeight: 'bold',
+		mt: '0.5rem',
+	},
+});
 
-const Input = styled.input<HelperTextProps>`
-	font-size: 1.5rem;
-	font-family: inherit;
-	color: inherit;
-	padding: 1.2rem 1.6rem;
-	border-radius: 0.2rem;
-	background-color: rgba($color: white, $alpha: 0.5);
-	border: none;
-	border-bottom: solid 0.1rem #a8dadc;
-	width: 80%;
-	display: block;
-	transition: all 0.3s;
+const Input = styled('input', {
+	fontSize: '1.5rem',
+	fontFamily: 'inherit',
+	color: 'inherit',
+	padding: '1.2rem 1.6rem',
+	borderRadius: '0.2rem',
+	backgroundColor: 'rgba($color: white, $alpha: 0.5)',
+	border: 'none',
+	width: '100%',
+	display: 'block',
+	transition: 'all 0.3s',
+	borderBottom: 'solid 1px $main',
 
-	&:focus {
-		outline: none;
-		box-shadow: 0 1rem 2rem rgba($color: #1d3557, $alpha: 0.1);
+	'&:focus': {
+		outline: 'none',
+		boxShadow: '0 1rem 2rem rgba($color: $main_dark, $alpha: 0.1)',
+		borderBottom: 'solid 1px #55c57a',
 
-		${(props) =>
-			props.error
-				? css`
-						border-bottom: solid 0.3rem firebrick;
-				  `
-				: css`
-						border-bottom: solid 0.3rem #55c57a;
-				  `}
-	}
+		'&.error': {
+			borderBottom: 'solid 1px firebrick',
+		},
+	},
 
-	&::-webkit-input-placeholder {
-		color: #457b9d;
-	}
-`;
+	'&::-webkit-input-placeholder': {
+		color: '$main',
+	},
+});
 
-const Label = styled.label`
-	font-size: 1.2rem;
-	font-weight: 700;
-	margin-left: 2rem;
-	margin-top: 0.7rem;
-	display: block;
-	transition: all 0.3s;
-`;
+const Label = styled('label', {
+	border: 0,
+	clip: 'rect(0 0 0 0)',
+	height: '1px',
+	margin: '-1px',
+	overflow: 'hidden',
+	padding: 0,
+	position: 'absolute',
+	width: '1px',
+});
 
 const FormInput = ({
 	name,
@@ -98,9 +87,10 @@ const FormInput = ({
 						{...field}
 						{...otherProps}
 						placeholder={otherProps.label}
-						error={!!errors[name]}
+						className={!!errors[name] ? 'error' : ''}
+						aria-label={otherProps.label}
 					/>
-					<HelperText error={!!errors[name]}>
+					<HelperText className={`${!!errors[name] ? 'error' : ''}`}>
 						{errors[name] ? (errors[name]?.message as string) : ''}
 					</HelperText>
 				</FormGroup>

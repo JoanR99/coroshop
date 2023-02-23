@@ -1,4 +1,4 @@
-import { Container } from '../components/Container';
+import { Container, StyledContainer } from '../components/Container';
 import img from '../assets/images/login.jpg';
 import RegisterForm from '../features/user/RegisterForm';
 import {
@@ -7,15 +7,21 @@ import {
 	FormSection,
 	MarginHeading,
 } from '../components/Section';
+import { styled } from '../../stitches.config';
+
+const FormContainer = styled(StyledContainer, {
+	backgroundColor: '#f2f2f2f2',
+	width: '50rem',
+});
 
 const Register = () => (
 	<AuthSection>
 		<SectionImage img={img} />
 		<FormSection>
-			<Container>
+			<FormContainer>
 				<MarginHeading>Register</MarginHeading>
 				<RegisterForm />
-			</Container>
+			</FormContainer>
 		</FormSection>
 	</AuthSection>
 );
