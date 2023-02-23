@@ -2,13 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Button from '../components/Button';
-import {
-	FlexContainer,
-	InfoContainer,
-	SummaryContainer,
-	ContainerHeading,
-} from '../components/Container';
-import { Paragraph } from '../components/Typography';
+import { Container, StyledContainer } from '../components/Container';
+import { Heading2, Paragraph } from '../components/Typography';
 import {
 	selectCartItems,
 	selectCartTotalPrice,
@@ -79,9 +74,9 @@ const PlaceOrder = () => {
 	};
 
 	return (
-		<FlexContainer>
-			<InfoContainer>
-				<ContainerHeading>Order Information</ContainerHeading>
+		<Container display="flex_start">
+			<StyledContainer width="2/3">
+				<Heading2 space="bottom">Order Information</Heading2>
 				<Section>
 					<SectionHeading>Shipping</SectionHeading>
 					<Paragraph>
@@ -105,10 +100,10 @@ const PlaceOrder = () => {
 						<OrderItems key={cartItem.id} item={cartItem} />
 					))}
 				</Section>
-			</InfoContainer>
+			</StyledContainer>
 
-			<SummaryContainer>
-				<ContainerHeading>Order Summary</ContainerHeading>
+			<StyledContainer width="1/3">
+				<Heading2 space="bottom">Order Summary</Heading2>
 				<Section>
 					<SectionHeading>Items</SectionHeading>
 					<Paragraph>${itemsPrice}</Paragraph>
@@ -135,8 +130,8 @@ const PlaceOrder = () => {
 				>
 					Place Order
 				</Button>
-			</SummaryContainer>
-		</FlexContainer>
+			</StyledContainer>
+		</Container>
 	);
 };
 

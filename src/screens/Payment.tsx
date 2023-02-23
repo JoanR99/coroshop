@@ -8,8 +8,8 @@ import {
 } from '../features/cart/cartSlice';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
-import { MarginContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
+import { Container } from '../components/Container';
 import {
 	paymentMethodSchema,
 	defaultValues,
@@ -31,7 +31,7 @@ const Payment = () => {
 		navigate('/placeOrder');
 	};
 	return shippingAddress ? (
-		<MarginContainer>
+		<Container space="bottom">
 			<Heading3>Payment Method</Heading3>
 			<FormProvider {...methods}>
 				<form
@@ -60,7 +60,7 @@ const Payment = () => {
 					<Button variant="main">GO TO PAYMENT</Button>
 				</form>
 			</FormProvider>
-		</MarginContainer>
+		</Container>
 	) : (
 		<Navigate to="shipping" />
 	);

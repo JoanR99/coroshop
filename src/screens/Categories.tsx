@@ -15,20 +15,16 @@ const MarginHeading = styled(Heading2)`
 	margin: 2rem 0;
 `;
 
-const MarginContainer = styled(Container)`
-	margin-bottom: 2rem;
-`;
-
 const Categories = () => {
 	return (
-		<MarginContainer>
+		<Container space="bottom">
 			<MarginHeading>Categories</MarginHeading>
 			<FlexColumn>
 				{CATEGORIES.map((category) => (
 					<CategoryStack category={category} />
 				))}
 			</FlexColumn>
-		</MarginContainer>
+		</Container>
 	);
 };
 

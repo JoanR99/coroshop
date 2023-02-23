@@ -48,23 +48,20 @@ const CheckboxInput = ({
 		<Controller
 			control={control}
 			name={name}
-			render={({ field }) => {
-				console.log(field);
-				return (
-					<FormGroup>
-						<Input
-							{...field}
-							value={undefined}
-							checked={field.value}
-							onCheckedChange={field.onChange}
-							{...otherProps}
-						>
-							<Indicator />
-						</Input>
-						<Label htmlFor={otherProps.id}>{otherProps.label}</Label>
-					</FormGroup>
-				);
-			}}
+			render={({ field }) => (
+				<FormGroup>
+					<Input
+						{...field}
+						value={undefined}
+						checked={field.value}
+						onCheckedChange={field.onChange}
+						{...otherProps}
+					>
+						<Indicator />
+					</Input>
+					<Label htmlFor={otherProps.id}>{otherProps.label}</Label>
+				</FormGroup>
+			)}
 		/>
 	);
 };

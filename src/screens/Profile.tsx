@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import {
-	Container,
-	FlexContainer,
-	StyledContainer,
-} from '../components/Container';
+import { Container, StyledContainer } from '../components/Container';
 import { Heading2, Heading3 } from '../components/Typography';
 import UpdateUserForm from '../features/user/UpdateUserForm';
 import OrdersTable from '../features/order/OrdersTable';
@@ -12,10 +8,6 @@ import { useGetUserOrdersQuery } from '../features/order/orderApiSlice';
 import Spinner from '../components/Spinner';
 
 const Heading = styled(Heading2)`
-	margin-top: 2rem;
-`;
-
-const FlexSection = styled(FlexContainer)`
 	margin-top: 2rem;
 `;
 
@@ -34,7 +26,7 @@ const Profile = () => {
 	) : (
 		<Container>
 			<Heading>Profile</Heading>
-			<FlexSection>
+			<Container display="flex_start" space="bottom">
 				<FormSection>
 					<Heading3>Update Profile</Heading3>
 					<UpdateUserForm />
@@ -43,7 +35,7 @@ const Profile = () => {
 					<Heading3>Orders</Heading3>
 					<OrdersTable orders={data!.getUserOrders} />
 				</TableSection>
-			</FlexSection>
+			</Container>
 		</Container>
 	);
 };

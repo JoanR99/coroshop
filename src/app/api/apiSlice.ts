@@ -14,7 +14,7 @@ import {
 import getNewAccessToken from '../../features/auth/getNewAccessToken';
 
 const client = new GraphQLClient(
-	'https://coroshop-server.onrender.com/api/graphql',
+	import.meta.env.VITE_SERVER_URL ?? '/api/graphql',
 	{
 		credentials: 'include',
 	}

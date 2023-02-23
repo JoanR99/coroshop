@@ -13,10 +13,11 @@ import {
 	useGetProductQuery,
 	useUpdateProductMutation,
 } from '../features/product/productApiSlice';
-import { MarginContainer } from '../components/Container';
+import { Container } from '../components/Container';
 import Button from '../components/Button';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
+import { styled } from '../../stitches.config';
 
 const EditProduct = () => {
 	const navigate = useNavigate();
@@ -104,7 +105,7 @@ const EditProduct = () => {
 	return isLoading ? (
 		<Spinner />
 	) : (
-		<MarginContainer>
+		<Container space="bottom">
 			<FormProvider {...methods}>
 				<Heading2>Update product</Heading2>
 
@@ -167,7 +168,7 @@ const EditProduct = () => {
 					</Button>
 				</form>
 			</FormProvider>
-		</MarginContainer>
+		</Container>
 	);
 };
 

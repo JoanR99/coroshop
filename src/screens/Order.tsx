@@ -6,17 +6,12 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { stripePromise } from '../features/order/stripe';
-import { Paragraph } from '../components/Typography';
+import { Heading2, Paragraph } from '../components/Typography';
 import {
 	useGetOrderQuery,
 	useUpdateOrderToDeliveredMutation,
 } from '../features/order/orderApiSlice';
-import {
-	FlexContainer,
-	InfoContainer,
-	SummaryContainer,
-	ContainerHeading,
-} from '../components/Container';
+import { Container, StyledContainer } from '../components/Container';
 import { Section, SectionHeading } from '../components/Section';
 import OrderItems from '../features/order/OrderItems';
 import PayPalButton from '../features/order/PayPalButton';
@@ -107,9 +102,9 @@ const Order = () => {
 	return isLoading ? (
 		<div>Loading</div>
 	) : (
-		<FlexContainer>
-			<InfoContainer>
-				<ContainerHeading>Order {order?.getOrderById.id}</ContainerHeading>
+		<Container display="flex_start">
+			<StyledContainer width="2/3">
+				<Heading2 space="bottom">Order {order?.getOrderById.id}</Heading2>
 
 				<Section>
 					<SectionHeading>Shipping</SectionHeading>
@@ -165,10 +160,10 @@ const Order = () => {
 						<OrderItems key={orderItem.productName} item={orderItem} />
 					))}
 				</Section>
-			</InfoContainer>
+			</StyledContainer>
 
-			<SummaryContainer>
-				<ContainerHeading>Order Summary</ContainerHeading>
+			<StyledContainer width="1/3">
+				<Heading2 space="bottom">Order Summary</Heading2>
 				<Section>
 					<SectionHeading>Items</SectionHeading>
 					<Paragraph>${itemsPrice}</Paragraph>
@@ -221,8 +216,8 @@ const Order = () => {
 						</Button>
 					)
 				)}
-			</SummaryContainer>
-		</FlexContainer>
+			</StyledContainer>
+		</Container>
 	);
 };
 

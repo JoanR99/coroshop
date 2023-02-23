@@ -15,9 +15,16 @@ import {
 	useGetUserQuery,
 	useUpdateUserMutation,
 } from '../features/user/userApiSlice';
-import { MarginContainer } from '../components/Container';
+import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
+import { styled } from '../../stitches.config';
+
+const Container = styled(StyledContainer, {
+	maxWidth: '60rem',
+	margin: 'auto',
+	marginTop: '4rem',
+});
 
 const EditUser = () => {
 	const navigate = useNavigate();
@@ -85,7 +92,7 @@ const EditUser = () => {
 	return isLoading ? (
 		<Spinner />
 	) : (
-		<MarginContainer>
+		<Container>
 			<FormProvider {...methods}>
 				<Heading2>Update User</Heading2>
 				<form
@@ -115,7 +122,7 @@ const EditUser = () => {
 					</Button>
 				</form>
 			</FormProvider>
-		</MarginContainer>
+		</Container>
 	);
 };
 

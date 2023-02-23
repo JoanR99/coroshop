@@ -9,11 +9,11 @@ import {
 } from '../validation/addProductSchema';
 import FormInput from '../components/FormInput';
 import { useAddProductMutation } from '../features/product/productApiSlice';
-import { MarginContainer, StyledContainer } from '../components/Container';
+import { Container } from '../components/Container';
 import Button from '../components/Button';
 import styled from 'styled-components';
 
-const AddProductContainer = styled(MarginContainer)`
+const AddProductContainer = styled(Container)`
 	margin-top: 2rem;
 	margin-bottom: 4rem;
 `;

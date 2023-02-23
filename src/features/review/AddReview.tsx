@@ -9,27 +9,27 @@ import {
 	defaultValues,
 } from '../../validation/addReviewSchema';
 import FormInput from '../../components/FormInput';
-import styled from 'styled-components';
 import Button from '../../components/Button';
 import { useState } from 'react';
 import { Heading3 } from '../../components/Typography';
-import { MarginContainer } from '../../components/Container';
+import { Container } from '../../components/Container';
+import { styled } from '../../../stitches.config';
 
 type Props = {
 	productId: string;
 };
 
-const Input = styled(FormInput)`
-	width: 100%;
-`;
+const Input = styled(FormInput, {
+	width: '100%',
+});
 
-const Heading = styled(Heading3)`
-	margin-bottom: 2rem;
-`;
+const Heading = styled(Heading3, {
+	mb: '2rem',
+});
 
-const StarsRating = styled(Rating)`
-	margin-bottom: 1rem;
-`;
+const StarsRating = styled(Rating, {
+	mb: '1rem',
+});
 
 const AddReview = ({ productId }: Props) => {
 	const [rating, setRating] = useState(0);
@@ -78,7 +78,7 @@ const AddReview = ({ productId }: Props) => {
 	};
 
 	return (
-		<MarginContainer>
+		<Container space="bottom">
 			<Heading>Add Review</Heading>
 			<FormProvider {...methods}>
 				<form
@@ -99,7 +99,7 @@ const AddReview = ({ productId }: Props) => {
 					<Button variant="main">Add Review</Button>
 				</form>
 			</FormProvider>
-		</MarginContainer>
+		</Container>
 	);
 };
 
