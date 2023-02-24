@@ -1,37 +1,34 @@
 import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 
+import { styled } from '../../stitches.config';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
 import Button from './Button';
-import { StyledLinkDark3, StyledLinkDark4, LinkContainer } from './StyledLink';
+import { StyledLink3, StyledLink4, LinkContainer } from './StyledLink';
 import { useAppSelector } from '../app/hooks';
+import { Container } from './Container';
 
-const HeaderBody = styled.div<{ shadow: boolean }>`
-	background-color: #f1faee;
-	height: 5rem;
-	padding: 1rem;
-	${(props) =>
-		props.shadow
-			? css`
-					box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
-			  `
-			: ''}
-`;
+const HeaderBody = styled('div', {
+	backgroundColor: '#f1faee',
+	height: '5rem',
+	padding: '1rem',
 
-const Container = styled.div`
-	width: 90vw;
-	margin: auto;
-	display: flex;
-	justify-content: space-between;
-`;
+	'&.shadow': {
+		boxShadow: '0 1.5rem 4rem rgba(0, 0, 0, 0.2)',
+	},
+});
 
-const FlexDiv = styled.div`
-	display: flex;
-	justify-content: space-between;
-	width: 18rem;
-	align-items: center;
-`;
+const HeaderContainer = styled(Container, {
+	display: 'flex',
+	justifyContent: 'space-between',
+});
+
+const FlexDiv = styled('div', {
+	display: 'flex',
+	justifyContent: 'space-between',
+	width: '18rem',
+	alignItems: 'center',
+});
 
 type Props = {
 	shadow: boolean;
@@ -45,9 +42,11 @@ const Header = ({ shadow }: Props) => {
 	const clickHandler = () => navigate('profile');
 
 	return (
-		<HeaderBody shadow={shadow}>
-			<Container>
-				<StyledLinkDark3 to="/">COROSHOP</StyledLinkDark3>
+		<HeaderBody className={`${shadow ? 'shadow' : ''}`}>
+			<HeaderContainer>
+				<StyledLink3 to="/" theme="dark">
+					COROSHOP
+				</StyledLink3>
 
 				{accessToken ? (
 					<FlexDiv>
@@ -58,12 +57,16 @@ const Header = ({ shadow }: Props) => {
 					</FlexDiv>
 				) : (
 					<LinkContainer>
-						<StyledLinkDark4 to="/login">Login</StyledLinkDark4>
+						<StyledLink4 to="/login" theme="dark">
+							Login
+						</StyledLink4>
 
-						<StyledLinkDark4 to="/register">Register</StyledLinkDark4>
+						<StyledLink4 to="/register" theme="dark">
+							Register
+						</StyledLink4>
 					</LinkContainer>
 				)}
-			</Container>
+			</HeaderContainer>
 		</HeaderBody>
 	);
 };

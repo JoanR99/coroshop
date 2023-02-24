@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button from '../../components/Button';
-import { StyledLinkDark4 } from '../../components/StyledLink';
+import { StyledLink4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
@@ -51,7 +51,9 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 		<ItemContainer>
 			<CartColum>
 				<ItemImage src={image} alt={name} />
-				<StyledLinkDark4 to={`/products/${id}`}>{name}</StyledLinkDark4>
+				<StyledLink4 to={`/products/${id}`} theme="dark">
+					{name}
+				</StyledLink4>
 			</CartColum>
 
 			<CartColum>

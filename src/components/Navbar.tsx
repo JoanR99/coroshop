@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
-import { StyledLinkLight5, LinkContainer } from './StyledLink';
+import { StyledLink5, LinkContainer } from './StyledLink';
 import CartNavbar from '../features/cart/CartNavbar';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { useAppSelector } from '../app/hooks';
@@ -26,10 +26,16 @@ const Navbar = () => {
 		<NavbarBody>
 			<Container>
 				<LinkContainer>
-					<StyledLinkLight5 to="/products">Products</StyledLinkLight5>
-					<StyledLinkLight5 to="/categories">Categories</StyledLinkLight5>
+					<StyledLink5 to="/products" theme="light">
+						Products
+					</StyledLink5>
+					<StyledLink5 to="/categories" theme="light">
+						Categories
+					</StyledLink5>
 					{isAdmin && (
-						<StyledLinkLight5 to="/admin/product-list">Admin</StyledLinkLight5>
+						<StyledLink5 to="/admin/product-list" theme="light">
+							Admin
+						</StyledLink5>
 					)}
 				</LinkContainer>
 				<div>

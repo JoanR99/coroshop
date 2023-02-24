@@ -1,168 +1,97 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { styled } from '../../stitches.config';
 
-export const StyledLink = styled(Link)`
-	text-decoration: none;
-`;
+const dark = {
+	color: '$main_dark',
 
-export const StyledLink1 = styled(StyledLink)`
-	font-size: 3rem;
-	font-weight: bold;
-`;
+	'&:visited, &:active': {
+		color: '$main_dark',
+	},
 
-export const StyledLink2 = styled(StyledLink)`
-	font-size: 2.4rem;
-	font-weight: bold;
-`;
+	'&:hover': {
+		color: '$action',
+	},
+};
 
-export const StyledLink3 = styled(StyledLink)`
-	font-size: 1.9rem;
-	font-weight: bold;
-`;
+const light = {
+	color: '#f1faee',
 
-export const StyledLink4 = styled(StyledLink)`
-	font-size: 1.6rem;
-	font-weight: bold;
-`;
+	'&:visited, &:active': {
+		color: '#f1faee',
+	},
 
-export const StyledLink5 = styled(StyledLink)`
-	font-size: 1.6rem;
-	font-weight: regular;
-`;
+	'&:hover': {
+		color: '$action',
+	},
+};
 
-export const StyledLinkDark1 = styled(StyledLink1)`
-	color: #1d3557;
+export const StyledLink = styled(Link, {
+	textDecoration: 'none',
+});
 
-	&:visited,
-	&:active {
-		color: #1d3557;
-	}
+export const StyledLink1 = styled(StyledLink, {
+	fontSize: '3rem',
+	fontWeight: 'bold',
 
-	&:hover {
-		color: #e63946;
-	}
-`;
+	variants: {
+		theme: {
+			dark,
+			light,
+		},
+	},
+});
 
-export const StyledLinkLight1 = styled(StyledLink1)`
-	color: #f1faee;
+export const StyledLink2 = styled(StyledLink, {
+	fontSize: '2.4rem',
+	fontWeight: 'bold',
 
-	&:visited,
-	&:active {
-		color: #f1faee;
-	}
+	variants: {
+		theme: {
+			dark,
+			light,
+		},
+	},
+});
 
-	&:hover {
-		color: #e63946;
-	}
-`;
+export const StyledLink3 = styled(StyledLink, {
+	fontSize: '1.9rem',
+	fontWeight: 'bold',
 
-export const StyledLinkDark2 = styled(StyledLink2)`
-	color: #1d3557;
+	variants: {
+		theme: {
+			dark,
+			light,
+		},
+	},
+});
 
-	&:visited,
-	&:active {
-		color: #1d3557;
-	}
+export const StyledLink4 = styled(StyledLink, {
+	fontSize: '1.6rem',
+	fontWeight: 'bold',
 
-	&:hover {
-		color: #e63946;
-	}
-`;
+	variants: {
+		theme: {
+			dark,
+			light,
+		},
+	},
+});
 
-export const StyledLinkLight2 = styled(StyledLink2)`
-	color: #f1faee;
+export const StyledLink5 = styled(StyledLink, {
+	fontSize: '1.6rem',
+	fontWeight: 'regular',
 
-	&:visited,
-	&:active {
-		color: #f1faee;
-	}
+	variants: {
+		theme: {
+			dark,
+			light,
+		},
+	},
+});
 
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkDark3 = styled(StyledLink3)`
-	color: #1d3557;
-
-	&:visited,
-	&:active {
-		color: #1d3557;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkLight3 = styled(StyledLink3)`
-	color: #f1faee;
-
-	&:visited,
-	&:active {
-		color: #f1faee;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkDark4 = styled(StyledLink4)`
-	color: #1d3557;
-
-	&:visited,
-	&:active {
-		color: #1d3557;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkLight4 = styled(StyledLink4)`
-	color: #f1faee;
-
-	&:visited,
-	&:active {
-		color: #f1faee;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkDark5 = styled(StyledLink5)`
-	color: #1d3557;
-
-	&:visited,
-	&:active {
-		color: #1d3557;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const StyledLinkLight5 = styled(StyledLink5)`
-	color: #f1faee;
-
-	&:visited,
-	&:active {
-		color: #f1faee;
-	}
-
-	&:hover {
-		color: #e63946;
-	}
-`;
-
-export const LinkContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 2rem;
-`;
+export const LinkContainer = styled('div', {
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+	gap: '2rem',
+});

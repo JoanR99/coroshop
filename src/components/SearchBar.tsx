@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
+import { styled } from '../../stitches.config';
 import Button from './Button';
 
-const SearchContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 24rem;
-`;
+const SearchContainer = styled('div', {
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+	width: '24rem',
+});
+
+const SearchInput = styled('input', {
+	fontSize: '1.5rem',
+	fontFamily: 'inherit',
+	padding: '0.5rem 1.6rem',
+	borderRadius: '1rem',
+	border: 'solid 1px $main',
+	mr: '1rem',
+});
 
 const SearchBar = () => {
 	const navigate = useNavigate();
@@ -24,7 +33,7 @@ const SearchBar = () => {
 
 	return (
 		<SearchContainer>
-			<input
+			<SearchInput
 				type="text"
 				name="search"
 				value={search}

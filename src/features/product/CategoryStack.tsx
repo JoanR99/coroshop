@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledLinkDark4 } from '../../components/StyledLink';
+import { StyledLink4 } from '../../components/StyledLink';
 import { Heading3 } from '../../components/Typography';
 import { useGetProductsQuery } from './productApiSlice';
 import ProductCard from './ProductCard';
@@ -40,9 +40,9 @@ const CategoryStack = ({ category }: { category: string }) => {
 					<ProductCard key={product.id} product={product} />
 				))}
 				<LinkDiv>
-					<StyledLinkDark4 to={`/categories/${category}`}>
+					<StyledLink4 to={`/categories/${category}`} theme="dark">
 						View more
-					</StyledLinkDark4>
+					</StyledLink4>
 				</LinkDiv>
 			</Grid>
 		</StackContainer>

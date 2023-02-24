@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { StyledLinkDark4 } from '../../components/StyledLink';
+import { StyledLink4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { CartItem } from '../cart/cartTypes';
 import { OrderItem } from './orderTypes';
@@ -35,7 +35,9 @@ const OrderItems = ({ item }: Props) => {
 		<ItemContainer>
 			<ItemColum>
 				<ItemImage src={image} alt={name} />
-				<StyledLinkDark4 to={`/products/${id}`}>{name}</StyledLinkDark4>
+				<StyledLink4 to={`/products/${id}`} theme="dark">
+					{name}
+				</StyledLink4>
 			</ItemColum>
 
 			<PriceColumn>
