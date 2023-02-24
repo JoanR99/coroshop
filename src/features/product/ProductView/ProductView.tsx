@@ -4,7 +4,7 @@ import { Rating } from 'react-simple-star-rating';
 
 import { useAppDispatch } from '../../../app/hooks';
 import Button from '../../../components/Button';
-import { SectionPartImage, SectionPartText } from '../../../components/Section';
+import { SectionPartText } from '../../../components/Section';
 import { Heading2, Heading4, Paragraph } from '../../../components/Typography';
 import { addToCart } from '../../cart/cartSlice';
 import { useGetProductQuery } from '../productApiSlice';
@@ -16,6 +16,12 @@ import {
 	QuantityBox,
 } from './ProductViewStyles';
 import Spinner from '../../../components/Spinner';
+import { styled } from '../../../../stitches.config';
+
+const SectionPartImage = styled('div', {
+	width: '48%',
+	height: '100%',
+});
 
 type Props = {
 	productId: string;

@@ -1,34 +1,33 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
+import { styled } from '../../../stitches.config';
 import Button from '../../components/Button';
 import { Heading1, Paragraph } from '../../components/Typography';
 import img from '../../assets/images/products.jpg';
-import {
-	SectionContainer,
-	SectionPartText,
-	SectionPartImage,
-} from '../../components/Section';
+import { SectionContainer, SectionPartText } from '../../components/Section';
 import { Container } from '../../components/Container';
 
-const SectionImage = styled(SectionPartImage)`
-	background-image: linear-gradient(
-			to right,
-			rgba(102, 212, 82, 0),
-			rgba(33, 175, 128, 0),
-			rgba(33, 175, 128, 0),
-			rgba(33, 175, 128, 0),
-			rgba(33, 175, 128, 0),
-			rgba(299, 299, 299, 0.6),
-			rgba(299, 299, 299, 0.9)
-		),
-		url(${img});
-	background-size: cover;
-`;
+export const SectionImage = styled('div', {
+	width: '48%',
+	height: '100%',
+	backgroundImage: `linear-gradient(
+		to right,
+		rgba(102, 212, 82, 0),
+		rgba(33, 175, 128, 0),
+		rgba(33, 175, 128, 0),
+		rgba(33, 175, 128, 0),
+		rgba(33, 175, 128, 0),
+		rgba(33, 175, 128, 0),
+		rgba(168, 218, 220, 0.9),
+		rgba(168, 218, 220, 1)
+	),
+	url(${img})`,
+	backgroundSize: 'cover',
+});
 
-const Text = styled(Paragraph)`
-	margin-bottom: 2rem;
-`;
+const Text = styled(Paragraph, {
+	mb: '2rem',
+});
 
 const ProductSection = () => {
 	const navigate = useNavigate();
