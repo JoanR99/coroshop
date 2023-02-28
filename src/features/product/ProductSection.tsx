@@ -17,9 +17,7 @@ export const SectionImage = styled('div', {
 		rgba(33, 175, 128, 0),
 		rgba(33, 175, 128, 0),
 		rgba(33, 175, 128, 0),
-		rgba(33, 175, 128, 0),
-		rgba(168, 218, 220, 0.9),
-		rgba(168, 218, 220, 1)
+		rgba(255, 255, 255, 0.9)
 	),
 	url(${img})`,
 	backgroundSize: 'cover',

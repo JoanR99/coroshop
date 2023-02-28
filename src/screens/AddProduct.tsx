@@ -11,12 +11,12 @@ import FormInput from '../components/FormInput';
 import { useAddProductMutation } from '../features/product/productApiSlice';
 import { Container } from '../components/Container';
 import Button from '../components/Button';
-import styled from 'styled-components';
+import { styled } from '../../stitches.config';
 
-const AddProductContainer = styled(Container)`
-	margin-top: 2rem;
-	margin-bottom: 4rem;
-`;
+const AddProductContainer = styled(Container, {
+	mt: '2rem',
+	mb: '4rem',
+});
 
 const AddProduct = () => {
 	const navigate = useNavigate();

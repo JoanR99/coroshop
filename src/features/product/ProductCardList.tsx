@@ -1,18 +1,16 @@
-import styled from 'styled-components';
-
 import ProductCard from './ProductCard';
 import { Heading2 } from '../../components/Typography';
 import { CardProduct } from './productTypes';
+import { styled } from '../../../stitches.config';
 
-const Grid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 18rem));
-	gap: 4rem;
-	width: 100%;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
-	justify-content: center;
-`;
+const Grid = styled('div', {
+	display: 'grid',
+	gridTemplateColumns: 'repeat(auto-fit, minmax(12rem, 18rem))',
+	gap: '4rem',
+	width: '100%',
+	my: '2rem',
+	justifyContent: 'center',
+});
 
 type Props = {
 	products: CardProduct[];

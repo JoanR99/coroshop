@@ -1,24 +1,23 @@
-import styled from 'styled-components';
-
 import SearchBar from './SearchBar';
 import { StyledLink5, LinkContainer } from './StyledLink';
 import CartNavbar from '../features/cart/CartNavbar';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { useAppSelector } from '../app/hooks';
+import { styled } from '../../stitches.config';
 
-const NavbarBody = styled.div`
-	background-color: #457b9d;
-	height: 5rem;
-	padding: 1rem;
-`;
+const NavbarBody = styled('div', {
+	backgroundColor: '$main',
+	height: '5rem',
+	padding: '1rem',
+});
 
-const Container = styled.div`
-	width: 90vw;
-	margin: auto;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
+const Container = styled('div', {
+	width: '90vw',
+	margin: 'auto',
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+});
 
 const Navbar = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);

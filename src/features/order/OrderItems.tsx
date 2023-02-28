@@ -1,28 +1,27 @@
-import styled from 'styled-components';
-
 import { StyledLink4 } from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { CartItem } from '../cart/cartTypes';
 import { OrderItem } from './orderTypes';
 import { ItemContainer, ItemImage } from '../../components/ItemContainer';
+import { styled } from '../../../stitches.config';
 
 type Props = {
 	item: CartItem | OrderItem;
 };
 
-const ItemColum = styled.div`
-	display: flex;
-	align-items: center;
-	column-gap: 1rem;
-	width: 50%;
-`;
+const ItemColum = styled('div', {
+	display: 'flex',
+	alignItems: 'center',
+	columnGap: '1rem',
+	width: '50%',
+});
 
-const PriceColumn = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 25%;
-`;
+const PriceColumn = styled('div', {
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	width: '25%',
+});
 
 const OrderItems = ({ item }: Props) => {
 	const { image, quantity, price } = item;

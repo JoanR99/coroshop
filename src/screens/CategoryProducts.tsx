@@ -1,25 +1,25 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { Container } from '../components/Container';
 import { useGetProductsQuery } from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
-import ProductList from '../features/product/ProducCardtList';
+import ProductList from '../features/product/ProductCardList';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
+import { styled } from '../../stitches.config';
 
-const ProductPageContainer = styled.div`
-	min-height: 80vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 2rem;
-`;
+const ProductPageContainer = styled('div', {
+	minHeight: '80vh',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+	mb: '2rem',
+});
 
-const MarginHeading = styled(Heading2)`
-	margin: 2rem 0;
-`;
+const MarginHeading = styled(Heading2, {
+	mt: '2rem',
+});
 
 const CategoryProducts = () => {
 	const params = useParams();

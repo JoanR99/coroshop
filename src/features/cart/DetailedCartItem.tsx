@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Button from '../../components/Button';
 import { StyledLink4 } from '../../components/StyledLink';
@@ -8,20 +7,22 @@ import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
 import { ItemContainer, ItemImage } from '../../components/ItemContainer';
 import { useAppDispatch } from '../../app/hooks';
+import { styled } from '../../../stitches.config';
 
 type Props = {
 	cartItem: CartItem;
 };
 
-const CartColum = styled.div`
-	display: flex;
-	align-items: center;
-	column-gap: 1rem;
-	width: 23%;
-	&:last-child {
-		width: 8%;
-	}
-`;
+const CartColum = styled('div', {
+	display: 'flex',
+	alignItems: 'center',
+	columnGap: '1rem',
+	width: '23%',
+
+	'&:last-child': {
+		width: '8%',
+	},
+});
 
 const DetailedCartItem = ({ cartItem }: Props) => {
 	const { name, image, price, quantity, id } = cartItem;

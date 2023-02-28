@@ -1,30 +1,27 @@
-import styled from 'styled-components';
-
+import { styled } from '../../../../stitches.config';
 import { SectionContainer } from '../../../components/Section';
 import { StyledContainer } from '../../../components/Container';
 
-export const ProductViewContainer = styled(SectionContainer)`
-	margin-top: 4rem;
-	align-items: flex-start;
-`;
+export const ProductViewContainer = styled(SectionContainer, {
+	mt: '4rem',
+	alignItems: 'flex-start',
+});
 
-export const ProductImage = styled.img`
-	width: 100%;
-`;
+export const ProductImage = styled('img', {
+	width: '100%',
+});
 
-export const ProductDetails = styled(StyledContainer)`
-	width: 90%;
-	margin: auto;
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-`;
+export const ProductDetails = styled(StyledContainer, {
+	width: '90%',
+	mx: 'auto',
+	my: '4rem',
+});
 
-export const Detail = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-`;
+export const Detail = styled('div', {
+	my: '1rem',
+});
 
-export const QuantityBox = styled.div`
-	display: inline-block;
-	margin-right: 1rem;
-`;
+export const QuantityBox = styled('div', {
+	display: 'inline-block',
+	mr: '1rem',
+});

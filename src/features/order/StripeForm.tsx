@@ -2,32 +2,31 @@ import { FormEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
-import styled from 'styled-components';
 
 import Button from '../../components/Button';
 import { Heading3 } from '../../components/Typography';
 import { useUpdateOrderToPaidMutation } from './orderApiSlice';
+import { styled } from '../../../stitches.config';
 
 type Props = {
 	clientSecret: string;
 	orderId: string;
 };
 
-const PaymentFormContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-`;
+const PaymentFormContainer = styled('div', {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	justifyContent: 'center',
+});
 
-const FormContainer = styled.form`
-	width: 100%;
-`;
+const FormContainer = styled('form', {
+	width: '100%',
+});
 
-const StyledCard = styled(CardElement)`
-	margin-top: 2rem;
-	margin-bottom: 2rem;
-`;
+const StyledCard = styled(CardElement, {
+	my: '2rem',
+});
 
 const StripeForm = ({ clientSecret, orderId }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);

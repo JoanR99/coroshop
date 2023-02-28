@@ -1,26 +1,25 @@
-import styled from 'styled-components';
-
 import { selectCartCount, toggleIsCartOpen } from './cartSlice';
 import BagIcon from '../../components/BagIcon';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { styled } from '../../../stitches.config';
 
-const CartIconContainer = styled.div`
-	width: 30px;
-	height: 30px;
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-`;
+const CartIconContainer = styled('div', {
+	width: '30px',
+	height: '30px',
+	position: 'relative',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	cursor: 'pointer',
+});
 
-const ItemCount = styled.span`
-	position: absolute;
-	font-size: 10px;
-	font-weight: bold;
-	bottom: 4px;
-	color: #f1faee;
-`;
+const ItemCount = styled('span', {
+	position: 'absolute',
+	fontSize: '10px',
+	fontWeight: 'bold',
+	bottom: '4px',
+	color: '$light',
+});
 
 const CartIcon = () => {
 	const cartCount = useAppSelector(selectCartCount);

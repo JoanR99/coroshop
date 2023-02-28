@@ -1,18 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { Container } from '../components/Container';
 import { Heading1, Paragraph } from '../components/Typography';
 import Button from '../components/Button';
+import { styled } from '../../stitches.config';
 
-const StyledHeading = styled(Heading1)`
-	margin-top: 2rem;
-	margin-bottom: 2rem;
-`;
+const StyledHeading = styled(Heading1, {
+	my: '2rem',
+});
 
-const StyledParagraph = styled(Paragraph)`
-	margin-bottom: 2rem;
-`;
+const StyledParagraph = styled(Paragraph, {
+	mb: '2rem',
+});
 
 const Unauthorized = () => {
 	const navigate = useNavigate();

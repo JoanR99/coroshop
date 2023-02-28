@@ -1,25 +1,25 @@
-import styled from 'styled-components';
 import Spinner from '../../components/Spinner';
 
 import { Heading2, Heading3 } from '../../components/Typography';
 import { useGetReviewsQuery } from './reviewApiSlice';
 import ReviewCard from './ReviewCard';
+import { styled } from '../../../stitches.config';
 
 type Props = { productId: string };
 
-const Grid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 30rem));
-	gap: 4rem;
-	width: 100%;
-	margin-top: 2rem;
-	margin-bottom: 4rem;
-	justify-content: center;
-`;
+const Grid = styled('div', {
+	display: 'grid',
+	gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 30rem))',
+	gap: '4rem',
+	width: '100%',
+	mt: '2rem',
+	mb: '4rem',
+	justifyContent: 'center',
+});
 
-const Heading = styled(Heading2)`
-	margin-bottom: 2rem;
-`;
+const Heading = styled(Heading2, {
+	mb: '2rem',
+});
 
 const ReviewList = ({ productId }: Props) => {
 	const { isLoading, error, data } = useGetReviewsQuery({

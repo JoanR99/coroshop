@@ -1,28 +1,28 @@
-import styled from 'styled-components';
 import { StyledLink4 } from '../../components/StyledLink';
 import { Heading3 } from '../../components/Typography';
 import { useGetProductsQuery } from './productApiSlice';
 import ProductCard from './ProductCard';
+import { styled } from '../../../stitches.config';
 
-const StackContainer = styled.div`
-	background-color: #a8dadc;
-	padding: 2rem;
-	border-radius: 30px;
-`;
+const StackContainer = styled('div', {
+	backgroundColor: '$main_light',
+	padding: '2rem',
+	borderRadius: '30px',
+});
 
-const LinkDiv = styled.div`
-	align-self: center;
-`;
+const LinkDiv = styled('div', {
+	alignSelf: 'center',
+});
 
-const Grid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 18rem));
-	gap: 4rem;
-	width: 100%;
-	margin-top: 4rem;
-	margin-bottom: 2rem;
-	justify-content: center;
-`;
+const Grid = styled('div', {
+	display: 'grid',
+	gridTemplateColumns: 'repeat(auto-fit, minmax(12rem, 18rem))',
+	gap: '4rem',
+	width: '100%',
+	mt: '4rem',
+	mb: '2rem',
+	justifyContent: 'center',
+});
 
 const CategoryStack = ({ category }: { category: string }) => {
 	const { data } = useGetProductsQuery({

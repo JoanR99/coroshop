@@ -15,8 +15,9 @@ export const SectionImage = styled('div', {
 	width: '48%',
 	height: '100%',
 	backgroundImage: `linear-gradient(
-		to right,
+		to left,
 		rgba(102, 212, 82, 0),
+		rgba(33, 175, 128, 0),
 		rgba(33, 175, 128, 0),
 		rgba(33, 175, 128, 0),
 		rgba(33, 175, 128, 0),

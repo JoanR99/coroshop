@@ -1,20 +1,20 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Button from '../components/Button';
 
 import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
 import ProductsTable from '../features/product/ProductsTable';
+import { styled } from '../../stitches.config';
 
-const ProductListContainer = styled(StyledContainer)`
-	width: 100%;
-`;
+const ProductListContainer = styled(StyledContainer, {
+	width: '100%+',
+});
 
-const HeadingSection = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
+const HeadingSection = styled('div', {
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+});
 
 const ProductList = () => {
 	const navigate = useNavigate();

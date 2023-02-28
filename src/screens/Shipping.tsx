@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import styled from 'styled-components';
 
 import { shippingAddressSchema } from '../validation/shippingAddressSchema';
 import {
@@ -14,10 +13,6 @@ import Button from '../components/Button';
 import { Container } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-
-const Input = styled(FormInput)`
-	width: 100%;
-`;
 
 const Shipping = () => {
 	const dispatch = useAppDispatch();
@@ -41,22 +36,22 @@ const Shipping = () => {
 					noValidate
 					autoComplete="off"
 				>
-					<Input
+					<FormInput
 						type="text"
 						name="address"
 						id="address"
 						label="Address"
 						required
 					/>
-					<Input type="text" name="city" id="city" label="City" required />
-					<Input
+					<FormInput type="text" name="city" id="city" label="City" required />
+					<FormInput
 						type="text"
 						name="postalCode"
 						id="postalCode"
 						label="Postal Code"
 						required
 					/>
-					<Input
+					<FormInput
 						type="text"
 						name="country"
 						id="country"

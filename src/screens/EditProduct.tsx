@@ -17,7 +17,6 @@ import { Container } from '../components/Container';
 import Button from '../components/Button';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
-import { styled } from '../../stitches.config';
 
 const EditProduct = () => {
 	const navigate = useNavigate();

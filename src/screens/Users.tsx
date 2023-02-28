@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-import { Container, StyledContainer } from '../components/Container';
+import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
 import UsersTable from '../features/user/UsersTable';
 
