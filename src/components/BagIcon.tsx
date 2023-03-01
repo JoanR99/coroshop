@@ -8,6 +8,7 @@ const BagIcon = () => (
 		y="0px"
 		viewBox="0 0 407.453 407.453"
 		xmlSpace="preserve"
+		height="100%"
 	>
 		<g>
 			<path

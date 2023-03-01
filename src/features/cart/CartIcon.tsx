@@ -3,7 +3,9 @@ import BagIcon from '../../components/BagIcon';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { styled } from '../../../stitches.config';
 
-const CartIconContainer = styled('div', {
+const CartIconContainer = styled('button', {
+	border: 'none',
+	backgroundColor: 'inherit',
 	width: '30px',
 	height: '30px',
 	position: 'relative',
@@ -23,15 +25,12 @@ const ItemCount = styled('span', {
 
 const CartIcon = () => {
 	const cartCount = useAppSelector(selectCartCount);
-	const dispatch = useAppDispatch();
-
-	const toggleCartOpen = () => dispatch(toggleIsCartOpen());
 
 	return (
-		<CartIconContainer onClick={toggleCartOpen}>
+		<>
 			<BagIcon />
 			<ItemCount>{cartCount}</ItemCount>
-		</CartIconContainer>
+		</>
 	);
 };
 

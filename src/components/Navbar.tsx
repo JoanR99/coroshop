@@ -1,9 +1,9 @@
 import SearchBar from './SearchBar';
 import { StyledLink5, LinkContainer } from './StyledLink';
-import CartNavbar from '../features/cart/CartNavbar';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { useAppSelector } from '../app/hooks';
 import { styled } from '../../stitches.config';
+import CartDropDown from '../features/cart/CartDropDown';
 
 const NavbarBody = styled('div', {
 	backgroundColor: '$main',
@@ -40,7 +40,7 @@ const Navbar = () => {
 				<div>
 					<SearchBar />
 				</div>
-				<CartNavbar />
+				<CartDropDown />
 			</Container>
 		</NavbarBody>
 	);
