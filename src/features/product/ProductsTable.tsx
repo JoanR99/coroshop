@@ -12,6 +12,7 @@ import {
 	useGetProductsQuery,
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
+import DeleteDialog from '../../components/DeleteDialog';
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -94,13 +95,10 @@ const ProductsTable = () => {
 									>
 										<FaEdit />
 									</Button>
-									<Button
-										variant="main"
-										onClick={() => deleteHandler(product.id)}
-										disabled={deleteLoading}
-									>
-										<MdDelete />
-									</Button>
+									<DeleteDialog
+										deleteHandler={() => deleteHandler(product.id)}
+										loading={deleteLoading}
+									/>
 								</Flex>
 							</Td>
 						</tr>

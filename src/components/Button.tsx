@@ -22,8 +22,8 @@ const Button = styled('button', {
 			},
 			ghost: {
 				backgroundColor: '$light',
-				color: '$action',
-				fontSize: '2rem',
+				color: 'DarkGray',
+				border: '1px solid DarkGray',
 			},
 			search: {
 				backgroundColor: '$main_light',

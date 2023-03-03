@@ -11,6 +11,7 @@ import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
+import DeleteDialog from '../../components/DeleteDialog';
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -89,13 +90,10 @@ const UsersTable = () => {
 									<Button variant="edit" onClick={() => editHandler(user.id)}>
 										<FaEdit />
 									</Button>
-									<Button
-										variant="main"
-										onClick={() => deleteHandler(user.id)}
-										disabled={deleteLoading}
-									>
-										<MdDelete />
-									</Button>
+									<DeleteDialog
+										deleteHandler={() => deleteHandler(user.id)}
+										loading={deleteLoading}
+									/>
 								</Flex>
 							</Td>
 						</tr>

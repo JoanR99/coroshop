@@ -1,6 +1,6 @@
 import { selectCartCount, toggleIsCartOpen } from './cartSlice';
 import BagIcon from '../../components/BagIcon';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { styled } from '../../../stitches.config';
 
 const CartIconContainer = styled('button', {
