@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { MdDelete } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 
 import Button from '../../components/Button';
@@ -13,6 +12,17 @@ import {
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 import DeleteDialog from '../../components/DeleteDialog';
+import { styled } from '../../../stitches.config';
+
+const EditIcon = styled(FaEdit, {
+	height: '20px',
+	width: '20px',
+	color: '$main',
+});
+
+const EditButton = styled(Button, {
+	padding: '0.5rem',
+});
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -89,12 +99,9 @@ const ProductsTable = () => {
 							</Td>
 							<Td>
 								<Flex>
-									<Button
-										variant="edit"
-										onClick={() => editHandler(product.id)}
-									>
-										<FaEdit />
-									</Button>
+									<EditButton onClick={() => editHandler(product.id)}>
+										<EditIcon />
+									</EditButton>
 									<DeleteDialog
 										deleteHandler={() => deleteHandler(product.id)}
 										loading={deleteLoading}

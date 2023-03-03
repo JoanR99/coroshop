@@ -45,8 +45,10 @@ const LoginForm = () => {
 		try {
 			const userData = await login({ email, password }).unwrap();
 
+			const { accessToken } = userData?.login;
+
 			if (userData?.login) {
-				dispatch(setCredentials({ accessToken: userData?.login.accessToken }));
+				dispatch(setCredentials({ accessToken }));
 				localStorage.setItem('persist', JSON.stringify(persist));
 				toast.update(id, {
 					render: 'Login Success',

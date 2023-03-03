@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { MdDelete } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { BsCheckLg } from 'react-icons/bs';
 import { IoCloseSharp } from 'react-icons/io5';
@@ -12,6 +11,17 @@ import Pagination from '../pagination/Pagination';
 import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 import DeleteDialog from '../../components/DeleteDialog';
+import { styled } from '../../../stitches.config';
+
+const EditIcon = styled(FaEdit, {
+	height: '20px',
+	width: '20px',
+	color: '$main',
+});
+
+const EditButton = styled(Button, {
+	padding: '0.5rem',
+});
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -87,9 +97,9 @@ const UsersTable = () => {
 
 							<Td>
 								<Flex>
-									<Button variant="edit" onClick={() => editHandler(user.id)}>
-										<FaEdit />
-									</Button>
+									<EditButton onClick={() => editHandler(user.id)}>
+										<EditIcon />
+									</EditButton>
 									<DeleteDialog
 										deleteHandler={() => deleteHandler(user.id)}
 										loading={deleteLoading}

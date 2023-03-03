@@ -17,3 +17,7 @@ export interface GetReviewResponse {
 export interface AddReviewResponse {
 	addReview: { message: string };
 }
+
+export interface DeleteReviewResponse {
+	deleteReview: { message: string };
+}

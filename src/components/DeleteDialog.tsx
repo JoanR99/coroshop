@@ -77,13 +77,23 @@ const ButtonContainer = styled('div', {
 	justifyContent: 'flex-end',
 });
 
+const DeleteIcon = styled(MdDelete, {
+	height: '20px',
+	width: '20px',
+	color: '$action',
+});
+
+const DeleteButton = styled(Button, {
+	padding: '0.5rem',
+});
+
 const DeleteDialog = ({ deleteHandler, loading }: Props) => {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<Button variant="main">
-					<MdDelete />
-				</Button>
+				<DeleteButton>
+					<DeleteIcon />
+				</DeleteButton>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
 				<Overlay />

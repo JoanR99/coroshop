@@ -1,7 +1,11 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { addReview } from './reviewMutations';
+import { addReview, deleteReview } from './reviewMutations';
 import { getReviews } from './reviewQueries';
-import { AddReviewResponse, GetReviewResponse } from './reviewTypes';
+import {
+	AddReviewResponse,
+	DeleteReviewResponse,
+	GetReviewResponse,
+} from './reviewTypes';
 
 const reviewApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
@@ -28,8 +32,19 @@ const reviewApi = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: ['reviews', 'products'],
 		}),
+		deleteReview: builder.mutation<DeleteReviewResponse, { reviewId: string }>({
+			query: ({ reviewId }) => ({
+				document: deleteReview,
+				variables: { reviewId },
+			}),
+			invalidatesTags: ['reviews'],
+		}),
 	}),
 	overrideExisting: false,
 });
 
-export const { useGetReviewsQuery, useAddReviewMutation } = reviewApi;
+export const {
+	useGetReviewsQuery,
+	useAddReviewMutation,
+	useDeleteReviewMutation,
+} = reviewApi;

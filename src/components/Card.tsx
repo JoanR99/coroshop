@@ -42,7 +42,8 @@ export const CardItem = styled('li', {
 
 export const CardReview = styled('div', {
 	padding: 0,
-	height: '20rem',
+	minHeight: 'fit-content',
+	maxHeight: '20rem',
 	borderRadius: '0.3rem',
 	boxShadow: '0 1.5rem 4rem rgba(0, 0, 0, 0.3)',
 	borderTop: 'solid 0.5rem $main_light',
