@@ -13,7 +13,7 @@ import {
 	useGetProductQuery,
 	useUpdateProductMutation,
 } from '../features/product/productApiSlice';
-import { Container } from '../components/Container';
+import { StyledContainer } from '../components/Container';
 import Button from '../components/Button';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
@@ -104,7 +104,7 @@ const EditProduct = () => {
 	return isLoading ? (
 		<Spinner />
 	) : (
-		<Container space="bottom">
+		<StyledContainer>
 			<FormProvider {...methods}>
 				<Heading2>Update product</Heading2>
 
@@ -167,7 +167,7 @@ const EditProduct = () => {
 					</Button>
 				</form>
 			</FormProvider>
-		</Container>
+		</StyledContainer>
 	);
 };
 

@@ -22,7 +22,7 @@ import Order from './screens/Order';
 import Profile from './screens/Profile';
 import ProductList from './screens/ProductList';
 import EditProduct from './screens/EditProduct';
-import EditUser from './screens/EditUser';
+import EditUser from './features/user/EditUser';
 import OrdersList from './screens/OrdersList';
 import Admin from './screens/Admin';
 import Categories from './screens/Categories';
@@ -68,7 +68,6 @@ function App() {
 									<Route path="product-list" element={<ProductList />} />
 									<Route path="order-list" element={<OrdersList />} />
 									<Route path="product/:id/edit" element={<EditProduct />} />
-									<Route path="user/:id/edit" element={<EditUser />} />
 								</Route>
 							</Route>
 						</Route>

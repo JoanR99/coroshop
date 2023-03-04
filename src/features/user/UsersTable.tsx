@@ -12,6 +12,8 @@ import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 import DeleteDialog from '../../components/DeleteDialog';
 import { styled } from '../../../stitches.config';
+import EditDialog from '../../components/EditDialog';
+import EditUser from './EditUser';
 
 const EditIcon = styled(FaEdit, {
 	height: '20px',
@@ -97,9 +99,7 @@ const UsersTable = () => {
 
 							<Td>
 								<Flex>
-									<EditButton onClick={() => editHandler(user.id)}>
-										<EditIcon />
-									</EditButton>
+									<EditUser userId={user.id} />
 									<DeleteDialog
 										deleteHandler={() => deleteHandler(user.id)}
 										loading={deleteLoading}
