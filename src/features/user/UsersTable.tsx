@@ -1,29 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { FaEdit } from 'react-icons/fa';
 import { BsCheckLg } from 'react-icons/bs';
 import { IoCloseSharp } from 'react-icons/io5';
 
-import Button from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
-import { useDeleteUserMutation, useGetUsersQuery } from './userApiSlice';
+import { useGetUsersQuery } from './userApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
-import DeleteDialog from '../../components/DeleteDialog';
-import { styled } from '../../../stitches.config';
-import EditDialog from '../../components/EditDialog';
 import EditUser from './EditUser';
-
-const EditIcon = styled(FaEdit, {
-	height: '20px',
-	width: '20px',
-	color: '$main',
-});
-
-const EditButton = styled(Button, {
-	padding: '0.5rem',
-});
+import DeleteUser from './DeleteUser';
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -32,22 +16,8 @@ const UsersTable = () => {
 		keyword: '',
 		pageSize: 10,
 	});
-	const [deleteUser, { isLoading: deleteLoading }] = useDeleteUserMutation();
-	const navigate = useNavigate();
 
 	const onPageChange = (page: number) => setPageNumber(page);
-
-	const deleteHandler = async (userId: string) => {
-		try {
-			await deleteUser({ userId }).unwrap();
-			toast.success('User deleted', { hideProgressBar: true, autoClose: 1000 });
-		} catch (e) {
-			toast.error('Error', { hideProgressBar: true, autoClose: 1000 });
-		}
-	};
-
-	const editHandler = (userId: string) =>
-		navigate(`/admin/user/${userId}/edit`);
 
 	return isLoading ? (
 		<div>Loading</div>
@@ -100,10 +70,7 @@ const UsersTable = () => {
 							<Td>
 								<Flex>
 									<EditUser userId={user.id} />
-									<DeleteDialog
-										deleteHandler={() => deleteHandler(user.id)}
-										loading={deleteLoading}
-									/>
+									<DeleteUser userId={user.id} />
 								</Flex>
 							</Td>
 						</tr>
