@@ -12,7 +12,7 @@ import FormInput from '../../components/FormInput';
 import Button from '../../components/Button';
 import { useState } from 'react';
 import { Heading3 } from '../../components/Typography';
-import { Container } from '../../components/Container';
+import { StyledContainer } from '../../components/Container';
 import { styled } from '../../../stitches.config';
 
 type Props = {
@@ -29,6 +29,13 @@ const Heading = styled(Heading3, {
 
 const StarsRating = styled(Rating, {
 	mb: '1rem',
+});
+
+const AddReviewContainer = styled(StyledContainer, {
+	mx: 'auto',
+	mb: '8rem',
+	minWidth: '50rem',
+	width: '40vw',
 });
 
 const AddReview = ({ productId }: Props) => {
@@ -78,7 +85,7 @@ const AddReview = ({ productId }: Props) => {
 	};
 
 	return (
-		<Container space="bottom">
+		<AddReviewContainer>
 			<Heading>Add Review</Heading>
 			<FormProvider {...methods}>
 				<form
@@ -99,7 +106,7 @@ const AddReview = ({ productId }: Props) => {
 					<Button variant="main">Add Review</Button>
 				</form>
 			</FormProvider>
-		</Container>
+		</AddReviewContainer>
 	);
 };
 
