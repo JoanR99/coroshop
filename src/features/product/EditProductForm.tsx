@@ -7,23 +7,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
 	addProductSchema,
 	defaultValues,
-} from '../validation/addProductSchema';
-import FormInput from '../components/FormInput';
+} from '../../validation/addProductSchema';
+import FormInput from '../../components/FormInput';
 import {
 	useGetProductQuery,
 	useUpdateProductMutation,
-} from '../features/product/productApiSlice';
-import { StyledContainer } from '../components/Container';
-import Button from '../components/Button';
-import { Heading2 } from '../components/Typography';
-import Spinner from '../components/Spinner';
+} from './productApiSlice';
+import { StyledContainer } from '../../components/Container';
+import Button from '../../components/Button';
+import { Heading2 } from '../../components/Typography';
+import Spinner from '../../components/Spinner';
 
-const EditProduct = () => {
-	const navigate = useNavigate();
-	const params = useParams();
+type Props = {
+	productId: string;
+	closeModal: () => void;
+};
 
-	const productId = params.id!;
-
+const EditProductForm = ({ productId, closeModal }: Props) => {
 	const { data, isLoading } = useGetProductQuery({ productId });
 
 	useEffect(() => {
@@ -88,7 +88,7 @@ const EditProduct = () => {
 				autoClose: 1000,
 				theme: 'light',
 			});
-			navigate('/admin/product-list');
+			closeModal();
 		} catch (e) {
 			toast.update(id, {
 				render: 'Update product Fail',
@@ -104,71 +104,61 @@ const EditProduct = () => {
 	return isLoading ? (
 		<Spinner />
 	) : (
-		<StyledContainer>
-			<FormProvider {...methods}>
-				<Heading2>Update product</Heading2>
+		<FormProvider {...methods}>
+			<form
+				onSubmit={methods.handleSubmit(submitHandler)}
+				noValidate
+				autoComplete="off"
+			>
+				<FormInput label="Name" type="text" name="name" id="name" required />
+				<FormInput
+					label="Price"
+					type="number"
+					name="price"
+					id="price"
+					required
+				/>
 
-				<form
-					onSubmit={methods.handleSubmit(submitHandler)}
-					noValidate
-					autoComplete="off"
-				>
-					<FormInput label="Name" type="text" name="name" id="name" required />
-					<FormInput
-						label="Price"
-						type="number"
-						name="price"
-						id="price"
-						required
-					/>
+				<FormInput
+					label="Image url"
+					type="text"
+					name="image"
+					id="image"
+					required
+				/>
 
-					<FormInput
-						label="Image url"
-						type="text"
-						name="image"
-						id="image"
-						required
-					/>
+				<FormInput label="Brand" type="text" name="brand" id="brand" required />
 
-					<FormInput
-						label="Brand"
-						type="text"
-						name="brand"
-						id="brand"
-						required
-					/>
+				<FormInput
+					label="Category"
+					type="text"
+					name="category"
+					id="category"
+					required
+				/>
 
-					<FormInput
-						label="Category"
-						type="text"
-						name="category"
-						id="category"
-						required
-					/>
+				<FormInput
+					label="Description"
+					type="text"
+					name="description"
+					id="description"
+					required
+				/>
 
-					<FormInput
-						label="Description"
-						type="text"
-						name="description"
-						id="description"
-						required
-					/>
+				<FormInput
+					label="Count in stock"
+					type="number"
+					name="countInStock"
+					id="countInStock"
+					required
+				/>
 
-					<FormInput
-						label="Count in stock"
-						type="number"
-						name="countInStock"
-						id="countInStock"
-						required
-					/>
-
-					<Button variant="main" disabled={updateLoading}>
-						Update Product
-					</Button>
-				</form>
-			</FormProvider>
-		</StyledContainer>
+				<Button variant="main" disabled={updateLoading}>
+					Update Product
+				</Button>
+			</form>
+		</FormProvider>
 	);
 };
 
-export default EditProduct;
+export default EditProductForm;

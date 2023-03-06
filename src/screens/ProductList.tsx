@@ -5,6 +5,7 @@ import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
 import ProductsTable from '../features/product/ProductsTable';
 import { styled } from '../../stitches.config';
+import EditProductModal from '../features/product/AddProductModal';
 
 const ProductListContainer = styled(StyledContainer, {
 	width: '100%+',
@@ -17,17 +18,11 @@ const HeadingSection = styled('div', {
 });
 
 const ProductList = () => {
-	const navigate = useNavigate();
-
-	const handleClick = () => navigate('/admin/add-product');
-
 	return (
 		<ProductListContainer>
 			<HeadingSection>
 				<Heading2>Products</Heading2>
-				<Button variant="add" onClick={handleClick}>
-					Add Product
-				</Button>
+				<EditProductModal />
 			</HeadingSection>
 
 			<ProductsTable />

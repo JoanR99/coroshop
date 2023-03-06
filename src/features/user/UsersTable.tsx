@@ -6,7 +6,7 @@ import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useGetUsersQuery } from './userApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
-import EditUser from './EditUser';
+import EditUserModal from './EditUserModal';
 import DeleteUser from './DeleteUser';
 
 const UsersTable = () => {
@@ -69,7 +69,7 @@ const UsersTable = () => {
 
 							<Td>
 								<Flex>
-									<EditUser userId={user.id} />
+									<EditUserModal userId={user.id} />
 									<DeleteUser userId={user.id} />
 								</Flex>
 							</Td>

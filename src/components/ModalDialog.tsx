@@ -1,10 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { FaEdit } from 'react-icons/fa';
+
 import { keyframes } from '@stitches/react';
 
 import { styled } from '../../stitches.config';
-import Button from './Button';
-import EditProduct from '../screens/EditProduct';
 import { ReactNode } from 'react';
 
 type Props = {
@@ -12,6 +10,7 @@ type Props = {
 	children: ReactNode;
 	open: boolean;
 	toggleModal: () => void;
+	button: ReactNode;
 };
 
 const overlayShow = keyframes({
@@ -75,16 +74,6 @@ const ButtonContainer = styled('div', {
 	justifyContent: 'flex-end',
 });
 
-const EditIcon = styled(FaEdit, {
-	height: '20px',
-	width: '20px',
-	color: '$main',
-});
-
-const EditButton = styled(Button, {
-	padding: '0.5rem',
-});
-
 const IconButton = styled('button', {
 	borderRadius: '100%',
 	height: '25px',
@@ -104,13 +93,11 @@ const IconButton = styled('button', {
 	},
 });
 
-const EditDialog = ({ title, children, open, toggleModal }: Props) => {
+const ModalDialog = ({ title, children, open, toggleModal, button }: Props) => {
 	return (
 		<Dialog.Root open={open} onOpenChange={toggleModal}>
 			<Dialog.Trigger asChild>
-				<EditButton>
-					<EditIcon />
-				</EditButton>
+				<div>{button}</div>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<Overlay />
@@ -128,4 +115,4 @@ const EditDialog = ({ title, children, open, toggleModal }: Props) => {
 	);
 };
 
-export default EditDialog;
+export default ModalDialog;

@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaEdit } from 'react-icons/fa';
 
-import Button from '../../components/Button';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import {
@@ -12,17 +9,7 @@ import {
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
 import DeleteDialog from '../../components/DeleteDialog';
-import { styled } from '../../../stitches.config';
-
-const EditIcon = styled(FaEdit, {
-	height: '20px',
-	width: '20px',
-	color: '$main',
-});
-
-const EditButton = styled(Button, {
-	padding: '0.5rem',
-});
+import EditProductModal from './EditProductModal';
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -33,7 +20,6 @@ const ProductsTable = () => {
 	});
 	const [deleteProduct, { isLoading: deleteLoading }] =
 		useDeleteProductMutation();
-	const navigate = useNavigate();
 
 	const onPageChange = (page: number) => setPageNumber(page);
 
@@ -48,9 +34,6 @@ const ProductsTable = () => {
 			toast.error('Error', { hideProgressBar: true, autoClose: 1000 });
 		}
 	};
-
-	const editHandler = (productId: string) =>
-		navigate(`/admin/product/${productId}/edit`);
 
 	return isLoading ? (
 		<div>Loading</div>
@@ -99,9 +82,7 @@ const ProductsTable = () => {
 							</Td>
 							<Td>
 								<Flex>
-									<EditButton onClick={() => editHandler(product.id)}>
-										<EditIcon />
-									</EditButton>
+									<EditProductModal productId={product.id} />
 									<DeleteDialog
 										deleteHandler={() => deleteHandler(product.id)}
 										loading={deleteLoading}

@@ -13,7 +13,6 @@ import PersistLogin from './features/auth/PersistLogin';
 import Users from './screens/Users';
 import Unauthorized from './screens/Unauthorized';
 import AllProducts from './screens/AllProducts';
-import AddProduct from './screens/AddProduct';
 import Cart from './screens/Cart/Cart';
 import Shipping from './screens/Shipping';
 import Payment from './screens/Payment';
@@ -21,8 +20,6 @@ import PlaceOrder from './screens/PlaceOrder';
 import Order from './screens/Order';
 import Profile from './screens/Profile';
 import ProductList from './screens/ProductList';
-import EditProduct from './screens/EditProduct';
-import EditUser from './features/user/EditUser';
 import OrdersList from './screens/OrdersList';
 import Admin from './screens/Admin';
 import Categories from './screens/Categories';
@@ -64,10 +61,8 @@ function App() {
 							<Route path="admin" element={<RequireAdmin />}>
 								<Route element={<Admin />}>
 									<Route path="user-list" element={<Users />} />
-									<Route path="add-product" element={<AddProduct />} />
 									<Route path="product-list" element={<ProductList />} />
 									<Route path="order-list" element={<OrdersList />} />
-									<Route path="product/:id/edit" element={<EditProduct />} />
 								</Route>
 							</Route>
 						</Route>
