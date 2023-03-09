@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import Button from '../components/Button';
-
 import { StyledContainer } from '../components/Container';
 import { Heading2 } from '../components/Typography';
 import ProductsTable from '../features/product/ProductsTable';

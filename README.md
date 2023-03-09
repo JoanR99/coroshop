@@ -26,9 +26,9 @@ Coroshop is a tech e-commerce with administrator options to add, edit or delete 
 
 ## Stack
 
-![Vite] ![Typescript] ![React] ![Styled-Components] ![Redux]
+![Vite] ![Typescript] ![React] ![Redux]
 
-I developed this app entirely with TypeScript, which allowed me to reduce errors. In the front, I used React as the base framework and managed the state with Redux Toolkit because it facilitates managing the client state and the server cache with his optional tool RTK Query. On the other hand, I use Styled Components for the UI styles because it facilitates the creation of UI components and does not require any configuration.
+I developed this app entirely with TypeScript, which allowed me to reduce errors. In the front, I used React as the base framework and managed the state with Redux Toolkit because it facilitates managing the client state and the server cache with his optional tool RTK Query. On the other hand, I use Stitches with Radix for the UI styles because it facilitates the creation of UI components and does not require any configuration.
 
 &nbsp;
 
