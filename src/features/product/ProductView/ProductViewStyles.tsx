@@ -4,11 +4,13 @@ import { StyledContainer } from '../../../components/Container';
 
 export const ProductViewContainer = styled(SectionContainer, {
 	mt: '4rem',
-	alignItems: 'flex-start',
+	alignItems: 'center',
+	height: 'auto',
 });
 
 export const ProductImage = styled('img', {
 	width: '100%',
+	maxHeight: '500px',
 });
 
 export const ProductDetails = styled(StyledContainer, {

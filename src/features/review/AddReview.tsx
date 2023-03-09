@@ -33,7 +33,7 @@ const StarsRating = styled(Rating, {
 
 const AddReviewContainer = styled(StyledContainer, {
 	mx: 'auto',
-	mb: '8rem',
+	my: '8rem',
 	minWidth: '50rem',
 	width: '40vw',
 });

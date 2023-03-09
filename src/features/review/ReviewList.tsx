@@ -21,6 +21,10 @@ const Heading = styled(Heading2, {
 	mb: '2rem',
 });
 
+const ReviewsContainer = styled('div', {
+	mt: '4rem',
+});
+
 const ReviewList = ({ productId }: Props) => {
 	const { isLoading, error, data } = useGetReviewsQuery({
 		productId,
@@ -29,9 +33,9 @@ const ReviewList = ({ productId }: Props) => {
 	return isLoading ? (
 		<Spinner />
 	) : error ? (
-		<div>Something went wrong</div>
+		<ReviewsContainer>Something went wrong</ReviewsContainer>
 	) : (
-		<div>
+		<ReviewsContainer>
 			<Heading>Reviews</Heading>
 			<Grid>
 				{data?.getReviews && data?.getReviews.length > 0 ? (
@@ -42,7 +46,7 @@ const ReviewList = ({ productId }: Props) => {
 					<Heading3>No one reviewed this product yet</Heading3>
 				)}
 			</Grid>
-		</div>
+		</ReviewsContainer>
 	);
 };
 

@@ -8,6 +8,14 @@ const StackContainer = styled('div', {
 	backgroundColor: '$main_light',
 	padding: '2rem',
 	borderRadius: '30px',
+
+	variants: {
+		margin: {
+			top: {
+				mt: '4rem',
+			},
+		},
+	},
 });
 
 const LinkDiv = styled('div', {
@@ -24,7 +32,17 @@ const Grid = styled('div', {
 	justifyContent: 'center',
 });
 
-const CategoryStack = ({ category }: { category: string }) => {
+const CategoryStack = ({
+	category,
+	title,
+	margin,
+	productId,
+}: {
+	category: string;
+	title?: string;
+	margin?: 'top';
+	productId?: string;
+}) => {
 	const { data } = useGetProductsQuery({
 		pageSize: 4,
 		pageNumber: 1,
@@ -32,11 +50,15 @@ const CategoryStack = ({ category }: { category: string }) => {
 		category,
 	});
 
+	const products = productId
+		? data?.getProducts.products.filter((product) => product.id != productId)
+		: data?.getProducts.products;
+
 	return (
-		<StackContainer>
-			<Heading3>{category}</Heading3>
+		<StackContainer margin={margin}>
+			<Heading3>{title ? title : category}</Heading3>
 			<Grid>
-				{data?.getProducts.products.map((product) => (
+				{products?.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
 				<LinkDiv>

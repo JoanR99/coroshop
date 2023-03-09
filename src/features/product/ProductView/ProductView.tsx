@@ -17,10 +17,11 @@ import {
 } from './ProductViewStyles';
 import Spinner from '../../../components/Spinner';
 import { styled } from '../../../../stitches.config';
+import CategoryStack from '../CategoryStack';
 
 const SectionPartImage = styled('div', {
 	width: '48%',
-	height: '100%',
+	height: 'auto',
 });
 
 type Props = {
@@ -55,64 +56,74 @@ const ProductView = ({ productId }: Props) => {
 	) : isError ? (
 		<div>Error</div>
 	) : (
-		<ProductViewContainer>
-			<SectionPartImage>
-				<ProductImage src={product?.image} width="500px" />
-			</SectionPartImage>
-			<SectionPartText>
-				<ProductDetails>
-					<Detail>
-						<Heading2>{product?.name}</Heading2>
-					</Detail>
+		<>
+			<ProductViewContainer>
+				<SectionPartImage>
+					<ProductImage src={product?.image} />
+				</SectionPartImage>
+				<SectionPartText>
+					<ProductDetails>
+						<Detail>
+							<Heading2>{product?.name}</Heading2>
+						</Detail>
 
-					<Detail>
-						<Rating
-							ratingValue={0}
-							initialValue={product!.rating}
-							size={30}
-							readonly
-						/>
-						<Paragraph>{product?.numReviews} Reviews</Paragraph>
-					</Detail>
-
-					<Detail>
-						<Heading4>Price:</Heading4>
-						<Paragraph>${product?.price}</Paragraph>
-					</Detail>
-
-					<Detail>
-						<Heading4>Description:</Heading4>
-						<Paragraph>{product?.description}</Paragraph>
-					</Detail>
-
-					<Detail>
-						<Heading4>Status:</Heading4>
-						<Paragraph>
-							{product!.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
-						</Paragraph>
-					</Detail>
-
-					{product!.countInStock > 0 && (
-						<QuantityBox>
-							<label htmlFor="quantity">
-								<Heading4>Quantity</Heading4>
-							</label>
-							<input
-								type="number"
-								id="quantity"
-								min="1"
-								max={product!.countInStock}
-								value={quantity}
-								onChange={handleQuantityChange}
+						<Detail>
+							<Rating
+								ratingValue={0}
+								initialValue={product!.rating}
+								size={30}
+								readonly
 							/>
-						</QuantityBox>
-					)}
-					<Button variant="main" onClick={handleClick}>
-						ADD TO CART
-					</Button>
-				</ProductDetails>
-			</SectionPartText>
-		</ProductViewContainer>
+							<Paragraph>{product?.numReviews} Reviews</Paragraph>
+						</Detail>
+
+						<Detail>
+							<Heading4>Price:</Heading4>
+							<Paragraph>${product?.price}</Paragraph>
+						</Detail>
+
+						<Detail>
+							<Heading4>Description:</Heading4>
+							<Paragraph>{product?.description}</Paragraph>
+						</Detail>
+
+						<Detail>
+							<Heading4>Status:</Heading4>
+							<Paragraph>
+								{product!.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+							</Paragraph>
+						</Detail>
+
+						{product!.countInStock > 0 && (
+							<QuantityBox>
+								<label htmlFor="quantity">
+									<Heading4>Quantity</Heading4>
+								</label>
+								<input
+									type="number"
+									id="quantity"
+									min="1"
+									max={product!.countInStock}
+									value={quantity}
+									onChange={handleQuantityChange}
+								/>
+							</QuantityBox>
+						)}
+						<Button variant="main" onClick={handleClick}>
+							ADD TO CART
+						</Button>
+					</ProductDetails>
+				</SectionPartText>
+			</ProductViewContainer>
+
+			<CategoryStack
+				productId={product!.id}
+				category={product!.category}
+				key={product!.category}
+				title="Similar products"
+				margin="top"
+			/>
+		</>
 	);
 };
 
