@@ -16,6 +16,9 @@ export const Container = styled('div', {
 			bottom: {
 				mb: '2rem',
 			},
+			top: {
+				mt: '2rem',
+			},
 		},
 	},
 });
@@ -27,11 +30,11 @@ export const StyledContainer = styled('div', {
 	boxShadow: '0 1.5rem 4rem rgba(0, 0, 0, 0.2)',
 
 	variants: {
-		width: {
-			'2/3': {
+		size: {
+			main: {
 				width: '63%',
 			},
-			'1/3': {
+			secondary: {
 				width: '33%',
 			},
 		},

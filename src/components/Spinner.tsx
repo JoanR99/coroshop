@@ -2,7 +2,6 @@ import { styled } from '../../stitches.config';
 import { keyframes } from '@stitches/react';
 
 export const SpinnerOverlay = styled('div', {
-	height: '60vh',
 	width: '100%',
 	display: 'flex',
 	justifyContent: 'center',

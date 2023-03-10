@@ -1,11 +1,7 @@
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { Elements } from '@stripe/react-stripe-js';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { stripePromise } from '../features/order/stripe';
 import { Heading2, Paragraph } from '../components/Typography';
 import {
 	useGetOrderQuery,
@@ -14,19 +10,16 @@ import {
 import { Container, StyledContainer } from '../components/Container';
 import { Section, SectionHeading } from '../components/Section';
 import OrderItems from '../features/order/OrderItems';
-import PayPalButton from '../features/order/PayPalButton';
-import StripeForm from '../features/order/StripeForm';
-import stripePayment from '../features/order/stripePayment';
+
 import { useAppSelector } from '../app/hooks';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import Button from '../components/Button';
 import Spinner from '../components/Spinner';
+import PaypalPayment from '../features/order/PaypalPayment';
+import StripePayment from '../features/order/StripePayment';
 
 const Order = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);
-	const [clientId, setClientId] = useState('');
-	const [clientSecret, setClientSecret] = useState('');
-	const [paymentLoading, setPaymentLoading] = useState(false);
 	const orderId = useParams().orderId!;
 	const { data: order, isLoading } = useGetOrderQuery({ orderId });
 	const [updateDelivered, { isLoading: loadingUpdate }] =
@@ -36,44 +29,6 @@ const Order = () => {
 		(acc, item) => acc + item.price * item.quantity,
 		0
 	);
-
-	useEffect(() => {
-		const getClientId = async () => {
-			try {
-				setPaymentLoading(true);
-				const { data } = await axios.get('/api/clientId');
-				setClientId(data);
-			} catch (e) {
-				console.log(e);
-			} finally {
-				setPaymentLoading(false);
-			}
-		};
-
-		if (order?.getOrderById.paymentMethod === 'PayPal' && !isAdmin) {
-			getClientId();
-		}
-	}, [order?.getOrderById.paymentMethod]);
-
-	useEffect(() => {
-		const getClientSecret = async () => {
-			try {
-				setPaymentLoading(true);
-				const clientSecret = await stripePayment(
-					order!.getOrderById.totalPrice
-				);
-				setClientSecret(clientSecret);
-			} catch (e) {
-				console.log(e);
-			} finally {
-				setPaymentLoading(false);
-			}
-		};
-
-		if (order?.getOrderById.paymentMethod === 'Stripe' && !isAdmin) {
-			getClientSecret();
-		}
-	}, [order?.getOrderById.paymentMethod]);
 
 	const updateHandler = async () => {
 		const id = toast.loading('Updating...', { theme: 'light' });
@@ -102,8 +57,8 @@ const Order = () => {
 	return isLoading ? (
 		<div>Loading</div>
 	) : (
-		<Container display="flex_start">
-			<StyledContainer width="2/3">
+		<Container display="flex_start" space="top">
+			<StyledContainer size="main">
 				<Heading2 space="bottom">Order {order?.getOrderById.id}</Heading2>
 
 				<Section>
@@ -162,7 +117,7 @@ const Order = () => {
 				</Section>
 			</StyledContainer>
 
-			<StyledContainer width="1/3">
+			<StyledContainer size="secondary">
 				<Heading2 space="bottom">Order Summary</Heading2>
 				<Section>
 					<SectionHeading>Items</SectionHeading>
@@ -185,24 +140,10 @@ const Order = () => {
 
 				{!order!.getOrderById.isPaid &&
 					!isAdmin &&
-					(paymentLoading ? (
-						<Spinner />
+					(order!.getOrderById.paymentMethod == 'PayPal' ? (
+						<PaypalPayment order={order!.getOrderById} />
 					) : (
-						<div>
-							{clientId && (
-								<PayPalScriptProvider options={{ 'client-id': clientId }}>
-									<PayPalButton order={order!.getOrderById} />
-								</PayPalScriptProvider>
-							)}
-							{clientSecret && (
-								<Elements stripe={stripePromise}>
-									<StripeForm
-										clientSecret={clientSecret}
-										orderId={order!.getOrderById.id}
-									/>
-								</Elements>
-							)}
-						</div>
+						<StripePayment order={order!.getOrderById} />
 					))}
 
 				{loadingUpdate ? (
