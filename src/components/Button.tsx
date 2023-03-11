@@ -33,6 +33,7 @@ const Button = styled('button', {
 				fontSize: '1.6rem',
 				fontWeight: 'bold',
 				color: '$main_dark',
+				backgroundColor: 'transparent',
 				'&:hover': {
 					color: '$action',
 				},

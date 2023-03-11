@@ -19,7 +19,7 @@ const PersistLogin = () => {
 			try {
 				const newAccessToken = await getNewAccessToken();
 
-				dispatch(setCredentials({ accessToken: newAccessToken }));
+				isMounted && dispatch(setCredentials({ accessToken: newAccessToken }));
 			} catch (e) {
 				console.log(e);
 			} finally {

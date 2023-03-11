@@ -6,6 +6,7 @@ export const SpinnerOverlay = styled('div', {
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
+	mt: '2rem',
 });
 
 const spin = keyframes({

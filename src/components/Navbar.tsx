@@ -4,6 +4,7 @@ import { selectIsAdmin } from '../features/auth/authSlice';
 import { useAppSelector } from '../app/hooks';
 import { styled } from '../../stitches.config';
 import CartDropDown from '../features/cart/CartDropDown';
+import { Container } from './Container';
 
 const NavbarBody = styled('div', {
 	backgroundColor: '$main',
@@ -11,9 +12,7 @@ const NavbarBody = styled('div', {
 	padding: '1rem',
 });
 
-const Container = styled('div', {
-	width: '90vw',
-	margin: 'auto',
+const NavbarContainer = styled(Container, {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
@@ -23,7 +22,7 @@ const Navbar = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);
 	return (
 		<NavbarBody>
-			<Container>
+			<NavbarContainer>
 				<LinkContainer>
 					<StyledLink5 to="/products" theme="light">
 						Products
@@ -41,7 +40,7 @@ const Navbar = () => {
 					<SearchBar />
 				</div>
 				<CartDropDown />
-			</Container>
+			</NavbarContainer>
 		</NavbarBody>
 	);
 };
