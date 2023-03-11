@@ -21,9 +21,20 @@ const productApi = apiSlice.injectEndpoints({
 				keyword?: string;
 				pageNumber?: number;
 				category?: string;
+				minPriceLimit?: number;
+				maxPriceLimit?: number;
+				minRating?: number;
 			}
 		>({
-			query: ({ pageSize, keyword, pageNumber, category }) => ({
+			query: ({
+				pageSize,
+				keyword,
+				pageNumber,
+				category,
+				minPriceLimit,
+				maxPriceLimit,
+				minRating,
+			}) => ({
 				document: getProducts,
 				variables: {
 					getProductsInput: {
@@ -31,11 +42,14 @@ const productApi = apiSlice.injectEndpoints({
 						keyword,
 						pageSize,
 						category,
+						minPriceLimit,
+						maxPriceLimit,
+						minRating,
 					},
 				},
 			}),
-			providesTags: (result, error, { category }) => [
-				{ type: 'products', category },
+			providesTags: (result, error, params) => [
+				{ type: 'products', ...params },
 			],
 		}),
 		getProduct: builder.query<GetProductResponse, { productId: string }>({

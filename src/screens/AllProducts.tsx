@@ -7,6 +7,8 @@ import ProductList from '../features/product/ProductCardList';
 import { Heading2 } from '../components/Typography';
 import Spinner from '../components/Spinner';
 import { styled } from '../../stitches.config';
+import { selectFilters } from '../features/product/filterProductsSlice';
+import { useAppSelector } from '../app/hooks';
 
 const ProductPageContainer = styled(Container, {
 	minHeight: '80vh',
@@ -24,18 +26,17 @@ const MarginTopHeading = styled(Heading2, {
 const AllProducts = () => {
 	const params = useParams();
 	const navigate = useNavigate();
-	const keyword = params.keyword ?? '';
 	const pageNumber = Number(params.pageNumber ?? 1);
+	const filters = useAppSelector(selectFilters);
+
 	const { isLoading, error, data } = useGetProductsQuery({
 		pageNumber,
 		pageSize: 12,
-		keyword,
+		...filters,
 	});
 
 	const pageChangeHandler = (page: number) => {
-		const address = keyword
-			? `/products/search/${keyword}/page/${page}`
-			: `/products/page/${page}`;
+		const address = `/products/page/${page}`;
 		navigate(address);
 	};
 

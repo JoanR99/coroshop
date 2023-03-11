@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { styled } from '../../stitches.config';
+import { useAppDispatch } from '../app/hooks';
+import { setKeyword } from '../features/product/filterProductsSlice';
 import Button from './Button';
 
 const SearchContainer = styled('div', {
@@ -21,13 +22,11 @@ const SearchInput = styled('input', {
 });
 
 const SearchBar = () => {
-	const navigate = useNavigate();
 	const [search, setSearch] = useState('');
+	const dispatch = useAppDispatch();
 
 	const onClickHandler = () => {
-		const searchAddress =
-			search === '' ? '/products' : `/products/search/${search}`;
-		navigate(searchAddress);
+		dispatch(setKeyword({ keyword: search }));
 		setSearch('');
 	};
 

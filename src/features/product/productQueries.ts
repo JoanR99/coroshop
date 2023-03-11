@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 
 export const getProducts = gql`
-	query GetProducts($getProductsInput: GetItemsInput!) {
+	query GetProducts($getProductsInput: GetProductsInput!) {
 		getProducts(getProductsInput: $getProductsInput) {
 			page
 			pages
