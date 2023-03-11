@@ -75,7 +75,7 @@ const PlaceOrder = () => {
 
 	return (
 		<Container display="flex_start">
-			<StyledContainer width="2/3">
+			<StyledContainer size="main">
 				<Heading2 space="bottom">Order Information</Heading2>
 				<Section>
 					<SectionHeading>Shipping</SectionHeading>
@@ -102,7 +102,7 @@ const PlaceOrder = () => {
 				</Section>
 			</StyledContainer>
 
-			<StyledContainer width="1/3">
+			<StyledContainer size="secondary">
 				<Heading2 space="bottom">Order Summary</Heading2>
 				<Section>
 					<SectionHeading>Items</SectionHeading>
