@@ -9,14 +9,21 @@ import Spinner from '../components/Spinner';
 import { styled } from '../../stitches.config';
 import { selectFilters } from '../features/product/filterProductsSlice';
 import { useAppSelector } from '../app/hooks';
+import FilterCard from '../components/FilterCard';
 
-const ProductPageContainer = styled(Container, {
-	minHeight: '80vh',
+const ProductListContainer = styled(Container, {
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	mb: '2rem',
+	minHeight: '58rem',
+});
+
+const ProductPageContainer = styled('div', {
+	display: 'flex',
+	gap: '4rem',
+	alignItems: 'start',
+	mt: '2rem',
 });
 
 const MarginTopHeading = styled(Heading2, {
@@ -31,7 +38,7 @@ const AllProducts = () => {
 
 	const { isLoading, error, data } = useGetProductsQuery({
 		pageNumber,
-		pageSize: 12,
+		pageSize: 10,
 		...filters,
 	});
 
@@ -48,13 +55,17 @@ const AllProducts = () => {
 		<Container>
 			<MarginTopHeading>All Products</MarginTopHeading>
 			<ProductPageContainer>
-				<ProductList products={data!.getProducts.products} />
-				<Pagination
-					currentPage={pageNumber}
-					siblingCount={3}
-					totalPageCount={data!.getProducts.pages}
-					onPageChange={pageChangeHandler}
-				/>
+				<FilterCard />
+
+				<ProductListContainer>
+					<ProductList products={data!.getProducts.products} />
+					<Pagination
+						currentPage={pageNumber}
+						siblingCount={3}
+						totalPageCount={data!.getProducts.pages}
+						onPageChange={pageChangeHandler}
+					/>
+				</ProductListContainer>
 			</ProductPageContainer>
 		</Container>
 	);

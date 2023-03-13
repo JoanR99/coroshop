@@ -8,7 +8,7 @@ const Grid = styled('div', {
 	gridTemplateColumns: 'repeat(auto-fit, minmax(12rem, 18rem))',
 	gap: '4rem',
 	width: '100%',
-	my: '2rem',
+	mb: '4rem',
 	justifyContent: 'center',
 });
 

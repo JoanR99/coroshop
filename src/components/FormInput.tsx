@@ -17,7 +17,7 @@ const HelperText = styled('p', {
 	},
 });
 
-const Input = styled('input', {
+export const Input = styled('input', {
 	fontSize: '1.5rem',
 	fontFamily: 'inherit',
 	color: 'inherit',

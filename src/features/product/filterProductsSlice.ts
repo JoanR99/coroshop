@@ -45,11 +45,32 @@ const filterProductsSlice = createSlice({
 		) => {
 			state.minRating = action.payload.minRating;
 		},
+		setPriceLimit: (
+			state,
+			action: PayloadAction<
+				Pick<FilterState, 'minPriceLimit' | 'maxPriceLimit'>
+			>
+		) => {
+			state.minPriceLimit = action.payload.minPriceLimit;
+			state.maxPriceLimit = action.payload.maxPriceLimit;
+		},
+
+		clearFilters: (state) => {
+			state.minPriceLimit = undefined;
+			state.maxPriceLimit = undefined;
+			state.minRating = undefined;
+		},
 	},
 });
 
-export const { setMaxPriceLimit, setMinPriceLimit, setMinRating, setKeyword } =
-	filterProductsSlice.actions;
+export const {
+	setMaxPriceLimit,
+	setMinPriceLimit,
+	setMinRating,
+	setKeyword,
+	clearFilters,
+	setPriceLimit,
+} = filterProductsSlice.actions;
 
 export default filterProductsSlice.reducer;
 
