@@ -10,7 +10,7 @@ import {
 import { ShippingAddress } from '../features/cart/cartTypes';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
-import { Container } from '../components/Container';
+import { Container, StyledContainer } from '../components/Container';
 import { Heading3 } from '../components/Typography';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 
@@ -28,40 +28,48 @@ const Shipping = () => {
 		navigate('/payment');
 	};
 	return (
-		<Container space="bottom">
-			<Heading3>Shipping Information</Heading3>
-			<FormProvider {...methods}>
-				<form
-					onSubmit={methods.handleSubmit(submitHandler)}
-					noValidate
-					autoComplete="off"
-				>
-					<FormInput
-						type="text"
-						name="address"
-						id="address"
-						label="Address"
-						required
-					/>
-					<FormInput type="text" name="city" id="city" label="City" required />
-					<FormInput
-						type="text"
-						name="postalCode"
-						id="postalCode"
-						label="Postal Code"
-						required
-					/>
-					<FormInput
-						type="text"
-						name="country"
-						id="country"
-						label="Country"
-						required
-					/>
+		<Container space="top" display="flex-justify-center">
+			<StyledContainer size="main">
+				<Heading3>Shipping Information</Heading3>
+				<FormProvider {...methods}>
+					<form
+						onSubmit={methods.handleSubmit(submitHandler)}
+						noValidate
+						autoComplete="off"
+					>
+						<FormInput
+							type="text"
+							name="address"
+							id="address"
+							label="Address"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="city"
+							id="city"
+							label="City"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="postalCode"
+							id="postalCode"
+							label="Postal Code"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="country"
+							id="country"
+							label="Country"
+							required
+						/>
 
-					<Button variant="main">GO TO PAYMENT</Button>
-				</form>
-			</FormProvider>
+						<Button variant="main">GO TO PAYMENT</Button>
+					</form>
+				</FormProvider>
+			</StyledContainer>
 		</Container>
 	);
 };
