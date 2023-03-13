@@ -3,9 +3,9 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { styled } from '../../stitches.config';
 
 const Input = styled(Checkbox.Root, {
-	width: '2.4rem',
-	height: '2.4rem',
-	border: '0.5rem solid $main_dark',
+	width: '25px',
+	height: '25px',
+	border: '0.2rem solid $main_dark',
 	borderRadius: '50%',
 	display: 'flex',
 	alignItems: 'center',

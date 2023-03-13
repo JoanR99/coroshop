@@ -11,6 +11,10 @@ export const Container = styled('div', {
 				justifyContent: 'space-between',
 				alignItems: 'flex-start',
 			},
+			'flex-justify-center': {
+				display: 'flex',
+				justifyContent: 'center',
+			},
 		},
 		space: {
 			bottom: {
