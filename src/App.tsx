@@ -34,13 +34,8 @@ function App() {
 					<Route element={<PersistLogin />}>
 						<Route index element={<Home />} />
 						<Route path="/products" element={<AllProducts />} />
-						<Route path="/products/search/:keyword" element={<AllProducts />} />
 						<Route
 							path="/products/page/:pageNumber"
-							element={<AllProducts />}
-						/>
-						<Route
-							path="/products/search/:keyword/page/:pageNumber"
 							element={<AllProducts />}
 						/>
 						<Route path="products/:id" element={<ProductScreen />} />
