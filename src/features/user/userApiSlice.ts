@@ -43,7 +43,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 					getUsersInput: { pageSize, keyword, pageNumber },
 				},
 			}),
-			providesTags: ['users'],
+			providesTags: (_result, _error, params) => [{ type: 'users', ...params }],
 		}),
 		getUser: builder.query<GetUserResponse, GetUserInput>({
 			query: ({ userId }) => ({
@@ -52,7 +52,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 					userId,
 				},
 			}),
-			providesTags: ['users'],
+			providesTags: (_result, _error, params) => [{ type: 'users', ...params }],
 		}),
 		getUsersCount: builder.query<{ getUsersCount: number }, null>({
 			query: () => ({
@@ -91,7 +91,9 @@ const userApiSlice = apiSlice.injectEndpoints({
 					userId,
 				},
 			}),
-			invalidatesTags: ['users'],
+			invalidatesTags: (_result, _error, params) => [
+				{ type: 'users', ...params },
+			],
 		}),
 		updateUser: builder.mutation<UpdateUserResponse, UpdateUserInput>({
 			query: ({ updateBody, userId }) => ({
@@ -101,7 +103,9 @@ const userApiSlice = apiSlice.injectEndpoints({
 					userId,
 				},
 			}),
-			invalidatesTags: ['users'],
+			invalidatesTags: (_result, _error, { userId }) => [
+				{ type: 'users', userId },
+			],
 		}),
 	}),
 });

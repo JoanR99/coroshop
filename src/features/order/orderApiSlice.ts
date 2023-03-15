@@ -35,7 +35,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 				document: getOrder,
 				variables: { orderId },
 			}),
-			providesTags: (result, error, { orderId }) => [
+			providesTags: (_result, _error, { orderId }) => [
 				{ type: 'orders', orderId },
 			],
 		}),
@@ -82,7 +82,9 @@ const authApiSlice = apiSlice.injectEndpoints({
 					orderId,
 				},
 			}),
-			invalidatesTags: ['orders'],
+			invalidatesTags: (_result, _error, { orderId }) => [
+				{ type: 'orders', orderId },
+			],
 		}),
 	}),
 	overrideExisting: false,

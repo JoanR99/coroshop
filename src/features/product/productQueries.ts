@@ -76,6 +76,7 @@ export const getProduct = gql`
 				author
 				authorName
 				createdAt
+				product
 			}
 		}
 	}

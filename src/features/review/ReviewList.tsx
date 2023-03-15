@@ -3,7 +3,7 @@ import ReviewCard from './ReviewCard';
 import { styled } from '../../../stitches.config';
 import { Review } from './reviewTypes';
 
-type Props = { reviews: Review[] };
+type Props = { reviews: Review[]; productId: string };
 
 const Grid = styled('div', {
 	display: 'grid',
@@ -23,14 +23,14 @@ const ReviewsContainer = styled('div', {
 	mt: '4rem',
 });
 
-const ReviewList = ({ reviews }: Props) => {
+const ReviewList = ({ reviews, productId }: Props) => {
 	return (
 		<ReviewsContainer>
 			<Heading>Reviews</Heading>
 			<Grid>
 				{reviews.length > 0 ? (
 					reviews.map((review) => (
-						<ReviewCard review={review} key={review.id} />
+						<ReviewCard review={review} productId={productId} key={review.id} />
 					))
 				) : (
 					<Heading3>No one reviewed this product yet</Heading3>

@@ -8,6 +8,7 @@ export interface Review {
 	comment: string;
 	author: string;
 	authorName: string;
+	product: string;
 }
 
 export interface GetReviewResponse {

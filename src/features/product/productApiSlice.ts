@@ -55,7 +55,7 @@ const productApi = apiSlice.injectEndpoints({
 					},
 				},
 			}),
-			providesTags: (result, error, params) => [
+			providesTags: (_result, error, params) => [
 				{ type: 'products', ...params },
 			],
 		}),
@@ -93,7 +93,7 @@ const productApi = apiSlice.injectEndpoints({
 					},
 				},
 			}),
-			providesTags: (result, error, params) => [
+			providesTags: (_result, _error, params) => [
 				{ type: 'products', ...params },
 			],
 		}),
@@ -111,7 +111,9 @@ const productApi = apiSlice.injectEndpoints({
 				document: getProduct,
 				variables: { productId },
 			}),
-			providesTags: ['products'],
+			providesTags: (_result, _error, params) => [
+				{ type: 'products', ...params },
+			],
 		}),
 		getProductsCount: builder.query<{ getProductsCount: number }, null>({
 			query: () => ({
@@ -146,7 +148,9 @@ const productApi = apiSlice.injectEndpoints({
 					productId,
 				},
 			}),
-			invalidatesTags: ['products'],
+			invalidatesTags: (_result, _error, params) => [
+				{ type: 'products', productId: params.productId },
+			],
 		}),
 	}),
 	overrideExisting: false,

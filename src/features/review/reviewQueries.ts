@@ -8,6 +8,7 @@ export const getReviews = gql`
 			rating
 			author
 			authorName
+			product
 		}
 	}
 `;

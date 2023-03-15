@@ -8,8 +8,12 @@ import {
 	useGetProductsQuery,
 } from './productApiSlice';
 import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
-import DeleteDialog from '../../components/DeleteDialog';
+import ActionDialog, {
+	DialogDescription,
+	DialogTitle,
+} from '../../components/ActionDialog';
 import EditProductModal from './EditProductModal';
+import DeleteButton from '../../components/DeleteButton';
 
 const ProductsTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -83,10 +87,18 @@ const ProductsTable = () => {
 							<Td>
 								<Flex>
 									<EditProductModal productId={product.id} />
-									<DeleteDialog
-										deleteHandler={() => deleteHandler(product.id)}
+									<ActionDialog
+										mutationHandler={() => deleteHandler(product.id)}
 										loading={deleteLoading}
-									/>
+										button={<DeleteButton />}
+										action="Delete"
+									>
+										<DialogTitle>Are you absolutely sure?</DialogTitle>
+										<DialogDescription>
+											This action cannot be undone. This will permanently delete
+											the data from the servers.
+										</DialogDescription>
+									</ActionDialog>
 								</Flex>
 							</Td>
 						</tr>

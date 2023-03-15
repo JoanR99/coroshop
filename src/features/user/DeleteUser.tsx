@@ -1,6 +1,9 @@
 import { toast } from 'react-toastify';
-
-import DeleteDialog from '../../components/DeleteDialog';
+import ActionDialog, {
+	DialogDescription,
+	DialogTitle,
+} from '../../components/ActionDialog';
+import DeleteButton from '../../components/DeleteButton';
 import { useDeleteUserMutation } from './userApiSlice';
 
 const DeleteUser = ({ userId }: { userId: string }) => {
@@ -16,10 +19,18 @@ const DeleteUser = ({ userId }: { userId: string }) => {
 	};
 
 	return (
-		<DeleteDialog
-			deleteHandler={() => deleteHandler(userId)}
+		<ActionDialog
+			mutationHandler={() => deleteHandler(userId)}
 			loading={deleteLoading}
-		/>
+			button={<DeleteButton />}
+			action="Delete"
+		>
+			<DialogTitle>Are you absolutely sure?</DialogTitle>
+			<DialogDescription>
+				This action cannot be undone. This will permanently delete the data from
+				the servers.
+			</DialogDescription>
+		</ActionDialog>
 	);
 };
 

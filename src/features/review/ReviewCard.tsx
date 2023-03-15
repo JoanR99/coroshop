@@ -3,23 +3,28 @@ import { Rating } from 'react-simple-star-rating';
 import { Heading4 } from '../../components/Typography';
 import { Review } from './reviewTypes';
 import { CardBody, CardItem, CardReview } from '../../components/Card';
-import DeleteDialog from '../../components/DeleteDialog';
 import { useDeleteReviewMutation } from './reviewApiSlice';
 import { toast } from 'react-toastify';
 import { selectUserId } from '../auth/authSlice';
 import { useAppSelector } from '../../app/hooks';
+import ActionDialog, {
+	DialogDescription,
+	DialogTitle,
+} from '../../components/ActionDialog';
+import DeleteButton from '../../components/DeleteButton';
 
 type Props = {
 	review: Review;
+	productId: string;
 };
 
-const ReviewCard = ({ review }: Props) => {
+const ReviewCard = ({ review, productId }: Props) => {
 	const [deleteReview, { isLoading }] = useDeleteReviewMutation();
 	const userId = useAppSelector(selectUserId);
 
 	const deleteReviewHandler = async () => {
 		try {
-			await deleteReview({ reviewId: review.id }).unwrap();
+			await deleteReview({ reviewId: review.id, productId }).unwrap();
 			toast.success('Review deleted', {
 				hideProgressBar: true,
 				autoClose: 1000,
@@ -50,10 +55,18 @@ const ReviewCard = ({ review }: Props) => {
 
 				{review.author == userId && (
 					<CardItem>
-						<DeleteDialog
-							deleteHandler={() => deleteReviewHandler()}
+						<ActionDialog
+							mutationHandler={() => deleteReviewHandler()}
 							loading={isLoading}
-						/>
+							button={<DeleteButton />}
+							action="Delete"
+						>
+							<DialogTitle>Are you absolutely sure?</DialogTitle>
+							<DialogDescription>
+								This action cannot be undone. This will permanently delete the
+								data from the servers.
+							</DialogDescription>
+						</ActionDialog>
 					</CardItem>
 				)}
 			</CardBody>

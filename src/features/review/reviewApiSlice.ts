@@ -30,14 +30,21 @@ const reviewApi = apiSlice.injectEndpoints({
 					},
 				},
 			}),
-			invalidatesTags: ['reviews', 'products'],
+			invalidatesTags: (_result, _error, params) => [
+				{ type: 'products', productId: params.productId },
+			],
 		}),
-		deleteReview: builder.mutation<DeleteReviewResponse, { reviewId: string }>({
+		deleteReview: builder.mutation<
+			DeleteReviewResponse,
+			{ reviewId: string; productId: string }
+		>({
 			query: ({ reviewId }) => ({
 				document: deleteReview,
 				variables: { reviewId },
 			}),
-			invalidatesTags: ['reviews'],
+			invalidatesTags: (_result, _error, params) => [
+				{ type: 'products', productId: params.productId },
+			],
 		}),
 	}),
 	overrideExisting: false,

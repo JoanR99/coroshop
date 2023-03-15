@@ -1,12 +1,16 @@
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import { MdDelete } from 'react-icons/md';
+
 import Button from './Button';
 import { styled } from '../../stitches.config';
 import { keyframes } from '@stitches/react';
+import { ReactNode } from 'react';
 
 type Props = {
-	deleteHandler: () => Promise<void>;
+	mutationHandler: () => Promise<void>;
 	loading: boolean;
+	button: ReactNode;
+	children: ReactNode;
+	action: string;
 };
 
 const overlayShow = keyframes({
@@ -56,7 +60,7 @@ const Content = styled(AlertDialog.Content, {
 	},
 });
 
-const Title = styled(AlertDialog.Title, {
+export const DialogTitle = styled(AlertDialog.Title, {
 	margin: 0,
 	fontSize: '17px',
 	fontWeight: 'bold',
@@ -64,7 +68,7 @@ const Title = styled(AlertDialog.Title, {
 	mb: '10px',
 });
 
-const Description = styled(AlertDialog.Description, {
+export const DialogDescription = styled(AlertDialog.Description, {
 	fontSize: '15px',
 	color: '$main_dark',
 	mb: '20px',
@@ -77,32 +81,22 @@ const ButtonContainer = styled('div', {
 	justifyContent: 'flex-end',
 });
 
-const DeleteIcon = styled(MdDelete, {
-	height: '20px',
-	width: '20px',
-	color: '$action',
-});
-
-const DeleteButton = styled(Button, {
-	padding: '0.5rem',
-});
-
-const DeleteDialog = ({ deleteHandler, loading }: Props) => {
+const ActionDialog = ({
+	mutationHandler,
+	loading,
+	button,
+	action,
+	children,
+}: Props) => {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<DeleteButton>
-					<DeleteIcon />
-				</DeleteButton>
+				<div>{button}</div>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
 				<Overlay />
 				<Content>
-					<Title>Are you absolutely sure?</Title>
-					<Description>
-						This action cannot be undone. This will permanently delete the data
-						from the servers.
-					</Description>
+					{children}
 					<ButtonContainer>
 						<AlertDialog.Cancel asChild>
 							<Button variant="ghost">Cancel</Button>
@@ -110,10 +104,10 @@ const DeleteDialog = ({ deleteHandler, loading }: Props) => {
 						<AlertDialog.Action asChild>
 							<Button
 								variant="main"
-								onClick={() => deleteHandler()}
+								onClick={() => mutationHandler()}
 								disabled={loading}
 							>
-								Delete
+								{action}
 							</Button>
 						</AlertDialog.Action>
 					</ButtonContainer>
@@ -123,4 +117,4 @@ const DeleteDialog = ({ deleteHandler, loading }: Props) => {
 	);
 };
 
-export default DeleteDialog;
+export default ActionDialog;
