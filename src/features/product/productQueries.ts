@@ -61,6 +61,7 @@ export const getProduct = gql`
 			numReviews
 			price
 			countInStock
+			brand
 			similarProducts {
 				id
 				name
