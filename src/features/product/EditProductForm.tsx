@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
 
 import {
 	addProductSchema,
@@ -13,9 +12,7 @@ import {
 	useGetProductQuery,
 	useUpdateProductMutation,
 } from './productApiSlice';
-import { StyledContainer } from '../../components/Container';
 import Button from '../../components/Button';
-import { Heading2 } from '../../components/Typography';
 import Spinner from '../../components/Spinner';
 
 type Props = {

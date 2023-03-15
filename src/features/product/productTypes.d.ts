@@ -21,7 +21,7 @@ type ProductOverview = {
 	price: number;
 };
 
-type ProductInfo = Omit<Product, 'brand'> & {
+type ProductInfo = Product & {
 	similarProducts: ProductOverview[];
 	reviews: Review[];
 };
