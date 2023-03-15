@@ -1,11 +1,9 @@
-import Spinner from '../../components/Spinner';
-
 import { Heading2, Heading3 } from '../../components/Typography';
-import { useGetReviewsQuery } from './reviewApiSlice';
 import ReviewCard from './ReviewCard';
 import { styled } from '../../../stitches.config';
+import { Review } from './reviewTypes';
 
-type Props = { productId: string };
+type Props = { reviews: Review[] };
 
 const Grid = styled('div', {
 	display: 'grid',
@@ -25,21 +23,13 @@ const ReviewsContainer = styled('div', {
 	mt: '4rem',
 });
 
-const ReviewList = ({ productId }: Props) => {
-	const { isLoading, error, data } = useGetReviewsQuery({
-		productId,
-	});
-
-	return isLoading ? (
-		<Spinner />
-	) : error ? (
-		<ReviewsContainer>Something went wrong</ReviewsContainer>
-	) : (
+const ReviewList = ({ reviews }: Props) => {
+	return (
 		<ReviewsContainer>
 			<Heading>Reviews</Heading>
 			<Grid>
-				{data?.getReviews && data?.getReviews.length > 0 ? (
-					data?.getReviews.map((review) => (
+				{reviews.length > 0 ? (
+					reviews.map((review) => (
 						<ReviewCard review={review} key={review.id} />
 					))
 				) : (

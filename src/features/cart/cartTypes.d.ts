@@ -1,6 +1,6 @@
-import { Product } from '../product/productTypes';
+import { Product, ProductOverview } from '../product/productTypes';
 
-export type CartItem = Product & { quantity: number };
+export type CartItem = ProductOverview & { quantity: number };
 
 export type ShippingAddress = {
 	address: string;

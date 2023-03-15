@@ -1,3 +1,5 @@
+import { Review } from '../review/reviewTypes';
+
 export interface Product {
 	id: string;
 	name: string;
@@ -10,6 +12,19 @@ export interface Product {
 	price: number;
 	countInStock: number;
 }
+
+type ProductOverview = {
+	id: string;
+	name: string;
+	image: string;
+	rating: number;
+	price: number;
+};
+
+type ProductInfo = Omit<Product, 'brand'> & {
+	similarProducts: ProductOverview[];
+	reviews: Review[];
+};
 
 export type CardProduct = Pick<
 	Product,
@@ -25,7 +40,7 @@ export type GetProductsResponse = {
 };
 
 export type GetProductResponse = {
-	getProduct: Product;
+	getProduct: ProductInfo;
 };
 
 export type AddProductResponse = {
@@ -47,4 +62,13 @@ export type UpdateProductInput = {
 
 export type UpdateProductResponse = {
 	updateProduct: Product;
+};
+
+type ProductsByCategory = {
+	category: string;
+	products: Product[];
+};
+
+export type GetProductsGroupedByCategoryResponse = {
+	getProductsGroupedByCategory: ProductsByCategory[];
 };

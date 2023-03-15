@@ -6,16 +6,30 @@ import AddReview from '../features/review/AddReview';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import { Container } from '../components/Container';
 import { useAppSelector } from '../app/hooks';
+import { useGetProductQuery } from '../features/product/productApiSlice';
+import Spinner from '../components/Spinner';
+import ProductStack from '../features/product/ProductStack';
 
 const ProductScreen = () => {
 	const { id } = useParams();
 	const accessToken = useAppSelector(selectCurrentAccessToken);
+	const { isLoading, isError, data } = useGetProductQuery({ productId: id! });
 
-	return (
+	return isLoading ? (
+		<Spinner />
+	) : isError ? (
+		<div>Error</div>
+	) : (
 		<Container>
-			<ProductView productId={id!} />
+			<ProductView product={data?.getProduct!} />
+			<ProductStack
+				category={data?.getProduct!.category}
+				products={data?.getProduct!.similarProducts!}
+				title="Similar products"
+				margin="top"
+			/>
 			{accessToken && <AddReview productId={id!} />}
-			<ReviewList productId={id!} />
+			<ReviewList reviews={data?.getProduct.reviews!} />
 		</Container>
 	);
 };

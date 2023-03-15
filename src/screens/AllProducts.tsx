@@ -1,7 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Container } from '../components/Container';
-import { useGetProductsQuery } from '../features/product/productApiSlice';
+import {
+	useGetProductOverviewListQuery,
+	useGetProductsQuery,
+} from '../features/product/productApiSlice';
 import Pagination from '../features/pagination/Pagination';
 import ProductList from '../features/product/ProductCardList';
 import { Heading2 } from '../components/Typography';
@@ -36,7 +39,7 @@ const AllProducts = () => {
 	const pageNumber = Number(params.pageNumber ?? 1);
 	const filters = useAppSelector(selectFilters);
 
-	const { isLoading, error, data } = useGetProductsQuery({
+	const { isLoading, error, data } = useGetProductOverviewListQuery({
 		pageNumber,
 		pageSize: 10,
 		...filters,

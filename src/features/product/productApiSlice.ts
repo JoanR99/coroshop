@@ -1,6 +1,12 @@
 import { apiSlice } from '../../app/api/apiSlice';
 import { addProduct, deleteProduct, updateProduct } from './productMutations';
-import { getProduct, getProducts, getProductsCount } from './productQueries';
+import {
+	getProduct,
+	getProducts,
+	getProductsCount,
+	getProductsGroupedByCategory,
+	getProductsOverviewList,
+} from './productQueries';
 import {
 	GetProductsResponse,
 	GetProductResponse,
@@ -10,6 +16,7 @@ import {
 	DeleteProductInput,
 	UpdateProductResponse,
 	UpdateProductInput,
+	GetProductsGroupedByCategoryResponse,
 } from './productTypes';
 
 const productApi = apiSlice.injectEndpoints({
@@ -51,6 +58,53 @@ const productApi = apiSlice.injectEndpoints({
 			providesTags: (result, error, params) => [
 				{ type: 'products', ...params },
 			],
+		}),
+		getProductOverviewList: builder.query<
+			GetProductsResponse,
+			{
+				pageSize?: number;
+				keyword?: string;
+				pageNumber?: number;
+				category?: string;
+				minPriceLimit?: number;
+				maxPriceLimit?: number;
+				minRating?: number;
+			}
+		>({
+			query: ({
+				pageSize,
+				keyword,
+				pageNumber,
+				category,
+				minPriceLimit,
+				maxPriceLimit,
+				minRating,
+			}) => ({
+				document: getProductsOverviewList,
+				variables: {
+					getProductsInput: {
+						pageNumber,
+						keyword,
+						pageSize,
+						category,
+						minPriceLimit,
+						maxPriceLimit,
+						minRating,
+					},
+				},
+			}),
+			providesTags: (result, error, params) => [
+				{ type: 'products', ...params },
+			],
+		}),
+		getProductsGroupedByCategory: builder.query<
+			GetProductsGroupedByCategoryResponse,
+			null
+		>({
+			query: () => ({
+				document: getProductsGroupedByCategory,
+				variables: null,
+			}),
 		}),
 		getProduct: builder.query<GetProductResponse, { productId: string }>({
 			query: ({ productId }) => ({
@@ -100,8 +154,10 @@ const productApi = apiSlice.injectEndpoints({
 
 export const {
 	useGetProductsQuery,
+	useGetProductOverviewListQuery,
 	useGetProductQuery,
 	useGetProductsCountQuery,
+	useGetProductsGroupedByCategoryQuery,
 	useAddProductMutation,
 	useDeleteProductMutation,
 	useUpdateProductMutation,

@@ -15,9 +15,8 @@ import {
 	ProductViewContainer,
 	QuantityBox,
 } from './ProductViewStyles';
-import Spinner from '../../../components/Spinner';
 import { styled } from '../../../../stitches.config';
-import CategoryStack from '../CategoryStack';
+import { ProductInfo, ProductOverview } from '../productTypes';
 
 const SectionPartImage = styled('div', {
 	width: '48%',
@@ -25,15 +24,12 @@ const SectionPartImage = styled('div', {
 });
 
 type Props = {
-	productId: string;
+	product: ProductInfo;
 };
 
-const ProductView = ({ productId }: Props) => {
-	const { isLoading, isError, data } = useGetProductQuery({ productId });
+const ProductView = ({ product }: Props) => {
 	const [quantity, setQuantity] = useState(1);
 	const dispatch = useAppDispatch();
-
-	const product = data?.getProduct;
 
 	const handleQuantityChange = (e: React.FormEvent<HTMLInputElement>) => {
 		if (Number(e!.currentTarget!.value) > product!.countInStock) {
@@ -51,11 +47,7 @@ const ProductView = ({ productId }: Props) => {
 		});
 	};
 
-	return isLoading ? (
-		<Spinner />
-	) : isError ? (
-		<div>Error</div>
-	) : (
+	return (
 		<>
 			<ProductViewContainer>
 				<SectionPartImage>
@@ -115,14 +107,6 @@ const ProductView = ({ productId }: Props) => {
 					</ProductDetails>
 				</SectionPartText>
 			</ProductViewContainer>
-
-			<CategoryStack
-				productId={product!.id}
-				category={product!.category}
-				key={product!.category}
-				title="Similar products"
-				margin="top"
-			/>
 		</>
 	);
 };
