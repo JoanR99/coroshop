@@ -4,17 +4,19 @@ import { getReviews } from './reviewQueries';
 import {
 	AddReviewResponse,
 	DeleteReviewResponse,
-	GetReviewResponse,
+	GetReviewsResponse,
 } from './reviewTypes';
 
 const reviewApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getReviews: builder.query<GetReviewResponse, { productId: string }>({
+		getReviews: builder.query<GetReviewsResponse, { productId: string }>({
 			query: ({ productId }) => ({
 				document: getReviews,
 				variables: { productId },
 			}),
-			providesTags: ['reviews'],
+			providesTags: (_result, _error, params) => [
+				{ type: 'products', productId: params.productId },
+			],
 		}),
 		addReview: builder.mutation<
 			AddReviewResponse,

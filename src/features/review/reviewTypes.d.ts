@@ -11,7 +11,7 @@ export interface Review {
 	product: string;
 }
 
-export interface GetReviewResponse {
+export interface GetReviewsResponse {
 	getReviews: Review[];
 }
 
