@@ -10,6 +10,17 @@ const SearchContainer = styled('div', {
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	width: '24rem',
+
+	variants: {
+		display: {
+			none: {
+				display: 'none',
+			},
+			display: {
+				display: 'flex',
+			},
+		},
+	},
 });
 
 const SearchInput = styled('input', {
@@ -31,7 +42,12 @@ const SearchBar = () => {
 	};
 
 	return (
-		<SearchContainer>
+		<SearchContainer
+			display={{
+				'@initial': 'none',
+				'@sm': 'display',
+			}}
+		>
 			<SearchInput
 				type="text"
 				name="search"

@@ -52,6 +52,19 @@ const CartIconContainer = styled('button', {
 	alignItems: 'center',
 	justifyContent: 'center',
 	cursor: 'pointer',
+
+	variants: {
+		size: {
+			small: {
+				width: '20px',
+				height: '20px',
+			},
+			normal: {
+				width: '30px',
+				height: '30px',
+			},
+		},
+	},
 });
 
 const CartDropDown = () => {
@@ -69,7 +82,12 @@ const CartDropDown = () => {
 	return (
 		<Popover.Root open={isCartOpen} onOpenChange={toggleCartOpen}>
 			<Popover.Trigger asChild>
-				<CartIconContainer>
+				<CartIconContainer
+					size={{
+						'@initial': 'small',
+						'@sm': 'normal',
+					}}
+				>
 					<CartIcon />
 				</CartIconContainer>
 			</Popover.Trigger>

@@ -1,12 +1,23 @@
 import { styled } from '../../stitches.config';
 
 const Button = styled('button', {
-	borderRadius: '5rem',
-	padding: '1rem 2rem',
+	borderRadius: '1rem',
 	border: 'none',
 	cursor: 'pointer',
+	padding: '1rem 2rem',
 
 	variants: {
+		size: {
+			small: {
+				fontSize: '1.2rem',
+				padding: '0.5rem 1rem',
+				borderRadius: '0.5rem',
+			},
+			normal: {
+				fontSize: '1.6rem',
+				padding: '1rem 2rem',
+			},
+		},
 		variant: {
 			main: {
 				backgroundColor: '$action',

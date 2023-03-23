@@ -8,30 +8,73 @@ import { Container } from './Container';
 
 const NavbarBody = styled('div', {
 	backgroundColor: '$main',
-	height: '5rem',
-	padding: '1rem',
+
+	variants: {
+		height: {
+			small: {
+				height: '3.5rem',
+				padding: '0.5rem',
+			},
+			normal: {
+				height: '5rem',
+				padding: '1rem',
+			},
+		},
+	},
 });
 
 const NavbarContainer = styled(Container, {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
+	height: '100%',
 });
 
 const Navbar = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);
 	return (
-		<NavbarBody>
+		<NavbarBody
+			height={{
+				'@initial': 'small',
+				'@sm': 'normal',
+			}}
+		>
 			<NavbarContainer>
-				<LinkContainer>
-					<StyledLink5 to="/products" theme="light">
+				<LinkContainer
+					gap={{
+						'@initial': '1',
+						'@sm': '2',
+					}}
+				>
+					<StyledLink5
+						to="/products"
+						theme="light"
+						size={{
+							'@initial': 'small',
+							'@sm': 'normal',
+						}}
+					>
 						Products
 					</StyledLink5>
-					<StyledLink5 to="/categories" theme="light">
+					<StyledLink5
+						to="/categories"
+						theme="light"
+						size={{
+							'@initial': 'small',
+							'@sm': 'normal',
+						}}
+					>
 						Categories
 					</StyledLink5>
 					{isAdmin && (
-						<StyledLink5 to="/admin/product-list" theme="light">
+						<StyledLink5
+							to="/admin/product-list"
+							theme="light"
+							size={{
+								'@initial': 'small',
+								'@sm': 'normal',
+							}}
+						>
 							Admin
 						</StyledLink5>
 					)}

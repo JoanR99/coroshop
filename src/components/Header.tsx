@@ -10,11 +10,22 @@ import { Container } from './Container';
 
 const HeaderBody = styled('div', {
 	backgroundColor: '#f1faee',
-	height: '5rem',
-	padding: '1rem',
 
 	'&.shadow': {
 		boxShadow: '0 1.5rem 4rem rgba(0, 0, 0, 0.2)',
+	},
+
+	variants: {
+		height: {
+			small: {
+				height: '3.5rem',
+				padding: '0.5rem',
+			},
+			normal: {
+				height: '5rem',
+				padding: '1rem',
+			},
+		},
 	},
 });
 
@@ -42,9 +53,22 @@ const Header = ({ shadow }: Props) => {
 	const clickHandler = () => navigate('profile');
 
 	return (
-		<HeaderBody className={`${shadow ? 'shadow' : ''}`}>
+		<HeaderBody
+			className={`${shadow ? 'shadow' : ''}`}
+			height={{
+				'@initial': 'small',
+				'@sm': 'normal',
+			}}
+		>
 			<HeaderContainer>
-				<StyledLink3 to="/" theme="dark">
+				<StyledLink3
+					to="/"
+					theme="dark"
+					size={{
+						'@initial': 'small',
+						'@sm': 'normal',
+					}}
+				>
 					COROSHOP
 				</StyledLink3>
 
@@ -57,11 +81,25 @@ const Header = ({ shadow }: Props) => {
 					</FlexDiv>
 				) : (
 					<LinkContainer>
-						<StyledLink4 to="/login" theme="dark">
+						<StyledLink4
+							to="/login"
+							theme="dark"
+							size={{
+								'@initial': 'small',
+								'@sm': 'normal',
+							}}
+						>
 							Login
 						</StyledLink4>
 
-						<StyledLink4 to="/register" theme="dark">
+						<StyledLink4
+							to="/register"
+							theme="dark"
+							size={{
+								'@initial': 'small',
+								'@sm': 'normal',
+							}}
+						>
 							Register
 						</StyledLink4>
 					</LinkContainer>

@@ -11,6 +11,17 @@ export const Heading1 = styled('h1', {
 	lineHeight: 1,
 	marginBottom: '2rem',
 	...BaseHeading,
+
+	variants: {
+		size: {
+			small: {
+				fontSize: '2rem',
+			},
+			normal: {
+				fontSize: '3rem',
+			},
+		},
+	},
 });
 
 export const Heading2 = styled('h2', {

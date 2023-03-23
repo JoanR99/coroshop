@@ -5,11 +5,39 @@ export const SectionContainer = styled('section', {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	height: '58.2rem',
+	height: 'auto',
+
+	variants: {
+		flex: {
+			column: {
+				flexDirection: 'column',
+				gap: '2rem',
+			},
+			'column-reverse': {
+				flexDirection: 'column-reverse',
+				gap: '2rem',
+			},
+			row: {
+				flexDirection: 'row',
+			},
+		},
+	},
 });
 
 export const SectionPartText = styled('div', {
 	width: '48%',
+
+	variants: {
+		width: {
+			half: {
+				width: '48%',
+			},
+			full: {
+				width: '80%',
+				mb: '2rem',
+			},
+		},
+	},
 });
 
 export const Section = styled('div', {
