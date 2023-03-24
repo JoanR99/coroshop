@@ -1,16 +1,15 @@
 import SearchBar from './SearchBar';
-import { StyledLink5, LinkContainer } from './StyledLink';
+import StyledLink from './StyledLink';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import { useAppSelector } from '../app/hooks';
-import { styled } from '../../stitches.config';
+import { styled, css } from '../../stitches.config';
 import CartDropDown from '../features/cart/CartDropDown';
 import { Container } from './Container';
+import Flex from './Flex';
 
-const NavbarBody = styled('div', {
-	backgroundColor: '$main',
-
+export const navbarCss = css({
 	variants: {
-		height: {
+		size: {
 			small: {
 				height: '3.5rem',
 				padding: '0.5rem',
@@ -20,8 +19,18 @@ const NavbarBody = styled('div', {
 				padding: '1rem',
 			},
 		},
+		color: {
+			main: {
+				backgroundColor: '$main',
+			},
+			light: {
+				backgroundColor: '$light',
+			},
+		},
 	},
 });
+
+const NavbarBody = styled('div', navbarCss);
 
 const NavbarContainer = styled(Container, {
 	display: 'flex',
@@ -34,51 +43,54 @@ const Navbar = () => {
 	const isAdmin = useAppSelector(selectIsAdmin);
 	return (
 		<NavbarBody
-			height={{
+			size={{
 				'@initial': 'small',
 				'@sm': 'normal',
 			}}
+			color="main"
 		>
 			<NavbarContainer>
-				<LinkContainer
+				<Flex
+					justify="between"
+					align="center"
 					gap={{
-						'@initial': '1',
-						'@sm': '2',
+						'@initial': 1,
+						'@sm': 2,
 					}}
 				>
-					<StyledLink5
+					<StyledLink
 						to="/products"
 						theme="light"
-						size={{
-							'@initial': 'small',
-							'@sm': 'normal',
+						fontSize={{
+							'@initial': 1,
+							'@sm': 2,
 						}}
 					>
 						Products
-					</StyledLink5>
-					<StyledLink5
+					</StyledLink>
+					<StyledLink
 						to="/categories"
 						theme="light"
-						size={{
-							'@initial': 'small',
-							'@sm': 'normal',
+						fontSize={{
+							'@initial': 1,
+							'@sm': 2,
 						}}
 					>
 						Categories
-					</StyledLink5>
+					</StyledLink>
 					{isAdmin && (
-						<StyledLink5
+						<StyledLink
 							to="/admin/product-list"
 							theme="light"
-							size={{
-								'@initial': 'small',
-								'@sm': 'normal',
+							fontSize={{
+								'@initial': 1,
+								'@sm': 2,
 							}}
 						>
 							Admin
-						</StyledLink5>
+						</StyledLink>
 					)}
-				</LinkContainer>
+				</Flex>
 				<div>
 					<SearchBar />
 				</div>

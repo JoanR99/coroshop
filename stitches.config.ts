@@ -52,3 +52,22 @@ export const {
 		}),
 	},
 });
+
+export const globalStyles = globalCss({
+	'*, *::before, *::after': {
+		margin: 0,
+		padding: 0,
+		boxSizing: 'inherit',
+	},
+
+	html: {
+		fontSize: '62.5%',
+	},
+
+	body: {
+		fontFamily: "'Lato', sans-serif",
+		fontWeight: 400,
+		lineHeight: 1.75,
+		boxSizing: 'border-box',
+	},
+});

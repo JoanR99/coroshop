@@ -38,7 +38,14 @@ const ReviewCard = ({ review, productId }: Props) => {
 		<CardReview>
 			<CardBody>
 				<CardItem>
-					<Heading4>{review.authorName}</Heading4>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						{review.authorName}
+					</Heading4>
 				</CardItem>
 				<CardItem>
 					<Rating

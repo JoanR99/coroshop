@@ -36,6 +36,21 @@ const CartDropdownContainer = styled(Popover.Content, {
 	"&[data-state='open'][data-side='bottom']": {
 		animationName: `${slideUpAndFade}`,
 	},
+
+	variants: {
+		size: {
+			small: {
+				width: '25rem',
+				height: '35rem',
+				padding: '1rem',
+			},
+			normal: {
+				width: '30rem',
+				height: '40rem',
+				padding: '2rem',
+			},
+		},
+	},
 });
 
 const Arrow = styled(Popover.Arrow, {
@@ -92,9 +107,25 @@ const CartDropDown = () => {
 				</CartIconContainer>
 			</Popover.Trigger>
 			<Popover.Portal>
-				<CartDropdownContainer>
+				<CartDropdownContainer
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+				>
 					<CartItems />
-					<Button variant="main" onClick={clickHandler}>
+					<Button
+						variant="main"
+						size={{
+							'@initial': 'small',
+							'@md': 'normal',
+						}}
+						fontSize={{
+							'@initial': 1,
+							'@md': 2,
+						}}
+						onClick={clickHandler}
+					>
 						GO TO CART
 					</Button>
 					<Arrow />

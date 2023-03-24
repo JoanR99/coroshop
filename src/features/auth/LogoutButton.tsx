@@ -42,7 +42,19 @@ const LogoutButton = () => {
 	};
 
 	return (
-		<Button variant="linkLight" onClick={handleClick}>
+		<Button
+			variant="linkLight"
+			onClick={handleClick}
+			fontWeight="bold"
+			fontSize={{
+				'@initial': 1,
+				'@sm': 2,
+			}}
+			size={{
+				'@initial': 'small',
+				'@sm': 'normal',
+			}}
+		>
 			Logout
 		</Button>
 	);

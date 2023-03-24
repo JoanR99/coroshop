@@ -25,7 +25,7 @@ const ProductCard = ({ product }: Props) => {
 			<CardImage src={product.image} />
 			<CardBody>
 				<CardItem>
-					<Heading4>{product.name}</Heading4>
+					<Heading4 size={1}>{product.name}</Heading4>
 				</CardItem>
 				<CardItem>
 					<Rating

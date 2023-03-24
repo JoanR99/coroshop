@@ -1,54 +1,86 @@
-import { styled } from '../../stitches.config';
+import { styled, css } from '../../stitches.config';
 
-const BaseHeading = {
-	fontWeight: 'bold',
+const baseHeadingCss = css({
 	color: '$main_dark',
-};
-
-export const Heading1 = styled('h1', {
-	fontSize: '3rem',
-	textTransform: 'uppercase',
-	lineHeight: 1,
-	marginBottom: '2rem',
-	...BaseHeading,
+	lineHeight: 1.2,
 
 	variants: {
 		size: {
-			small: {
-				fontSize: '2rem',
+			1: {
+				fontSize: '1.563rem',
 			},
-			normal: {
-				fontSize: '3rem',
+			2: {
+				fontSize: '1.953rem',
+			},
+			3: {
+				fontSize: '2.441rem',
+			},
+			4: {
+				fontSize: '3.052rem',
+			},
+			5: {
+				fontSize: '3.815rem',
+			},
+		},
+		transform: {
+			uppercase: {
+				textTransform: 'uppercase',
+			},
+			capitalize: {
+				textTransform: 'capitalize',
+			},
+			lowercase: {
+				textTransform: 'lowercase',
 			},
 		},
 	},
 });
 
-export const Heading2 = styled('h2', {
-	fontSize: '2.4rem',
-	...BaseHeading,
-
-	variants: {
-		space: {
-			bottom: {
-				mb: '1.5rem',
-			},
-		},
+export const Heading1 = styled('h1', baseHeadingCss, {
+	lineHeight: 1,
+	defaultVariants: {
+		size: 5,
+		transform: 'uppercase',
 	},
 });
 
-export const Heading3 = styled('h3', {
-	fontSize: '1.9rem',
-	...BaseHeading,
+export const Heading2 = styled('h2', baseHeadingCss, {
+	defaultVariants: {
+		size: 4,
+	},
 });
 
-export const Heading4 = styled('h4', {
-	fontSize: '1.4rem',
-	...BaseHeading,
+export const Heading3 = styled('h3', baseHeadingCss, {
+	defaultVariants: {
+		size: 3,
+	},
+});
+
+export const Heading4 = styled('h4', baseHeadingCss, {
+	defaultVariants: {
+		size: 2,
+	},
 });
 
 export const Paragraph = styled('p', {
 	fontFamily: "'Montserrat', sans-serif",
-	fontSize: '1.4rem',
 	color: '$main_dark',
+
+	variants: {
+		fontSize: {
+			1: {
+				fontSize: '1rem',
+			},
+			2: {
+				fontSize: '1.25rem',
+			},
+			3: {
+				fontSize: '1.563rem',
+			},
+		},
+	},
+
+	defaultVariants: {
+		fontSize: 2,
+	},
 });

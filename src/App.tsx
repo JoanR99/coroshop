@@ -24,8 +24,10 @@ import OrdersList from './screens/OrdersList';
 import Admin from './screens/Admin';
 import Categories from './screens/Categories';
 import CategoryProducts from './screens/CategoryProducts';
+import { globalStyles } from '../stitches.config';
 
 function App() {
+	globalStyles();
 	return (
 		<>
 			<ToastContainer />

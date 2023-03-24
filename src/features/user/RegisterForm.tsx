@@ -84,7 +84,19 @@ const RegisterForm = () => {
 					id="passwordConfirm"
 					required
 				/>
-				<Button variant="main">Register</Button>
+				<Button
+					variant="main"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize={{
+						'@initial': '1',
+						'@md': '2',
+					}}
+				>
+					Register
+				</Button>
 			</form>
 		</FormProvider>
 	);

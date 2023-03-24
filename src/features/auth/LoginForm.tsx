@@ -101,7 +101,19 @@ const LoginForm = () => {
 					required
 				/>
 
-				<Button variant="main">Login</Button>
+				<Button
+					variant="main"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize={{
+						'@initial': '1',
+						'@md': '2',
+					}}
+				>
+					Login
+				</Button>
 			</form>
 		</FormProvider>
 	);

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -8,13 +7,12 @@ import {
 	useUpdateOrderToDeliveredMutation,
 } from '../features/order/orderApiSlice';
 import { Container, StyledContainer } from '../components/Container';
-import { Section, SectionHeading } from '../components/Section';
+import { FlexSection } from '../components/Section';
 import OrderItems from '../features/order/OrderItems';
 
 import { useAppSelector } from '../app/hooks';
 import { selectIsAdmin } from '../features/auth/authSlice';
 import Button from '../components/Button';
-import Spinner from '../components/Spinner';
 import PaypalPayment from '../features/order/PaypalPayment';
 import StripePayment from '../features/order/StripePayment';
 
@@ -57,19 +55,19 @@ const Order = () => {
 	return isLoading ? (
 		<div>Loading</div>
 	) : (
-		<Container display="flex_start" space="top">
+		<Container>
 			<StyledContainer size="main">
-				<Heading2 space="bottom">Order {order?.getOrderById.id}</Heading2>
+				<Heading2>Order {order?.getOrderById.id}</Heading2>
 
-				<Section>
-					<SectionHeading>Shipping</SectionHeading>
+				<FlexSection>
+					<Heading2>Shipping</Heading2>
 					<Paragraph>
 						<strong>Name: </strong> {order?.getOrderById.orderByName}
 					</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Address</SectionHeading>
+				<FlexSection>
+					<Heading2>Address</Heading2>
 					<Paragraph>
 						<strong>Address: </strong>
 						{order?.getOrderById.shippingAddress.address},{' '}
@@ -89,10 +87,10 @@ const Order = () => {
 							<span>Not delivered</span>
 						)}
 					</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Payment Method</SectionHeading>
+				<FlexSection>
+					<Heading2>Payment Method</Heading2>
 					<Paragraph>
 						<strong>Method: </strong>
 						{order?.getOrderById.paymentMethod}
@@ -107,36 +105,36 @@ const Order = () => {
 							<span>Not Paid</span>
 						)}
 					</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Order Items</SectionHeading>
+				<FlexSection>
+					<Heading2>Order Items</Heading2>
 					{order?.getOrderById.orderItems.map((orderItem) => (
 						<OrderItems key={orderItem.productName} item={orderItem} />
 					))}
-				</Section>
+				</FlexSection>
 			</StyledContainer>
 
 			<StyledContainer size="secondary">
-				<Heading2 space="bottom">Order Summary</Heading2>
-				<Section>
-					<SectionHeading>Items</SectionHeading>
+				<Heading2>Order Summary</Heading2>
+				<FlexSection>
+					<Heading2>Items</Heading2>
 					<Paragraph>${itemsPrice}</Paragraph>
-				</Section>
-				<Section>
-					<SectionHeading>Shipping</SectionHeading>
+				</FlexSection>
+				<FlexSection>
+					<Heading2>Shipping</Heading2>
 					<Paragraph>${order?.getOrderById.shippingPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Tax</SectionHeading>
+				<FlexSection>
+					<Heading2>Tax</Heading2>
 					<Paragraph>${order?.getOrderById.taxPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Total</SectionHeading>
+				<FlexSection>
+					<Heading2>Total</Heading2>
 					<Paragraph>${order?.getOrderById.totalPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
 				{!order!.getOrderById.isPaid &&
 					!isAdmin &&

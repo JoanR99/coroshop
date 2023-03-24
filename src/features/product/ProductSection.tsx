@@ -4,11 +4,12 @@ import { styled } from '../../../stitches.config';
 import Button from '../../components/Button';
 import { Heading1, Paragraph } from '../../components/Typography';
 import img from '../../assets/images/products.jpg';
-import { SectionContainer, SectionPartText } from '../../components/Section';
+import { FlexSection } from '../../components/Section';
 import { Container } from '../../components/Container';
+import { Box } from '../../components/Box';
 
 export const SectionImage = styled('div', {
-	width: '48%',
+	width: '50%',
 
 	variants: {
 		width: {
@@ -49,25 +50,14 @@ export const SectionImage = styled('div', {
 					rgba(33, 175, 128, 0),
 					rgba(33, 175, 128, 0),
 					rgba(33, 175, 128, 0),
-					rgba(255, 255, 255, 0.9)
+					rgba(33, 175, 128, 0),
+					rgba(33, 175, 128, 0),
+					rgba(33, 175, 128, 0),
+					rgba(255, 255, 255, 0.9),
+					rgba(255, 255, 255, 1)
 				),
 				url(${img})`,
 				backgroundSize: 'cover',
-			},
-		},
-	},
-});
-
-const Text = styled(Paragraph, {
-	mb: '2rem',
-
-	variants: {
-		size: {
-			small: {
-				fontSize: '1.2rem',
-			},
-			normal: {
-				fontSize: '1.6rem',
 			},
 		},
 	},
@@ -79,8 +69,8 @@ const ProductSection = () => {
 	const clickHandler = () => navigate('/products');
 
 	return (
-		<SectionContainer
-			flex={{
+		<FlexSection
+			direction={{
 				'@initial': 'column',
 				'@md': 'row',
 			}}
@@ -99,32 +89,41 @@ const ProductSection = () => {
 					'@md': 'right',
 				}}
 			/>
-			<SectionPartText
-				width={{
-					'@initial': 'full',
-					'@md': 'half',
-				}}
-			>
-				<Container>
+			<Box css={{ width: '80%', '@md': { width: '50%' } }}>
+				<Container
+					css={{
+						my: '2rem',
+						'@md': {
+							height: '100%',
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'start',
+							my: '0',
+						},
+					}}
+				>
 					<Heading1
+						css={{ mb: '2rem' }}
 						size={{
-							'@initial': 'small',
-							'@md': 'normal',
+							'@initial': 4,
+							'@md': 5,
 						}}
 					>
 						Here you can find the most recent tech products
 					</Heading1>
-					<Text
-						size={{
-							'@initial': 'small',
-							'@md': 'normal',
+					<Paragraph
+						fontSize={{
+							'@initial': 2,
+							'@md': 3,
 						}}
+						css={{ mb: '2rem' }}
 					>
 						Coroshop brings you the latest products on the market with the most
 						modern technology at the best prices. In addition, we also offer
 						international shipping and a panel where you can see the status of
 						your orders.
-					</Text>
+					</Paragraph>
 					<Button
 						variant="main"
 						onClick={clickHandler}
@@ -132,12 +131,13 @@ const ProductSection = () => {
 							'@initial': 'small',
 							'@md': 'normal',
 						}}
+						fontSize="1"
 					>
 						All Products
 					</Button>
 				</Container>
-			</SectionPartText>
-		</SectionContainer>
+			</Box>
+		</FlexSection>
 	);
 };
 

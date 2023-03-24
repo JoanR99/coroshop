@@ -12,7 +12,8 @@ import { StyledContainer } from './Container';
 import { styled } from '../../stitches.config';
 import Button from './Button';
 import { Input } from './FormInput';
-import { Heading2, Heading3, Heading4 } from './Typography';
+import { Heading3, Heading4 } from './Typography';
+import Flex from './Flex';
 
 const FilterContainer = styled(StyledContainer, {
 	display: 'flex',
@@ -20,26 +21,9 @@ const FilterContainer = styled(StyledContainer, {
 	width: 'fit-content',
 });
 
-const InputGroup = styled('div', {
-	display: 'flex',
-	alignItems: 'start',
-	gap: '1rem',
-});
-
-const InputSection = styled('div', {
-	display: 'flex',
-	flexDirection: 'column',
-	my: '1rem',
-});
-
 const PriceInput = styled(Input, {
 	maxWidth: '10rem',
 	fontSize: '1.2rem',
-});
-
-const FilterButton = styled(Button, {
-	fontSize: '1.2rem',
-	padding: '0.8rem 1.2rem',
 });
 
 function FilterCard() {
@@ -86,24 +70,50 @@ function FilterCard() {
 
 	return (
 		<FilterContainer>
-			<Heading3>Filters</Heading3>
-			<InputSection>
-				<Heading4>Rating</Heading4>
-				<InputGroup>
+			<Heading3
+				size={{
+					'@initial': 2,
+					'@md': 3,
+				}}
+			>
+				Filters
+			</Heading3>
+			<Flex direction="column" css={{ my: '1rem' }}>
+				<Heading4
+					size={{
+						'@initial': 1,
+						'@md': 2,
+					}}
+				>
+					Rating
+				</Heading4>
+				<Flex align="start" gap={1}>
 					<Rating
 						ratingValue={Number(minRating)}
 						onClick={(rating: number) => setMinRatingLimit(String(rating))}
 						size={30}
 					/>
-					<FilterButton variant="main" onClick={handleMinRating}>
+					<Button
+						size={{ '@initial': 'small', '@md': 'normal' }}
+						fontSize={{ '@initial': 1, '@md': 2 }}
+						variant="main"
+						onClick={handleMinRating}
+					>
 						Filter
-					</FilterButton>
-				</InputGroup>
-			</InputSection>
+					</Button>
+				</Flex>
+			</Flex>
 
-			<InputSection>
-				<Heading4>Price</Heading4>
-				<InputGroup>
+			<Flex direction="column" css={{ my: '1rem' }}>
+				<Heading4
+					size={{
+						'@initial': 1,
+						'@md': 2,
+					}}
+				>
+					Price
+				</Heading4>
+				<Flex align="start" gap={1}>
 					<PriceInput
 						type="number"
 						name="minPriceLimit"
@@ -124,14 +134,24 @@ function FilterCard() {
 						min={1}
 					/>
 
-					<FilterButton variant="main" onClick={handleFilterPrice}>
+					<Button
+						variant="main"
+						size={{ '@initial': 'small', '@md': 'normal' }}
+						fontSize={{ '@initial': 1, '@md': 2 }}
+						onClick={handleFilterPrice}
+					>
 						Filter
-					</FilterButton>
-				</InputGroup>
-			</InputSection>
+					</Button>
+				</Flex>
+			</Flex>
 
 			{hasFilterChange && (
-				<Button variant="main" onClick={handleReset}>
+				<Button
+					variant="main"
+					size={{ '@initial': 'small', '@md': 'normal' }}
+					fontSize={{ '@initial': 1, '@md': 2 }}
+					onClick={handleReset}
+				>
 					Clear Filters
 				</Button>
 			)}

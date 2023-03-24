@@ -1,21 +1,37 @@
 import { styled } from '../../stitches.config';
 
 const Button = styled('button', {
-	borderRadius: '1rem',
 	border: 'none',
 	cursor: 'pointer',
-	padding: '1rem 2rem',
 
 	variants: {
 		size: {
 			small: {
-				fontSize: '1.2rem',
 				padding: '0.5rem 1rem',
 				borderRadius: '0.5rem',
 			},
 			normal: {
-				fontSize: '1.6rem',
 				padding: '1rem 2rem',
+				borderRadius: '1rem',
+			},
+		},
+		fontSize: {
+			3: {
+				fontSize: '1.9rem',
+			},
+			2: {
+				fontSize: '1.6rem',
+			},
+			1: {
+				fontSize: '1.2rem',
+			},
+		},
+		fontWeight: {
+			regular: {
+				fontWeight: 'normal',
+			},
+			bold: {
+				fontWeight: 'bold',
 			},
 		},
 		variant: {
@@ -38,11 +54,8 @@ const Button = styled('button', {
 			},
 			search: {
 				backgroundColor: '$main_light',
-				padding: '0.5rem 1rem',
 			},
 			linkLight: {
-				fontSize: '1.6rem',
-				fontWeight: 'bold',
 				color: '$main_dark',
 				backgroundColor: 'transparent',
 				'&:hover': {
@@ -50,14 +63,20 @@ const Button = styled('button', {
 				},
 			},
 			linkDark: {
-				fontSize: '1.6rem',
-				fontWeight: 'bold',
+				backgroundColor: 'transparent',
 				color: '$light',
 				'&:hover': {
 					color: '$action',
 				},
 			},
 		},
+	},
+
+	defaultVariants: {
+		variant: 'main',
+		size: 'normal',
+		fontSize: '2',
+		fontWeight: 'regular',
 	},
 });
 

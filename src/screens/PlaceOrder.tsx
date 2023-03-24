@@ -10,7 +10,7 @@ import {
 	selectPaymentMethod,
 	selectShippingAddress,
 } from '../features/cart/cartSlice';
-import { Section, SectionHeading } from '../components/Section';
+import { FlexSection } from '../components/Section';
 import { useAddOrderMutation } from '../features/order/orderApiSlice';
 import OrderItems from '../features/order/OrderItems';
 import { useAppSelector } from '../app/hooks';
@@ -74,54 +74,54 @@ const PlaceOrder = () => {
 	};
 
 	return (
-		<Container display="flex_start" space="top">
+		<Container>
 			<StyledContainer size="main">
-				<Heading2 space="bottom">Order Information</Heading2>
-				<Section>
-					<SectionHeading>Shipping</SectionHeading>
+				<Heading2>Order Information</Heading2>
+				<FlexSection>
+					<Heading2>Shipping</Heading2>
 					<Paragraph>
 						<strong>Address: </strong>
 						{shippingAddress.address}, {shippingAddress.city}{' '}
 						{shippingAddress.postalCode}, {shippingAddress.country}
 					</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Payment Method</SectionHeading>
+				<FlexSection>
+					<Heading2>Payment Method</Heading2>
 					<Paragraph>
 						<strong>Method: </strong>
 						{paymentMethod}
 					</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Order Items</SectionHeading>
+				<FlexSection>
+					<Heading2>Order Items</Heading2>
 					{cartItems.map((cartItem) => (
 						<OrderItems key={cartItem.id} item={cartItem} />
 					))}
-				</Section>
+				</FlexSection>
 			</StyledContainer>
 
 			<StyledContainer size="secondary">
-				<Heading2 space="bottom">Order Summary</Heading2>
-				<Section>
-					<SectionHeading>Items</SectionHeading>
+				<Heading2>Order Summary</Heading2>
+				<FlexSection>
+					<Heading2>Items</Heading2>
 					<Paragraph>${itemsPrice}</Paragraph>
-				</Section>
-				<Section>
-					<SectionHeading>Shipping</SectionHeading>
+				</FlexSection>
+				<FlexSection>
+					<Heading2>Shipping</Heading2>
 					<Paragraph>${shippingPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Tax</SectionHeading>
+				<FlexSection>
+					<Heading2>Tax</Heading2>
 					<Paragraph>${taxPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
-				<Section>
-					<SectionHeading>Total</SectionHeading>
+				<FlexSection>
+					<Heading2>Total</Heading2>
 					<Paragraph>${totalPrice}</Paragraph>
-				</Section>
+				</FlexSection>
 
 				<Button
 					variant="main"

@@ -23,19 +23,8 @@ const Input = styled(FormInput, {
 	width: '100%',
 });
 
-const Heading = styled(Heading3, {
-	mb: '2rem',
-});
-
 const StarsRating = styled(Rating, {
 	mb: '1rem',
-});
-
-const AddReviewContainer = styled(StyledContainer, {
-	mx: 'auto',
-	my: '8rem',
-	minWidth: '50rem',
-	width: '40vw',
 });
 
 const AddReview = ({ productId }: Props) => {
@@ -85,8 +74,16 @@ const AddReview = ({ productId }: Props) => {
 	};
 
 	return (
-		<AddReviewContainer>
-			<Heading>Add Review</Heading>
+		<StyledContainer css={{ mx: 'auto', my: '8rem', '@lg': { width: '40vw' } }}>
+			<Heading3
+				css={{ mb: '2rem' }}
+				size={{
+					'@initial': '2',
+					'@md': '3',
+				}}
+			>
+				Add Review
+			</Heading3>
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(submitHandler)}
@@ -103,10 +100,22 @@ const AddReview = ({ productId }: Props) => {
 						required
 					/>
 
-					<Button variant="main">Add Review</Button>
+					<Button
+						variant="main"
+						size={{
+							'@initial': 'small',
+							'@lg': 'normal',
+						}}
+						fontSize={{
+							'@initial': '1',
+							'@lg': '2',
+						}}
+					>
+						Add Review
+					</Button>
 				</form>
 			</FormProvider>
-		</AddReviewContainer>
+		</StyledContainer>
 	);
 };
 

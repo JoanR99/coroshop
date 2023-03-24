@@ -9,8 +9,17 @@ type Props = {
 const CartItemContainer = styled('div', {
 	width: '100%',
 	display: 'flex',
-	height: '8rem',
-	mb: '1.5rem',
+
+	variants: {
+		height: {
+			small: {
+				height: '6rem',
+			},
+			normal: {
+				height: '8rem',
+			},
+		},
+	},
 });
 
 const ItemImage = styled('img', {
@@ -30,10 +39,23 @@ const ItemOnCart = ({ cartItem }: Props) => {
 	const { name, image, price, quantity } = cartItem;
 
 	return (
-		<CartItemContainer>
+		<CartItemContainer
+			height={{
+				'@initial': 'small',
+				'@md': 'normal',
+			}}
+			css={{ mb: '1rem', '@md': { mb: '1.5rem' } }}
+		>
 			<ItemImage src={image} alt={name} />
 			<ItemDetails>
-				<Heading4>{name}</Heading4>
+				<Heading4
+					size={{
+						'@initial': '1',
+						'@md': '2',
+					}}
+				>
+					{name}
+				</Heading4>
 				<Paragraph>
 					{quantity} x ${price}
 				</Paragraph>

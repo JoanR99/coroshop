@@ -4,12 +4,9 @@ import { styled } from '../../../stitches.config';
 import Button from '../../components/Button';
 import { Heading1, Paragraph } from '../../components/Typography';
 import img from '../../assets/images/iphone.jpg';
-import { SectionContainer, SectionPartText } from '../../components/Section';
 import { Container } from '../../components/Container';
-
-const Section = styled(SectionContainer, {
-	backgroundColor: '$main_light',
-});
+import { FlexSection } from '../../components/Section';
+import { Box } from '../../components/Box';
 
 export const SectionImage = styled('div', {
 	width: '48%',
@@ -17,7 +14,7 @@ export const SectionImage = styled('div', {
 	variants: {
 		width: {
 			half: {
-				width: '48%',
+				width: '50%',
 			},
 			full: {
 				width: '100%',
@@ -70,58 +67,53 @@ export const SectionImage = styled('div', {
 	},
 });
 
-const Text = styled(Paragraph, {
-	mb: '2rem',
-
-	variants: {
-		size: {
-			small: {
-				fontSize: '1.2rem',
-			},
-			normal: {
-				fontSize: '1.6rem',
-			},
-		},
-	},
-});
-
 const CategoriesSection = () => {
 	const navigate = useNavigate();
 
 	const clickHandler = () => navigate('/categories');
 
 	return (
-		<Section
-			flex={{
-				'@initial': 'column-reverse',
+		<FlexSection
+			css={{ backgroundColor: '$main_light' }}
+			direction={{
+				'@initial': 'columnReverse',
 				'@md': 'row',
 			}}
 		>
-			<SectionPartText
-				width={{
-					'@initial': 'full',
-					'@md': 'half',
-				}}
-			>
-				<Container>
+			<Box css={{ width: '80%', '@md': { width: '50%' } }}>
+				<Container
+					css={{
+						my: '2rem',
+						'@md': {
+							height: '100%',
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'start',
+							my: '0',
+						},
+					}}
+				>
 					<Heading1
+						css={{ mb: '2rem' }}
 						size={{
-							'@initial': 'small',
-							'@md': 'normal',
+							'@initial': 4,
+							'@md': 5,
 						}}
 					>
 						We got you cover
 					</Heading1>
-					<Text
-						size={{
-							'@initial': 'small',
-							'@md': 'normal',
+					<Paragraph
+						fontSize={{
+							'@initial': 2,
+							'@md': 3,
 						}}
+						css={{ mb: '2rem' }}
 					>
 						Search through the different categories to find the ideal device.
 						Here you can find the latest trends in smartphones, laptops, TV and
 						accessories.
-					</Text>
+					</Paragraph>
 					<Button
 						variant="main"
 						onClick={clickHandler}
@@ -129,11 +121,12 @@ const CategoriesSection = () => {
 							'@initial': 'small',
 							'@md': 'normal',
 						}}
+						fontSize="1"
 					>
 						Categories
 					</Button>
 				</Container>
-			</SectionPartText>
+			</Box>
 			<SectionImage
 				width={{
 					'@initial': 'full',
@@ -148,7 +141,7 @@ const CategoriesSection = () => {
 					'@md': 'left',
 				}}
 			/>
-		</Section>
+		</FlexSection>
 	);
 };
 

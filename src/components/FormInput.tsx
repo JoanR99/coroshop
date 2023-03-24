@@ -18,7 +18,6 @@ const HelperText = styled('p', {
 });
 
 export const Input = styled('input', {
-	fontSize: '1.5rem',
 	fontFamily: 'inherit',
 	color: 'inherit',
 	padding: '1.2rem 1.6rem',
@@ -42,6 +41,20 @@ export const Input = styled('input', {
 
 	'&::-webkit-input-placeholder': {
 		color: '$main',
+	},
+
+	variants: {
+		fontSize: {
+			1: {
+				fontSize: '1rem',
+			},
+			2: {
+				fontSize: '1.25rem',
+			},
+			3: {
+				fontSize: '1.563rem',
+			},
+		},
 	},
 });
 
@@ -89,6 +102,10 @@ const FormInput = ({
 						placeholder={otherProps.label}
 						className={!!errors[name] ? 'error' : ''}
 						aria-label={otherProps.label}
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
 					/>
 					<HelperText className={`${!!errors[name] ? 'error' : ''}`}>
 						{errors[name] ? (errors[name]?.message as string) : ''}

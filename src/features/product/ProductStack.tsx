@@ -1,4 +1,4 @@
-import { StyledLink4 } from '../../components/StyledLink';
+import StyledLink from '../../components/StyledLink';
 import { Heading3 } from '../../components/Typography';
 import { useGetProductsQuery } from './productApiSlice';
 import ProductCard from './ProductCard';
@@ -9,14 +9,6 @@ const StackContainer = styled('div', {
 	backgroundColor: '$main_light',
 	padding: '2rem',
 	borderRadius: '30px',
-
-	variants: {
-		margin: {
-			top: {
-				mt: '4rem',
-			},
-		},
-	},
 });
 
 const LinkDiv = styled('div', {
@@ -35,26 +27,31 @@ const Grid = styled('div', {
 
 const ProductStack = ({
 	title,
-	margin,
 	products,
 	category,
 }: {
 	title?: string;
-	margin?: 'top';
 	products: ProductOverview[];
 	category?: string;
 }) => {
 	return (
-		<StackContainer margin={margin}>
-			<Heading3>{title ? title : category}</Heading3>
+		<StackContainer>
+			<Heading3
+				size={{
+					'@initial': 2,
+					'@md': 3,
+				}}
+			>
+				{title ? title : category}
+			</Heading3>
 			<Grid>
 				{products?.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
 				<LinkDiv>
-					<StyledLink4 to={`/categories/${category}`} theme="dark">
+					<StyledLink to={`/categories/${category}`} theme="dark">
 						View more
-					</StyledLink4>
+					</StyledLink>
 				</LinkDiv>
 			</Grid>
 		</StackContainer>

@@ -3,28 +3,6 @@ import { styled } from '../../stitches.config';
 export const Container = styled('div', {
 	width: '90%',
 	margin: 'auto',
-
-	variants: {
-		display: {
-			flex_start: {
-				display: 'flex',
-				justifyContent: 'space-between',
-				alignItems: 'flex-start',
-			},
-			'flex-justify-center': {
-				display: 'flex',
-				justifyContent: 'center',
-			},
-		},
-		space: {
-			bottom: {
-				mb: '2rem',
-			},
-			top: {
-				mt: '2rem',
-			},
-		},
-	},
 });
 
 export const StyledContainer = styled('div', {

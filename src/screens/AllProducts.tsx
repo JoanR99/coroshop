@@ -13,6 +13,7 @@ import { styled } from '../../stitches.config';
 import { selectFilters } from '../features/product/filterProductsSlice';
 import { useAppSelector } from '../app/hooks';
 import FilterCard from '../components/FilterCard';
+import Flex from '../components/Flex';
 
 const ProductListContainer = styled(Container, {
 	display: 'flex',
@@ -20,17 +21,6 @@ const ProductListContainer = styled(Container, {
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	minHeight: '58rem',
-});
-
-const ProductPageContainer = styled('div', {
-	display: 'flex',
-	gap: '4rem',
-	alignItems: 'start',
-	mt: '2rem',
-});
-
-const MarginTopHeading = styled(Heading2, {
-	mt: '2rem',
 });
 
 const AllProducts = () => {
@@ -56,8 +46,27 @@ const AllProducts = () => {
 		<div>Something went wrong</div>
 	) : (
 		<Container>
-			<MarginTopHeading>All Products</MarginTopHeading>
-			<ProductPageContainer>
+			<Heading2
+				size={{
+					'@initial': 3,
+					'@md': 4,
+				}}
+				css={{ my: '2rem' }}
+			>
+				All Products
+			</Heading2>
+			<Flex
+				direction={{
+					'@initial': 'column',
+					'@lg': 'row',
+				}}
+				align={{
+					'@initial': 'center',
+					'@lg': 'start',
+				}}
+				gap={4}
+				css={{ mb: '2rem' }}
+			>
 				<FilterCard />
 
 				<ProductListContainer>
@@ -69,7 +78,7 @@ const AllProducts = () => {
 						onPageChange={pageChangeHandler}
 					/>
 				</ProductListContainer>
-			</ProductPageContainer>
+			</Flex>
 		</Container>
 	);
 };

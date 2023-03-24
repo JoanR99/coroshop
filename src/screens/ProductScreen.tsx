@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import ProductView from '../features/product/ProductView/ProductView';
+import ProductView from '../features/product/ProductView';
 import ReviewList from '../features/review/ReviewList';
 import AddReview from '../features/review/AddReview';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
@@ -26,7 +26,6 @@ const ProductScreen = () => {
 				category={data?.getProduct!.category}
 				products={data?.getProduct!.similarProducts!}
 				title="Similar products"
-				margin="top"
 			/>
 			{accessToken && <AddReview productId={id!} />}
 			<ReviewList reviews={data?.getProduct.reviews!} />

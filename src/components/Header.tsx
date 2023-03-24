@@ -4,41 +4,16 @@ import { styled } from '../../stitches.config';
 import { selectCurrentAccessToken } from '../features/auth/authSlice';
 import LogoutButton from '../features/auth/LogoutButton';
 import Button from './Button';
-import { StyledLink3, StyledLink4, LinkContainer } from './StyledLink';
+import StyledLink from './StyledLink';
 import { useAppSelector } from '../app/hooks';
 import { Container } from './Container';
+import Flex from './Flex';
+import { navbarCss } from './Navbar';
 
-const HeaderBody = styled('div', {
-	backgroundColor: '#f1faee',
-
+const HeaderBody = styled('div', navbarCss, {
 	'&.shadow': {
 		boxShadow: '0 1.5rem 4rem rgba(0, 0, 0, 0.2)',
 	},
-
-	variants: {
-		height: {
-			small: {
-				height: '3.5rem',
-				padding: '0.5rem',
-			},
-			normal: {
-				height: '5rem',
-				padding: '1rem',
-			},
-		},
-	},
-});
-
-const HeaderContainer = styled(Container, {
-	display: 'flex',
-	justifyContent: 'space-between',
-});
-
-const FlexDiv = styled('div', {
-	display: 'flex',
-	justifyContent: 'space-between',
-	width: '18rem',
-	alignItems: 'center',
 });
 
 type Props = {
@@ -55,56 +30,76 @@ const Header = ({ shadow }: Props) => {
 	return (
 		<HeaderBody
 			className={`${shadow ? 'shadow' : ''}`}
-			height={{
+			size={{
 				'@initial': 'small',
 				'@sm': 'normal',
 			}}
+			color="light"
 		>
-			<HeaderContainer>
-				<StyledLink3
+			<Container css={{ display: 'flex', justifyContent: 'space-between' }}>
+				<StyledLink
 					to="/"
 					theme="dark"
-					size={{
-						'@initial': 'small',
-						'@sm': 'normal',
+					fontSize={{
+						'@initial': 2,
+						'@sm': 3,
 					}}
+					fontWeight="bold"
 				>
 					COROSHOP
-				</StyledLink3>
+				</StyledLink>
 
 				{accessToken ? (
-					<FlexDiv>
-						<Button variant="linkLight" onClick={clickHandler}>
+					<Flex justify="between" align="center">
+						<Button
+							variant="linkLight"
+							onClick={clickHandler}
+							fontWeight="bold"
+							fontSize={{
+								'@initial': 1,
+								'@sm': 2,
+							}}
+							size={{
+								'@initial': 'small',
+								'@sm': 'normal',
+							}}
+						>
 							Profile
 						</Button>
 						<LogoutButton />
-					</FlexDiv>
+					</Flex>
 				) : (
-					<LinkContainer>
-						<StyledLink4
+					<Flex
+						justify="between"
+						align="center"
+						gap={{ '@initial': 1, '@sm': 2 }}
+					>
+						<StyledLink
 							to="/login"
 							theme="dark"
-							size={{
-								'@initial': 'small',
-								'@sm': 'normal',
+							fontWeight="bold"
+							fontSize={{
+								'@initial': 1,
+								'@sm': 2,
 							}}
 						>
 							Login
-						</StyledLink4>
+						</StyledLink>
 
-						<StyledLink4
+						<StyledLink
 							to="/register"
 							theme="dark"
-							size={{
-								'@initial': 'small',
-								'@sm': 'normal',
+							fontWeight="bold"
+							fontSize={{
+								'@initial': 1,
+								'@sm': 2,
 							}}
 						>
 							Register
-						</StyledLink4>
-					</LinkContainer>
+						</StyledLink>
+					</Flex>
 				)}
-			</HeaderContainer>
+			</Container>
 		</HeaderBody>
 	);
 };

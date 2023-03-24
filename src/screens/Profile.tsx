@@ -25,7 +25,7 @@ const Profile = () => {
 	) : (
 		<Container>
 			<Heading>Profile</Heading>
-			<Container display="flex_start" space="bottom">
+			<Container>
 				<FormSection>
 					<Heading3>Update Profile</Heading3>
 					<UpdateUserForm />

@@ -4,24 +4,7 @@ import { styled } from '../../stitches.config';
 import { useAppDispatch } from '../app/hooks';
 import { setKeyword } from '../features/product/filterProductsSlice';
 import Button from './Button';
-
-const SearchContainer = styled('div', {
-	display: 'flex',
-	justifyContent: 'space-between',
-	alignItems: 'center',
-	width: '24rem',
-
-	variants: {
-		display: {
-			none: {
-				display: 'none',
-			},
-			display: {
-				display: 'flex',
-			},
-		},
-	},
-});
+import Flex from './Flex';
 
 const SearchInput = styled('input', {
 	fontSize: '1.5rem',
@@ -42,10 +25,13 @@ const SearchBar = () => {
 	};
 
 	return (
-		<SearchContainer
-			display={{
-				'@initial': 'none',
-				'@sm': 'display',
+		<Flex
+			justify="between"
+			align="center"
+			css={{
+				width: '24rem',
+				display: 'none',
+				'@md': { display: 'flex' },
 			}}
 		>
 			<SearchInput
@@ -54,10 +40,15 @@ const SearchBar = () => {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-			<Button variant="search" onClick={onClickHandler}>
+			<Button
+				variant="search"
+				onClick={onClickHandler}
+				size="small"
+				fontSize="1"
+			>
 				Search
 			</Button>
-		</SearchContainer>
+		</Flex>
 	);
 };
 

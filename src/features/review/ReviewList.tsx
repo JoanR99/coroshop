@@ -15,10 +15,6 @@ const Grid = styled('div', {
 	justifyContent: 'center',
 });
 
-const Heading = styled(Heading2, {
-	mb: '2rem',
-});
-
 const ReviewsContainer = styled('div', {
 	mt: '4rem',
 });
@@ -26,7 +22,15 @@ const ReviewsContainer = styled('div', {
 const ReviewList = ({ reviews }: Props) => {
 	return (
 		<ReviewsContainer>
-			<Heading>Reviews</Heading>
+			<Heading2
+				css={{ mb: '2rem' }}
+				size={{
+					'@initial': '3',
+					'@md': '4',
+				}}
+			>
+				Reviews
+			</Heading2>
 			<Grid>
 				{reviews.length > 0 ? (
 					reviews.map((review) => (
@@ -37,7 +41,14 @@ const ReviewList = ({ reviews }: Props) => {
 						/>
 					))
 				) : (
-					<Heading3>No one reviewed this product yet</Heading3>
+					<Heading3
+						size={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						No one reviewed this product yet
+					</Heading3>
 				)}
 			</Grid>
 		</ReviewsContainer>
