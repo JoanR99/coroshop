@@ -37,7 +37,7 @@ const OrderItems = ({ item }: Props) => {
 				<StyledLink
 					to={`/products/${id}`}
 					theme="dark"
-					size={{
+					fontSize={{
 						'@initial': 5,
 						'@sm': 4,
 					}}

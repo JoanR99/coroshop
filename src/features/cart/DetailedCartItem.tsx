@@ -5,24 +5,22 @@ import StyledLink from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
-import { ItemContainer, ItemImage } from '../../components/ItemContainer';
+import { ItemImage } from '../../components/ItemContainer';
 import { useAppDispatch } from '../../app/hooks';
 import { styled } from '../../../stitches.config';
+import Flex from '../../components/Flex';
 
 type Props = {
 	cartItem: CartItem;
 };
 
-const CartColum = styled('div', {
-	display: 'flex',
-	alignItems: 'center',
-	columnGap: '1rem',
-	width: '23%',
-
-	'&:last-child': {
-		width: '8%',
-	},
+const Td = styled('td', {
+	width: '20%',
+	textAlign: 'left',
+	verticalAlign: 'middle',
 });
+
+const Tr = styled('tr', {});
 
 const DetailedCartItem = ({ cartItem }: Props) => {
 	const { name, image, price, quantity, id } = cartItem;
@@ -49,26 +47,36 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 	const handleRemove = () => dispatch(removeCartItem({ id }));
 
 	return (
-		<ItemContainer>
-			<CartColum>
-				<ItemImage src={image} alt={name} />
-				<StyledLink
-					to={`/products/${id}`}
-					theme="dark"
-					size={{
-						'@initial': 5,
-						'@sm': 4,
+		<Tr>
+			<Td css={{ width: '40%' }}>
+				<Flex align="center">
+					<ItemImage src={image} alt={name} css={{ mr: '1rem' }} />
+					<StyledLink
+						to={`/products/${id}`}
+						theme="dark"
+						fontSize={{
+							'@initial': 1,
+							'@sm': 2,
+						}}
+						css={{ lineHeight: '1' }}
+					>
+						{name}
+					</StyledLink>
+				</Flex>
+			</Td>
+
+			<Td>
+				<Paragraph
+					fontSize={{
+						'@initial': '2',
+						'@md': '3',
 					}}
 				>
-					{name}
-				</StyledLink>
-			</CartColum>
+					${price}
+				</Paragraph>
+			</Td>
 
-			<CartColum>
-				<Paragraph>${price}</Paragraph>
-			</CartColum>
-
-			<CartColum>
+			<Td>
 				<input
 					type="number"
 					id="quantity"
@@ -77,14 +85,23 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 					value={quantity}
 					onChange={handleQuantityChange}
 				/>
-			</CartColum>
+			</Td>
 
-			<CartColum>
-				<Button variant="ghost" onClick={handleRemove}>
+			<Td>
+				<Button
+					variant="ghost"
+					size="small"
+					fontSize={{
+						'@initial': '1',
+						'@md': '2',
+					}}
+					css={{ border: 'none' }}
+					onClick={handleRemove}
+				>
 					&#10005;
 				</Button>
-			</CartColum>
-		</ItemContainer>
+			</Td>
+		</Tr>
 	);
 };
 

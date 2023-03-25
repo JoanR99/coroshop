@@ -120,10 +120,7 @@ const CartDropDown = () => {
 							'@initial': 'small',
 							'@md': 'normal',
 						}}
-						fontSize={{
-							'@initial': 1,
-							'@md': 2,
-						}}
+						fontSize="1"
 						onClick={clickHandler}
 					>
 						GO TO CART

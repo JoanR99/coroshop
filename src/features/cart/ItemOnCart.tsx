@@ -48,14 +48,7 @@ const ItemOnCart = ({ cartItem }: Props) => {
 		>
 			<ItemImage src={image} alt={name} />
 			<ItemDetails>
-				<Heading4
-					size={{
-						'@initial': '1',
-						'@md': '2',
-					}}
-				>
-					{name}
-				</Heading4>
+				<Heading4 size="1">{name}</Heading4>
 				<Paragraph>
 					{quantity} x ${price}
 				</Paragraph>

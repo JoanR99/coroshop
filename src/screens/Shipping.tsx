@@ -28,7 +28,7 @@ const Shipping = () => {
 		navigate('/payment');
 	};
 	return (
-		<Container space="top" display="flex-justify-center">
+		<Container>
 			<StyledContainer size="main">
 				<Heading3>Shipping Information</Heading3>
 				<FormProvider {...methods}>
