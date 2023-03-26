@@ -1,20 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../app/hooks';
-import Button from '../../components/Button';
-import { Container, StyledContainer } from '../../components/Container';
-import Flex from '../../components/Flex';
+import { useAppSelector } from '../app/hooks';
+import Button from '../components/Button';
+import { Container, StyledContainer } from '../components/Container';
+import Flex from '../components/Flex';
 import {
 	Heading2,
 	Heading3,
 	Heading4,
 	Paragraph,
-} from '../../components/Typography';
-import CartItemsTable from '../../features/cart/CartItemsTable';
-import {
-	selectCartCount,
-	selectCartItems,
-} from '../../features/cart/cartSlice';
+} from '../components/Typography';
+import CartItemsTable from '../features/cart/CartItemsTable';
+import { selectCartCount, selectCartItems } from '../features/cart/cartSlice';
 
 const Cart = () => {
 	const cartItems = useAppSelector(selectCartItems);

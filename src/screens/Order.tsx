@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { Heading2, Paragraph } from '../components/Typography';
+import {
+	Heading2,
+	Heading3,
+	Heading4,
+	Paragraph,
+} from '../components/Typography';
 import {
 	useGetOrderQuery,
 	useUpdateOrderToDeliveredMutation,
@@ -55,27 +60,61 @@ const Order = () => {
 	return isLoading ? (
 		<div>Loading</div>
 	) : (
-		<Container>
-			<StyledContainer size="main">
-				<Heading2>Order {order?.getOrderById.id}</Heading2>
+		<Container
+			css={{
+				my: '4rem',
+				display: 'flex',
+				flexDirection: 'column',
+				gap: '4rem',
+				'@lg': { flexDirection: 'row', alignItems: 'self-start' },
+			}}
+		>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '66%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Order {order?.getOrderById.id}
+				</Heading3>
 
-				<FlexSection>
-					<Heading2>Shipping</Heading2>
-					<Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Shipping
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						<strong>Name: </strong> {order?.getOrderById.orderByName}
 					</Paragraph>
-				</FlexSection>
-
-				<FlexSection>
-					<Heading2>Address</Heading2>
-					<Paragraph>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						<strong>Address: </strong>
 						{order?.getOrderById.shippingAddress.address},{' '}
 						{order?.getOrderById.shippingAddress.city}{' '}
 						{order?.getOrderById.shippingAddress.postalCode},{' '}
 						{order?.getOrderById.shippingAddress.country}
 					</Paragraph>
-					<Paragraph>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						{order?.getOrderById.isDelivered ? (
 							<span>
 								Delivered on:{' '}
@@ -89,13 +128,30 @@ const Order = () => {
 					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Payment Method</Heading2>
-					<Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Payment Method
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						<strong>Method: </strong>
 						{order?.getOrderById.paymentMethod}
 					</Paragraph>
-					<Paragraph>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						{order?.getOrderById.isPaid ? (
 							<span>
 								Paid on:{' '}
@@ -107,33 +163,104 @@ const Order = () => {
 					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Order Items</Heading2>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Order Items
+					</Heading4>
 					{order?.getOrderById.orderItems.map((orderItem) => (
 						<OrderItems key={orderItem.productName} item={orderItem} />
 					))}
 				</FlexSection>
 			</StyledContainer>
 
-			<StyledContainer size="secondary">
-				<Heading2>Order Summary</Heading2>
-				<FlexSection>
-					<Heading2>Items</Heading2>
-					<Paragraph>${itemsPrice}</Paragraph>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '33%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Order Summary
+				</Heading3>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Items
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${itemsPrice}
+					</Paragraph>
 				</FlexSection>
-				<FlexSection>
-					<Heading2>Shipping</Heading2>
-					<Paragraph>${order?.getOrderById.shippingPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Shipping
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${order?.getOrderById.shippingPrice}
+					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Tax</Heading2>
-					<Paragraph>${order?.getOrderById.taxPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Tax
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${order?.getOrderById.taxPrice}
+					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Total</Heading2>
-					<Paragraph>${order?.getOrderById.totalPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Total
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${order?.getOrderById.totalPrice}
+					</Paragraph>
 				</FlexSection>
 
 				{!order!.getOrderById.isPaid &&
@@ -150,7 +277,15 @@ const Order = () => {
 					isAdmin &&
 					order!.getOrderById.isPaid &&
 					!order!.getOrderById.isDelivered && (
-						<Button variant="main" onClick={updateHandler}>
+						<Button
+							variant="main"
+							onClick={updateHandler}
+							size={{
+								'@initial': 'small',
+								'@md': 'normal',
+							}}
+							fontSize="1"
+						>
 							Mark as delivered
 						</Button>
 					)

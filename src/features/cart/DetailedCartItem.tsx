@@ -5,7 +5,7 @@ import StyledLink from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { removeCartItem, updateCartItemQuantity } from './cartSlice';
 import { CartItem } from './cartTypes';
-import { ItemImage } from '../../components/ItemContainer';
+import { ItemImage } from '../../components/ItemImage';
 import { useAppDispatch } from '../../app/hooks';
 import { styled } from '../../../stitches.config';
 import Flex from '../../components/Flex';

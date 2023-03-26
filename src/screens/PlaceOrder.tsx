@@ -3,7 +3,12 @@ import { toast } from 'react-toastify';
 
 import Button from '../components/Button';
 import { Container, StyledContainer } from '../components/Container';
-import { Heading2, Paragraph } from '../components/Typography';
+import {
+	Heading2,
+	Heading3,
+	Heading4,
+	Paragraph,
+} from '../components/Typography';
 import {
 	selectCartItems,
 	selectCartTotalPrice,
@@ -74,59 +79,175 @@ const PlaceOrder = () => {
 	};
 
 	return (
-		<Container>
-			<StyledContainer size="main">
-				<Heading2>Order Information</Heading2>
-				<FlexSection>
-					<Heading2>Shipping</Heading2>
-					<Paragraph>
+		<Container
+			css={{
+				my: '4rem',
+				display: 'flex',
+				flexDirection: 'column',
+				gap: '4rem',
+				'@lg': { flexDirection: 'row', alignItems: 'self-start' },
+			}}
+		>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '66%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Order Information
+				</Heading3>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Shipping
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						<strong>Address: </strong>
 						{shippingAddress.address}, {shippingAddress.city}{' '}
 						{shippingAddress.postalCode}, {shippingAddress.country}
 					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Payment Method</Heading2>
-					<Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Payment Method
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
 						<strong>Method: </strong>
 						{paymentMethod}
 					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Order Items</Heading2>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Order Items
+					</Heading4>
 					{cartItems.map((cartItem) => (
 						<OrderItems key={cartItem.id} item={cartItem} />
 					))}
 				</FlexSection>
 			</StyledContainer>
 
-			<StyledContainer size="secondary">
-				<Heading2>Order Summary</Heading2>
-				<FlexSection>
-					<Heading2>Items</Heading2>
-					<Paragraph>${itemsPrice}</Paragraph>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '33%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Order Summary
+				</Heading3>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Items
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${itemsPrice}
+					</Paragraph>
 				</FlexSection>
-				<FlexSection>
-					<Heading2>Shipping</Heading2>
-					<Paragraph>${shippingPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Shipping
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${shippingPrice}
+					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Tax</Heading2>
-					<Paragraph>${taxPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Tax
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${taxPrice}
+					</Paragraph>
 				</FlexSection>
 
-				<FlexSection>
-					<Heading2>Total</Heading2>
-					<Paragraph>${totalPrice}</Paragraph>
+				<FlexSection direction="column" css={{ mb: '1rem' }}>
+					<Heading4
+						size={{
+							'@initial': '1',
+							'@md': '2',
+						}}
+					>
+						Total
+					</Heading4>
+					<Paragraph
+						fontSize={{
+							'@initial': '2',
+							'@md': '3',
+						}}
+					>
+						${totalPrice}
+					</Paragraph>
 				</FlexSection>
 
 				<Button
 					variant="main"
 					onClick={clickHandler}
 					disabled={cartItems.length === 0 || isLoading}
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
 				>
 					Place Order
 				</Button>

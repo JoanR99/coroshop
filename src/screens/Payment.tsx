@@ -33,9 +33,17 @@ const Payment = () => {
 		navigate('/placeOrder');
 	};
 	return shippingAddress ? (
-		<Container space="top" display="flex-justify-center">
-			<StyledContainer size="secondary">
-				<Heading3>Payment Method</Heading3>
+		<Container css={{ mt: '4rem', display: 'flex', justifyContent: 'center' }}>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '40%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Payment Method
+				</Heading3>
 				<FormProvider {...methods}>
 					<form
 						onSubmit={methods.handleSubmit(submitHandler)}
@@ -57,7 +65,16 @@ const Payment = () => {
 							<RadioInput id="Stripe" label="Stripe" value="Stripe" />
 						</RadioGroup>
 
-						<Button variant="main">GO TO PAYMENT</Button>
+						<Button
+							variant="main"
+							size={{
+								'@initial': 'small',
+								'@md': 'normal',
+							}}
+							fontSize="1"
+						>
+							GO TO PAYMENT
+						</Button>
 					</form>
 				</FormProvider>
 			</StyledContainer>

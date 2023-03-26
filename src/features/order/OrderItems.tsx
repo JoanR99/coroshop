@@ -2,25 +2,26 @@ import StyledLink from '../../components/StyledLink';
 import { Paragraph } from '../../components/Typography';
 import { CartItem } from '../cart/cartTypes';
 import { OrderItem } from './orderTypes';
-import { ItemContainer, ItemImage } from '../../components/ItemContainer';
+import { ItemImage } from '../../components/ItemImage';
 import { styled } from '../../../stitches.config';
+import Flex from '../../components/Flex';
 
 type Props = {
 	item: CartItem | OrderItem;
 };
 
-const ItemColum = styled('div', {
-	display: 'flex',
-	alignItems: 'center',
-	columnGap: '1rem',
-	width: '50%',
+const Table = styled('table', {
+	width: '100%',
+	borderSpacing: '1rem',
 });
 
-const PriceColumn = styled('div', {
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	width: '25%',
+const Tr = styled('tr', {
+	textAlign: 'left',
+});
+
+const Td = styled('td', {
+	textAlign: 'left',
+	verticalAlign: 'middle',
 });
 
 const OrderItems = ({ item }: Props) => {
@@ -31,27 +32,43 @@ const OrderItems = ({ item }: Props) => {
 	const name = 'name' in item ? item.name : item.productName;
 
 	return (
-		<ItemContainer>
-			<ItemColum>
-				<ItemImage src={image} alt={name} />
-				<StyledLink
-					to={`/products/${id}`}
-					theme="dark"
-					fontSize={{
-						'@initial': 5,
-						'@sm': 4,
-					}}
-				>
-					{name}
-				</StyledLink>
-			</ItemColum>
+		<Table>
+			<tbody>
+				<Tr>
+					<Td css={{ width: '70%' }}>
+						<Flex align="center">
+							<ItemImage
+								src={image}
+								alt={name}
+								css={{ mr: '1rem', maxWidth: '10rem' }}
+							/>
+							<StyledLink
+								to={`/products/${id}`}
+								theme="dark"
+								fontSize={{
+									'@initial': 1,
+									'@sm': 2,
+								}}
+								css={{ lineHeight: '1' }}
+							>
+								{name}
+							</StyledLink>
+						</Flex>
+					</Td>
 
-			<PriceColumn>
-				<Paragraph>
-					{quantity} x ${price} = ${quantity * price}
-				</Paragraph>
-			</PriceColumn>
-		</ItemContainer>
+					<Td css={{ width: '30%' }}>
+						<Paragraph
+							fontSize={{
+								'@initial': '2',
+								'@md': '3',
+							}}
+						>
+							{quantity} x ${price}
+						</Paragraph>
+					</Td>
+				</Tr>
+			</tbody>
+		</Table>
 	);
 };
 

@@ -28,9 +28,17 @@ const Shipping = () => {
 		navigate('/payment');
 	};
 	return (
-		<Container>
-			<StyledContainer size="main">
-				<Heading3>Shipping Information</Heading3>
+		<Container css={{ mt: '4rem', display: 'flex', justifyContent: 'center' }}>
+			<StyledContainer css={{ width: '100%', '@lg': { width: '60%' } }}>
+				<Heading3
+					size={{
+						'@initial': '2',
+						'@md': '3',
+					}}
+					css={{ mb: '2rem' }}
+				>
+					Shipping Information
+				</Heading3>
 				<FormProvider {...methods}>
 					<form
 						onSubmit={methods.handleSubmit(submitHandler)}
@@ -66,7 +74,16 @@ const Shipping = () => {
 							required
 						/>
 
-						<Button variant="main">GO TO PAYMENT</Button>
+						<Button
+							variant="main"
+							size={{
+								'@initial': 'small',
+								'@md': 'normal',
+							}}
+							fontSize="1"
+						>
+							GO TO PAYMENT
+						</Button>
 					</form>
 				</FormProvider>
 			</StyledContainer>
