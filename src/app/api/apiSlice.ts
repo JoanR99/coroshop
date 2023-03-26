@@ -13,12 +13,13 @@ import {
 } from '../../features/auth/authSlice';
 import getNewAccessToken from '../../features/auth/getNewAccessToken';
 
-const client = new GraphQLClient(
-	import.meta.env.VITE_SERVER_URL ?? '/api/graphql',
-	{
-		credentials: 'include',
-	}
-);
+const serverURL = import.meta.env.VITE_SERVER_URL
+	? import.meta.env.VITE_SERVER_URL + '/api/graphql'
+	: '/api/graphql';
+
+const client = new GraphQLClient(serverURL, {
+	credentials: 'include',
+});
 
 const baseQuery = graphqlRequestBaseQuery({
 	client,
