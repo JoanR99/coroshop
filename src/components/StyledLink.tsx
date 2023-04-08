@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { styled } from '../../stitches.config';
+import { styled, css } from '../../stitches.config';
 
-const StyledLink = styled(Link, {
+export const styledLinkCss = css({
 	textDecoration: 'none',
 
 	variants: {
@@ -60,5 +60,7 @@ const StyledLink = styled(Link, {
 		fontSize: 2,
 	},
 });
+
+const StyledLink = styled(Link, styledLinkCss);
 
 export default StyledLink;

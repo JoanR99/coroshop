@@ -5,6 +5,7 @@ import { useAppDispatch } from '../app/hooks';
 import { setKeyword } from '../features/product/filterProductsSlice';
 import Button from './Button';
 import Flex from './Flex';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SearchInput = styled('input', {
 	fontSize: '1.5rem',
@@ -18,10 +19,14 @@ const SearchInput = styled('input', {
 const SearchBar = () => {
 	const [search, setSearch] = useState('');
 	const dispatch = useAppDispatch();
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	const onClickHandler = () => {
 		dispatch(setKeyword({ keyword: search }));
 		setSearch('');
+		if (location.pathname === '/products') return;
+		navigate('/products');
 	};
 
 	return (

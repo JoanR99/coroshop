@@ -4,12 +4,10 @@ import Header from './Header';
 import Navbar from './Navbar';
 
 const Layout = () => {
-	const location = useLocation();
-
 	return (
 		<>
 			<Header shadow={location.pathname.includes('admin')} />
-			{!location.pathname.includes('admin') && <Navbar />}
+			<Navbar />
 
 			<Outlet />
 		</>
