@@ -1,23 +1,9 @@
 import { FaUsers } from 'react-icons/fa';
-import { Heading2, Heading4 } from '../../components/Typography';
+import { Heading3, Heading4 } from '../../components/Typography';
 import { StyledContainer } from '../../components/Container';
 import { useGetUsersCountQuery } from './userApiSlice';
 import { useNavigate } from 'react-router-dom';
-import { styled } from '../../../stitches.config';
-
-const CountCard = styled(StyledContainer, {
-	cursor: 'pointer',
-});
-
-const HeadingContainer = styled('div', {
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-});
-
-const Count = styled(Heading2, {
-	textAlign: 'center',
-});
+import Flex from '../../components/Flex';
 
 const UsersCountCard = () => {
 	const { data, isLoading } = useGetUsersCountQuery(null);
@@ -28,16 +14,24 @@ const UsersCountCard = () => {
 	return isLoading ? (
 		<p>Loading</p>
 	) : (
-		<CountCard onClick={handleClick}>
-			<HeadingContainer>
+		<StyledContainer
+			onClick={handleClick}
+			css={{ cursor: 'pointer', padding: '1rem' }}
+		>
+			<Flex align="center" justify="center">
 				<FaUsers
 					style={{ height: '2.5rem', width: '2.5rem', marginRight: '1rem' }}
 				/>{' '}
-				<Heading4>Total Users</Heading4>
-			</HeadingContainer>
+				<Heading4 size={{ '@initial': '1' }}>Total Users</Heading4>
+			</Flex>
 
-			<Count>{data?.getUsersCount}</Count>
-		</CountCard>
+			<Heading3
+				size={{ '@initial': '2' }}
+				css={{ textAlign: 'center', mt: '1rem' }}
+			>
+				{data?.getUsersCount}
+			</Heading3>
+		</StyledContainer>
 	);
 };
 

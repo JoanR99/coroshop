@@ -6,6 +6,8 @@ import { Heading4, Paragraph } from '../../components/Typography';
 import { selectIsAdmin } from '../auth/authSlice';
 import { Order } from './orderTypes';
 import { Table, Td, Th } from '../../components/Table';
+import { BsCheckLg } from 'react-icons/bs';
+import { IoCloseSharp } from 'react-icons/io5';
 
 type Props = {
 	orders: Order[];
@@ -55,7 +57,7 @@ const OrdersTable = ({ orders }: Props) => {
 						</Td>
 						{isAdmin && (
 							<Td>
-								<Paragraph>{userOrder.orderBy}</Paragraph>
+								<Paragraph>{userOrder.orderByName}</Paragraph>
 							</Td>
 						)}
 						<Td>
@@ -68,17 +70,53 @@ const OrdersTable = ({ orders }: Props) => {
 						</Td>
 
 						<Td>
-							<Paragraph>
-								{userOrder.isPaid
-									? new Date(Number(userOrder.paidAt)).toLocaleDateString()
-									: 'Not paid'}
+							<Paragraph
+								css={{
+									display: 'flex',
+									columnGap: '0.5rem',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+							>
+								{userOrder.isPaid ? (
+									<>
+										<BsCheckLg style={{ color: 'green', marginRight: '5px' }} />{' '}
+										{new Date(Number(userOrder.paidAt)).toLocaleDateString()}
+									</>
+								) : (
+									<>
+										<IoCloseSharp
+											style={{ color: 'red', height: '20px', width: '20px' }}
+										/>
+										{'Not paid'}
+									</>
+								)}
 							</Paragraph>
 						</Td>
 						<Td>
-							<Paragraph>
-								{userOrder.isDelivered
-									? new Date(Number(userOrder.deliveredAt)).toLocaleDateString()
-									: 'Not delivered'}
+							<Paragraph
+								css={{
+									display: 'flex',
+									columnGap: '0.5rem',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+							>
+								{userOrder.isDelivered ? (
+									<>
+										<BsCheckLg style={{ color: 'green', marginRight: '5px' }} />{' '}
+										{new Date(
+											Number(userOrder.deliveredAt)
+										).toLocaleDateString()}
+									</>
+								) : (
+									<>
+										<IoCloseSharp
+											style={{ color: 'red', height: '20px', width: '20px' }}
+										/>
+										{'Not delivered'}
+									</>
+								)}
 							</Paragraph>
 						</Td>
 						<Td>
