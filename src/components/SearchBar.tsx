@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 import { styled } from '../../stitches.config';
 import { useAppDispatch } from '../app/hooks';
@@ -13,7 +14,6 @@ const SearchInput = styled('input', {
 	padding: '0.5rem 1.6rem',
 	borderRadius: '1rem',
 	border: 'solid 1px $main',
-	mr: '1rem',
 });
 
 const SearchBar = () => {
@@ -30,28 +30,22 @@ const SearchBar = () => {
 	};
 
 	return (
-		<Flex
-			justify="between"
-			align="center"
-			css={{
-				width: '24rem',
-				display: 'none',
-				'@md': { display: 'flex' },
-			}}
-		>
+		<Flex justify="between" align="center" gap="1">
 			<SearchInput
 				type="text"
 				name="search"
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
+				css={{ width: '9rem', height: '2.5rem', '@md': { width: '15rem' } }}
 			/>
 			<Button
 				variant="search"
 				onClick={onClickHandler}
 				size="small"
 				fontSize="1"
+				css={{ padding: '0' }}
 			>
-				Search
+				<FaSearch color="white" style={{ height: '1.5rem', width: '1.5rem' }} />
 			</Button>
 		</Flex>
 	);

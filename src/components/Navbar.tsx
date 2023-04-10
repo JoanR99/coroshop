@@ -275,7 +275,7 @@ const Navbar = () => {
 							Products
 						</StyledLink>
 					</Link>
-					<Nav>
+					<Nav css={{ minWidth: '5rem' }}>
 						<List>
 							<Item>
 								<Trigger
@@ -392,9 +392,8 @@ const Navbar = () => {
 					</Nav>
 				</Flex>
 
-				<div>
-					<SearchBar />
-				</div>
+				<SearchBar />
+
 				<CartDropDown />
 			</NavbarContainer>
 		</NavbarBody>
