@@ -8,14 +8,10 @@ const EditIcon = styled(FaEdit, {
 	color: '$main',
 });
 
-const ButtonContainer = styled(Button, {
-	padding: '0.5rem',
-});
-
 const EditButton = () => (
-	<ButtonContainer>
-		<EditIcon />
-	</ButtonContainer>
+	<Button variant="edit" size="small" fontSize="1">
+		<EditIcon color="black" />
+	</Button>
 );
 
 export default EditButton;

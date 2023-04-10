@@ -5,9 +5,10 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { Heading4, Paragraph } from '../../components/Typography';
 import Pagination from '../pagination/Pagination';
 import { useGetUsersQuery } from './userApiSlice';
-import { Table, Td, Th, Flex, TableContainer } from '../../components/Table';
+import { Table, Td, Th, TableContainer } from '../../components/Table';
 import EditUserModal from './EditUserModal';
 import DeleteUser from './DeleteUser';
+import Flex from '../../components/Flex';
 
 const UsersTable = () => {
 	const [pageNumber, setPageNumber] = useState(1);
@@ -22,21 +23,39 @@ const UsersTable = () => {
 	return isLoading ? (
 		<div>Loading</div>
 	) : data?.getUsers && data.getUsers.users.length > 0 ? (
-		<TableContainer>
+		<TableContainer css={{ minWidth: '58rem' }}>
 			<Table>
 				<thead>
 					<tr>
 						<Th>
-							<Heading4>ID</Heading4>
+							<Heading4
+								size={{
+									'@initial': '1',
+									'@md': '2',
+								}}
+							>
+								Name
+							</Heading4>
 						</Th>
 						<Th>
-							<Heading4>Name</Heading4>
+							<Heading4
+								size={{
+									'@initial': '1',
+									'@md': '2',
+								}}
+							>
+								Email
+							</Heading4>
 						</Th>
 						<Th>
-							<Heading4>Email</Heading4>
-						</Th>
-						<Th>
-							<Heading4>Admin</Heading4>
+							<Heading4
+								size={{
+									'@initial': '1',
+									'@md': '2',
+								}}
+							>
+								Admin
+							</Heading4>
 						</Th>
 
 						<Th></Th>
@@ -45,9 +64,6 @@ const UsersTable = () => {
 				<tbody>
 					{data.getUsers.users.map((user) => (
 						<tr key={user.id}>
-							<Td>
-								<Paragraph>{user.id}</Paragraph>
-							</Td>
 							<Td>
 								<Paragraph>{user.name}</Paragraph>
 							</Td>
@@ -68,7 +84,7 @@ const UsersTable = () => {
 							</Td>
 
 							<Td>
-								<Flex>
+								<Flex justify="center" gap="1">
 									<EditUserModal userId={user.id} />
 									<DeleteUser userId={user.id} />
 								</Flex>

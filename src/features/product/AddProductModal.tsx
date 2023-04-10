@@ -11,7 +11,11 @@ const AddProductModal = () => {
 			title="Add Product"
 			open={isOpen}
 			toggleModal={toggleModal}
-			button={<Button variant="add">Add Product</Button>}
+			button={
+				<Button variant="add" size="small" fontSize="1">
+					Add Product
+				</Button>
+			}
 		>
 			<AddProductForm closeModal={closeModal} />
 		</ModalDialog>

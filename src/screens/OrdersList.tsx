@@ -10,8 +10,15 @@ const OrdersList = () => {
 	return isLoading ? (
 		<Spinner />
 	) : (
-		<StyledContainer>
-			<Heading2>Orders</Heading2>
+		<StyledContainer css={{ mb: '2rem', overflowY: 'scroll' }}>
+			<Heading2
+				size={{
+					'@initial': '3',
+					'@md': '4',
+				}}
+			>
+				Orders
+			</Heading2>
 			<OrdersTable orders={data!.getOrders} />
 		</StyledContainer>
 	);

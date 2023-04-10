@@ -4,26 +4,30 @@ import ProductsTable from '../features/product/ProductsTable';
 import { styled } from '../../stitches.config';
 import EditProductModal from '../features/product/AddProductModal';
 
-const ProductListContainer = styled(StyledContainer, {
-	width: '100%+',
-});
-
 const HeadingSection = styled('div', {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
+	width: '100%',
 });
 
 const ProductList = () => {
 	return (
-		<ProductListContainer>
+		<StyledContainer css={{ mb: '2rem', overflowY: 'scroll' }}>
 			<HeadingSection>
-				<Heading2>Products</Heading2>
+				<Heading2
+					size={{
+						'@initial': '3',
+						'@md': '4',
+					}}
+				>
+					Products
+				</Heading2>
 				<EditProductModal />
 			</HeadingSection>
 
 			<ProductsTable />
-		</ProductListContainer>
+		</StyledContainer>
 	);
 };
 

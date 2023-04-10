@@ -4,8 +4,15 @@ import UsersTable from '../features/user/UsersTable';
 
 const Users = () => {
 	return (
-		<StyledContainer>
-			<Heading2>Users</Heading2>
+		<StyledContainer css={{ mb: '2rem', overflowY: 'scroll' }}>
+			<Heading2
+				size={{
+					'@initial': '3',
+					'@md': '4',
+				}}
+			>
+				Users
+			</Heading2>
 			<UsersTable />
 		</StyledContainer>
 	);

@@ -53,7 +53,8 @@ const Button = styled('button', {
 				border: '1px solid DarkGray',
 			},
 			search: {
-				backgroundColor: '$main_light',
+				border: 'none',
+				backgroundColor: 'transparent',
 			},
 			linkLight: {
 				color: '$main_dark',

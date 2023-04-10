@@ -8,14 +8,10 @@ const DeleteIcon = styled(MdDelete, {
 	color: '$action',
 });
 
-const DeleteButtonContainer = styled(Button, {
-	padding: '0.5rem',
-});
-
 const DeleteButton = () => (
-	<DeleteButtonContainer>
-		<DeleteIcon />
-	</DeleteButtonContainer>
+	<Button variant="main" size="small" fontSize="1">
+		<DeleteIcon color="white" />
+	</Button>
 );
 
 export default DeleteButton;
