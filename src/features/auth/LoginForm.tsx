@@ -7,9 +7,9 @@ import { loginSchema, defaultValues } from '../../validation/loginSchema';
 import FormInput from '../../components/FormInput';
 import { useLoginMutation } from '../../features/auth/authApiSlice';
 import { setCredentials } from '../../features/auth/authSlice';
-import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
 import { useAppDispatch } from '../../app/hooks';
+import SwitchInput from '../../components/SwitchInput';
 
 interface OwnLocation extends Location {
 	state: {
@@ -94,7 +94,7 @@ const LoginForm = () => {
 					required
 				/>
 
-				<CheckboxInput
+				<SwitchInput
 					label="Trust this device?"
 					name="persist"
 					id="persist"
