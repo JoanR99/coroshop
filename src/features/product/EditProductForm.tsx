@@ -150,7 +150,15 @@ const EditProductForm = ({ productId, closeModal }: Props) => {
 					required
 				/>
 
-				<Button variant="main" disabled={updateLoading}>
+				<Button
+					variant="main"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
+					disabled={updateLoading}
+				>
 					Update Product
 				</Button>
 			</form>

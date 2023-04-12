@@ -107,10 +107,7 @@ const LoginForm = () => {
 						'@initial': 'small',
 						'@md': 'normal',
 					}}
-					fontSize={{
-						'@initial': '1',
-						'@md': '2',
-					}}
+					fontSize="1"
 				>
 					Login
 				</Button>

@@ -137,7 +137,15 @@ const AddProduct = () => {
 						required
 					/>
 
-					<Button variant="main" disabled={isLoading}>
+					<Button
+						variant="main"
+						size={{
+							'@initial': 'small',
+							'@md': 'normal',
+						}}
+						fontSize="1"
+						disabled={isLoading}
+					>
 						Add Product
 					</Button>
 				</form>

@@ -12,7 +12,14 @@ const AddProductModal = () => {
 			open={isOpen}
 			toggleModal={toggleModal}
 			button={
-				<Button variant="add" size="small" fontSize="1">
+				<Button
+					variant="add"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
+				>
 					Add Product
 				</Button>
 			}

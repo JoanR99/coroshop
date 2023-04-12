@@ -183,10 +183,7 @@ const ProductView = ({ product }: Props) => {
 								'@initial': 'small',
 								'@lg': 'normal',
 							}}
-							fontSize={{
-								'@initial': '1',
-								'@lg': '2',
-							}}
+							fontSize="1"
 						>
 							ADD TO CART
 						</Button>

@@ -83,7 +83,15 @@ const StripeForm = ({ clientSecret, orderId }: Props) => {
 			<FormContainer onSubmit={paymentHandler}>
 				<Heading3>Credit card payment:</Heading3>
 				<StyledCard />
-				<Button variant="main" disabled={isLoading || !stripe || !elements}>
+				<Button
+					variant="main"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
+					disabled={isLoading || !stripe || !elements}
+				>
 					Pay Now
 				</Button>
 			</FormContainer>

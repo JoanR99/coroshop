@@ -9,7 +9,14 @@ const DeleteIcon = styled(MdDelete, {
 });
 
 const DeleteButton = () => (
-	<Button variant="main" size="small" fontSize="1">
+	<Button
+		variant="main"
+		size={{
+			'@initial': 'small',
+			'@md': 'normal',
+		}}
+		fontSize="1"
+	>
 		<DeleteIcon color="white" />
 	</Button>
 );

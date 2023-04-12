@@ -104,12 +104,9 @@ const AddReview = ({ productId }: Props) => {
 						variant="main"
 						size={{
 							'@initial': 'small',
-							'@lg': 'normal',
+							'@md': 'normal',
 						}}
-						fontSize={{
-							'@initial': '1',
-							'@lg': '2',
-						}}
+						fontSize="1"
 					>
 						Add Review
 					</Button>

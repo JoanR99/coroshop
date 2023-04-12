@@ -91,10 +91,7 @@ const DetailedCartItem = ({ cartItem }: Props) => {
 				<Button
 					variant="ghost"
 					size="small"
-					fontSize={{
-						'@initial': '1',
-						'@md': '2',
-					}}
+					fontSize="1"
 					css={{ border: 'none' }}
 					onClick={handleRemove}
 				>

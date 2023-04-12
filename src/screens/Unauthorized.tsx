@@ -24,7 +24,15 @@ const Unauthorized = () => {
 			<StyledParagraph>
 				You are not authorized to visit this page.
 			</StyledParagraph>
-			<Button variant="main" onClick={clickHandler}>
+			<Button
+				variant="main"
+				size={{
+					'@initial': 'small',
+					'@md': 'normal',
+				}}
+				fontSize="1"
+				onClick={clickHandler}
+			>
 				Go to Home
 			</Button>
 		</Container>

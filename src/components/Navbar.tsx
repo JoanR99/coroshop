@@ -275,7 +275,7 @@ const Navbar = () => {
 							Products
 						</StyledLink>
 					</Link>
-					<Nav css={{ minWidth: '5rem' }}>
+					<Nav css={{ minWidth: '10rem' }}>
 						<List>
 							<Item>
 								<Trigger

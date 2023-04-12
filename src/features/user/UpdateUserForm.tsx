@@ -97,7 +97,15 @@ const UpdateUserForm = () => {
 					id="passwordConfirm"
 					required
 				/>
-				<Button variant="main" disabled={updateLoading}>
+				<Button
+					variant="main"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
+					disabled={updateLoading}
+				>
 					Update Profile
 				</Button>
 			</form>

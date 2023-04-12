@@ -9,7 +9,14 @@ const EditIcon = styled(FaEdit, {
 });
 
 const EditButton = () => (
-	<Button variant="edit" size="small" fontSize="1">
+	<Button
+		variant="edit"
+		size={{
+			'@initial': 'small',
+			'@md': 'normal',
+		}}
+		fontSize="1"
+	>
 		<EditIcon color="black" />
 	</Button>
 );

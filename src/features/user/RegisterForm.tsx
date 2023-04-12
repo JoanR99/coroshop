@@ -90,10 +90,7 @@ const RegisterForm = () => {
 						'@initial': 'small',
 						'@md': 'normal',
 					}}
-					fontSize={{
-						'@initial': '1',
-						'@md': '2',
-					}}
+					fontSize="1"
 				>
 					Register
 				</Button>

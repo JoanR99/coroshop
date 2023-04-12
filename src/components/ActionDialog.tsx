@@ -99,13 +99,27 @@ const ActionDialog = ({
 					{children}
 					<ButtonContainer>
 						<AlertDialog.Cancel asChild>
-							<Button variant="ghost">Cancel</Button>
+							<Button
+								variant="ghost"
+								size={{
+									'@initial': 'small',
+									'@md': 'normal',
+								}}
+								fontSize="1"
+							>
+								Cancel
+							</Button>
 						</AlertDialog.Cancel>
 						<AlertDialog.Action asChild>
 							<Button
 								variant="main"
 								onClick={() => mutationHandler()}
 								disabled={loading}
+								size={{
+									'@initial': 'small',
+									'@md': 'normal',
+								}}
+								fontSize="1"
 							>
 								{action}
 							</Button>

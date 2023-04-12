@@ -103,7 +103,15 @@ const EditUserForm = ({ userId, closeModal }: Props) => {
 					required
 				/>
 
-				<Button variant="add" disabled={updateLoading}>
+				<Button
+					variant="add"
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
+					disabled={updateLoading}
+				>
 					Update User
 				</Button>
 			</form>

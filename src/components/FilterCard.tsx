@@ -94,8 +94,11 @@ function FilterCard() {
 						size={30}
 					/>
 					<Button
-						size={{ '@initial': 'small', '@md': 'normal' }}
-						fontSize={{ '@initial': 1, '@md': 2 }}
+						size={{
+							'@initial': 'small',
+							'@md': 'normal',
+						}}
+						fontSize="1"
 						variant="main"
 						onClick={handleMinRating}
 					>

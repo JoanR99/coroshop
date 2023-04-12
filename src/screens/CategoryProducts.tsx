@@ -17,10 +17,6 @@ const ProductPageContainer = styled('div', {
 	mb: '2rem',
 });
 
-const MarginHeading = styled(Heading2, {
-	mt: '2rem',
-});
-
 const CategoryProducts = () => {
 	const params = useParams();
 	const navigate = useNavigate();
@@ -47,7 +43,15 @@ const CategoryProducts = () => {
 		<div>Something went wrong</div>
 	) : (
 		<Container>
-			<MarginHeading>{category}</MarginHeading>
+			<Heading2
+				size={{
+					'@initial': '3',
+					'@md': '4',
+				}}
+				css={{ my: '2rem' }}
+			>
+				{category}
+			</Heading2>
 			<ProductPageContainer>
 				<ProductList products={data!.getProducts.products} />
 				<Pagination
