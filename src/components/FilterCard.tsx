@@ -139,8 +139,11 @@ function FilterCard() {
 
 					<Button
 						variant="main"
-						size={{ '@initial': 'small', '@md': 'normal' }}
-						fontSize={{ '@initial': 1, '@md': 2 }}
+						size={{
+							'@initial': 'small',
+							'@md': 'normal',
+						}}
+						fontSize="1"
 						onClick={handleFilterPrice}
 					>
 						Filter
@@ -151,8 +154,11 @@ function FilterCard() {
 			{hasFilterChange && (
 				<Button
 					variant="main"
-					size={{ '@initial': 'small', '@md': 'normal' }}
-					fontSize={{ '@initial': 1, '@md': 2 }}
+					size={{
+						'@initial': 'small',
+						'@md': 'normal',
+					}}
+					fontSize="1"
 					onClick={handleReset}
 				>
 					Clear Filters
